@@ -5,17 +5,17 @@ import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallb
 import Home from "./pages/home/components/home/connect"
 import { TitleBanner } from "./globalComponents/titleBanner"
 import ErrorPage from "./globalComponents/errorPage"
-import { O_AUTH_URL } from "./constants"
+import { O_AUTH_URL, ROUTE_PATHS } from "./constants"
 
 const App = () => (
 	<>
 		<TitleBanner />
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<LoginPage />} />
-				<Route path="/authorize" element={<OAuthorisationCallback />} />
+				<Route path={ROUTE_PATHS.DEFAULT} element={<LoginPage />} />
+				<Route path={ROUTE_PATHS.AUTHORIZE} element={<OAuthorisationCallback />} />
 				<Route
-					path="/auth_error"
+					path={ROUTE_PATHS.AUTH_ERROR}
 					element={
 						<ErrorPage
 							title="Authentication Error"
@@ -25,7 +25,7 @@ const App = () => (
 						/>
 					}
 				/>
-				<Route path="/home" element={<Home />} />
+				<Route path={ROUTE_PATHS.HOME} element={<Home />} />
 				<Route
 					path="*"
 					element={

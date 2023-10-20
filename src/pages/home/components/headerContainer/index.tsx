@@ -11,21 +11,20 @@ export const HeaderContainer = ({ loadData }: any) => {
 		<CenteredContainer>
 			<h1>Click Below To See Some Of Your Stats</h1>
 			<div className="btn-group btn-group-lg pt-5" role="group" aria-label="Basic radio toggle button group">
-				{API_ENDPOINTS.map((endpoint, i) => (
-					<>
+				{API_ENDPOINTS.map((endpoint) => (
+					<div key={endpoint}>
 						<input
 							type="radio"
 							className="btn-check"
 							name="btnradio"
 							id={endpoint}
-							key={i}
 							autoComplete="off"
 							onChange={handleRadioChange}
 						/>
 						<StyledLabel className="btn btn-outline-dark" htmlFor={endpoint}>
-							{endpoint}
+							{endpoint.charAt(0).toUpperCase() + endpoint.slice(1)}
 						</StyledLabel>
-					</>
+					</div>
 				))}
 			</div>
 		</CenteredContainer>

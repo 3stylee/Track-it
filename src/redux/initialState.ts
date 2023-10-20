@@ -8,6 +8,6 @@ export interface State {
 
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
-	data: "",
+	data: "Press one of the buttons to see some data",
 	apiCallsInProgress: 0,
 }
