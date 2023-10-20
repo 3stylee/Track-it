@@ -7,20 +7,17 @@ export interface OAuthorisationCallbackProps {
 	authState: string
 	apiCallsInProgress: number
 	getAuthToken: any
-	authUserSuccess: any
 }
 
 export const OAuthorisationCallback = ({
 	authState,
 	apiCallsInProgress,
 	getAuthToken,
-	authUserSuccess,
 }: OAuthorisationCallbackProps) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		if (localStorage.getItem("access_code")) authUserSuccess()
-		if (authState === AUTH_STATES.AUTHORISED) {
+		if (authState === AUTH_STATES.AUTHORISED || localStorage.getItem("access_code")) {
 			navigate("/home")
 		}
 
