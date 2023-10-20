@@ -1,24 +1,24 @@
 import React from "react"
 import { CenteredContainer, StyledLabel } from "./components"
-import { getApiData } from "../../utils/getApiData"
-import { API_ENDPOINTS } from "../../constants/constants"
+import { API_ENDPOINTS } from "../../../../constants"
 
-export const HeaderContainer = ({ updateData }: any) => {
+export const HeaderContainer = ({ loadData }: any) => {
 	const handleRadioChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		updateData(await getApiData(event.target.id))
+		loadData(event.target.id)
 	}
 
 	return (
 		<CenteredContainer>
 			<h1>Click Below To See Some Of Your Stats</h1>
 			<div className="btn-group btn-group-lg pt-5" role="group" aria-label="Basic radio toggle button group">
-				{API_ENDPOINTS.map((endpoint) => (
+				{API_ENDPOINTS.map((endpoint, i) => (
 					<>
 						<input
 							type="radio"
 							className="btn-check"
 							name="btnradio"
 							id={endpoint}
+							key={i}
 							autoComplete="off"
 							onChange={handleRadioChange}
 						/>

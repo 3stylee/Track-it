@@ -1,15 +1,22 @@
 import React from "react"
-import { StyledCard, StyledContainer } from "./components"
+import { ProgressContainer, StyledCard, StyledContainer } from "./components"
 
-interface DataContainerProps {
+export interface DataContainerProps {
 	data: string
+	apiCallsInProgress: number
 }
 
-export const DataContainer = ({ data }: DataContainerProps) => {
+export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
 	return (
 		<StyledContainer>
 			<StyledCard className="card">
-				<div className="card-body">{data}</div>
+				{apiCallsInProgress > 0 ? (
+					<ProgressContainer>
+						<div className="spinner-border" />
+					</ProgressContainer>
+				) : (
+					<div className="card-body">{data}</div>
+				)}
 			</StyledCard>
 		</StyledContainer>
 	)

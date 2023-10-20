@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET } from "../../constants/constants"
+import { AUTH_STATES, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET } from "../../../../constants"
 import { ProgressContainer } from "./components"
 
-export const OAuthorisationCallback = () => {
-	const [isLoading, setIsLoading] = useState(true)
+export interface OAuthorisationCallbackProps {
+	authState: string
+	apiCallsInProgress: number
+	getAuthToken: any
+	authUserSuccess: any
+}
+
+export const OAuthorisationCallback = ({
+	authState,
+	apiCallsInProgress,
+	getAuthToken,
+	authUserSuccess,
+}: OAuthorisationCallbackProps) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		const fetchToken = async () => {
-			const urlParams = new URLSearchParams(window.location.search)
-			const code = urlParams.get("code")
-
-			try {
-				const response = await axios.post(AUTH_TOKEN_BASE_URL, {
-					client_id: CLIENT_ID,
-					client_secret: CLIENT_SECRET,
-					code: code,
-					grant_type: "authorization_code",
-				})
-				localStorage.setItem("access_code", response.data.access_token)
-			} catch (error) {
-				throw error
-			} finally {
-				setIsLoading(false)
-				navigate("/home")
-			}
+		if (localStorage.getItem("access_code")) authUserSuccess()
+		if (authState === AUTH_STATES.AUTHORISED) {
+			navigate("/home")
 		}
 
-		fetchToken()
-	}, [])
+		if (authState === AUTH_STATES.AUTH_ERROR) {
+			navigate("/auth_error")
+		}
 
-	return isLoading ? (
+		const urlParams = new URLSearchParams(window.location.search)
+		const code = urlParams.get("code")
+		const error = urlParams.get("error")
+
+		if (code) getAuthToken(code, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET)
+		if (error === "access_denied") navigate("/auth_error")
+	}, [authState])
+
+	return apiCallsInProgress > 0 ? (
 		<ProgressContainer>
 			<div className="spinner-border" />
 		</ProgressContainer>

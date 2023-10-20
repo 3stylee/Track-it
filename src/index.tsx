@@ -4,14 +4,25 @@ import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min"
+import { Provider } from "react-redux"
+import { configureStore } from "@reduxjs/toolkit"
+import { rootReducer } from "./redux/reducers"
+import thunk from "redux-thunk"
+
+const store = configureStore({
+	reducer: rootReducer,
+	middleware: [thunk],
+})
 
 const rootElem = document.getElementById("root")
 if (rootElem !== null) {
 	const root = ReactDOM.createRoot(rootElem)
 	root.render(
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
+		<Provider store={store}>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</Provider>
 	)
 }
 
