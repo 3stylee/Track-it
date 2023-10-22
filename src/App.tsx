@@ -19,7 +19,7 @@ const App = () => (
 					element={
 						<ErrorPage
 							title="Authentication Error"
-							eMessage="Sorry, but we were unable to authenticate your Strava account, please try again"
+							eMessage="Sorry, but we were unable to authenticate your Strava account. Please try again"
 							buttonText="Try again »"
 							buttonLink={O_AUTH_URL}
 						/>
