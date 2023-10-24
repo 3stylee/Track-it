@@ -33,13 +33,19 @@ export const DataContainer = ({ data, dataType, apiCallsInProgress }: DataContai
 					</ProgressContainer>
 				) : (
 					<div className="card-body">
-						{dataType === DATA_TYPES.ACTIVITIES ? (
-							data.map((activity: any) => (
-								<RouteMap /*polyline={decodePolyLine(activity.polyline) } */ key={activity.id} />
-							))
-						) : (
-							<>{JSON.stringify(data)}</>
-						)}
+						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+							{dataType === DATA_TYPES.ACTIVITIES ? (
+								data.map((activity: any) => (
+									<RouteMap
+										/*polyline={decodePolyLine(activity.polyline) } */ name={activity.name}
+										distance={activity.distance}
+										key={activity.id}
+									/>
+								))
+							) : (
+								<>{JSON.stringify(data)}</>
+							)}
+						</div>
 					</div>
 				)}
 			</StyledCard>
