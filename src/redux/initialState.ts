@@ -2,12 +2,14 @@ import { AUTH_STATES } from "../constants"
 
 export interface State {
 	authState: string
-	data: string
+	data: object
+	dataType: string
 	apiCallsInProgress: number
 }
 
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
-	data: "Press one of the buttons to see some data",
+	data: { text: "Press one of the buttons to see some data" },
+	dataType: "",
 	apiCallsInProgress: 0,
 }

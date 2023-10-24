@@ -1,3 +1,4 @@
+import { DATA_ERROR_MESSAGE } from "../../constants"
 import * as types from "../actions/actionTypes"
 import initalState from "../initialState"
 
@@ -6,7 +7,7 @@ const dataReducer = (state = initalState.data, action: { type: any; data: any })
 		case types.LOAD_DATA_SUCCESS:
 			return action.data
 		case types.LOAD_DATA_ERROR:
-			return "Sorry, we had trouble getting your data, please try again"
+			return { text: DATA_ERROR_MESSAGE }
 		default:
 			return state
 	}
