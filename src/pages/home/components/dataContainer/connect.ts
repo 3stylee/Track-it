@@ -1,4 +1,3 @@
-import { DataContainer } from "."
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
 
@@ -10,4 +9,4 @@ const mapStateToProps = (state: State) => {
 	}
 }
 
-export default connect(mapStateToProps)(DataContainer)
+export default connect(mapStateToProps)

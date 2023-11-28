@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-import { OAuthorisationCallback } from "."
 import { State } from "../../../../redux/initialState"
 import { getAuthToken } from "../../../../redux/actions/authUserActions"
 
@@ -14,4 +13,4 @@ const mapDispatchToProps = {
 	getAuthToken,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OAuthorisationCallback)
+export default connect(mapStateToProps, mapDispatchToProps)

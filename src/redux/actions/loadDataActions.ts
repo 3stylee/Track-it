@@ -33,7 +33,7 @@ export const loadData = (type: string) => {
 				endpoint += "/athlete"
 				activityTypeCallback = typeAthlete()
 				break
-			case DATA_TYPES.BONUS:
+			default:
 				endpoint += ""
 				break
 		}
@@ -51,6 +51,21 @@ export const loadData = (type: string) => {
 			dispatch(loadDataError())
 			dispatch(apiCallError())
 			//throw error
+		}
+	}
+}
+
+export const updateActivityType = (type: string) => {
+	return async function (dispatch: any) {
+		switch (type) {
+			case DATA_TYPES.ACTIVITIES:
+				dispatch(typeActivities())
+				break
+			case DATA_TYPES.ATHLETE:
+				dispatch(typeAthlete())
+				break
+			default:
+				break
 		}
 	}
 }

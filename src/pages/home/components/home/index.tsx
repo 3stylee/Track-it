@@ -1,9 +1,11 @@
 import React, { useEffect } from "react"
-import { ColouredContainer } from "./components"
-import HeaderContainer from "../headerContainer/connect"
-import DataContainer from "../dataContainer/connect"
+import { ColouredContainer, PageContainer } from "./components"
+import HeaderContainer from "../headerContainer"
+import DataContainer from "../dataContainer"
 import { useNavigate } from "react-router-dom"
 import { AUTH_STATES, ROUTE_PATHS } from "../../../../constants"
+import Sidebar from "../../../../globalComponents/sidebar"
+import connect from "./connect"
 
 export const Home = ({ authState }: { authState: string }) => {
 	const navigate = useNavigate()
@@ -15,9 +17,14 @@ export const Home = ({ authState }: { authState: string }) => {
 	}, [])
 
 	return (
-		<ColouredContainer>
-			<HeaderContainer />
-			<DataContainer />
-		</ColouredContainer>
+		<PageContainer>
+			<Sidebar />
+			<ColouredContainer>
+				<HeaderContainer />
+				<DataContainer />
+			</ColouredContainer>
+		</PageContainer>
 	)
 }
+
+export default connect(Home)

@@ -2,8 +2,9 @@ import React from "react"
 import { ProgressContainer, StyledCard, StyledContainer } from "./components"
 import processActivityData from "../../utils/processActivityData"
 import processAthleteData from "../../utils/processAthleteData"
-import { RouteMap } from "../routeMap.tsx"
+import { RouteMap } from "../routeMap"
 import { DATA_TYPES } from "../../../../constants"
+import connect from "./connect"
 //import decodePolyLine from "../../utils/decodePolyline"
 
 export interface DataContainerProps {
@@ -52,3 +53,5 @@ export const DataContainer = ({ data, dataType, apiCallsInProgress }: DataContai
 		</StyledContainer>
 	)
 }
+
+export default connect(DataContainer)

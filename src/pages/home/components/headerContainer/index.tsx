@@ -1,11 +1,16 @@
 import React from "react"
 import { CenteredContainer } from "./components"
-import { DATA_TYPES } from "../../../../constants"
+import { DATA_TYPES, INITIAL_DATA_MESSAGE } from "../../../../constants"
 import { RadioButton } from "../radioButton"
+import connect from "./connect"
 
-export const HeaderContainer = ({ loadData }: any) => {
+export const HeaderContainer = ({ loadData, updateActivityType, data }: any) => {
 	const handleRadioChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		loadData(event.target.id)
+		if (data.text === INITIAL_DATA_MESSAGE) {
+			loadData(event.target.id)
+		} else {
+			updateActivityType(event.target.id)
+		}
 	}
 
 	return (
@@ -23,3 +28,5 @@ export const HeaderContainer = ({ loadData }: any) => {
 		</CenteredContainer>
 	)
 }
+
+export default connect(HeaderContainer)

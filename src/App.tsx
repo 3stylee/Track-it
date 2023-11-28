@@ -1,9 +1,9 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from "./pages/login/components/login"
-import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback/connect"
-import Home from "./pages/home/components/home/connect"
-import { TitleBanner } from "./globalComponents/titleBanner"
+import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"
+import Home from "./pages/home/components/home"
+import TitleBanner from "./globalComponents/titleBanner"
 import ErrorPage from "./globalComponents/errorPage"
 import { O_AUTH_URL, ROUTE_PATHS } from "./constants"
 

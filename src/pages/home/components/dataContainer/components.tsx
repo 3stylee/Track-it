@@ -4,9 +4,9 @@ export const StyledContainer = styled("div")`
 	padding: 5rem;
 `
 
-export const StyledCard = styled("div")`\
-    height: 27rem;
-    overflow-y: scroll;
+export const StyledCard = styled("div")`
+	height: 27rem;
+	overflow-y: scroll;
 `
 export const ProgressContainer = styled("div")`
 	display: flex;

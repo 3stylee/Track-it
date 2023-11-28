@@ -8,6 +8,7 @@ import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
 import { rootReducer } from "./redux/reducers"
 import thunk from "redux-thunk"
+import "./globalStyles.css"
 
 const store = configureStore({
 	reducer: rootReducer,
