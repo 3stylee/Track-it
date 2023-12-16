@@ -13,9 +13,9 @@ export const SidebarContainer = styled("div")<SidebarContainerProps>`
 		width: 100%;
 		margin-left: 0;
 		height: 300px;
-		margin-bottom: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : "-300px")};
-		z-index: -1;
-		transition: margin-bottom 0.3s;
+		margin-top: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : "-300px")};
+		z-index: ${({ sidebarExpanded }) => (sidebarExpanded ? "1" : "-1")};
 		position: sticky;
+		transition: margin-top 0.3s;
 	}
 `

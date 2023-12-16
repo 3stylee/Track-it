@@ -1,57 +1,58 @@
 import React from "react"
 import { SidebarContainer } from "./components"
 import connect from "./connect"
+import { Link } from "react-router-dom"
 
 export const Sidebar = ({ sidebarExpanded }: any) => {
 	return (
 		<SidebarContainer sidebarExpanded={sidebarExpanded} className={`flex-column flex-shrink-0 p-3 text-bg-dark`}>
-			<a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+			<div className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 				<svg className="bi pe-none me-2" width="40" height="32">
 					<use xlinkHref="#bootstrap"></use>
 				</svg>
 				<span className="fs-4">Sidebar</span>
-			</a>
+			</div>
 			<hr />
 			<ul className="nav nav-pills flex-column mb-auto">
 				<li className="nav-item">
-					<a href="#" className="nav-link text-white">
+					<Link to="" className="nav-link text-white">
 						<svg className="bi pe-none me-2" width="16" height="16">
 							<use xlinkHref="#home"></use>
 						</svg>
 						Home
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href="#" className="nav-link text-white">
+					<Link to="dashboard" className="nav-link text-white">
 						<svg className="bi pe-none me-2" width="16" height="16">
 							<use xlinkHref="#speedometer2"></use>
 						</svg>
 						Dashboard
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href="#" className="nav-link text-white">
+					<Link to="" className="nav-link text-white">
 						<svg className="bi pe-none me-2" width="16" height="16">
 							<use xlinkHref="#table"></use>
 						</svg>
 						Orders
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href="#" className="nav-link text-white">
+					<Link to="" className="nav-link text-white">
 						<svg className="bi pe-none me-2" width="16" height="16">
 							<use xlinkHref="#grid"></use>
 						</svg>
 						Products
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href="#" className="nav-link text-white">
+					<Link to="" className="nav-link text-white">
 						<svg className="bi pe-none me-2" width="16" height="16">
 							<use xlinkHref="#people-circle"></use>
 						</svg>
 						Customers
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</SidebarContainer>

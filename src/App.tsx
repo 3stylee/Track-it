@@ -6,6 +6,8 @@ import Home from "./pages/home/components/home"
 import TitleBanner from "./globalComponents/titleBanner"
 import ErrorPage from "./globalComponents/errorPage"
 import { O_AUTH_URL, ROUTE_PATHS } from "./constants"
+import TestPage from "./pages/home/components/testPage"
+import Dashboard from "./pages/dashboard/components/dashboard"
 
 const App = () => (
 	<>
@@ -25,7 +27,10 @@ const App = () => (
 						/>
 					}
 				/>
-				<Route path={ROUTE_PATHS.HOME} element={<Home />} />
+				<Route path={ROUTE_PATHS.HOME} element={<Home />}>
+					<Route path="" element={<TestPage />} />
+					<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
+				</Route>
 				<Route
 					path="*"
 					element={
