@@ -8,6 +8,8 @@ export const BannerBackground = styled("div")`
 	padding-left: 1rem;
 	border-bottom: 0.125rem solid black;
 	justify-content: space-between;
+	position: relative;
+	z-index: 10;
 `
 
 export const BannerText = styled("p")`

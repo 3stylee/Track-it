@@ -1,8 +1,7 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
-import { MONTH_GRAPH_LABELS, WEEK_GRAPH_LABELS } from "../../../../constants"
+import { DASHBOARD_SORT_OPTIONS, MONTH_GRAPH_LABELS, WEEK_GRAPH_LABELS } from "../../../../constants"
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart } from "chart.js"
-import { GraphContainer } from "./components"
 import options from "./chartOptions"
 
 interface LineChartProps {
@@ -12,7 +11,7 @@ interface LineChartProps {
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement)
 
 export const LineChart = ({ weekOrMonth }: LineChartProps) => {
-	const labels = weekOrMonth === "Week" ? WEEK_GRAPH_LABELS : MONTH_GRAPH_LABELS
+	const labels = weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK ? WEEK_GRAPH_LABELS : MONTH_GRAPH_LABELS
 	const data = {
 		labels,
 		datasets: [
@@ -23,8 +22,8 @@ export const LineChart = ({ weekOrMonth }: LineChartProps) => {
 		],
 	}
 	return (
-		<GraphContainer>
+		<div>
 			<Line options={options} data={data} />
-		</GraphContainer>
+		</div>
 	)
 }

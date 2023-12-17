@@ -1,6 +1,6 @@
 import React from "react"
 import { StyledHeader } from "./components"
-import { DesktopSort } from "../desktopSort"
+import DesktopSort from "../desktopSort"
 
 export const TitleHeader = () => {
 	return (
