@@ -2,7 +2,7 @@ import { DATA_TYPES } from "../../constants"
 import * as types from "../actions/actionTypes"
 import initialState from "../initialState"
 
-const dataTypeReducer = (state = initialState.dataType, action: { type: any; data: any }) => {
+const dataTypeReducer = (state = initialState.dataType, action: { type: any }) => {
 	switch (action.type) {
 		case types.DATA_TYPE_ACTIVITIES:
 			return DATA_TYPES.ACTIVITIES

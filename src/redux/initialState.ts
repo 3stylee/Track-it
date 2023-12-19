@@ -2,7 +2,7 @@ import { AUTH_STATES, DASHBOARD_SORT_OPTIONS, INITIAL_DATA_MESSAGE } from "../co
 
 export interface State {
 	authState: string
-	data: object
+	activityData: object
 	dataType: string
 	apiCallsInProgress: number
 	sidebarExpanded: boolean
@@ -11,7 +11,7 @@ export interface State {
 
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
-	data: { text: INITIAL_DATA_MESSAGE },
+	activityData: { text: INITIAL_DATA_MESSAGE },
 	dataType: "",
 	apiCallsInProgress: 0,
 	sidebarExpanded: false,

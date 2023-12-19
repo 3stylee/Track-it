@@ -1,10 +1,11 @@
 import React from "react"
-import { ProgressContainer, StyledCard, StyledContainer } from "./components"
+import { StyledCard, StyledContainer } from "./components"
 import processActivityData from "../../utils/processActivityData"
 import processAthleteData from "../../utils/processAthleteData"
 import { RouteMap } from "../routeMap"
 import { DATA_TYPES } from "../../../../constants"
 import connect from "./connect"
+import { ProgressContainer } from "../../../../globalComponents/progressContainer/components"
 //import decodePolyLine from "../../utils/decodePolyline"
 
 export interface DataContainerProps {

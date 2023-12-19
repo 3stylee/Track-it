@@ -40,7 +40,18 @@ export const BannerTitle = styled("div")`
 	width: 100%;
 	justify-content: center;
 	margin-right: 5rem;
+
 	@media (max-width: 576px) {
 		margin-right: 0rem;
+	}
+`
+
+export const HomeLink = styled("a")`
+	text-decoration: none;
+	color: var(--bs-heading-color);
+	cursor: pointer;
+
+	&:hover {
+		color: rgba(0, 0, 0, 0.5);
 	}
 `

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 const mapStateToProps = (state: State) => {
 	return {
-		dashboardSortMetric: state.dashboardSortMetric,
+		activityData: state.activityData,
 	}
 }
 

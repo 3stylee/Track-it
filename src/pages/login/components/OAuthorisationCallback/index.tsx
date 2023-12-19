@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AUTH_STATES, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET, ROUTE_PATHS } from "../../../../constants"
-import { ProgressContainer } from "./components"
 import connect from "./connect"
+import { ProgressContainer } from "../../../../globalComponents/progressContainer/components"
 
 export interface OAuthorisationCallbackProps {
 	authState: string

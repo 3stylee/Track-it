@@ -1,11 +1,9 @@
-import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
+import { connect } from "react-redux"
 
 const mapStateToProps = (state: State) => {
 	return {
-		data: state.activityData,
-		dataType: state.dataType,
-		apiCallsInProgress: state.apiCallsInProgress,
+		activityData: state.activityData,
 	}
 }
 

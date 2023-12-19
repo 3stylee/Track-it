@@ -1,6 +1,5 @@
 import React from "react"
-import { LineChart } from "../lineChart"
-import connect from "./connect"
+import LineChart from "../lineChart"
 
 interface MileageChartProps {
 	dashboardSortMetric: string
@@ -20,5 +19,3 @@ export const MileageChart = ({ dashboardSortMetric }: MileageChartProps) => {
 		</div>
 	)
 }
-
-export default connect(MileageChart)

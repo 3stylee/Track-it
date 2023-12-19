@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit"
 import apiCallsInProgress from "./apiStatusReducer"
-import data from "./loadDataReducer"
+import activityData from "./loadDataReducer"
 import dataType from "./dataTypeReducer"
 import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
@@ -8,7 +8,7 @@ import dashboardSortMetric from "./dashboardSortReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
-	data,
+	activityData,
 	dataType,
 	authState,
 	sidebarExpanded,

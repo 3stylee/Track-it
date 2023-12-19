@@ -10,7 +10,7 @@ const mapDispatchToProps = {
 
 export const mapStateToProps = (state: State) => {
 	return {
-		data: state.data,
+		data: state.activityData,
 	}
 }
 

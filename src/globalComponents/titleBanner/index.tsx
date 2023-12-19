@@ -1,5 +1,5 @@
 import React from "react"
-import { BannerBackground, BannerText, BannerTitle, CollapseButton } from "./components"
+import { BannerBackground, BannerText, BannerTitle, CollapseButton, HomeLink } from "./components"
 import connect from "./connect"
 
 export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: any) => {
@@ -28,7 +28,9 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: any)
 				</svg>
 			</CollapseButton>
 			<BannerTitle>
-				<BannerText>Track It</BannerText>
+				<HomeLink href="/home">
+					<BannerText>Track It</BannerText>
+				</HomeLink>
 				<img src="https://cdn-icons-png.flaticon.com/512/2151/2151488.png" alt="track icon" />
 			</BannerTitle>
 		</BannerBackground>
