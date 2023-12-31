@@ -8,6 +8,9 @@ export const SidebarContainer = styled("div")<SidebarContainerProps>`
 	width: 300px;
 	margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : "-300px")};
 	transition: margin-left 0.3s;
+	position: fixed;
+	z-index: 10;
+	height: 100%;
 
 	@media (max-width: 992px) {
 		width: 100%;

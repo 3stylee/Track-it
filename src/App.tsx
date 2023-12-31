@@ -2,12 +2,12 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from "./pages/login/components/login"
 import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"
-import Home from "./pages/home/components/home"
+import Home from "./pages/home"
 import TitleBanner from "./globalComponents/titleBanner"
 import ErrorPage from "./globalComponents/errorPage"
 import { O_AUTH_URL, ROUTE_PATHS } from "./constants"
-import TestPage from "./pages/home/components/testPage"
-import Dashboard from "./pages/dashboard/components/dashboard"
+import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
+import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
 
 const App = () => (
 	<>
@@ -28,7 +28,7 @@ const App = () => (
 					}
 				/>
 				<Route path={ROUTE_PATHS.HOME} element={<Home />}>
-					<Route path="" element={<TestPage />} />
+					<Route path="" element={<ActivitiesList />} />
 					<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
 				</Route>
 				<Route
