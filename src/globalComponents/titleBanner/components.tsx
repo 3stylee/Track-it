@@ -3,21 +3,21 @@ import styled from "@emotion/styled"
 export const BannerBackground = styled("div")`
 	background-color: #663dff;
 	background-image: linear-gradient(319deg, #663dff 0%, #aa00ff 37%, #cc4499 100%);
-	height: 5rem;
-	text-align: center;
+	height: 4rem;
 	display: flex;
 	padding-left: 1rem;
 	border-bottom: 0.125rem solid black;
 	justify-content: space-between;
+	align-items: center;
 	position: relative;
 	z-index: 10;
 `
 
 export const BannerText = styled("p")`
-	font-size: 3.25rem;
+	margin: 0 1rem 0 1rem;
+	line-height: 1.65;
+	font-size: 2.5rem;
 	font-family: "TypoRoundBold";
-	margin-right: 1.5rem;
-	height: 5rem;
 	overflow: hidden;
 `
 
@@ -40,19 +40,19 @@ export const BannerTitle = styled("div")`
 	display: flex;
 	width: 100%;
 	justify-content: center;
-	margin-right: 5rem;
-
-	@media (max-width: 576px) {
-		margin-right: 0rem;
-	}
 `
 
 export const HomeLink = styled("a")`
+	display: flex;
 	text-decoration: none;
 	color: var(--bs-heading-color);
 	cursor: pointer;
+`
 
-	&:hover {
-		color: rgba(0, 0, 0, 0.5);
+export const StravaLogo = styled("img")`
+	height: 3rem;
+
+	@media (max-width: 768px) {
+		display: none;
 	}
 `

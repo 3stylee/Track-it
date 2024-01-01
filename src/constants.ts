@@ -25,6 +25,7 @@ export const DASHBOARD_SORT_OPTIONS = {
 	WEEK: "Week",
 	MONTH: "Month",
 }
+export const LOGIN_MESSAGE = "Please authorize your Strava account to get started"
 export const WEEK_GRAPH_LABELS = ["M", "T", "W", "T", "F", "S", "S"]
 export const MAX_RECENT_ACTIVITIES = 9
 export const NF_404_ERROR_TITLE = "404 Page Not Found"
