@@ -28,7 +28,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 					</ProgressContainer>
 				) : (
 					<div className="card-body">
-						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
 							{processedData ? (
 								processedData.map((activity: any) => (
 									<RouteMap

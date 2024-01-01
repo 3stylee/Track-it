@@ -1,7 +1,10 @@
 import styled from "@emotion/styled"
 
 export const PageContainer = styled("div")`
-	padding-left: 3rem;
-	padding-right: 3rem;
+	padding: 0 3rem;
 	width: 100%;
+
+	@media (max-width: 768px) {
+		padding: 0;
+	}
 `
