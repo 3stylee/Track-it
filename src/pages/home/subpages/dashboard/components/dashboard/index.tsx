@@ -7,6 +7,8 @@ import { QuickStats } from "../quickStats"
 import connect from "./connect"
 import { ProgressContainer } from "../../../../../../globalComponents/progressContainer/components"
 import { getDataIfNeededFromAPI } from "../../../../utils/getDataIfNeededFromAPI"
+import Lottie from "lottie-react"
+import loadingAnimation from "../../../../../../animations/olympics.json"
 
 interface DashboardProps {
 	dashboardSortMetric: string
@@ -29,7 +31,7 @@ export const Dashboard = ({
 		<PageContainer>
 			{apiCallsInProgress > 0 ? (
 				<ProgressContainer>
-					<div className="spinner-border" />
+					<Lottie animationData={loadingAnimation} />
 				</ProgressContainer>
 			) : (
 				<>

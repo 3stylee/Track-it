@@ -4,8 +4,17 @@ import LoginPage from "./pages/login/components/login"
 import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"
 import Home from "./pages/home"
 import TitleBanner from "./globalComponents/titleBanner"
-import ErrorPage from "./globalComponents/errorPage"
-import { O_AUTH_URL, ROUTE_PATHS } from "./constants"
+import ErrorPage from "./pages/errorPage"
+import {
+	AUTH_ERROR_BUTTON,
+	AUTH_ERROR_MESSAGE,
+	AUTH_ERROR_TITLE,
+	NF_404_ERROR_BUTTON,
+	NF_404_ERROR_MESSAGE,
+	NF_404_ERROR_TITLE,
+	O_AUTH_URL,
+	ROUTE_PATHS,
+} from "./constants"
 import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
 import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
 
@@ -20,9 +29,9 @@ const App = () => (
 					path={ROUTE_PATHS.AUTH_ERROR}
 					element={
 						<ErrorPage
-							title="Authentication Error"
-							eMessage="Sorry, but we were unable to authenticate your Strava account. Please try again"
-							buttonText="Try again »"
+							title={AUTH_ERROR_TITLE}
+							eMessage={AUTH_ERROR_MESSAGE}
+							buttonText={AUTH_ERROR_BUTTON}
 							buttonLink={O_AUTH_URL}
 						/>
 					}
@@ -35,8 +44,10 @@ const App = () => (
 					path="*"
 					element={
 						<ErrorPage
-							title="404 Page Not Found"
-							eMessage="Sorry, but the page you are looking for does not exist"
+							title={NF_404_ERROR_TITLE}
+							eMessage={NF_404_ERROR_MESSAGE}
+							buttonText={NF_404_ERROR_BUTTON}
+							buttonLink={"/home"}
 						/>
 					}
 				/>

@@ -1,3 +1,10 @@
 #root {
     overflow: hidden;
 }
+
+@font-face {
+    font-family: 'TypoRoundBold';
+    src: local('TypoRoundBold'), url('/src/fonts/TypoRoundBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

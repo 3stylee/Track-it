@@ -5,6 +5,8 @@ import { RouteMap } from "../routeMap"
 import connect from "./connect"
 import { ProgressContainer } from "../../../../../../globalComponents/progressContainer/components"
 import decodePolyLine from "../../../../utils/decodePolyline"
+import Lottie from "lottie-react"
+import loadingAnimation from "../../../../../../animations/olympics.json"
 
 export interface DataContainerProps {
 	data: any
@@ -22,7 +24,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 			<StyledCard className="card">
 				{apiCallsInProgress > 0 ? (
 					<ProgressContainer>
-						<div className="spinner-border" />
+						<Lottie animationData={loadingAnimation} />
 					</ProgressContainer>
 				) : (
 					<div className="card-body">

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { AUTH_STATES, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET, ROUTE_PATHS } from "../../../../constants"
 import connect from "./connect"
 import { ProgressContainer } from "../../../../globalComponents/progressContainer/components"
+import Lottie from "lottie-react"
+import loadingAnimation from "../../../../animations/olympics.json"
 
 export interface OAuthorisationCallbackProps {
 	authState: string
@@ -36,7 +38,7 @@ export const OAuthorisationCallback = ({
 
 	return apiCallsInProgress > 0 ? (
 		<ProgressContainer>
-			<div className="spinner-border" />
+			<Lottie animationData={loadingAnimation} />
 		</ProgressContainer>
 	) : null
 }
