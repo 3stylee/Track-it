@@ -4,7 +4,7 @@ import axios from "axios"
 import { API_BASE_URL } from "../../constants"
 
 export const loadDataSuccess = (data: object) => {
-	return { type: types.LOAD_DATA_SUCCESS, data }
+	return { type: types.LOAD_ACTIVITY_DATA_SUCCESS, data }
 }
 
 export const loadDataError = () => {

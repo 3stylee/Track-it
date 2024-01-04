@@ -5,7 +5,11 @@ export const options = {
 			display: false,
 		},
 		tooltip: {
-			enabled: false,
+			enabled: true,
+		},
+		title: {
+			display: true,
+			text: "Mileage",
 		},
 	},
 	scales: {

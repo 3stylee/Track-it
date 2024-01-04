@@ -1,6 +1,6 @@
 import { State } from "../../../../../../redux/initialState"
 import { connect } from "react-redux"
-import { loadActivityData } from "../../../../../../redux/actions/loadDataActions"
+import { loadActivityData } from "../../../../../../redux/actions/loadActivityDataActions"
 
 const mapStateToProps = (state: State) => {
 	return {

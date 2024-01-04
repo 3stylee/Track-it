@@ -1,4 +1,5 @@
 import React from "react"
+import { Container } from "./components"
 
 export interface ErrorPageProps {
 	title: string
@@ -9,7 +10,7 @@ export interface ErrorPageProps {
 
 export const ErrorPage = ({ title, eMessage, buttonText, buttonLink }: ErrorPageProps) => {
 	return (
-		<div className="bg-body-tertiary p-5 m-5 rounded">
+		<Container className="bg-body-tertiary rounded">
 			<h1>{title}</h1>
 			<p className="lead">{eMessage}</p>
 			{buttonText ? (
@@ -17,7 +18,7 @@ export const ErrorPage = ({ title, eMessage, buttonText, buttonLink }: ErrorPage
 					{buttonText}
 				</a>
 			) : null}
-		</div>
+		</Container>
 	)
 }
 

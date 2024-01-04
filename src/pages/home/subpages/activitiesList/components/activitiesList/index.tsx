@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import DataContainer from "../dataContainer"
 import { PageContainer } from "./components"
-import { getDataIfNeededFromAPI } from "../../../../utils/getDataIfNeededFromAPI"
+import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import connect from "./connect"
 
 interface ActivitiesListProps {
@@ -11,7 +11,7 @@ interface ActivitiesListProps {
 
 export const ActivitiesList = ({ activityData, loadActivityData }: ActivitiesListProps) => {
 	useEffect(() => {
-		getDataIfNeededFromAPI(activityData.text, loadActivityData)
+		getActivityDataIfNeeded(activityData.text, loadActivityData)
 	}, [])
 
 	return (

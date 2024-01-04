@@ -1,7 +1,7 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
 import { DASHBOARD_SORT_OPTIONS, WEEK_GRAPH_LABELS } from "../../../../../../constants"
-import { CategoryScale, LinearScale, PointElement, LineElement, Chart } from "chart.js"
+import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
 import options from "./chartOptions"
 import connect from "./connect"
 import { getMonthMileageArray, getWeekMileageArray } from "../../../../utils/getMileageArray"
@@ -13,7 +13,7 @@ interface LineChartProps {
 	activityData: any
 }
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement)
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler)
 
 export const LineChart = ({ weekOrMonth, activityData }: LineChartProps) => {
 	const monthGraphLabels = getMonthWeekLabels(getCurrentMonthWeeks())
@@ -26,8 +26,11 @@ export const LineChart = ({ weekOrMonth, activityData }: LineChartProps) => {
 		labels,
 		datasets: [
 			{
-				label: "",
+				fill: true,
+				label: "Distance",
 				data: mileageData,
+				borderColor: "rgb(204, 68, 153)",
+				backgroundColor: "rgba(204, 68, 153, 0.5)",
 			},
 		],
 	}

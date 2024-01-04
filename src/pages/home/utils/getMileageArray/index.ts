@@ -17,7 +17,7 @@ export const getWeekMileageArray = (data: any) => {
 
 			if (itemDate >= startDate && itemDate < new Date(today)) {
 				const dayIndex = (itemDate.getDay() + 6) % 7
-				distancePerDay[dayIndex] += item.distance / 1000
+				distancePerDay[dayIndex] += (item.distance / 1000).toFixed(2)
 			}
 		})
 
