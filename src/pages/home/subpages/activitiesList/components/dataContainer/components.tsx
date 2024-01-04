@@ -1,7 +1,8 @@
 import styled from "@emotion/styled"
 
 export const StyledContainer = styled("div")`
-	padding: 1.5rem;
+	margin-top: 2rem;
+	height: calc(100% - 4rem);
 
 	@media (max-width: 768px) {
 		padding: 0;
@@ -9,8 +10,8 @@ export const StyledContainer = styled("div")`
 `
 
 export const StyledCard = styled("div")`
+	height: 100%;
 	@media (min-width: 769px) {
-		height: 85vh;
 		overflow-y: scroll;
 	}
 `

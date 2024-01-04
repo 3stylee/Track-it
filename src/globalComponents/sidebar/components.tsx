@@ -12,7 +12,7 @@ export const SidebarContainer = styled("div")<SidebarContainerProps>`
 	z-index: 10;
 	height: 100%;
 
-	@media (max-width: 992px) {
+	@media (max-width: 768px) {
 		width: 100%;
 		margin-left: 0;
 		height: 300px;

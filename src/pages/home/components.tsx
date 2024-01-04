@@ -7,7 +7,7 @@ export const PageContainer = styled("div")`
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	background-color: #fbf7f5;
 
-	@media (max-width: 992px) {
+	@media (max-width: 768px) {
 		display: block;
 		height: 100%;
 	}

@@ -46,15 +46,15 @@ export const Dashboard = ({
 				<>
 					<TitleHeader />
 					<DataContainer>
-						<div className="row row-cols-1 row-cols-md-2">
-							<div className="col">
+						<div className="row row-cols-1 row-cols-xl-2">
+							<div className="col mb-4">
 								<MileageChart dashboardSortMetric={dashboardSortMetric} />
 							</div>
-							<div className="col">
+							<div className="col mb-4">
 								<RecentActivities dashboardSortMetric={dashboardSortMetric} />
 							</div>
 						</div>
-						<div className="row row-cols-1 mt-4">
+						<div className="row row-cols-1">
 							<div className="col">
 								<QuickStats />
 							</div>
