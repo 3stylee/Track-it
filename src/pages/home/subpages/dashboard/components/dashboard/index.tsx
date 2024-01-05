@@ -9,7 +9,7 @@ import { ProgressContainer } from "../../../../../../globalComponents/progressCo
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import Lottie from "lottie-react"
 import loadingAnimation from "../../../../../../animations/olympics.json"
-import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded copy"
+import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded"
 
 interface DashboardProps {
 	dashboardSortMetric: string

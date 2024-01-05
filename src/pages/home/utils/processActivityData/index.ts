@@ -5,7 +5,7 @@ export interface Activity {
 	id: number
 }
 
-const processActivityData = (data: Activity[]) => {
+export const processActivityData = (data: Activity[]) => {
 	const processedData = data.map((activity: Activity) => ({
 		name: activity.name,
 		distance: activity.distance,
