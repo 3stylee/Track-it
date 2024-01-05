@@ -20,9 +20,7 @@ if (rootElem !== null) {
 	const root = ReactDOM.createRoot(rootElem)
 	root.render(
 		<Provider store={store}>
-			<React.StrictMode>
-				<App />
-			</React.StrictMode>
+			<App />
 		</Provider>
 	)
 }

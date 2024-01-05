@@ -11,6 +11,7 @@ interface ActivitiesListProps {
 
 export const ActivitiesList = ({ activityData, loadActivityData }: ActivitiesListProps) => {
 	useEffect(() => {
+		console.log("hello")
 		getActivityDataIfNeeded(activityData.text, loadActivityData)
 	}, [])
 
