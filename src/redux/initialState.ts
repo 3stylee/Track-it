@@ -6,6 +6,7 @@ export interface State {
 	athleteData: object
 	dataType: string
 	apiCallsInProgress: number
+	apiError: string
 	sidebarExpanded: boolean
 	dashboardSortMetric: string
 }
@@ -16,6 +17,7 @@ export default {
 	athleteData: { text: INITIAL_DATA_MESSAGE },
 	dataType: "",
 	apiCallsInProgress: 0,
+	apiError: "",
 	sidebarExpanded: false,
 	dashboardSortMetric: DASHBOARD_SORT_OPTIONS.WEEK,
 }

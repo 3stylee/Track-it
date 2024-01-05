@@ -5,20 +5,16 @@ const actionTypeEndsInSuccess = (type: string) => {
 	return type.substring(type.length - 8) === "_SUCCESS"
 }
 
-const apiCallStatusReducer = (state = initialState.apiCallsInProgress, action: { type: string }): number => {
+const apiErrorReducer = (state = initialState.apiError, action: { type: string; data: any }): string => {
 	switch (action.type) {
-		case types.BEGIN_API_CALL:
-			return state + 1
-		case types.AUTHORISE_USER_SUCCESS:
-			return 0
 		case types.API_CALL_ERROR:
-			return state - 1
+			return action.data.response.data.message
 		default:
 			if (actionTypeEndsInSuccess(action.type)) {
-				return state - 1
+				return ""
 			}
 			return state
 	}
 }
 
-export default apiCallStatusReducer
+export default apiErrorReducer

@@ -7,10 +7,6 @@ export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_ACTIVITY_DATA_SUCCESS, data }
 }
 
-export const loadDataError = () => {
-	return { type: types.LOAD_DATA_ERROR }
-}
-
 export const loadActivityData = (dateBefore?: number, dateAfter?: number) => {
 	return async function (dispatch: any) {
 		let endpoint = API_BASE_URL
@@ -42,9 +38,7 @@ export const loadActivityData = (dateBefore?: number, dateAfter?: number) => {
 			// For some reason the API gives data from oldest to newest, we want the opposite
 			dispatch(loadDataSuccess(response.data.reverse()))
 		} catch (error) {
-			dispatch(loadDataError())
-			dispatch(apiCallError())
-			//throw error
+			dispatch(apiCallError(error))
 		}
 	}
 }

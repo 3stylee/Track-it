@@ -4,6 +4,6 @@ export const beginApiCall = () => {
 	return { type: types.BEGIN_API_CALL }
 }
 
-export const apiCallError = () => {
-	return { type: types.API_CALL_ERROR }
+export const apiCallError = (error: any) => {
+	return { type: types.API_CALL_ERROR, data: error }
 }

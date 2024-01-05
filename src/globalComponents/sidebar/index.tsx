@@ -77,7 +77,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 						to="/"
 						className="nav-link text-white"
 						onClick={() => {
-							localStorage.removeItem("access_code")
+							localStorage.clear()
 						}}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"

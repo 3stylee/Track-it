@@ -7,10 +7,6 @@ export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_ATHLETE_DATA_SUCCESS, data }
 }
 
-export const loadDataError = () => {
-	return { type: types.LOAD_DATA_ERROR }
-}
-
 export const loadAthleteData = (athleteID: number) => {
 	return async function (dispatch: any) {
 		let endpoint = API_BASE_URL
@@ -25,9 +21,8 @@ export const loadAthleteData = (athleteID: number) => {
 			})
 			dispatch(loadDataSuccess(response.data))
 		} catch (error) {
-			dispatch(loadDataError())
-			dispatch(apiCallError())
-			//throw error
+			console.log(error)
+			dispatch(apiCallError(error))
 		}
 	}
 }

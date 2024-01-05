@@ -10,7 +10,13 @@ export const authUserError = () => {
 	return { type: types.AUTHORISE_USER_ERROR }
 }
 
-export const getAuthToken = (code: string, baseURl: string, client_id: string, client_secret: string) => {
+export const getAuthToken = (
+	code: string,
+	baseURl: string,
+	client_id: string,
+	client_secret: string,
+	refresh?: boolean
+) => {
 	return async function (dispatch: any) {
 		dispatch(beginApiCall())
 		try {
@@ -18,9 +24,10 @@ export const getAuthToken = (code: string, baseURl: string, client_id: string, c
 				client_id: client_id,
 				client_secret: client_secret,
 				code: code,
-				grant_type: "authorization_code",
+				grant_type: refresh ? "refresh_code" : "authorization_code",
 			})
 			localStorage.setItem("access_code", response.data.access_token)
+			localStorage.setItem("refresh_code", response.data.refresh_token)
 			dispatch(authUserSuccess())
 		} catch (error) {
 			dispatch(apiCallError)
