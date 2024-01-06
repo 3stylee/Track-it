@@ -2,9 +2,7 @@ import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AUTH_STATES, ROUTE_PATHS } from "../../../../constants"
 import connect from "./connect"
-import { ProgressContainer } from "../../../../globalComponents/progressContainer/components"
-import Lottie from "lottie-react"
-import loadingAnimation from "../../../../animations/olympics.json"
+import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 
 export interface OAuthorisationCallbackProps {
 	authState: string
@@ -36,11 +34,7 @@ export const OAuthorisationCallback = ({
 		if (error === "access_denied") navigate(ROUTE_PATHS.AUTH_ERROR)
 	}, [authState])
 
-	return apiCallsInProgress > 0 ? (
-		<ProgressContainer>
-			<Lottie animationData={loadingAnimation} />
-		</ProgressContainer>
-	) : null
+	return apiCallsInProgress > 0 ? <AnimatedSpinner /> : null
 }
 
 export default connect(OAuthorisationCallback)

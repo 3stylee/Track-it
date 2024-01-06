@@ -3,6 +3,7 @@ import connect from "./connect"
 import { getDate } from "../../../../utils/getDate"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
+import { CardBody } from "./components"
 
 interface RecentActivitiesProps {
 	activityData: any
@@ -24,7 +25,7 @@ export const RecentActivities = ({ activityData, dashboardSortMetric }: RecentAc
 			<div className="card-header">
 				<h5 className="pt-1">Recent Activities</h5>
 			</div>
-			<div className="card-body">
+			<CardBody className="card-body">
 				{Array.isArray(filteredData) && filteredData.length > 0 ? (
 					<table className="table">
 						<thead className="thead-dark">
@@ -47,7 +48,7 @@ export const RecentActivities = ({ activityData, dashboardSortMetric }: RecentAc
 				) : (
 					<div>Looks like you don't have any activities this {dashboardSortMetric}</div>
 				)}
-			</div>
+			</CardBody>
 		</div>
 	)
 }

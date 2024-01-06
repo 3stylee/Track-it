@@ -5,11 +5,9 @@ import { MileageChart } from "../mileageChart"
 import RecentActivities from "../recentActivities"
 import QuickStats from "../quickStats"
 import connect from "./connect"
-import { ProgressContainer } from "../../../../../../globalComponents/progressContainer/components"
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
-import Lottie from "lottie-react"
-import loadingAnimation from "../../../../../../animations/olympics.json"
 import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded"
+import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 
 interface DashboardProps {
 	dashboardSortMetric: string
@@ -39,9 +37,7 @@ export const Dashboard = ({
 	return (
 		<PageContainer>
 			{apiCallsInProgress > 0 ? (
-				<ProgressContainer>
-					<Lottie animationData={loadingAnimation} />
-				</ProgressContainer>
+				<AnimatedSpinner />
 			) : (
 				<>
 					<TitleHeader />

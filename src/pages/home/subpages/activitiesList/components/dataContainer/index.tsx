@@ -3,10 +3,8 @@ import { StyledCard, StyledContainer } from "./components"
 import processActivityData from "../../../../utils/processActivityData"
 import { RouteMap } from "../routeMap"
 import connect from "./connect"
-import { ProgressContainer } from "../../../../../../globalComponents/progressContainer/components"
 import decodePolyLine from "../../../../utils/decodePolyline"
-import Lottie from "lottie-react"
-import loadingAnimation from "../../../../../../animations/olympics.json"
+import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 
 export interface DataContainerProps {
 	data: any
@@ -23,9 +21,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 		<StyledContainer>
 			<StyledCard className="card">
 				{apiCallsInProgress > 0 ? (
-					<ProgressContainer>
-						<Lottie animationData={loadingAnimation} />
-					</ProgressContainer>
+					<AnimatedSpinner />
 				) : (
 					<div className="card-body">
 						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
