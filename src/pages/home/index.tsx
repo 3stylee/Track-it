@@ -1,24 +1,16 @@
 import React, { useEffect } from "react"
 import { PageContainer } from "./components"
 import { Outlet, useNavigate } from "react-router-dom"
-import {
-	API_ERROR_MESSAGES,
-	AUTH_STATES,
-	AUTH_TOKEN_BASE_URL,
-	CLIENT_ID,
-	CLIENT_SECRET,
-	ROUTE_PATHS,
-} from "../../constants"
+import { AUTH_STATES, ROUTE_PATHS } from "../../constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 
 export interface HomeProps {
 	authState: string
-	apiError: string
 	getAuthToken: any
 }
 
-export const Home = ({ authState, apiError, getAuthToken }: HomeProps) => {
+export const Home = ({ authState, getAuthToken }: HomeProps) => {
 	const navigate = useNavigate()
 
 	// Boot people back to login if they haven't authorised their strava account
@@ -30,11 +22,11 @@ export const Home = ({ authState, apiError, getAuthToken }: HomeProps) => {
 
 	// If auth token expires, refresh auth token
 	useEffect(() => {
-		if (apiError === API_ERROR_MESSAGES.UNAUTHORISED) {
+		if (Math.floor(Date.now() / 1000) >= parseInt(localStorage.getItem("expires_at") || "0")) {
 			const refreshCode = localStorage.getItem("refresh_code")
-			getAuthToken(refreshCode, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET, true)
+			getAuthToken(refreshCode, true)
 		}
-	}, [apiError])
+	}, [])
 
 	return (
 		<PageContainer>

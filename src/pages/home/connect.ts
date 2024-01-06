@@ -5,7 +5,6 @@ import { getAuthToken } from "../../redux/actions/authUserActions"
 export const mapStateToProps = (state: State) => {
 	return {
 		authState: state.authState,
-		apiError: state.apiError,
 	}
 }
 

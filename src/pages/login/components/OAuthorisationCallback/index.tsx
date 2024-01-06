@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { AUTH_STATES, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET, ROUTE_PATHS } from "../../../../constants"
+import { AUTH_STATES, ROUTE_PATHS } from "../../../../constants"
 import connect from "./connect"
 import { ProgressContainer } from "../../../../globalComponents/progressContainer/components"
 import Lottie from "lottie-react"
@@ -32,7 +32,7 @@ export const OAuthorisationCallback = ({
 		const code = urlParams.get("code")
 		const error = urlParams.get("error")
 
-		if (code) getAuthToken(code, AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET)
+		if (code) getAuthToken(code)
 		if (error === "access_denied") navigate(ROUTE_PATHS.AUTH_ERROR)
 	}, [authState])
 

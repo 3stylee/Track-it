@@ -21,7 +21,6 @@ export const loadAthleteData = (athleteID: number) => {
 			})
 			dispatch(loadDataSuccess(response.data))
 		} catch (error) {
-			console.log(error)
 			dispatch(apiCallError(error))
 		}
 	}
