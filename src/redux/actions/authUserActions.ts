@@ -22,7 +22,7 @@ export const getAuthToken = (
 			client_id: client_id,
 			client_secret: client_secret,
 			[refresh ? "refresh_token" : "code"]: code,
-			grant_type: refresh ? "refresh_code" : "authorization_code",
+			grant_type: refresh ? "refresh_token" : "authorization_code",
 		}
 		dispatch(beginApiCall())
 		try {

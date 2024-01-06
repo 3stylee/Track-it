@@ -37,7 +37,6 @@ export const loadActivityData = (dateBefore?: number, dateAfter?: number) => {
 			})
 			// For some reason the API gives data from oldest to newest, we want the opposite
 			dispatch(loadDataSuccess(response.data.reverse()))
-			console.log(JSON.stringify(response.data))
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}
