@@ -9,3 +9,10 @@ export const PageContainer = styled("div")`
 		padding: 0;
 	}
 `
+export const ImageAndLapsContainer = styled("div")`
+	@media (min-width: 1200px) {
+		display: flex;
+		gap: 3rem;
+		padding: 3rem 0;
+	}
+`

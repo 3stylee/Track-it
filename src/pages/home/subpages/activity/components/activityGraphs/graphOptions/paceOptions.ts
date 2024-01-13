@@ -1,9 +1,9 @@
 import { ACTIVITY_GRAPH_TIME_LABELS } from "../../../../../../../constants"
-import { getMinsPerKm } from "../../../../../utils/getMinsPerKm"
+import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
 const formatTooltipLabel = (tooltipItem: any) => {
 	const value = tooltipItem.parsed.y
-	return "Pace: " + getMinsPerKm(value)
+	return "Pace: " + getMinsFromSeconds(value) + "/km"
 }
 
 export const getPaceOptions = (length: number, min: number) => {
@@ -51,7 +51,7 @@ export const getPaceOptions = (length: number, min: number) => {
 					display: false,
 				},
 				ticks: {
-					callback: (value: number) => getMinsPerKm(value),
+					callback: (value: number) => getMinsFromSeconds(value) + "/km",
 					maxTicksLimit: 5,
 				},
 				reverse: true,

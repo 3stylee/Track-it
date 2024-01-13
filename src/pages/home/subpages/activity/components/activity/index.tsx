@@ -1,18 +1,20 @@
 import React, { useEffect } from "react"
-import { PageContainer } from "./components"
+import { ImageAndLapsContainer, PageContainer } from "./components"
 import { ActivityImage } from "../activityImage"
 import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import ActivityGraphs from "../activityGraphs"
+import { LapsTable } from "../lapsTable"
 
-export const Activity = ({ loadActivityStream, apiCallsInProgress }: any) => {
+export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: any) => {
 	const location = useLocation()
 	const searchParams = new URLSearchParams(location.search)
 	const id = searchParams.get("id")
 
 	useEffect(() => {
 		loadActivityStream(id)
+		loadCurrentActivity(id)
 	}, [])
 
 	return (
@@ -21,7 +23,10 @@ export const Activity = ({ loadActivityStream, apiCallsInProgress }: any) => {
 				<AnimatedSpinner />
 			) : (
 				<>
-					<ActivityImage />
+					<ImageAndLapsContainer>
+						<ActivityImage polyline={currentActivity.polyline} />
+						<LapsTable laps={currentActivity.laps} />
+					</ImageAndLapsContainer>
 					<ActivityGraphs />
 				</>
 			)}

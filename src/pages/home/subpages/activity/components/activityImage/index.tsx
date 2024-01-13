@@ -1,10 +1,15 @@
 import React from "react"
-import { ImageContainer } from "./components"
+import decodePolyLine from "../../../../utils/decodePolyline"
+import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 
-export const ActivityImage = () => {
+export const ActivityImage = ({ polyline }: any) => {
+	if (polyline === undefined) return null
+	const decodedPolyline = decodePolyLine(polyline)
+	const coordinatesString = decodedPolyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
+	const url = getMapboxEndpoint(coordinatesString)
 	return (
-		<ImageContainer>
-			<img src="https://placehold.co/50x50" alt="placehold" />
-		</ImageContainer>
+		<div>
+			<img src={url} alt="placehold" />
+		</div>
 	)
 }
