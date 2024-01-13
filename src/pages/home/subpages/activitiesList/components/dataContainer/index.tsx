@@ -31,6 +31,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 										polyline={decodePolyLine(activity.polyline)}
 										name={activity.name}
 										distance={activity.distance}
+										id={activity.id}
 										key={activity.id}
 									/>
 								))

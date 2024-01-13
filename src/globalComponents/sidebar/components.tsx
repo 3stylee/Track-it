@@ -1,12 +1,14 @@
 import styled from "@emotion/styled"
+import { MOBILE_SIDEBAR_HEIGHT, SIDEBAR_WIDTH } from "../../constants"
 
 interface SidebarContainerProps {
 	sidebarExpanded: boolean
 }
 
 export const SidebarContainer = styled("div")<SidebarContainerProps>`
-	width: 300px;
-	margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : "-300px")};
+	width: ${SIDEBAR_WIDTH};
+	margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
+	box-shadow: ${({ sidebarExpanded }) => (sidebarExpanded ? "2px 0 5px rgba(0, 0, 0, 0.5)" : "")};
 	transition: margin-left 0.3s;
 	position: fixed;
 	z-index: 10;
@@ -15,8 +17,8 @@ export const SidebarContainer = styled("div")<SidebarContainerProps>`
 	@media (max-width: 768px) {
 		width: 100%;
 		margin-left: 0;
-		height: 300px;
-		margin-top: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : "-300px")};
+		height: ${MOBILE_SIDEBAR_HEIGHT};
+		margin-top: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${MOBILE_SIDEBAR_HEIGHT}`)};
 		z-index: ${({ sidebarExpanded }) => (sidebarExpanded ? "1" : "-1")};
 		position: sticky;
 		transition: margin-top 0.3s;
@@ -28,7 +30,7 @@ export const LinkContainer = styled("li")`
 	font-size: 1.25rem;
 
 	&:hover {
-		background-color: rgba(255, 255, 255, 0.15);
+		background-color: rgba(0, 0, 0, 0.15);
 	}
 `
 export const SidebarIcon = styled("svg")`

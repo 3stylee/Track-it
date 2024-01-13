@@ -7,7 +7,7 @@ export const BannerBackground = styled("div")`
 	height: ${TITLE_BANNER_HEIGHT};
 	display: flex;
 	padding-left: 1rem;
-	border-bottom: 0.125rem solid black;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.6);
 	justify-content: space-between;
 	align-items: center;
 	position: fixed;

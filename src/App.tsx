@@ -17,6 +17,7 @@ import {
 } from "./constants"
 import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
 import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
+import Activity from "./pages/home/subpages/activity/components/activity"
 
 const App = () => (
 	<>
@@ -39,6 +40,7 @@ const App = () => (
 				<Route path={ROUTE_PATHS.HOME} element={<Home />}>
 					<Route path="" element={<ActivitiesList />} />
 					<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
+					<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
 				</Route>
 				<Route
 					path="*"

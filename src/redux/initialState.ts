@@ -4,6 +4,7 @@ export interface State {
 	authState: string
 	activityData: object
 	athleteData: object
+	currentActivityStream: object
 	dataType: string
 	apiCallsInProgress: number
 	apiError: string
@@ -15,6 +16,7 @@ export default {
 	authState: AUTH_STATES.UNAUTHORISED,
 	activityData: { text: INITIAL_DATA_MESSAGE },
 	athleteData: { text: INITIAL_DATA_MESSAGE },
+	currentActivityStream: {},
 	dataType: "",
 	apiCallsInProgress: 0,
 	apiError: "",

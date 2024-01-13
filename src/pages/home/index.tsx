@@ -15,7 +15,7 @@ export const Home = ({ authState, getAuthToken }: HomeProps) => {
 	const navigate = useNavigate()
 	const [isTokenValid, setIsTokenValid] = React.useState(false)
 
-	// Boot people back to login if they haven't authorised their strava account
+	// Boot user back to login if they haven't authorised their strava account
 	useEffect(() => {
 		if (!(localStorage.getItem("access_code") || authState === AUTH_STATES.AUTHORISED)) {
 			navigate(ROUTE_PATHS.DEFAULT)

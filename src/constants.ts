@@ -19,6 +19,7 @@ export const ROUTE_PATHS = {
 	DASHBOARD: "/home/dashboard",
 	AUTH_ERROR: "/auth_error",
 	AUTHORIZE: "/authorize",
+	ACTIVITY: "/home/activity",
 }
 export const DATA_ERROR_MESSAGE = "Sorry, we had trouble getting your data, please try again"
 export const INITIAL_DATA_MESSAGE = ""
@@ -38,3 +39,7 @@ export const AUTH_ERROR_TITLE = "Authentication Error"
 export const AUTH_ERROR_MESSAGE = "Sorry, but we were unable to authenticate your Strava account. Please try again"
 export const AUTH_ERROR_BUTTON = "Try again »"
 export const TITLE_BANNER_HEIGHT = "4rem"
+export const SIDEBAR_WIDTH = "15rem"
+export const MOBILE_SIDEBAR_HEIGHT = "19rem"
+export const STREAM_RESOLUTION_FACTOR = 15
+export const PACE_GRAPH_TIME_LABELS = 8

@@ -5,10 +5,10 @@ import { Link } from "react-router-dom"
 
 export const Sidebar = ({ sidebarExpanded }: any) => {
 	return (
-		<SidebarContainer sidebarExpanded={sidebarExpanded} className={`flex-column flex-shrink-0 p-3 text-bg-dark`}>
+		<SidebarContainer sidebarExpanded={sidebarExpanded} className={`flex-column flex-shrink-0 p-3 text-bg-light`}>
 			<ul className="nav nav-pills flex-column mb-auto">
 				<LinkContainer className="nav-item">
-					<Link to="" className="nav-link text-white">
+					<Link to="" className="nav-link text-dark">
 						<div>
 							<SidebarIcon
 								xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="dashboard" className="nav-link text-white">
+					<Link to="dashboard" className="nav-link text-dark">
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -42,7 +42,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className="nav-link text-white">
+					<Link to="" className="nav-link text-dark">
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -57,7 +57,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className="nav-link text-white">
+					<Link to="" className="nav-link text-dark">
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -75,7 +75,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 				<LinkContainer>
 					<Link
 						to="/"
-						className="nav-link text-white"
+						className="nav-link text-dark"
 						onClick={() => {
 							localStorage.clear()
 						}}>
