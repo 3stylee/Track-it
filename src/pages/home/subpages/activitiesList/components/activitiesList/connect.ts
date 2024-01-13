@@ -1,15 +1,15 @@
 import { State } from "../../../../../../redux/initialState"
 import { connect } from "react-redux"
-import { loadActivityData } from "../../../../../../redux/actions/loadActivityDataActions"
+import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 
 const mapStateToProps = (state: State) => {
 	return {
-		activityData: state.activityData,
+		athleteActivities: state.athleteActivities,
 	}
 }
 
 const mapDispatchToProps = {
-	loadActivityData,
+	loadAthleteActivities,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

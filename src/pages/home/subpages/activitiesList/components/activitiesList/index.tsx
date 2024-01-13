@@ -5,13 +5,13 @@ import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeed
 import connect from "./connect"
 
 interface ActivitiesListProps {
-	activityData: any
-	loadActivityData: any
+	athleteActivities: any
+	loadAthleteActivities: any
 }
 
-export const ActivitiesList = ({ activityData, loadActivityData }: ActivitiesListProps) => {
+export const ActivitiesList = ({ athleteActivities, loadAthleteActivities }: ActivitiesListProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(activityData.text, loadActivityData)
+		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
 	}, [])
 
 	return (

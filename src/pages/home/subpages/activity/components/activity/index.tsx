@@ -4,7 +4,7 @@ import { ActivityImage } from "../activityImage"
 import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
-import { ActivityGraph } from "../activityGraph"
+import ActivityGraphs from "../activityGraphs"
 
 export const Activity = ({ loadActivityStream, apiCallsInProgress }: any) => {
 	const location = useLocation()
@@ -22,7 +22,7 @@ export const Activity = ({ loadActivityStream, apiCallsInProgress }: any) => {
 			) : (
 				<>
 					<ActivityImage />
-					<ActivityGraph />
+					<ActivityGraphs />
 				</>
 			)}
 		</PageContainer>

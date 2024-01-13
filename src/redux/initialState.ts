@@ -2,9 +2,10 @@ import { AUTH_STATES, DASHBOARD_SORT_OPTIONS, INITIAL_DATA_MESSAGE } from "../co
 
 export interface State {
 	authState: string
-	activityData: object
+	athleteActivities: object
 	athleteData: object
 	currentActivityStream: object
+	currentActivity: object
 	dataType: string
 	apiCallsInProgress: number
 	apiError: string
@@ -14,9 +15,10 @@ export interface State {
 
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
-	activityData: { text: INITIAL_DATA_MESSAGE },
+	athleteActivities: { text: INITIAL_DATA_MESSAGE },
 	athleteData: { text: INITIAL_DATA_MESSAGE },
 	currentActivityStream: {},
+	currentActivity: {},
 	dataType: "",
 	apiCallsInProgress: 0,
 	apiError: "",

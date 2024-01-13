@@ -1,6 +1,6 @@
-import { processActivityData, Activity } from "."
+import { processAthleteActivities, Activity } from "."
 
-describe("processActivityData", () => {
+describe("processAthleteActitivies", () => {
 	it("processes an array of Activity objects", () => {
 		const activities: Activity[] = [
 			{
@@ -31,7 +31,7 @@ describe("processActivityData", () => {
 			},
 		]
 
-		const result = processActivityData(activities)
+		const result = processAthleteActivities(activities)
 
 		expect(result).toEqual(expected)
 	})

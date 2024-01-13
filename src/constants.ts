@@ -42,4 +42,4 @@ export const TITLE_BANNER_HEIGHT = "4rem"
 export const SIDEBAR_WIDTH = "15rem"
 export const MOBILE_SIDEBAR_HEIGHT = "19rem"
 export const STREAM_RESOLUTION_FACTOR = 15
-export const PACE_GRAPH_TIME_LABELS = 8
+export const ACTIVITY_GRAPH_TIME_LABELS = 8

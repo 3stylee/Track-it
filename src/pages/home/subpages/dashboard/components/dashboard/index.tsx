@@ -11,28 +11,28 @@ import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpin
 
 interface DashboardProps {
 	dashboardSortMetric: string
-	activityData: any
+	athleteActivities: any
 	athleteData: any
-	loadActivityData: any
+	loadAthleteActivities: any
 	loadAthleteData: any
 	apiCallsInProgress: number
 }
 
 export const Dashboard = ({
 	dashboardSortMetric,
-	activityData,
-	loadActivityData,
+	athleteActivities,
+	loadAthleteActivities,
 	athleteData,
 	loadAthleteData,
 	apiCallsInProgress,
 }: DashboardProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(activityData.text, loadActivityData)
-		if (Array.isArray(activityData)) {
-			const athleteID = activityData[0].athlete.id
+		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
+		if (Array.isArray(athleteActivities)) {
+			const athleteID = athleteActivities[0].athlete.id
 			getAthleteDataIfNeeded(athleteData.text, loadAthleteData, athleteID)
 		}
-	}, [activityData])
+	}, [athleteActivities])
 
 	return (
 		<PageContainer>

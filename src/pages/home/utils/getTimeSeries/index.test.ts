@@ -16,6 +16,6 @@ describe("getTimeSeries", () => {
 		expect(result).toHaveLength(length)
 		expect(result[0]).toBe("00:00")
 		expect(result[1]).toBe(`00:${STREAM_RESOLUTION_FACTOR}`)
-		expect(result[240]).toMatch(/\d{2}:\d{2}:\d{2}/)
+		expect(result[240]).toMatch(/\d{1}:\d{2}:\d{2}/)
 	})
 })

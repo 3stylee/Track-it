@@ -1,13 +1,13 @@
-import { PACE_GRAPH_TIME_LABELS } from "../../../../../../constants"
-import { getMinsPerKm } from "../../../../utils/getMinsPerKm"
+import { ACTIVITY_GRAPH_TIME_LABELS } from "../../../../../../../constants"
+import { getMinsPerKm } from "../../../../../utils/getMinsPerKm"
 
 const formatTooltipLabel = (tooltipItem: any) => {
 	const value = tooltipItem.parsed.y
-	return getMinsPerKm(value)
+	return "Pace: " + getMinsPerKm(value)
 }
 
-export const getOptions = (length: number, min: number) => {
-	const modFactor = Math.floor(length / PACE_GRAPH_TIME_LABELS)
+export const getPaceOptions = (length: number, min: number) => {
+	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
 		plugins: {
@@ -43,7 +43,8 @@ export const getOptions = (length: number, min: number) => {
 				},
 			},
 			y: {
-				min: min - 60,
+				// top of scale is 60s faster than fastest pace (rounded to nearest 10s)
+				min: Math.round((min - 60) / 10) * 10,
 				max: 600,
 				type: "logarithmic",
 				grid: {

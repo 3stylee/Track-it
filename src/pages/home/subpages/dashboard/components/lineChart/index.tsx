@@ -10,18 +10,18 @@ import { getMonthWeekLabels } from "../../../../utils/getMonthWeekLabels"
 
 interface LineChartProps {
 	weekOrMonth: String
-	activityData: any
+	athleteActivities: any
 }
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler)
 
-export const LineChart = ({ weekOrMonth, activityData }: LineChartProps) => {
+export const LineChart = ({ weekOrMonth, athleteActivities }: LineChartProps) => {
 	const monthGraphLabels = getMonthWeekLabels(getCurrentMonthWeeks())
 	const labels = weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
 	const mileageData =
 		weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK
-			? getWeekMileageArray(activityData)
-			: getMonthMileageArray(activityData)
+			? getWeekMileageArray(athleteActivities)
+			: getMonthMileageArray(athleteActivities)
 	const data = {
 		labels,
 		datasets: [
@@ -31,6 +31,7 @@ export const LineChart = ({ weekOrMonth, activityData }: LineChartProps) => {
 				data: mileageData,
 				borderColor: "rgb(204, 68, 153)",
 				backgroundColor: "rgba(204, 68, 153, 0.5)",
+				pointHitRadius: 20,
 			},
 		],
 	}

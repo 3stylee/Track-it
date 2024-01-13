@@ -8,10 +8,10 @@ export const loadActivityStreamSuccess = (data: any) => {
 	return { type: types.LOAD_ACTIVITY_STREAM_SUCCESS, data }
 }
 
-export const loadActivityStream = (activityID: number) => {
+export const loadActivityStream = (id: number) => {
 	return async function (dispatch: any) {
 		let endpoint = API_BASE_URL
-		endpoint += `/activities/${activityID}/streams?keys=distance,heartrate&key_by_type=true`
+		endpoint += `/activities/${id}/streams?keys=distance,heartrate&key_by_type=true`
 
 		dispatch(beginApiCall())
 		try {

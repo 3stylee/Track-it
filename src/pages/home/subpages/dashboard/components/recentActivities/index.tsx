@@ -6,16 +6,16 @@ import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
 import { CardBody } from "./components"
 
 interface RecentActivitiesProps {
-	activityData: any
+	athleteActivities: any
 	dashboardSortMetric: string
 }
 
-export const RecentActivities = ({ activityData, dashboardSortMetric }: RecentActivitiesProps) => {
-	let filteredData = activityData
+export const RecentActivities = ({ athleteActivities, dashboardSortMetric }: RecentActivitiesProps) => {
+	let filteredData = athleteActivities
 
-	if (Array.isArray(activityData)) {
+	if (Array.isArray(athleteActivities)) {
 		const cutOffDate = getDate(dashboardSortMetric)
-		filteredData = activityData
+		filteredData = athleteActivities
 			.filter((activity) => activity.start_date > cutOffDate.toISOString())
 			.slice(0, MAX_RECENT_ACTIVITIES)
 	}

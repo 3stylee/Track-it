@@ -1,6 +1,5 @@
 import React from "react"
 import { StyledCard, StyledContainer } from "./components"
-import processActivityData from "../../../../utils/processActivityData"
 import { RouteMap } from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
@@ -12,11 +11,6 @@ export interface DataContainerProps {
 }
 
 export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
-	let processedData
-	if (Array.isArray(data)) {
-		processedData = processActivityData(data)
-	}
-
 	return (
 		<StyledContainer>
 			<StyledCard className="card">
@@ -25,8 +19,8 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 				) : (
 					<div className="card-body">
 						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-							{processedData ? (
-								processedData.map((activity: any) => (
+							{data ? (
+								data.map((activity: any) => (
 									<RouteMap
 										polyline={decodePolyLine(activity.polyline)}
 										name={activity.name}
