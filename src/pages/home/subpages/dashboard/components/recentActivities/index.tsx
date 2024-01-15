@@ -1,23 +1,17 @@
 import React from "react"
 import connect from "./connect"
-import { getDate } from "../../../../utils/getDate"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
 import { CardBody } from "./components"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
-	dashboardSortMetric: string
 }
 
-export const RecentActivities = ({ athleteActivities, dashboardSortMetric }: RecentActivitiesProps) => {
-	let filteredData = athleteActivities
-
+export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) => {
+	let filteredData
 	if (Array.isArray(athleteActivities)) {
-		const cutOffDate = getDate(dashboardSortMetric)
-		filteredData = athleteActivities
-			.filter((activity) => activity.start_date > cutOffDate.toISOString())
-			.slice(0, MAX_RECENT_ACTIVITIES)
+		filteredData = athleteActivities.slice(0, MAX_RECENT_ACTIVITIES)
 	}
 
 	return (
@@ -26,7 +20,7 @@ export const RecentActivities = ({ athleteActivities, dashboardSortMetric }: Rec
 				<h5 className="pt-1">Recent Activities</h5>
 			</div>
 			<CardBody className="card-body">
-				{Array.isArray(filteredData) && filteredData.length > 0 ? (
+				{filteredData ? (
 					<table className="table">
 						<thead className="thead-dark">
 							<tr>
@@ -46,7 +40,7 @@ export const RecentActivities = ({ athleteActivities, dashboardSortMetric }: Rec
 						</tbody>
 					</table>
 				) : (
-					<div>Looks like you don't have any activities this {dashboardSortMetric}</div>
+					<div>Looks like you don't have any recent activities</div>
 				)}
 			</CardBody>
 		</div>

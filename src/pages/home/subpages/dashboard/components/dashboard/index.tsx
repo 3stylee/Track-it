@@ -3,14 +3,12 @@ import { TitleHeader } from "../titleHeader"
 import { DataContainer, PageContainer } from "./components"
 import { MileageChart } from "../mileageChart"
 import RecentActivities from "../recentActivities"
-import QuickStats from "../quickStats"
 import connect from "./connect"
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 
 interface DashboardProps {
-	dashboardSortMetric: string
 	athleteActivities: any
 	athleteData: any
 	loadAthleteActivities: any
@@ -19,7 +17,6 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({
-	dashboardSortMetric,
 	athleteActivities,
 	loadAthleteActivities,
 	athleteData,
@@ -44,15 +41,10 @@ export const Dashboard = ({
 					<DataContainer>
 						<div className="row row-cols-1 row-cols-xl-2">
 							<div className="col mb-4">
-								<MileageChart dashboardSortMetric={dashboardSortMetric} />
+								<MileageChart />
 							</div>
 							<div className="col mb-4">
-								<RecentActivities dashboardSortMetric={dashboardSortMetric} />
-							</div>
-						</div>
-						<div className="row row-cols-1">
-							<div className="col">
-								<QuickStats />
+								<RecentActivities />
 							</div>
 						</div>
 					</DataContainer>

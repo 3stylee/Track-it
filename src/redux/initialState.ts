@@ -1,4 +1,4 @@
-import { AUTH_STATES, DASHBOARD_SORT_OPTIONS, INITIAL_DATA_MESSAGE } from "../constants"
+import { AUTH_STATES, INITIAL_DATA_MESSAGE } from "../constants"
 
 export interface State {
 	authState: string
@@ -10,7 +10,6 @@ export interface State {
 	apiCallsInProgress: number
 	apiError: string
 	sidebarExpanded: boolean
-	dashboardSortMetric: string
 }
 
 export default {
@@ -23,5 +22,4 @@ export default {
 	apiCallsInProgress: 0,
 	apiError: "",
 	sidebarExpanded: false,
-	dashboardSortMetric: DASHBOARD_SORT_OPTIONS.WEEK,
 }

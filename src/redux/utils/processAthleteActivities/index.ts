@@ -4,6 +4,7 @@ export interface Activity {
 	map: { summary_polyline: string }
 	athlete: { id: number }
 	id: number
+	average_speed: number
 	start_date: string
 }
 
@@ -17,6 +18,7 @@ export const processAthleteActivities = (data: Activity[]) => {
 		polyline: activity.map.summary_polyline,
 		id: activity.id,
 		start_date: activity.start_date,
+		speed: activity.average_speed,
 	}))
 	return processedData
 }

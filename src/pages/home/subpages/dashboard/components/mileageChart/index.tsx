@@ -1,17 +1,18 @@
 import React from "react"
 import LineChart from "../lineChart"
 import { CardBody } from "./components"
+import { DesktopSort } from "../desktopSort"
+import { WEEK_OR_MONTH } from "../../../../../../constants"
 
-interface MileageChartProps {
-	dashboardSortMetric: string
-}
+export const MileageChart = () => {
+	const [weekOrMonth, setWeekOrMonth] = React.useState(WEEK_OR_MONTH.WEEK)
 
-export const MileageChart = ({ dashboardSortMetric }: MileageChartProps) => {
 	return (
 		<div className="card h-100">
 			<CardBody className="card-body">
+				<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
 				<div className="card-text">
-					<LineChart weekOrMonth={dashboardSortMetric} />
+					<LineChart weekOrMonth={weekOrMonth} />
 				</div>
 			</CardBody>
 		</div>

@@ -1,49 +1,38 @@
 import React from "react"
-import { DASHBOARD_SORT_OPTIONS } from "../../../../../../constants"
-import connect from "./connect"
-import { SortDiv, SortText } from "./components"
+import { WEEK_OR_MONTH } from "../../../../../../constants"
 
-export const DesktopSort = ({ dashboardSortMetric, updateSortMetric }: any) => {
+export const DesktopSort = ({ weekOrMonth, setWeekOrMonth }: any) => {
 	const handleItemClick = (selectedValue: string) => {
-		if (selectedValue !== dashboardSortMetric) {
-			updateSortMetric(selectedValue)
+		if (selectedValue !== weekOrMonth) {
+			setWeekOrMonth(selectedValue)
 		}
 	}
 
 	return (
-		<SortDiv>
-			<SortText>Sort:</SortText>
-			<div className="dropdown">
-				<button
-					className="btn btn-primary dropdown-toggle"
-					type="button"
-					data-bs-toggle="dropdown"
-					aria-expanded="false">
-					{dashboardSortMetric}
-				</button>
-				<ul className="dropdown-menu dropdown-menu-dark">
-					<li>
-						<button
-							className={`dropdown-item ${
-								dashboardSortMetric === DASHBOARD_SORT_OPTIONS.WEEK ? "active" : ""
-							}`}
-							onClick={() => handleItemClick(DASHBOARD_SORT_OPTIONS.WEEK)}>
-							{DASHBOARD_SORT_OPTIONS.WEEK}
-						</button>
-					</li>
-					<li>
-						<button
-							className={`dropdown-item ${
-								dashboardSortMetric === DASHBOARD_SORT_OPTIONS.MONTH ? "active" : ""
-							}`}
-							onClick={() => handleItemClick(DASHBOARD_SORT_OPTIONS.MONTH)}>
-							{DASHBOARD_SORT_OPTIONS.MONTH}
-						</button>
-					</li>
-				</ul>
-			</div>
-		</SortDiv>
+		<div className="dropdown">
+			<button
+				className="btn btn-primary dropdown-toggle"
+				type="button"
+				data-bs-toggle="dropdown"
+				aria-expanded="false">
+				{weekOrMonth}
+			</button>
+			<ul className="dropdown-menu dropdown-menu-dark">
+				<li>
+					<button
+						className={`dropdown-item ${weekOrMonth === WEEK_OR_MONTH.WEEK ? "active" : ""}`}
+						onClick={() => handleItemClick(WEEK_OR_MONTH.WEEK)}>
+						{WEEK_OR_MONTH.WEEK}
+					</button>
+				</li>
+				<li>
+					<button
+						className={`dropdown-item ${weekOrMonth === WEEK_OR_MONTH.MONTH ? "active" : ""}`}
+						onClick={() => handleItemClick(WEEK_OR_MONTH.MONTH)}>
+						{WEEK_OR_MONTH.MONTH}
+					</button>
+				</li>
+			</ul>
+		</div>
 	)
 }
-
-export default connect(DesktopSort)

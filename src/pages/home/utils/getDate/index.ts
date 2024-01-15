@@ -1,14 +1,14 @@
-import { DASHBOARD_SORT_OPTIONS } from "../../../../constants"
+import { WEEK_OR_MONTH } from "../../../../constants"
 
 export const getDate = (weekOrMonth: string) => {
 	const now = new Date()
 
-	if (weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK) {
+	if (weekOrMonth === WEEK_OR_MONTH.WEEK) {
 		const currentDayOfWeek = now.getDay()
 		const daysUntilMonday = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1
 		now.setDate(now.getDate() - daysUntilMonday)
 	}
-	if (weekOrMonth === DASHBOARD_SORT_OPTIONS.MONTH) {
+	if (weekOrMonth === WEEK_OR_MONTH.MONTH) {
 		now.setDate(1)
 	}
 

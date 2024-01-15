@@ -1,6 +1,6 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
-import { DASHBOARD_SORT_OPTIONS, WEEK_GRAPH_LABELS } from "../../../../../../constants"
+import { WEEK_OR_MONTH, WEEK_GRAPH_LABELS } from "../../../../../../constants"
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
 import options from "./chartOptions"
 import connect from "./connect"
@@ -17,9 +17,9 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Too
 
 export const LineChart = ({ weekOrMonth, athleteActivities }: LineChartProps) => {
 	const monthGraphLabels = getMonthWeekLabels(getCurrentMonthWeeks())
-	const labels = weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
+	const labels = weekOrMonth === WEEK_OR_MONTH.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
 	const mileageData =
-		weekOrMonth === DASHBOARD_SORT_OPTIONS.WEEK
+		weekOrMonth === WEEK_OR_MONTH.WEEK
 			? getWeekMileageArray(athleteActivities)
 			: getMonthMileageArray(athleteActivities)
 	const data = {

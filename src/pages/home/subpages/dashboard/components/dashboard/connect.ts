@@ -5,7 +5,6 @@ import { loadAthleteData } from "../../../../../../redux/actions/loadAthleteData
 
 const mapStateToProps = (state: State) => {
 	return {
-		dashboardSortMetric: state.dashboardSortMetric,
 		athleteActivities: state.athleteActivities,
 		athleteData: state.athleteData,
 		apiCallsInProgress: state.apiCallsInProgress,

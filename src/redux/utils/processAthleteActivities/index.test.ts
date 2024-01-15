@@ -10,6 +10,7 @@ describe("processAthleteActitivies", () => {
 				id: 1,
 				athlete: { id: 1 },
 				start_date: "2020-01-01T00:00:00Z",
+				average_speed: 5,
 			},
 			{
 				name: "Bike ride",
@@ -18,6 +19,7 @@ describe("processAthleteActitivies", () => {
 				id: 2,
 				athlete: { id: 2 },
 				start_date: "2020-01-01T00:00:00Z",
+				average_speed: 10,
 			},
 		]
 		const expected = [
@@ -27,7 +29,8 @@ describe("processAthleteActitivies", () => {
 				polyline: "_p~iF~ps|U_ulLnnqC_mqNvxq`@",
 				id: 1,
 				athlete: { id: 1 },
-				startDate: "2020-01-01T00:00:00Z",
+				start_date: "2020-01-01T00:00:00Z",
+				speed: 5,
 			},
 			{
 				name: "Bike ride",
@@ -35,7 +38,8 @@ describe("processAthleteActitivies", () => {
 				polyline: "_ibE_seK_seK_seK",
 				id: 2,
 				athlete: { id: 2 },
-				startDate: "2020-01-01T00:00:00Z",
+				start_date: "2020-01-01T00:00:00Z",
+				speed: 10,
 			},
 		]
 

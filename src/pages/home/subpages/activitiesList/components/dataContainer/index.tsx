@@ -1,5 +1,5 @@
 import React from "react"
-import { StyledCard, StyledContainer } from "./components"
+import { StyledContainer } from "./components"
 import { RouteMap } from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
@@ -13,29 +13,26 @@ export interface DataContainerProps {
 export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
 	return (
 		<StyledContainer>
-			<StyledCard className="card">
-				{apiCallsInProgress > 0 ? (
-					<AnimatedSpinner />
-				) : (
-					<div className="card-body">
-						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-							{Array.isArray(data) ? (
-								data.map((activity: any) => (
-									<RouteMap
-										polyline={decodePolyLine(activity.polyline)}
-										name={activity.name}
-										distance={activity.distance}
-										id={activity.id}
-										key={activity.id}
-									/>
-								))
-							) : (
-								<p>We are having trouble finding your data</p>
-							)}
-						</div>
-					</div>
-				)}
-			</StyledCard>
+			{apiCallsInProgress > 0 ? (
+				<AnimatedSpinner />
+			) : (
+				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+					{Array.isArray(data) ? (
+						data.map((activity: any) => (
+							<RouteMap
+								polyline={decodePolyLine(activity.polyline)}
+								name={activity.name}
+								distance={activity.distance}
+								speed={activity.speed}
+								id={activity.id}
+								key={activity.id}
+							/>
+						))
+					) : (
+						<p>We are having trouble finding your data</p>
+					)}
+				</div>
+			)}
 		</StyledContainer>
 	)
 }

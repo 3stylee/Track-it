@@ -1,5 +1,5 @@
 import { getDate } from "./index"
-import { DASHBOARD_SORT_OPTIONS } from "../../../../constants"
+import { WEEK_OR_MONTH } from "../../../../constants"
 
 describe("getDate", () => {
 	let dateSpy: jest.SpyInstance
@@ -16,12 +16,12 @@ describe("getDate", () => {
 	})
 
 	it("sets the date to the start of the week", () => {
-		const date = getDate(DASHBOARD_SORT_OPTIONS.WEEK)
+		const date = getDate(WEEK_OR_MONTH.WEEK)
 		expect(date.toISOString()).toBe("2022-01-03T00:00:00.000Z") // The start of the week (Monday)
 	})
 
 	it("sets the date to the start of the month", () => {
-		const date = getDate(DASHBOARD_SORT_OPTIONS.MONTH)
+		const date = getDate(WEEK_OR_MONTH.MONTH)
 		expect(date.toISOString()).toBe("2022-01-01T00:00:00.000Z") // The start of the month
 	})
 })

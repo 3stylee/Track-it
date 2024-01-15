@@ -1,12 +1,12 @@
 import React from "react"
 import { StyledHeader } from "./components"
-import DesktopSort from "../desktopSort"
+import QuickStats from "../quickStats"
 
 export const TitleHeader = () => {
 	return (
 		<StyledHeader>
-			<h3>Dashboard</h3>
-			<DesktopSort />
+			<h3 className="m-0">Dashboard</h3>
+			<QuickStats />
 		</StyledHeader>
 	)
 }
