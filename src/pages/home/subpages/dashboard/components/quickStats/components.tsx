@@ -17,4 +17,5 @@ export const StatName = styled("span")`
 `
 export const StatValue = styled("h3")`
 	margin-bottom: 0.25rem;
+	color: var(--bs-primary);
 `

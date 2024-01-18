@@ -26,7 +26,7 @@ export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps)
 					<div className="card-body">
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<DescriptionContainer>
-							<span className="badge bg-primary">{convertedDistance}</span>
+							<p className="card-text m-0">{convertedDistance}</p>
 							<p className="card-text m-0">{pace}</p>
 						</DescriptionContainer>
 					</div>

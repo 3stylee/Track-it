@@ -17,12 +17,12 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 	return (
 		<div className="card h-100">
 			<div className="card-header">
-				<h5 className="pt-1">Recent Activities</h5>
+				<p className="m-0">Recent Activities</p>
 			</div>
 			<CardBody className="card-body">
 				{filteredData ? (
-					<table className="table">
-						<thead className="thead-dark">
+					<table className="table table-bordered m-0">
+						<thead className="thead-primary">
 							<tr>
 								<th scope="col">Date</th>
 								<th scope="col">Name</th>

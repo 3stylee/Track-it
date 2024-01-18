@@ -9,6 +9,9 @@ export const MileageChart = () => {
 
 	return (
 		<div className="card h-100">
+			<div className="card-header">
+				<p className="m-0">Mileage</p>
+			</div>
 			<CardBody className="card-body">
 				<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
 				<div className="card-text">

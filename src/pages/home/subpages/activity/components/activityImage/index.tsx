@@ -1,6 +1,7 @@
 import React from "react"
 import decodePolyLine from "../../../../utils/decodePolyline"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
+import { RoundedImage } from "./components"
 
 export const ActivityImage = ({ polyline }: any) => {
 	if (polyline === undefined) return null
@@ -9,7 +10,7 @@ export const ActivityImage = ({ polyline }: any) => {
 	const url = getMapboxEndpoint(coordinatesString)
 	return (
 		<div>
-			<img src={url} alt="placehold" />
+			<RoundedImage src={url} alt="activity map" />
 		</div>
 	)
 }

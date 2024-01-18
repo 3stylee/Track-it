@@ -7,10 +7,6 @@ export const options = {
 		tooltip: {
 			enabled: true,
 		},
-		title: {
-			display: true,
-			text: "Mileage",
-		},
 	},
 	scales: {
 		x: {

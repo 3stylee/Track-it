@@ -1,5 +1,6 @@
 export const processActivityData = (activityData: any) => {
 	return {
+		id: activityData.id,
 		name: activityData.name,
 		distance: activityData.distance,
 		moving_time: activityData.moving_time,

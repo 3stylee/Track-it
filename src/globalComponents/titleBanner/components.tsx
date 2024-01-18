@@ -2,8 +2,8 @@ import styled from "@emotion/styled"
 import { TITLE_BANNER_HEIGHT } from "../../constants"
 
 export const BannerBackground = styled("div")`
-	background-color: #663dff;
-	background-image: linear-gradient(319deg, #663dff 0%, #aa00ff 37%, #cc4499 100%);
+	background-color: var(--bs-primary);
+	background-image: linear-gradient(319deg, var(--bs-primary) 0%, #aa00ff 37%, #cc4499 100%);
 	height: ${TITLE_BANNER_HEIGHT};
 	display: flex;
 	padding-left: 1rem;

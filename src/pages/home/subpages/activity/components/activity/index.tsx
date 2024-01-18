@@ -10,11 +10,13 @@ import { LapsTable } from "../lapsTable"
 export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: any) => {
 	const location = useLocation()
 	const searchParams = new URLSearchParams(location.search)
-	const id = searchParams.get("id")
+	const id = parseInt(searchParams.get("id") || "")
 
 	useEffect(() => {
-		loadActivityStream(id)
-		loadCurrentActivity(id)
+		if (currentActivity.id !== id) {
+			loadActivityStream(id)
+			loadCurrentActivity(id)
+		}
 	}, [])
 
 	return (
