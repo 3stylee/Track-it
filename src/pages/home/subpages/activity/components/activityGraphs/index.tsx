@@ -6,6 +6,7 @@ import { STREAM_RESOLUTION_FACTOR } from "../../../../../../constants"
 import { getSecondsPerKm } from "../../../../utils/getSecondsPerKm"
 import { getPaceOptions } from "./graphOptions/paceOptions"
 import { getHeartrateOptions } from "./graphOptions/heartrateOptions"
+import { Card } from "../../../../../../globalComponents/bootstrapCard"
 
 export const ActivityGraphs = ({ currentActivityStream }: any) => {
 	if (currentActivityStream.distance) {
@@ -18,31 +19,23 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 		const heartRateOptions = getHeartrateOptions(length)
 		return (
 			<>
-				<div className="card h-100">
-					<div className="card-body">
-						<div className="card-text">
-							<LineChart
-								time={time}
-								streamData={paceStreamData}
-								backgroundColor={"rgba(102, 61, 255, 0.7)"}
-								options={paceOptions}
-							/>
-						</div>
-					</div>
-				</div>
-				<div className="card h-100 mt-5">
-					<div className="card-body">
-						<div className="card-text">
-							<LineChart
-								time={time}
-								label={"Heart Rate"}
-								streamData={heartRateStreamData}
-								backgroundColor={"rgba(204, 68, 153, 0.7)"}
-								options={heartRateOptions}
-							/>
-						</div>
-					</div>
-				</div>
+				<Card>
+					<LineChart
+						time={time}
+						streamData={paceStreamData}
+						backgroundColor={"rgba(102, 61, 255, 0.7)"}
+						options={paceOptions}
+					/>
+				</Card>
+				<Card styles={{ "margin-top": "3rem" }}>
+					<LineChart
+						time={time}
+						label={"Heart Rate"}
+						streamData={heartRateStreamData}
+						backgroundColor={"rgba(204, 68, 153, 0.7)"}
+						options={heartRateOptions}
+					/>
+				</Card>
 			</>
 		)
 	}

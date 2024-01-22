@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import connect from "./connect"
 import { Stat, StatName, StatValue, StatsList } from "./components"
+import ThemeContext from "../../../../../../theme/themeContext"
 
 interface QuickStatsProps {
 	athleteData: any
@@ -15,6 +16,7 @@ type QuickStatsType = {
 }
 
 export const QuickStats = ({ athleteData }: QuickStatsProps) => {
+	const { theme } = useContext(ThemeContext)
 	if (athleteData.all_run_totals === undefined) {
 		return null
 	}
@@ -31,7 +33,7 @@ export const QuickStats = ({ athleteData }: QuickStatsProps) => {
 			{Object.keys(quickStats).map((key) => (
 				<Stat>
 					<StatValue>{quickStats[key].count}</StatValue>
-					<StatName>{key}</StatName>
+					<StatName theme={theme}>{key}</StatName>
 				</Stat>
 			))}
 		</StatsList>
