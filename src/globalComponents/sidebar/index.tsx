@@ -1,14 +1,19 @@
-import React from "react"
-import { LinkContainer, SidebarContainer, SidebarIcon } from "./components"
+import React, { useContext } from "react"
+import { LinkContainer, SidebarContainer, SidebarIcon, ThemeToggleContainer } from "./components"
 import connect from "./connect"
 import { Link } from "react-router-dom"
+import ThemeContext from "../../theme/themeContext"
+import { THEMES } from "../../constants"
 
 export const Sidebar = ({ sidebarExpanded }: any) => {
+	const { theme, toggleTheme } = useContext(ThemeContext)
 	return (
-		<SidebarContainer sidebarExpanded={sidebarExpanded} className={`flex-column flex-shrink-0 p-3 text-bg-light`}>
+		<SidebarContainer
+			sidebarExpanded={sidebarExpanded}
+			className={`flex-column flex-shrink-0 p-3 text-bg-${theme}`}>
 			<ul className="nav nav-pills flex-column mb-auto">
 				<LinkContainer className="nav-item">
-					<Link to="" className="nav-link text-dark">
+					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
 						<div>
 							<SidebarIcon
 								xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +29,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="dashboard" className="nav-link text-dark">
+					<Link to="dashboard" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -42,7 +47,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className="nav-link text-dark">
+					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -57,7 +62,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className="nav-link text-dark">
+					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -75,7 +80,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 				<LinkContainer>
 					<Link
 						to="/"
-						className="nav-link text-dark"
+						className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}
 						onClick={() => {
 							localStorage.clear()
 						}}>
@@ -98,6 +103,19 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 						Log Out
 					</Link>
 				</LinkContainer>
+				<ThemeToggleContainer>
+					<h5>Dark Mode</h5>
+					<div className="form-check form-switch mx-3">
+						<input
+							className="form-check-input"
+							type="checkbox"
+							role="switch"
+							id="flexSwitchCheckChecked"
+							onChange={toggleTheme}
+							checked={theme === THEMES.DARK}
+						/>
+					</div>
+				</ThemeToggleContainer>
 			</ul>
 		</SidebarContainer>
 	)

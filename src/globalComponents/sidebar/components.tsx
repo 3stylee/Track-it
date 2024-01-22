@@ -37,3 +37,7 @@ export const SidebarIcon = styled("svg")`
 	margin-right: 1rem;
 	margin-bottom: 0.25rem;
 `
+export const ThemeToggleContainer = styled("div")`
+	margin: 1rem;
+	display: flex;
+`

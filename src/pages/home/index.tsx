@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { PageContainer } from "./components"
 import { Outlet, useNavigate } from "react-router-dom"
 import { AUTH_STATES, ROUTE_PATHS } from "../../constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
+import ThemeContext from "../../theme/themeContext"
 
 export interface HomeProps {
 	authState: string
@@ -13,6 +14,7 @@ export interface HomeProps {
 
 export const Home = ({ authState, getAuthToken }: HomeProps) => {
 	const navigate = useNavigate()
+	const { theme } = useContext(ThemeContext)
 	const [isTokenValid, setIsTokenValid] = React.useState(false)
 
 	// Boot user back to login if they haven't authorised their strava account
@@ -35,7 +37,7 @@ export const Home = ({ authState, getAuthToken }: HomeProps) => {
 	return (
 		<>
 			{isTokenValid ? (
-				<PageContainer>
+				<PageContainer theme={theme}>
 					<Sidebar />
 					<Outlet />
 				</PageContainer>

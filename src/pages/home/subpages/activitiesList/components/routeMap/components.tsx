@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
+import { THEMES } from "../../../../../../constants"
 
 export const ActivityTitle = styled("h5")`
 	white-space: nowrap;
@@ -15,8 +16,12 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 `
 export const CardContainer = styled("div")`
-	transition: box-shadow 0.1s ease-in-out;
 	&:hover {
-		box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+		box-shadow: 0px 0px 5px 2px
+			${({ theme }) => (theme === THEMES.LIGHT ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)")};
 	}
+`
+export const StyledImage = styled("img")`
+	border-top-left-radius: var(--bs-border-radius);
+	border-top-right-radius: var(--bs-border-radius);
 `

@@ -18,9 +18,10 @@ import {
 import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
 import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
 import Activity from "./pages/home/subpages/activity/components/activity"
+import { ThemeProvider } from "./theme/themeProvider"
 
 const App = () => (
-	<>
+	<ThemeProvider>
 		<TitleBanner />
 		<BrowserRouter>
 			<Routes>
@@ -55,7 +56,7 @@ const App = () => (
 				/>
 			</Routes>
 		</BrowserRouter>
-	</>
+	</ThemeProvider>
 )
 
 export default App
