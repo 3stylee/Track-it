@@ -3,7 +3,7 @@ import { AuthorizeButton, ContainerCard } from "./components"
 import { LOGIN_MESSAGE, O_AUTH_URL } from "../../../../constants"
 
 export const AuthorizeCard = () => {
-	const connectWithStrava = require("../../../../images/btn_strava_connectwith_orange@2x.png")
+	const connectWithStrava = require("../../../../assets/images/btn_strava_connectwith_orange@2x.png")
 	return (
 		<ContainerCard className="card w-25">
 			<div className="card-body">

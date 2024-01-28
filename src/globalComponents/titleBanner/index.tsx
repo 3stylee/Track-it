@@ -11,7 +11,7 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: any)
 		}
 	}
 
-	const stravaLogo = require("../../images/api_logo_pwrdBy_strava_stack_white.png")
+	const stravaLogo = require("../../assets/images/api_logo_pwrdBy_strava_stack_white.png")
 	return (
 		<BannerBackground>
 			<CollapseButton onClick={toggleSidebar}>

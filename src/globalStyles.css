@@ -4,14 +4,14 @@
 
 @font-face {
     font-family: 'TypoRoundBold';
-    src: local('TypoRoundBold'), url('/src/fonts/TypoRoundBold.ttf') format('truetype');
+    src: local('TypoRoundBold'), url('/src/assets/fonts/TypoRoundBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TypoRoundLight';
-    src: local('TypoRoundLight'), url('/src/fonts/TypoRoundLightDemo-wAg3.ttf') format('truetype');
+    src: local('TypoRoundLight'), url('/src/assets/fonts/TypoRoundLightDemo-wAg3.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

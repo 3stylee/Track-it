@@ -27,7 +27,7 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 						options={paceOptions}
 					/>
 				</Card>
-				<Card styles={{ "margin-top": "3rem" }}>
+				<Card styles={{ marginTop: "3rem" }}>
 					<LineChart
 						time={time}
 						label={"Heart Rate"}

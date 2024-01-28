@@ -3,25 +3,20 @@ import { Line } from "react-chartjs-2"
 import { WEEK_OR_MONTH, WEEK_GRAPH_LABELS } from "../../../../../../constants"
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
 import options from "./chartOptions"
-import connect from "./connect"
-import { getMonthMileageArray, getWeekMileageArray } from "../../../../utils/getMileageArray"
 import { getCurrentMonthWeeks } from "../../../../utils/getWeeksOfMonth"
 import { getMonthWeekLabels } from "../../../../utils/getMonthWeekLabels"
 
 interface LineChartProps {
 	weekOrMonth: String
-	athleteActivities: any
+	mileageData: any
 }
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler)
 
-export const LineChart = ({ weekOrMonth, athleteActivities }: LineChartProps) => {
+export const LineChart = ({ weekOrMonth, mileageData }: LineChartProps) => {
 	const monthGraphLabels = getMonthWeekLabels(getCurrentMonthWeeks())
 	const labels = weekOrMonth === WEEK_OR_MONTH.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
-	const mileageData =
-		weekOrMonth === WEEK_OR_MONTH.WEEK
-			? getWeekMileageArray(athleteActivities)
-			: getMonthMileageArray(athleteActivities)
+
 	const data = {
 		labels,
 		datasets: [
@@ -41,5 +36,3 @@ export const LineChart = ({ weekOrMonth, athleteActivities }: LineChartProps) =>
 		</div>
 	)
 }
-
-export default connect(LineChart)

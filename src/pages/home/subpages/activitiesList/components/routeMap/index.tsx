@@ -15,10 +15,18 @@ export interface RouteMapProps {
 }
 
 export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps) => {
+	const [imageLoaded, setImageLoaded] = React.useState(false)
 	const { theme } = useContext(ThemeContext)
-	const coordinatesString = polyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
-	const url = getMapboxEndpoint(coordinatesString, theme)
-	//const url = "https://placehold.co/500x300"
+
+	let url =
+		theme === THEMES.DARK
+			? require("../../../../../../assets/images/no_gps_dark.png")
+			: require("../../../../../../assets/images/no_gps_light.png")
+	if (polyline.length > 0) {
+		const coordinatesString = polyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
+		url = getMapboxEndpoint(coordinatesString, theme)
+	}
+
 	const convertedDistance = convertToKm(distance)
 	const pace = getPaceFromSpeed(speed)
 	return (
@@ -28,7 +36,17 @@ export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps)
 					id="map"
 					className={`card ${theme === THEMES.DARK ? "text-white bg-dark" : ""} h-100`}
 					theme={theme}>
-					<StyledImage src={url} alt="route map" className="card-img-left" />
+					<StyledImage
+						src={url}
+						alt="route map"
+						className={`card-img-left ${!imageLoaded ? "d-none" : ""}`}
+						onLoad={() => setImageLoaded(true)}
+					/>
+					{!imageLoaded && (
+						<svg style={{ height: "13rem" }}>
+							<rect width="100%" height="13rem" fill="#868e96" rx="5px" ry="5px" />
+						</svg>
+					)}
 					<div className="card-body">
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<DescriptionContainer>

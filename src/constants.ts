@@ -20,6 +20,7 @@ export const ROUTE_PATHS = {
 	AUTH_ERROR: "/auth_error",
 	AUTHORIZE: "/authorize",
 	ACTIVITY: "/home/activity",
+	CALENDAR: "/home/calendar",
 }
 export const DATA_ERROR_MESSAGE = "Sorry, we had trouble getting your data, please try again"
 export const INITIAL_DATA_MESSAGE = ""

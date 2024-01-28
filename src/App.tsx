@@ -19,6 +19,7 @@ import ActivitiesList from "./pages/home/subpages/activitiesList/components/acti
 import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
 import Activity from "./pages/home/subpages/activity/components/activity"
 import { ThemeProvider } from "./theme/themeProvider"
+import { Calendar } from "./pages/home/subpages/calendar/components/calendar"
 
 const App = () => (
 	<ThemeProvider>
@@ -42,6 +43,7 @@ const App = () => (
 					<Route path="" element={<ActivitiesList />} />
 					<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
+					<Route path={ROUTE_PATHS.CALENDAR} element={<Calendar />} />
 				</Route>
 				<Route
 					path="*"

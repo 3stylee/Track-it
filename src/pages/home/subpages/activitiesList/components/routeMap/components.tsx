@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
-import { THEMES } from "../../../../../../constants"
 
 export const ActivityTitle = styled("h5")`
 	white-space: nowrap;
@@ -16,9 +15,9 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 `
 export const CardContainer = styled("div")`
+	transition: transform 0.2s;
 	&:hover {
-		box-shadow: 0px 0px 5px 2px
-			${({ theme }) => (theme === THEMES.LIGHT ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)")};
+		transform: scale(1.04);
 	}
 `
 export const StyledImage = styled("img")`

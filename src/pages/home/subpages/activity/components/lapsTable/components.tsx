@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-export const TableCard = styled("div")`
-	max-height: 400px;
+export const CardBody = styled("div")`
+	max-height: 22rem;
 	overflow-y: scroll;
 `

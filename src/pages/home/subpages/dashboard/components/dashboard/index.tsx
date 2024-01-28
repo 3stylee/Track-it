@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { TitleHeader } from "../titleHeader"
 import { DataContainer, PageContainer } from "./components"
-import { MileageChart } from "../mileageChart"
+import MileageChart from "../mileageChart"
 import RecentActivities from "../recentActivities"
 import connect from "./connect"
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
@@ -39,11 +39,11 @@ export const Dashboard = ({
 				<>
 					<TitleHeader />
 					<DataContainer>
-						<div className="row row-cols-1 row-cols-xl-2">
-							<div className="col mb-4">
+						<div className="row">
+							<div className="col-lg-8 col-12 mb-4">
 								<MileageChart />
 							</div>
-							<div className="col mb-4">
+							<div className="col-lg-4 col-12 mb-4">
 								<RecentActivities />
 							</div>
 						</div>

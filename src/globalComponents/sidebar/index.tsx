@@ -62,7 +62,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
+					<Link to="calendar" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"

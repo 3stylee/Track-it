@@ -6,6 +6,9 @@ export const StatsList = styled("ul")`
 	display: flex;
 	padding: 0;
 	margin: 0;
+	@media (max-width: 768px) {
+		margin: 2rem 0;
+	}
 `
 export const Stat = styled("li")`
 	display: flex;
