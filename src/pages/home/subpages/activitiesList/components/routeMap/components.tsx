@@ -15,9 +15,11 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 `
 export const CardContainer = styled("div")`
-	transition: transform 0.2s;
-	&:hover {
-		transform: scale(1.04);
+	@media (min-width: 768px) {
+		transition: transform 0.2s;
+		&:hover {
+			transform: scale(1.04);
+		}
 	}
 `
 export const StyledImage = styled("img")`

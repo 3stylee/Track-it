@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { LineChart } from "../lineChart"
 import connect from "./connect"
 import { getTimeSeries } from "../../../../utils/getTimeSeries"
@@ -7,18 +7,21 @@ import { getSecondsPerKm } from "../../../../utils/getSecondsPerKm"
 import { getPaceOptions } from "./graphOptions/paceOptions"
 import { getHeartrateOptions } from "./graphOptions/heartrateOptions"
 import { Card } from "../../../../../../globalComponents/bootstrapCard"
+import { CenteredDiv, GraphsContainer } from "./components"
+import ThemeContext from "../../../../../../theme/themeContext"
 
 export const ActivityGraphs = ({ currentActivityStream }: any) => {
+	const { theme } = useContext(ThemeContext)
 	if (currentActivityStream.distance) {
 		const length = parseInt(currentActivityStream.distance.original_size) / STREAM_RESOLUTION_FACTOR
 		const time = getTimeSeries(length)
 
 		const paceStreamData = getSecondsPerKm(currentActivityStream.distance.data)
-		const paceOptions = getPaceOptions(length, Math.min(...paceStreamData))
+		const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData))
 		const heartRateStreamData = currentActivityStream.heartrate.data
-		const heartRateOptions = getHeartrateOptions(length)
+		const heartRateOptions = getHeartrateOptions(length, theme)
 		return (
-			<>
+			<GraphsContainer>
 				<Card>
 					<LineChart
 						time={time}
@@ -27,7 +30,7 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 						options={paceOptions}
 					/>
 				</Card>
-				<Card styles={{ marginTop: "3rem" }}>
+				<Card>
 					<LineChart
 						time={time}
 						label={"Heart Rate"}
@@ -36,10 +39,18 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 						options={heartRateOptions}
 					/>
 				</Card>
-			</>
+			</GraphsContainer>
 		)
 	}
-	return null
+	return (
+		<Card styles={{ height: "calc(100vh - 6rem)" }}>
+			<CenteredDiv>
+				<h2>Error finding data</h2>
+				<p>Please refresh, or try another activity</p>
+				<img src={require("../../../../../../assets/icons/error.ico")} alt="error" />
+			</CenteredDiv>
+		</Card>
+	)
 }
 
 export default connect(ActivityGraphs)

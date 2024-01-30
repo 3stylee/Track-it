@@ -8,6 +8,10 @@ export const loadActivityStreamSuccess = (data: any) => {
 	return { type: types.LOAD_ACTIVITY_STREAM_SUCCESS, data }
 }
 
+export const clearActivityStream = () => {
+	return { type: types.CLEAR_ACTIVITY_STREAM }
+}
+
 export const loadActivityStream = (id: number) => {
 	return async function (dispatch: any) {
 		let endpoint = API_BASE_URL
@@ -24,6 +28,7 @@ export const loadActivityStream = (id: number) => {
 			dispatch(loadActivityStreamSuccess(reducedResponse))
 		} catch (error) {
 			dispatch(apiCallError(error))
+			dispatch(clearActivityStream())
 		}
 	}
 }

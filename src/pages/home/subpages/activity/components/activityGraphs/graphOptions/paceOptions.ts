@@ -1,4 +1,4 @@
-import { ACTIVITY_GRAPH_TIME_LABELS } from "../../../../../../../constants"
+import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
 import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
 const formatTooltipLabel = (tooltipItem: any) => {
@@ -6,7 +6,7 @@ const formatTooltipLabel = (tooltipItem: any) => {
 	return "Pace: " + getMinsFromSeconds(value) + "/km"
 }
 
-export const getPaceOptions = (length: number, min: number) => {
+export const getPaceOptions = (length: number, theme: string, min: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -23,6 +23,7 @@ export const getPaceOptions = (length: number, min: number) => {
 			title: {
 				display: true,
 				text: "Pace",
+				color: `${theme === THEMES.DARK ? "white" : "black"}`,
 			},
 		},
 		scales: {
@@ -40,6 +41,7 @@ export const getPaceOptions = (length: number, min: number) => {
 						}
 						return ""
 					},
+					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
 			},
 			y: {
@@ -53,6 +55,7 @@ export const getPaceOptions = (length: number, min: number) => {
 				ticks: {
 					callback: (value: number) => getMinsFromSeconds(value) + "/km",
 					maxTicksLimit: 5,
+					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
 				reverse: true,
 			},

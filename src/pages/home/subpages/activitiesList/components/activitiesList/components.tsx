@@ -6,6 +6,6 @@ export const PageContainer = styled("div")`
 	overflow-y: scroll;
 
 	@media (max-width: 768px) {
-		padding: 0;
+		padding: 1.5rem;
 	}
 `

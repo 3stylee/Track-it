@@ -11,7 +11,7 @@ interface CardProps {
 export const Card = ({ cardHeader, styles, children }: CardProps) => {
 	const { theme } = useContext(themeContext)
 	return (
-		<div className={`card ${theme === THEMES.DARK && "text-white bg-dark"} h-100`} style={styles}>
+		<div className={`card ${theme === THEMES.DARK && "text-white bg-dark"}`} style={styles}>
 			{cardHeader}
 			<div className="card-body">{children}</div>
 		</div>
