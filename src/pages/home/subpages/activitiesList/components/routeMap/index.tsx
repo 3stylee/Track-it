@@ -1,20 +1,23 @@
 import React, { useContext } from "react"
 import { convertToKm } from "../../../../utils/convertDistanceToKM"
-import { ActivityTitle, CardContainer, DescriptionContainer, StyledImage, StyledLink } from "./components"
+import { ActivityStats, ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { getPaceFromSpeed } from "../../../../utils/getPaceFromSpeed"
 import { THEMES } from "../../../../../../constants"
 import ThemeContext from "../../../../../../theme/themeContext"
+import { ActivityStat } from "../activityStat"
+import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 
 export interface RouteMapProps {
 	polyline?: any
 	name: string
+	time: number
 	distance: string
 	id: string
 	speed: string
 }
 
-export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps) => {
+export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMapProps) => {
 	const [imageLoaded, setImageLoaded] = React.useState(false)
 	const { theme } = useContext(ThemeContext)
 
@@ -29,9 +32,10 @@ export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps)
 
 	const convertedDistance = convertToKm(distance)
 	const pace = getPaceFromSpeed(speed)
+	const convertedTime = getMinsFromSeconds(time)
 	return (
 		<div className="col">
-			<StyledLink to={`/home/activity?id=${id}`} className="col">
+			<StyledLink to={`/home/activity?id=${id}`}>
 				<CardContainer
 					id="map"
 					className={`card ${theme === THEMES.DARK ? "text-white bg-dark" : ""} h-100`}
@@ -49,10 +53,11 @@ export const RouteMap = ({ polyline, speed, name, distance, id }: RouteMapProps)
 					)}
 					<div className="card-body">
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
-						<DescriptionContainer>
-							<p className="card-text m-0">{convertedDistance}</p>
-							<p className="card-text m-0">{pace}</p>
-						</DescriptionContainer>
+						<ActivityStats theme={theme}>
+							<ActivityStat title="Distance" value={convertedDistance} />
+							<ActivityStat title="Pace" value={pace} />
+							<ActivityStat title="Time" value={convertedTime} />
+						</ActivityStats>
 					</div>
 				</CardContainer>
 			</StyledLink>

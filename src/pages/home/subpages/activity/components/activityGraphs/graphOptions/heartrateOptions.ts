@@ -1,6 +1,6 @@
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
 
-export const getHeartrateOptions = (length: number, theme: string) => {
+export const getHeartrateOptions = (length: number, theme: string, average: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 
 	return {
@@ -16,6 +16,24 @@ export const getHeartrateOptions = (length: number, theme: string) => {
 				display: true,
 				text: "Heart Rate",
 				color: `${theme === THEMES.DARK ? "white" : "black"}`,
+			},
+			annotation: {
+				annotations: {
+					averageLine: {
+						type: "line",
+						scaleID: "y",
+						value: average,
+						borderColor: `${theme === THEMES.DARK ? "white" : "black"}`,
+						borderDash: [5, 5],
+						borderWidth: 2,
+						label: {
+							display: true,
+							position: "end",
+							color: "white",
+							content: `Average: ${average.toFixed(0)}`,
+						},
+					},
+				},
 			},
 		},
 		scales: {
@@ -43,6 +61,7 @@ export const getHeartrateOptions = (length: number, theme: string) => {
 				},
 				ticks: {
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
+					maxTicksLimit: 8,
 				},
 			},
 		},

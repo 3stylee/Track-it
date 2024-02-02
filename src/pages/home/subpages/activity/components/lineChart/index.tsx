@@ -1,7 +1,8 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
 import { CategoryScale, LogarithmicScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
-Chart.register(CategoryScale, LogarithmicScale, PointElement, LineElement, Title, Tooltip, Filler)
+import annotationPlugin from "chartjs-plugin-annotation"
+Chart.register(CategoryScale, LogarithmicScale, PointElement, LineElement, Title, Tooltip, Filler, annotationPlugin)
 
 export const LineChart = ({ time, label, streamData, backgroundColor, options }: any) => {
 	const data = {
@@ -21,7 +22,7 @@ export const LineChart = ({ time, label, streamData, backgroundColor, options }:
 
 	return (
 		<div>
-			<Line className="pb-4" options={options as any} data={data} />
+			<Line options={options as any} data={data} />
 		</div>
 	)
 }

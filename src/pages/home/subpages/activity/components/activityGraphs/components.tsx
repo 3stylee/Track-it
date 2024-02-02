@@ -7,12 +7,3 @@ export const CenteredDiv = styled("div")`
 	align-items: center;
 	height: 100%;
 `
-export const GraphsContainer = styled("div")`
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-	width: 100%;
-	@media (min-width: 992px) {
-		gap: 1.5rem;
-	}
-`

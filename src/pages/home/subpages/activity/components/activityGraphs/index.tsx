@@ -7,7 +7,7 @@ import { getSecondsPerKm } from "../../../../utils/getSecondsPerKm"
 import { getPaceOptions } from "./graphOptions/paceOptions"
 import { getHeartrateOptions } from "./graphOptions/heartrateOptions"
 import { Card } from "../../../../../../globalComponents/bootstrapCard"
-import { CenteredDiv, GraphsContainer } from "./components"
+import { CenteredDiv } from "./components"
 import ThemeContext from "../../../../../../theme/themeContext"
 
 export const ActivityGraphs = ({ currentActivityStream }: any) => {
@@ -17,29 +17,36 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 		const time = getTimeSeries(length)
 
 		const paceStreamData = getSecondsPerKm(currentActivityStream.distance.data)
-		const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData))
-		const heartRateStreamData = currentActivityStream.heartrate.data
-		const heartRateOptions = getHeartrateOptions(length, theme)
+		const averagePace = paceStreamData.reduce((a, b) => a + b, 0) / paceStreamData.length
+		const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData), averagePace)
+
+		const heartRateStreamData: number[] = currentActivityStream.heartrate.data
+		const averageHeartRate = heartRateStreamData.reduce((a, b) => a + b, 0) / heartRateStreamData.length
+		const heartRateOptions = getHeartrateOptions(length, theme, averageHeartRate)
 		return (
-			<GraphsContainer>
-				<Card>
-					<LineChart
-						time={time}
-						streamData={paceStreamData}
-						backgroundColor={"rgba(102, 61, 255, 0.7)"}
-						options={paceOptions}
-					/>
-				</Card>
-				<Card>
-					<LineChart
-						time={time}
-						label={"Heart Rate"}
-						streamData={heartRateStreamData}
-						backgroundColor={"rgba(204, 68, 153, 0.7)"}
-						options={heartRateOptions}
-					/>
-				</Card>
-			</GraphsContainer>
+			<div className="row row-cols-1 row-cols-xl-2 g-4">
+				<div className="col">
+					<Card>
+						<LineChart
+							time={time}
+							streamData={paceStreamData}
+							backgroundColor={"rgba(102, 61, 255, 0.7)"}
+							options={paceOptions}
+						/>
+					</Card>
+				</div>
+				<div className="col">
+					<Card>
+						<LineChart
+							time={time}
+							label={"Heart Rate"}
+							streamData={heartRateStreamData}
+							backgroundColor={"rgba(204, 68, 153, 0.7)"}
+							options={heartRateOptions}
+						/>
+					</Card>
+				</div>
+			</div>
 		)
 	}
 	return (

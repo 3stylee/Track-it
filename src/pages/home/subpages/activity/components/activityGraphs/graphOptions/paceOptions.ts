@@ -6,7 +6,7 @@ const formatTooltipLabel = (tooltipItem: any) => {
 	return "Pace: " + getMinsFromSeconds(value) + "/km"
 }
 
-export const getPaceOptions = (length: number, theme: string, min: number) => {
+export const getPaceOptions = (length: number, theme: string, min: number, average: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -24,6 +24,24 @@ export const getPaceOptions = (length: number, theme: string, min: number) => {
 				display: true,
 				text: "Pace",
 				color: `${theme === THEMES.DARK ? "white" : "black"}`,
+			},
+			annotation: {
+				annotations: {
+					averageLine: {
+						type: "line",
+						scaleID: "y",
+						value: average,
+						borderColor: `${theme === THEMES.DARK ? "white" : "black"}`,
+						borderDash: [5, 5],
+						borderWidth: 2,
+						label: {
+							display: true,
+							position: "end",
+							color: "white",
+							content: `Average: ${getMinsFromSeconds(average)} /km`,
+						},
+					},
+				},
 			},
 		},
 		scales: {
@@ -45,9 +63,9 @@ export const getPaceOptions = (length: number, theme: string, min: number) => {
 				},
 			},
 			y: {
-				// top of scale is 60s faster than fastest pace (rounded to nearest 10s)
-				min: Math.round((min - 60) / 10) * 10,
-				max: 600,
+				// top of scale is 15s faster than fastest pace (rounded to nearest 10s)
+				min: Math.round((min - 15) / 10) * 10,
+				max: 600, // no one should be running slower than 10 min /km
 				type: "logarithmic",
 				grid: {
 					display: false,
