@@ -1,10 +1,5 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import LoginPage from "./pages/login/components/login"
-import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"
-import Home from "./pages/home"
-import TitleBanner from "./globalComponents/titleBanner"
-import ErrorPage from "./pages/errorPage"
 import {
 	AUTH_ERROR_BUTTON,
 	AUTH_ERROR_MESSAGE,
@@ -15,11 +10,16 @@ import {
 	O_AUTH_URL,
 	ROUTE_PATHS,
 } from "./constants"
+import TitleBanner from "./globalComponents/titleBanner"
+import LoginPage from "./pages/login/components/login"
+import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"
+import Home from "./pages/home"
+import ErrorPage from "./pages/errorPage"
 import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
 import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
 import Activity from "./pages/home/subpages/activity/components/activity"
+import Calendar from "./pages/home/subpages/calendar/components/calendar"
 import { ThemeProvider } from "./theme/themeProvider"
-import { Calendar } from "./pages/home/subpages/calendar/components/calendar"
 
 const App = () => (
 	<ThemeProvider>

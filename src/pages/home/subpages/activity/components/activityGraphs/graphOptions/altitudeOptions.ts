@@ -1,7 +1,6 @@
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
-import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
-export const getPaceOptions = (length: number, theme: string, min: number, average: number) => {
+export const getAltitudeOptions = (length: number, theme: string) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -13,32 +12,14 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 				enabled: true,
 				callbacks: {
 					label: (tooltipItem: any) => {
-						return "Pace: " + getMinsFromSeconds(tooltipItem.parsed.y) + "/km"
+						return "Altitude: " + tooltipItem.parsed.y + "m"
 					},
 				},
 			},
 			title: {
 				display: true,
-				text: "Pace",
+				text: "Altitude",
 				color: `${theme === THEMES.DARK ? "white" : "black"}`,
-			},
-			annotation: {
-				annotations: {
-					averageLine: {
-						type: "line",
-						scaleID: "y",
-						value: average,
-						borderColor: `${theme === THEMES.DARK ? "white" : "black"}`,
-						borderDash: [5, 5],
-						borderWidth: 2,
-						label: {
-							display: true,
-							position: "end",
-							color: "white",
-							content: `Average: ${getMinsFromSeconds(average)} /km`,
-						},
-					},
-				},
 			},
 		},
 		scales: {
@@ -60,19 +41,14 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 				},
 			},
 			y: {
-				// top of scale is 15s faster than fastest pace (rounded to nearest 10s)
-				min: Math.round((min - 15) / 10) * 10,
-				max: 600, // no one should be running slower than 10 min /km
-				type: "logarithmic",
+				type: "linear",
 				grid: {
 					display: false,
 				},
 				ticks: {
-					callback: (value: number) => getMinsFromSeconds(value),
 					maxTicksLimit: 5,
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
-				reverse: true,
 			},
 		},
 	}

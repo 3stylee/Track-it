@@ -21,7 +21,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 						data.map((activity: any) => (
 							<RouteMap
 								polyline={decodePolyLine(activity.polyline)}
-								name={activity.name}
+								name={activity.title}
 								time={activity.time}
 								distance={activity.distance}
 								speed={activity.speed}

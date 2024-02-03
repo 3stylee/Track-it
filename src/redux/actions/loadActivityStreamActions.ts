@@ -15,7 +15,7 @@ export const clearActivityStream = () => {
 export const loadActivityStream = (id: number) => {
 	return async function (dispatch: any) {
 		let endpoint = API_BASE_URL
-		endpoint += `/activities/${id}/streams?keys=distance,heartrate&key_by_type=true`
+		endpoint += `/activities/${id}/streams?keys=distance,heartrate,altitude&key_by_type=true`
 
 		dispatch(beginApiCall())
 		try {

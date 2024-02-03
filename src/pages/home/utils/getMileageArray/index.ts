@@ -13,7 +13,7 @@ export const getWeekMileageArray = (data: any) => {
 		const distancePerDay = Array(7).fill(0)
 
 		data.forEach((item: any) => {
-			const itemDate = new Date(item.start_date)
+			const itemDate = new Date(item.start)
 
 			if (itemDate >= startDate && itemDate < new Date(today)) {
 				const dayIndex = (itemDate.getDay() + 6) % 7
@@ -32,7 +32,7 @@ export const getMonthMileageArray = (data: any) => {
 		const distancePerWeek = Array(monthWeeks.length).fill(0)
 
 		data.forEach((item: any) => {
-			const itemDate = new Date(item.start_date)
+			const itemDate = new Date(item.start)
 
 			for (let i = 0; i < distancePerWeek.length; i++) {
 				if (itemDate >= monthWeeks[i].start && itemDate <= monthWeeks[i].end) {

@@ -2,16 +2,16 @@ import React, { useContext } from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 import ThemeContext from "../../../../../../theme/themeContext"
 import { THEMES } from "../../../../../../constants"
-import { CardBody, CardContainer } from "./components"
+import { CardBody, CardContainer, CardHeader } from "./components"
 
 export const LapsTable = ({ laps }: any) => {
 	const { theme } = useContext(ThemeContext)
 	if (!Array.isArray(laps) || laps.length < 1) return null
 	return (
-		<CardContainer className={`card ${theme === THEMES.DARK && "text-white bg-dark"} w-100`}>
-			<div className="card-header">
-				<p className="m-0">Laps</p>
-			</div>
+		<CardContainer className={`card ${theme === THEMES.DARK && "text-white bg-dark"} h-100`}>
+			<CardHeader>
+				<p>Laps</p>
+			</CardHeader>
 			<CardBody className="card-body">
 				<table className={`table ${theme === THEMES.DARK && "table-dark"}`}>
 					<thead>

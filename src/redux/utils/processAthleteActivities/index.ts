@@ -14,12 +14,12 @@ export const processAthleteActivities = (data: Activity[]) => {
 		athlete: {
 			id: activity.athlete.id,
 		},
-		name: activity.name,
+		title: activity.name,
 		time: activity.moving_time,
 		distance: activity.distance,
 		polyline: activity.map.summary_polyline,
 		id: activity.id,
-		start_date: activity.start_date,
+		start: activity.start_date,
 		speed: activity.average_speed,
 	}))
 	return processedData

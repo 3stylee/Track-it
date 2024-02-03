@@ -18,7 +18,7 @@ export const ActivityStats = styled("div")`
 		margin-left: 0.75rem;
 	}
 
-	& > *:first-child {
+	& > *:first-of-type {
 		margin-left: 0;
 	}
 

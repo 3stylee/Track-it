@@ -34,7 +34,7 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 						<tbody>
 							{filteredData.map((item: any) => (
 								<tr key={item.id}>
-									<th scope="row">{convertISOToDDMMYY(item.start_date)}</th>
+									<th scope="row">{convertISOToDDMMYY(item.start)}</th>
 									<td>{item.name}</td>
 									<td>{(item.distance / 1000).toFixed(2) + " km"}</td>
 								</tr>

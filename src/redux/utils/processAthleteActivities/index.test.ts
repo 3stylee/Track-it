@@ -26,23 +26,23 @@ describe("processAthleteActitivies", () => {
 		]
 		const expected = [
 			{
-				name: "Run in the park",
+				title: "Run in the park",
 				distance: "5000",
 				time: 1000,
 				polyline: "_p~iF~ps|U_ulLnnqC_mqNvxq`@",
 				id: 1,
 				athlete: { id: 1 },
-				start_date: "2020-01-01T00:00:00Z",
+				start: "2020-01-01T00:00:00Z",
 				speed: 5,
 			},
 			{
-				name: "Bike ride",
+				title: "Bike ride",
 				distance: "15000",
 				time: 1500,
 				polyline: "_ibE_seK_seK_seK",
 				id: 2,
 				athlete: { id: 2 },
-				start_date: "2020-01-01T00:00:00Z",
+				start: "2020-01-01T00:00:00Z",
 				speed: 10,
 			},
 		]

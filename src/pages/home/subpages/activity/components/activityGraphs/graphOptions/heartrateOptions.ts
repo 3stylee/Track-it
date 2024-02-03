@@ -11,6 +11,11 @@ export const getHeartrateOptions = (length: number, theme: string, average: numb
 			},
 			tooltip: {
 				enabled: true,
+				callbacks: {
+					label: (tooltipItem: any) => {
+						return "Heart Rate: " + tooltipItem.parsed.y + " bpm"
+					},
+				},
 			},
 			title: {
 				display: true,
@@ -30,7 +35,7 @@ export const getHeartrateOptions = (length: number, theme: string, average: numb
 							display: true,
 							position: "end",
 							color: "white",
-							content: `Average: ${average.toFixed(0)}`,
+							content: `Average: ${average.toFixed(0)} bpm`,
 						},
 					},
 				},

@@ -1,51 +1,52 @@
-import React from "react"
-import { Responsive, WidthProvider } from "react-grid-layout"
+import React, { useContext, useEffect } from "react"
+import FullCalendar from "@fullcalendar/react"
+import dayGridPlugin from "@fullcalendar/daygrid"
+import interactionPlugin from "@fullcalendar/interaction"
+import { PageContainer, CalendarContainer } from "./components"
+import ThemeContext from "../../../../../../theme/themeContext"
+import { Event } from "../event"
+import connect from "./connect"
+import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
+import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 
-const ResponsiveGridLayout = WidthProvider(Responsive)
+interface CalendarProps {
+	athleteActivities: any
+	loadAthleteActivities: any
+	apiCallsInProgress: number
+}
 
-export const Calendar = () => {
-	// Define the layout configuration for each grid item
-	const responsiveProps = {
-		className: "responsive-grid",
-		breakpoints: { lg: 1200, md: 960, sm: 720, xs: 480, xxs: 0 },
-		cols: { lg: 4, md: 3, sm: 2, xs: 1, xxs: 1 },
-		layouts: {
-			lg: [
-				{ i: "1", x: 0, y: 0, w: 1, h: 1 },
-				{ i: "2", x: 1, y: 1, w: 1, h: 1 },
-				{ i: "3", x: 2, y: 2, w: 1, h: 1 },
-				{ i: "4", x: 3, y: 3, w: 1, h: 1 },
-				{ i: "5", x: 0, y: 1, w: 1, h: 1 },
-			],
-			md: [
-				{ i: "1", x: 0, y: 0, w: 1, h: 1 },
-				{ i: "2", x: 1, y: 1, w: 1, h: 1 },
-				{ i: "3", x: 2, y: 2, w: 1, h: 1 },
-				{ i: "4", x: 0, y: 1, w: 1, h: 1 },
-				{ i: "5", x: 1, y: 2, w: 1, h: 1 },
-			],
-		},
-		compactType: null,
-		maxRows: 4,
+export const Calendar = ({ athleteActivities, loadAthleteActivities, apiCallsInProgress }: CalendarProps) => {
+	const { theme } = useContext(ThemeContext)
+
+	useEffect(() => {
+		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
+	}, [])
+
+	// TODO replace this with something meaningful
+	const handleDateClick = (arg: any) => {
+		alert(`Date clicked: ${arg.dateStr}`)
 	}
 
 	return (
-		<ResponsiveGridLayout {...responsiveProps} style={{ width: "100%" }}>
-			<div key="1" style={{ background: "#ff4d4f" }}>
-				Item 1
-			</div>
-			<div key="2" style={{ background: "#40a9ff" }}>
-				Item 2
-			</div>
-			<div key="3" style={{ background: "#73d13d" }}>
-				Item 3
-			</div>
-			<div key="4" style={{ background: "#73d13d" }}>
-				Item 4
-			</div>
-			<div key="5" style={{ background: "#73d13d" }}>
-				Item 5
-			</div>
-		</ResponsiveGridLayout>
+		<PageContainer>
+			<CalendarContainer theme={theme}>
+				{apiCallsInProgress > 0 ? (
+					<AnimatedSpinner />
+				) : (
+					<FullCalendar
+						plugins={[dayGridPlugin, interactionPlugin]}
+						initialView="dayGridMonth"
+						dateClick={(arg) => {
+							handleDateClick(arg)
+						}}
+						fixedWeekCount={false}
+						eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
+						initialEvents={athleteActivities}
+					/>
+				)}
+			</CalendarContainer>
+		</PageContainer>
 	)
 }
+
+export default connect(Calendar)

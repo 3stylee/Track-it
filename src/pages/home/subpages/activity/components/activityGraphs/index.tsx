@@ -9,6 +9,7 @@ import { getHeartrateOptions } from "./graphOptions/heartrateOptions"
 import { Card } from "../../../../../../globalComponents/bootstrapCard"
 import { CenteredDiv } from "./components"
 import ThemeContext from "../../../../../../theme/themeContext"
+import { getAltitudeOptions } from "./graphOptions/altitudeOptions"
 
 export const ActivityGraphs = ({ currentActivityStream }: any) => {
 	const { theme } = useContext(ThemeContext)
@@ -23,8 +24,12 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 		const heartRateStreamData: number[] = currentActivityStream.heartrate.data
 		const averageHeartRate = heartRateStreamData.reduce((a, b) => a + b, 0) / heartRateStreamData.length
 		const heartRateOptions = getHeartrateOptions(length, theme, averageHeartRate)
+
+		const altitudeStreamData: number[] = currentActivityStream.altitude.data
+		const altitudeOptions = getAltitudeOptions(length, theme)
+
 		return (
-			<div className="row row-cols-1 row-cols-xl-2 g-4">
+			<>
 				<div className="col">
 					<Card>
 						<LineChart
@@ -46,7 +51,18 @@ export const ActivityGraphs = ({ currentActivityStream }: any) => {
 						/>
 					</Card>
 				</div>
-			</div>
+				<div className="col">
+					<Card>
+						<LineChart
+							time={time}
+							label={"Altitude"}
+							streamData={altitudeStreamData}
+							backgroundColor={"rgba(68, 118, 243, 0.7)"}
+							options={altitudeOptions}
+						/>
+					</Card>
+				</div>
+			</>
 		)
 	}
 	return (
