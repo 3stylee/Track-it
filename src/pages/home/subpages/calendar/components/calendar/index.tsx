@@ -1,52 +1,45 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useRef } from "react"
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 import { PageContainer, CalendarContainer } from "./components"
 import ThemeContext from "../../../../../../theme/themeContext"
 import { Event } from "../event"
-import connect from "./connect"
-import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
+import { fetchEvents } from "../../../../utils/fetchEvents.ts"
 
-interface CalendarProps {
-	athleteActivities: any
-	loadAthleteActivities: any
-	apiCallsInProgress: number
-}
-
-export const Calendar = ({ athleteActivities, loadAthleteActivities, apiCallsInProgress }: CalendarProps) => {
+export const Calendar = () => {
 	const { theme } = useContext(ThemeContext)
+	const spinnerRef = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
-		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
-	}, [])
-
-	// TODO replace this with something meaningful
-	const handleDateClick = (arg: any) => {
-		alert(`Date clicked: ${arg.dateStr}`)
-	}
+	// TODO - hide calendar when loading, right now it is just below
+	// spinner off screen until you scroll
 
 	return (
 		<PageContainer>
 			<CalendarContainer theme={theme}>
-				{apiCallsInProgress > 0 ? (
+				<div ref={spinnerRef} className="spinner hidden">
 					<AnimatedSpinner />
-				) : (
-					<FullCalendar
-						plugins={[dayGridPlugin, interactionPlugin]}
-						initialView="dayGridMonth"
-						dateClick={(arg) => {
-							handleDateClick(arg)
-						}}
-						fixedWeekCount={false}
-						eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
-						initialEvents={athleteActivities}
-					/>
-				)}
+				</div>
+				<FullCalendar
+					plugins={[dayGridPlugin, interactionPlugin]}
+					initialView="dayGridMonth"
+					// hacky solution but full calendar doesn't like react state or redux
+					loading={(isLoading) => {
+						if (spinnerRef.current === null) return
+						if (isLoading) {
+							spinnerRef.current.classList.remove("hidden")
+						} else {
+							spinnerRef.current.classList.add("hidden")
+						}
+					}}
+					fixedWeekCount={false}
+					eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
+					events={(info, successCallback, failureCallback) => {
+						fetchEvents(info, successCallback, failureCallback)
+					}}
+				/>
 			</CalendarContainer>
 		</PageContainer>
 	)
 }
-
-export default connect(Calendar)

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
-import { ImageAndLapsContainer, PageContainer } from "./components"
+import { ImageContainer, PageContainer } from "./components"
 import { ActivityImage } from "../activityImage"
 import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import ActivityGraphs from "../activityGraphs"
-import { LapsTable } from "../lapsTable"
 
 export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: any) => {
 	const location = useLocation()
@@ -25,15 +24,10 @@ export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActiv
 				<AnimatedSpinner />
 			) : (
 				<>
-					<ImageAndLapsContainer>
+					<ImageContainer>
 						<ActivityImage polyline={currentActivity.polyline} />
-					</ImageAndLapsContainer>
-					<div className="row row-cols-1 row-cols-xl-2 g-4">
-						<div className="col">
-							<LapsTable laps={currentActivity.laps} />
-						</div>
-						<ActivityGraphs />
-					</div>
+					</ImageContainer>
+					<ActivityGraphs laps={currentActivity.laps} />
 				</>
 			)}
 		</PageContainer>

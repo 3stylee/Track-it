@@ -5,4 +5,5 @@ export const EventContainer = styled("div")`
 	padding: 0.5rem;
 	width: 100%;
 	border-radius: var(--bs-border-radius);
+	color: white;
 `

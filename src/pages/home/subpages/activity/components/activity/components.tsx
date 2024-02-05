@@ -9,7 +9,7 @@ export const PageContainer = styled("div")`
 		padding: 1.5rem;
 	}
 `
-export const ImageAndLapsContainer = styled("div")`
+export const ImageContainer = styled("div")`
 	@media (min-width: 992px) {
 		display: flex;
 		gap: 1.5rem;

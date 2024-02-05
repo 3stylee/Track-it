@@ -19,4 +19,8 @@ export const CalendarContainer = styled("div")`
 	h2 {
 		color: ${({ theme }) => (theme === THEMES.DARK ? "white" : "black")};
 	}
+
+	& .hidden {
+		display: none;
+	}
 `
