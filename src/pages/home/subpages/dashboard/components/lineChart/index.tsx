@@ -1,6 +1,6 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
-import { WEEK_OR_MONTH, WEEK_GRAPH_LABELS } from "../../../../../../constants"
+import { SORT_OPTIONS, WEEK_GRAPH_LABELS } from "../../../../../../constants"
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
 import options from "./chartOptions"
 import { getCurrentMonthWeeks } from "../../../../utils/getWeeksOfMonth"
@@ -15,7 +15,7 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Too
 
 export const LineChart = ({ weekOrMonth, mileageData }: LineChartProps) => {
 	const monthGraphLabels = getMonthWeekLabels(getCurrentMonthWeeks())
-	const labels = weekOrMonth === WEEK_OR_MONTH.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
+	const labels = weekOrMonth === SORT_OPTIONS.WEEK ? WEEK_GRAPH_LABELS : monthGraphLabels
 
 	const data = {
 		labels,
@@ -24,8 +24,8 @@ export const LineChart = ({ weekOrMonth, mileageData }: LineChartProps) => {
 				fill: true,
 				label: "Distance",
 				data: mileageData,
-				borderColor: "rgb(204, 68, 153)",
-				backgroundColor: "rgba(204, 68, 153, 0.5)",
+				borderColor: "rgb(102, 61, 255)",
+				backgroundColor: "rgba(102, 61, 255, 0.5)",
 				pointHitRadius: 20,
 			},
 		],

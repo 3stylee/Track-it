@@ -12,11 +12,6 @@ export const CardHeader = styled("div")`
 	align-items: center;
 	padding: 0.5rem;
 `
-export const GraphTitle = styled("p")`
-	margin: 0 0 0 1rem;
-`
-export const TotalText = styled("h3")`
-	text-align: right;
-	margin-right: 1rem;
-	color: var(--bs-secondary);
+export const GraphTitle = styled("h4")`
+	margin: 0 0 0 0.5rem;
 `

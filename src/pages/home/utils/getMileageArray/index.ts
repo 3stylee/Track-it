@@ -1,4 +1,9 @@
+import { SORT_OPTIONS } from "../../../../constants"
 import { getCurrentMonthWeeks } from "../getWeeksOfMonth"
+
+export const getMileageArray = (data: any, type: string) => {
+	return type === SORT_OPTIONS.WEEK ? getWeekMileageArray(data) : getMonthMileageArray(data)
+}
 
 export const getWeekMileageArray = (data: any) => {
 	if (Array.isArray(data)) {

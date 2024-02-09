@@ -26,7 +26,7 @@ export const DATA_ERROR_MESSAGE = "Sorry, we had trouble getting your data, plea
 export const INITIAL_DATA_MESSAGE = ""
 export const MAPBOX_ACCESS_TOKEN =
 	"pk.eyJ1IjoiM3N0eWxlZSIsImEiOiJjbG80YWMxd3gwMDA4MmtvMmoyeTZsaHRyIn0.j9ejh2FFTVEQoXqWtMMB5A"
-export const WEEK_OR_MONTH = {
+export const SORT_OPTIONS = {
 	WEEK: "Week",
 	MONTH: "Month",
 }

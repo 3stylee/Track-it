@@ -1,12 +1,16 @@
 import React from "react"
-import { EventContainer } from "./components"
+import { AthleteIcon, EventContainer, EventHeader, Title } from "./components"
+import { convertToKm } from "../../../../utils/convertDistanceToKM"
 
 export const Event = ({ eventInfo }: any) => {
 	return (
 		<EventContainer>
-			<div>{eventInfo.timeText}m</div>
-			<div>{eventInfo.event.title}</div>
-			<div>{eventInfo.event.extendedProps.distance}</div>
+			<EventHeader>
+				<AthleteIcon src={require("../../../../../../assets/icons/athlete.ico")} alt="athlete icon" />
+				<div>{eventInfo.timeText}m</div>
+			</EventHeader>
+			<Title>{eventInfo.event.title}</Title>
+			<div>{convertToKm(eventInfo.event.extendedProps.distance)} Km</div>
 		</EventContainer>
 	)
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { WEEK_OR_MONTH } from "../../../../../../constants"
+import { SORT_OPTIONS } from "../../../../../../constants"
 
 export const DesktopSort = ({ weekOrMonth, setWeekOrMonth }: any) => {
 	const handleItemClick = (selectedValue: string) => {
@@ -7,6 +7,7 @@ export const DesktopSort = ({ weekOrMonth, setWeekOrMonth }: any) => {
 			setWeekOrMonth(selectedValue)
 		}
 	}
+	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
 
 	return (
 		<div className="dropdown">
@@ -20,16 +21,16 @@ export const DesktopSort = ({ weekOrMonth, setWeekOrMonth }: any) => {
 			<ul className="dropdown-menu dropdown-menu-dark">
 				<li>
 					<button
-						className={`dropdown-item ${weekOrMonth === WEEK_OR_MONTH.WEEK ? "active" : ""}`}
-						onClick={() => handleItemClick(WEEK_OR_MONTH.WEEK)}>
-						{WEEK_OR_MONTH.WEEK}
+						className={`dropdown-item ${isWeek ? "active" : ""}`}
+						onClick={() => handleItemClick(SORT_OPTIONS.WEEK)}>
+						{SORT_OPTIONS.WEEK}
 					</button>
 				</li>
 				<li>
 					<button
-						className={`dropdown-item ${weekOrMonth === WEEK_OR_MONTH.MONTH ? "active" : ""}`}
-						onClick={() => handleItemClick(WEEK_OR_MONTH.MONTH)}>
-						{WEEK_OR_MONTH.MONTH}
+						className={`dropdown-item ${!isWeek ? "active" : ""}`}
+						onClick={() => handleItemClick(SORT_OPTIONS.MONTH)}>
+						{SORT_OPTIONS.MONTH}
 					</button>
 				</li>
 			</ul>

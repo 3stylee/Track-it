@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
+import React, { Suspense, useContext } from "react"
 import { convertToKm } from "../../../../utils/convertDistanceToKM"
-import { ActivityStats, ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
+import { ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { getPaceFromSpeed } from "../../../../utils/getPaceFromSpeed"
 import { THEMES } from "../../../../../../constants"
 import ThemeContext from "../../../../../../theme/themeContext"
-import { ActivityStat } from "../activityStat"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
+import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
 
 export interface RouteMapProps {
 	polyline?: any
@@ -18,7 +18,6 @@ export interface RouteMapProps {
 }
 
 export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMapProps) => {
-	const [imageLoaded, setImageLoaded] = React.useState(false)
 	const { theme } = useContext(ThemeContext)
 
 	let url =
@@ -30,9 +29,27 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 		url = getMapboxEndpoint(coordinatesString, theme)
 	}
 
-	const convertedDistance = convertToKm(distance)
-	const pace = getPaceFromSpeed(speed)
-	const convertedTime = getMinsFromSeconds(time)
+	const stats: Stat[] = [
+		{
+			text: "Distance",
+			value: convertToKm(distance),
+			unit: "KM",
+			icon: "map.ico",
+		},
+		{
+			text: "Pace",
+			value: getPaceFromSpeed(speed),
+			unit: "/KM",
+			icon: "speedo.ico",
+		},
+		{
+			text: "Time",
+			value: getMinsFromSeconds(time),
+			unit: "",
+			icon: "stopwatch.ico",
+		},
+	]
+
 	return (
 		<div className="col">
 			<StyledLink to={`/home/activity?id=${id}`}>
@@ -40,24 +57,17 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 					id="map"
 					className={`card ${theme === THEMES.DARK ? "text-white bg-dark" : ""} h-100`}
 					theme={theme}>
-					<StyledImage
-						src={url}
-						alt="route map"
-						className={`card-img-left ${!imageLoaded ? "d-none" : ""}`}
-						onLoad={() => setImageLoaded(true)}
-					/>
-					{!imageLoaded && (
-						<svg style={{ height: "13rem" }}>
-							<rect width="100%" height="13rem" fill="#868e96" rx="5px" ry="5px" />
-						</svg>
-					)}
+					<Suspense
+						fallback={
+							<svg style={{ height: "13rem" }}>
+								<rect width="100%" height="13rem" fill="#868e96" rx="5px" ry="5px" />
+							</svg>
+						}>
+						<StyledImage src={url} alt="route map" className="card-img-left" />
+					</Suspense>
 					<div className="card-body">
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
-						<ActivityStats theme={theme}>
-							<ActivityStat title="Distance" value={convertedDistance} />
-							<ActivityStat title="Pace" value={pace} />
-							<ActivityStat title="Time" value={convertedTime} />
-						</ActivityStats>
+						<LabelledStats stats={stats} small={true} />
 					</div>
 				</CardContainer>
 			</StyledLink>

@@ -1,29 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { LineChart } from "../lineChart"
-import { CardHeader, GraphTitle, TotalText } from "./components"
+import { CardHeader, GraphTitle } from "./components"
 import { DesktopSort } from "../desktopSort"
-import { WEEK_OR_MONTH } from "../../../../../../constants"
+import { SORT_OPTIONS } from "../../../../../../constants"
 import { Card } from "../../../../../../globalComponents/bootstrapCard"
-import { getMonthMileageArray, getWeekMileageArray } from "../../../../utils/getMileageArray"
+import { getMileageArray } from "../../../../utils/getMileageArray"
 import connect from "./connect"
+import { getDivisor } from "../../../../utils/getDivisor"
+import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
 
 export const MileageChart = ({ athleteActivities }: any) => {
-	const [weekOrMonth, setWeekOrMonth] = React.useState(WEEK_OR_MONTH.WEEK)
-	const mileageData =
-		weekOrMonth === WEEK_OR_MONTH.WEEK
-			? getWeekMileageArray(athleteActivities)
-			: getMonthMileageArray(athleteActivities)
+	const [weekOrMonth, setWeekOrMonth] = useState(SORT_OPTIONS.WEEK)
+	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
+	const mileageData = getMileageArray(athleteActivities, weekOrMonth)
+	const total = mileageData.reduce((partialSum, a) => partialSum + a, 0).toFixed(2)
+	const stats: Stat[] = [
+		{
+			text: "Total",
+			value: total,
+			unit: "KM",
+		},
+		{
+			text: `${isWeek ? "Daily" : "Weekly"} Average`,
+			value: (total / getDivisor(isWeek)).toFixed(2),
+			unit: "KM",
+		},
+	]
 
 	return (
-		<Card
-			cardHeader={
-				<CardHeader className="card-header">
-					<GraphTitle>Mileage</GraphTitle>
-					<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
-				</CardHeader>
-			}>
-			<div className="card-text">
-				<TotalText>{mileageData.reduce((partialSum, a) => partialSum + a, 0).toFixed(2)}km</TotalText>
+		<Card>
+			<CardHeader>
+				<GraphTitle>Mileage</GraphTitle>
+				<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
+			</CardHeader>
+			<div>
+				<LabelledStats stats={stats} />
 				<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} />
 			</div>
 		</Card>

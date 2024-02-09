@@ -1,14 +1,14 @@
-import { WEEK_OR_MONTH } from "../../../../constants"
+import { SORT_OPTIONS } from "../../../../constants"
 
 export const getDate = (weekOrMonth: string) => {
 	const now = new Date()
 
-	if (weekOrMonth === WEEK_OR_MONTH.WEEK) {
+	if (weekOrMonth === SORT_OPTIONS.WEEK) {
 		const currentDayOfWeek = now.getDay()
 		const daysUntilMonday = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1
 		now.setDate(now.getDate() - daysUntilMonday)
 	}
-	if (weekOrMonth === WEEK_OR_MONTH.MONTH) {
+	if (weekOrMonth === SORT_OPTIONS.MONTH) {
 		now.setDate(1)
 	}
 
