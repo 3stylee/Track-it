@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { THEMES } from "../../../../../../constants"
 
 export const StatsList = styled("ul")`
 	list-style: none;
@@ -18,7 +17,7 @@ export const Stat = styled("li")`
 `
 export const StatName = styled("span")`
 	font-size: 0.75rem;
-	${({ theme }) => theme === THEMES.DARK && "color: var(--bs-white)"};
+	${({ theme }) => theme.text};
 `
 export const StatValue = styled("h3")`
 	margin-bottom: 0.25rem;

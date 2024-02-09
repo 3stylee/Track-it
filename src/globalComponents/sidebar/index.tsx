@@ -1,19 +1,19 @@
-import React, { useContext } from "react"
+import React from "react"
 import { LinkContainer, SidebarContainer, SidebarIcon, ThemeToggleContainer } from "./components"
 import connect from "./connect"
 import { Link } from "react-router-dom"
-import ThemeContext from "../../theme/themeContext"
 import { THEMES } from "../../constants"
+import { useTheme } from "@emotion/react"
 
-export const Sidebar = ({ sidebarExpanded }: any) => {
-	const { theme, toggleTheme } = useContext(ThemeContext)
+export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
+	const theme = useTheme()
 	return (
 		<SidebarContainer
 			sidebarExpanded={sidebarExpanded}
-			className={`flex-column flex-shrink-0 p-3 text-bg-${theme}`}>
+			className={`flex-column flex-shrink-0 p-3 text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
 			<ul className="nav nav-pills flex-column mb-auto">
 				<LinkContainer className="nav-item">
-					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
+					<Link to="" className={`nav-link text-${theme.bootstrap.textColor}`}>
 						<div>
 							<SidebarIcon
 								xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="dashboard" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
+					<Link to="dashboard" className={`nav-link text-${theme.bootstrap.textColor}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -47,7 +47,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
+					<Link to="" className={`nav-link text-${theme.bootstrap.textColor}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -62,7 +62,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 					</Link>
 				</LinkContainer>
 				<LinkContainer>
-					<Link to="calendar" className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}>
+					<Link to="calendar" className={`nav-link text-${theme.bootstrap.textColor}`}>
 						<SidebarIcon
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -80,7 +80,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 				<LinkContainer>
 					<Link
 						to="/"
-						className={`nav-link text-${theme === THEMES.LIGHT ? "black" : "white"}`}
+						className={`nav-link text-${theme.bootstrap.textColor}`}
 						onClick={() => {
 							localStorage.clear()
 						}}>
@@ -112,7 +112,7 @@ export const Sidebar = ({ sidebarExpanded }: any) => {
 							role="switch"
 							id="flexSwitchCheckChecked"
 							onChange={toggleTheme}
-							checked={theme === THEMES.DARK}
+							checked={theme.name === THEMES.DARK}
 						/>
 					</div>
 				</ThemeToggleContainer>

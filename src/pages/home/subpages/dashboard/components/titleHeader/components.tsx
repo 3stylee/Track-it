@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-export const StyledHeader = styled("div")<{ theme: string }>`
+export const StyledHeader = styled("div")`
 	border-radius: var(--bs-border-radius);
 	@media (min-width: 768px) {
 		display: flex;

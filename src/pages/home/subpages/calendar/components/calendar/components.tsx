@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { THEMES } from "../../../../../../constants"
 
 export const PageContainer = styled("div")`
 	display: flex;
@@ -19,7 +18,7 @@ export const CalendarContainer = styled("div")`
 
 	& a,
 	h2 {
-		color: ${({ theme }) => (theme === THEMES.DARK ? "white" : "black")};
+		color: ${({ theme }) => theme.text};
 	}
 
 	& .hidden {
@@ -33,7 +32,7 @@ export const CalendarContainer = styled("div")`
 export const SpinnerContainer = styled("div")`
 	width: 4rem;
 	height: 4rem;
-	background: ${({ theme }) => (theme === THEMES.DARK ? "white" : "black")};
+	background: ${({ theme }) => theme.spinnerBackground};
 	border-radius: var(--bs-border-radius);
 	padding: 1rem;
 	padding-right: 1.1rem;

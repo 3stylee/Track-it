@@ -1,14 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import { LineChart } from "../lineChart"
 import connect from "./connect"
 import { Card } from "../../../../../../globalComponents/bootstrapCard"
 import { CenteredDiv } from "./components"
-import ThemeContext from "../../../../../../theme/themeContext"
 import { LapsTable } from "../lapsTable"
 import { getActivityGraphData } from "../../../../utils/getActivityGraphData"
+import { useTheme } from "@emotion/react"
 
 export const ActivityGraphs = ({ currentActivityStream, laps }: any) => {
-	const { theme } = useContext(ThemeContext)
+	const theme = useTheme()
 	if (currentActivityStream.distance) {
 		const {
 			time,
@@ -18,7 +18,7 @@ export const ActivityGraphs = ({ currentActivityStream, laps }: any) => {
 			heartRateOptions,
 			altitudeStreamData,
 			altitudeOptions,
-		} = getActivityGraphData(currentActivityStream, theme)
+		} = getActivityGraphData(currentActivityStream, theme.name)
 
 		return (
 			<div className="row row-cols-1 row-cols-xl-2 g-4">

@@ -1,19 +1,18 @@
-import React, { useContext } from "react"
+import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import ThemeContext from "../../../../../../theme/themeContext"
-import { THEMES } from "../../../../../../constants"
 import { CardBody, CardContainer, CardHeader } from "./components"
+import { useTheme } from "@emotion/react"
 
 export const LapsTable = ({ laps }: any) => {
-	const { theme } = useContext(ThemeContext)
+	const theme = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
 	return (
-		<CardContainer className={`card ${theme === THEMES.DARK && "text-white bg-dark"} h-100`}>
+		<CardContainer className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}>
 			<CardHeader>
 				<p>Laps</p>
 			</CardHeader>
 			<CardBody className="card-body">
-				<table className={`table ${theme === THEMES.DARK && "table-dark"}`}>
+				<table className={`table table-${theme.bootstrap.background}`}>
 					<thead>
 						<tr>
 							<th scope="col">#</th>

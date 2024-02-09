@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
+import React from "react"
 import connect from "./connect"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
-import { MAX_RECENT_ACTIVITIES, THEMES } from "../../../../../../constants"
+import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
 import { CardBody } from "./components"
-import ThemeContext from "../../../../../../theme/themeContext"
+import { useTheme } from "@emotion/react"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
@@ -14,16 +14,16 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 	if (Array.isArray(athleteActivities)) {
 		filteredData = athleteActivities.slice(0, MAX_RECENT_ACTIVITIES)
 	}
-	const { theme } = useContext(ThemeContext)
+	const theme = useTheme()
 
 	return (
-		<div className={`card ${theme === THEMES.DARK && "text-white bg-dark"} h-100`}>
+		<div className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}>
 			<div className="card-header">
 				<p className="m-0">Recent Activities</p>
 			</div>
 			<CardBody className="card-body">
 				{filteredData ? (
-					<table className={`table table-bordered m-0 ${theme === THEMES.DARK && "table-dark"}`}>
+					<table className={`table table-bordered m-0 table-${theme.bootstrap.background}`}>
 						<thead className="thead-primary">
 							<tr>
 								<th scope="col">Date</th>

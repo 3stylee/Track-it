@@ -1,6 +1,5 @@
-import React, { useContext } from "react"
-import { THEMES } from "../../constants"
-import themeContext from "../../theme/themeContext"
+import React from "react"
+import { useTheme } from "@emotion/react"
 
 interface CardProps {
 	cardHeader?: React.ReactNode
@@ -9,9 +8,9 @@ interface CardProps {
 }
 
 export const Card = ({ cardHeader, styles, children }: CardProps) => {
-	const { theme } = useContext(themeContext)
+	const theme = useTheme()
 	return (
-		<div className={`card ${theme === THEMES.DARK && "text-white bg-dark"}`} style={styles}>
+		<div className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`} style={styles}>
 			{cardHeader}
 			<div className="card-body">{children}</div>
 		</div>

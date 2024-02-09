@@ -1,12 +1,12 @@
-import React, { Suspense, useContext } from "react"
+import React, { Suspense } from "react"
 import { convertToKm } from "../../../../utils/convertDistanceToKM"
 import { ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { getPaceFromSpeed } from "../../../../utils/getPaceFromSpeed"
 import { THEMES } from "../../../../../../constants"
-import ThemeContext from "../../../../../../theme/themeContext"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
+import { useTheme } from "@emotion/react"
 
 export interface RouteMapProps {
 	polyline?: any
@@ -18,15 +18,15 @@ export interface RouteMapProps {
 }
 
 export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMapProps) => {
-	const { theme } = useContext(ThemeContext)
+	const theme = useTheme()
 
 	let url =
-		theme === THEMES.DARK
+		theme.name === THEMES.DARK
 			? require("../../../../../../assets/images/no_gps_dark.png")
 			: require("../../../../../../assets/images/no_gps_light.png")
 	if (polyline.length > 0) {
 		const coordinatesString = polyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
-		url = getMapboxEndpoint(coordinatesString, theme)
+		url = getMapboxEndpoint(coordinatesString, theme.name)
 	}
 
 	const stats: Stat[] = [
@@ -55,7 +55,7 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 			<StyledLink to={`/home/activity?id=${id}`}>
 				<CardContainer
 					id="map"
-					className={`card ${theme === THEMES.DARK ? "text-white bg-dark" : ""} h-100`}
+					className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}
 					theme={theme}>
 					<Suspense
 						fallback={

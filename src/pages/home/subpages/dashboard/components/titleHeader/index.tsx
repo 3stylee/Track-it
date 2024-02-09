@@ -1,15 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import { StyledCard, StyledHeader } from "./components"
 import QuickStats from "../quickStats"
-import themeContext from "../../../../../../theme/themeContext"
-import { THEMES } from "../../../../../../constants"
+import { useTheme } from "@emotion/react"
 
 export const TitleHeader = () => {
-	const { theme } = useContext(themeContext)
+	const theme = useTheme()
 	return (
-		<StyledCard className={`card ${theme === THEMES.DARK ? "text-white bg-dark" : ""}`}>
-			<StyledHeader theme={theme}>
-				<h4 className={`m-0 ${theme === THEMES.DARK && "text-white"}`}>Dashboard</h4>
+		<StyledCard className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
+			<StyledHeader>
+				<h4 className={`m-0 text-${theme.bootstrap.textColor}`}>Dashboard</h4>
 				<QuickStats />
 			</StyledHeader>
 		</StyledCard>

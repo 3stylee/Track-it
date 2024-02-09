@@ -1,6 +1,5 @@
-import React, { useContext } from "react"
+import React from "react"
 import { StatsContainer, Text, Value, Unit, StatHeader, Icon } from "./components"
-import ThemeContext from "../../theme/themeContext"
 
 export interface Stat {
 	text: string
@@ -17,9 +16,8 @@ interface Props {
 }
 
 export const LabelledStats = ({ stats, small }: Props) => {
-	const { theme } = useContext(ThemeContext)
 	return (
-		<StatsContainer theme={theme} small={small}>
+		<StatsContainer small={small}>
 			{stats.map((stat: Stat) => {
 				const { text, value, unit, icon } = stat
 				return (

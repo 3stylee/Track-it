@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
-import { THEMES } from "../../../../../../constants"
 
 export const ActivityTitle = styled("h5")`
 	white-space: nowrap;
@@ -13,7 +12,7 @@ export const ActivityStats = styled("div")`
 	display: flex;
 
 	& > * {
-		border-right: 1px solid ${({ theme }: any) => (theme === THEMES.DARK ? "#343a40" : "#e9ecef")};
+		border-right: 1px solid ${({ theme }) => theme.text};
 		padding-right: 0.75rem;
 		margin-left: 0.75rem;
 	}

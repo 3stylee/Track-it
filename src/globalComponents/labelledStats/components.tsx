@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { THEMES } from "../../constants"
 import { small } from "."
 
 export const StatsContainer = styled("div")<{ small: small }>`
@@ -13,7 +12,7 @@ export const StatsContainer = styled("div")<{ small: small }>`
 	& > * {
 		margin-left: 1rem;
 		padding-right: 1rem;
-		border-right: 1px solid ${({ theme }) => (theme === THEMES.DARK ? "white" : "black")};
+		border-right: 1px solid ${({ theme }) => theme.text};
 	}
 
 	& > :last-child {
@@ -43,7 +42,7 @@ export const Text = styled("p")<{ small: small }>`
 	margin-bottom: 0;
 `
 
-export const Unit = styled("span")<{ small: boolean | undefined }>`
+export const Unit = styled("span")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "0.75rem" : "1rem")};
 	color: #b9ace6;
 `

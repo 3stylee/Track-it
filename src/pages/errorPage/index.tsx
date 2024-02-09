@@ -1,7 +1,6 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Container } from "./components"
-import ThemeContext from "../../theme/themeContext"
-import { THEMES } from "../../constants"
+import { useTheme } from "@emotion/react"
 
 export interface ErrorPageProps {
 	title: string
@@ -11,9 +10,9 @@ export interface ErrorPageProps {
 }
 
 export const ErrorPage = ({ title, eMessage, buttonText, buttonLink }: ErrorPageProps) => {
-	const { theme } = useContext(ThemeContext)
+	const theme = useTheme()
 	return (
-		<Container className={`rounded ${theme === THEMES.DARK && "text-white bg-dark"}`}>
+		<Container className={`rounded text-${theme.bootstrap.textColor} bg-${theme.background}}`}>
 			<h1>{title}</h1>
 			<p className="lead">{eMessage}</p>
 			{buttonText ? (

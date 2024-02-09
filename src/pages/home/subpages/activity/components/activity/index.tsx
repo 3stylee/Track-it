@@ -5,6 +5,7 @@ import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import ActivityGraphs from "../activityGraphs"
+import { ActivityTitle } from "../activityTitle"
 
 export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: any) => {
 	const location = useLocation()
@@ -25,6 +26,7 @@ export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActiv
 			) : (
 				<>
 					<ImageContainer>
+						<ActivityTitle />
 						<ActivityImage polyline={currentActivity.polyline} />
 					</ImageContainer>
 					<ActivityGraphs laps={currentActivity.laps} />
