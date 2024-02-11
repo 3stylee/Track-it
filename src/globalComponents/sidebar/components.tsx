@@ -1,11 +1,7 @@
 import styled from "@emotion/styled"
 import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants"
 
-interface SidebarContainerProps {
-	sidebarExpanded: boolean
-}
-
-export const SidebarContainer = styled("div")<SidebarContainerProps>`
+export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	width: ${SIDEBAR_WIDTH};
 	padding-top: ${TITLE_BANNER_HEIGHT};
 	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
