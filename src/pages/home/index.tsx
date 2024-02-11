@@ -36,10 +36,12 @@ export const Home = ({ authState, getAuthToken, toggleTheme }: HomeProps) => {
 	return (
 		<>
 			{isTokenValid ? (
-				<PageContainer>
+				<>
 					<Sidebar toggleTheme={toggleTheme} />
-					<Outlet />
-				</PageContainer>
+					<PageContainer>
+						<Outlet />
+					</PageContainer>
+				</>
 			) : (
 				<AnimatedSpinner />
 			)}

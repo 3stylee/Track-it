@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { MOBILE_SIDEBAR_HEIGHT, SIDEBAR_WIDTH } from "../../constants"
+import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants"
 
 interface SidebarContainerProps {
 	sidebarExpanded: boolean
@@ -7,37 +7,31 @@ interface SidebarContainerProps {
 
 export const SidebarContainer = styled("div")<SidebarContainerProps>`
 	width: ${SIDEBAR_WIDTH};
-	margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
-	box-shadow: ${({ sidebarExpanded }) => (sidebarExpanded ? "2px 0 5px rgba(0, 0, 0, 0.5)" : "")};
+	padding-top: ${TITLE_BANNER_HEIGHT};
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 	transition: margin-left 0.3s;
 	position: fixed;
-	z-index: 10;
 	height: 100%;
 
 	@media (max-width: 768px) {
-		width: 100%;
-		margin-left: 0;
-		height: ${MOBILE_SIDEBAR_HEIGHT};
-		margin-top: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${MOBILE_SIDEBAR_HEIGHT}`)};
-		z-index: ${({ sidebarExpanded }) => (sidebarExpanded ? "1" : "-1")};
-		position: sticky;
-		transition: margin-top 0.3s;
+		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
+		z-index: 1;
+		transition: margin-left 0.3s;
 	}
 `
-export const LinkContainer = styled("li")`
+export const IconContainer = styled("li")`
+	padding: 1rem;
+	text-align: center;
 	transition: background-color 0.3s;
 	border-radius: 0.5rem;
-	font-size: 1.25rem;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.15);
 	}
 `
-export const SidebarIcon = styled("svg")`
-	margin-right: 1rem;
-	margin-bottom: 0.25rem;
-`
+
 export const ThemeToggleContainer = styled("div")`
-	margin: 1rem;
+	margin-top: 0.5rem;
 	display: flex;
+	justify-content: center;
 `

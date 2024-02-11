@@ -40,8 +40,13 @@ export const AUTH_ERROR_TITLE = "Authentication Error"
 export const AUTH_ERROR_MESSAGE = "Sorry, but we were unable to authenticate your Strava account. Please try again"
 export const AUTH_ERROR_BUTTON = "Try again »"
 export const TITLE_BANNER_HEIGHT = "4rem"
-export const SIDEBAR_WIDTH = "15rem"
-export const MOBILE_SIDEBAR_HEIGHT = "19rem"
+export const SIDEBAR_ICONS = [
+	{ icon: "home", path: "" },
+	{ icon: "grid", path: "dashboard" },
+	{ icon: "clock", path: "" },
+	{ icon: "calendar", path: "calendar" },
+]
+export const SIDEBAR_WIDTH = "3.5rem"
 export const STREAM_RESOLUTION_FACTOR = 15
 export const ACTIVITY_GRAPH_TIME_LABELS = 8
 export const THEMES = {
