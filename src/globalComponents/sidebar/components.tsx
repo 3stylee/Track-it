@@ -22,7 +22,7 @@ export const IconContainer = styled("li")`
 	border-radius: 0.5rem;
 
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.15);
+		background-color: ${({ theme }) => theme.sidebar.iconHover};
 	}
 `
 

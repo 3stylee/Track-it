@@ -8,5 +8,8 @@ export default {
 		background: "dark",
 		textColor: "white",
 	},
+	sidebar: {
+		iconHover: "rgba(255, 255, 255, 0.15)",
+	},
 	spinnerBackground: "white",
 } as Theme

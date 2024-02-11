@@ -9,6 +9,9 @@ declare module "@emotion/react" {
 			background: string
 			textColor: string
 		}
+		sidebar: {
+			iconHover: string
+		}
 		spinnerBackground: string
 	}
 }
