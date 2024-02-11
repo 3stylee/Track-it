@@ -7,7 +7,7 @@ import { LapsTable } from "../lapsTable"
 import { getActivityGraphData } from "../../../../utils/getActivityGraphData"
 import { useTheme } from "@emotion/react"
 
-export const ActivityGraphs = ({ currentActivityStream, laps }: any) => {
+export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps }: any) => {
 	const theme = useTheme()
 	if (currentActivityStream.distance) {
 		const {
@@ -18,7 +18,7 @@ export const ActivityGraphs = ({ currentActivityStream, laps }: any) => {
 			heartRateOptions,
 			altitudeStreamData,
 			altitudeOptions,
-		} = getActivityGraphData(currentActivityStream, theme.name)
+		} = getActivityGraphData(currentActivityStream, currentActivity, theme.name)
 
 		return (
 			<div className="row row-cols-1 row-cols-xl-2 g-4">

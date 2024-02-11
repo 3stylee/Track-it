@@ -1,6 +1,6 @@
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
 
-export const getAltitudeOptions = (length: number, theme: string) => {
+export const getAltitudeOptions = (length: number, theme: string, max: number, eGain: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -20,6 +20,24 @@ export const getAltitudeOptions = (length: number, theme: string) => {
 				display: true,
 				text: "Altitude",
 				color: `${theme === THEMES.DARK ? "white" : "black"}`,
+			},
+			annotation: {
+				annotations: {
+					elevationGain: {
+						type: "line",
+						scaleID: "y",
+						value: max,
+						borderColor: `${theme === THEMES.DARK ? "white" : "black"}`,
+						borderDash: [5, 5],
+						borderWidth: 2,
+						label: {
+							display: true,
+							position: "end",
+							color: "white",
+							content: `Total Elevation Gain: ${eGain}m`,
+						},
+					},
+				},
 			},
 		},
 		scales: {

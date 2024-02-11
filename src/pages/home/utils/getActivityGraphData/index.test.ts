@@ -14,9 +14,14 @@ describe("getActivityGraphData", () => {
 				data: [100, 200, 300, 400, 500],
 			},
 		}
+		const mockActivity = {
+			average_speed: 4,
+			average_heartrate: 150,
+			total_elevation_gain: 2,
+		}
 		const theme = "light"
 
-		const result = getActivityGraphData(mockActivityStream, theme)
+		const result = getActivityGraphData(mockActivityStream, mockActivity, theme)
 
 		expect(result).toHaveProperty("time")
 		expect(result).toHaveProperty("paceStreamData")
