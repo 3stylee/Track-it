@@ -30,8 +30,8 @@ export const IconContainer = styled("li")`
 	}
 `
 
-export const ThemeToggleContainer = styled("div")`
-	margin-top: 0.5rem;
-	display: flex;
-	justify-content: center;
+export const SettingsButton = styled("div")`
+	&:hover {
+		cursor: pointer;
+	}
 `

@@ -4,6 +4,7 @@ import { RouteMap } from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
+import { Row } from "react-bootstrap"
 
 export interface DataContainerProps {
 	data: any
@@ -16,7 +17,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 			{apiCallsInProgress > 0 ? (
 				<AnimatedSpinner />
 			) : (
-				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+				<Row sm={2} md={2} lg={3} xl={4} className="g-4">
 					{Array.isArray(data) ? (
 						data.map((activity: any) => (
 							<RouteMap
@@ -32,7 +33,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 					) : (
 						<p>We are having trouble finding your data</p>
 					)}
-				</div>
+				</Row>
 			)}
 		</StyledContainer>
 	)

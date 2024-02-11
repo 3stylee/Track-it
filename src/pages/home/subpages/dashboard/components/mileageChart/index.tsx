@@ -3,13 +3,15 @@ import { LineChart } from "../lineChart"
 import { CardHeader, GraphTitle } from "./components"
 import { DesktopSort } from "../desktopSort"
 import { SORT_OPTIONS } from "../../../../../../constants"
-import { Card } from "../../../../../../globalComponents/bootstrapCard"
 import { getMileageArray } from "../../../../utils/getMileageArray"
 import connect from "./connect"
 import { getDivisor } from "../../../../utils/getDivisor"
 import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
+import { Card } from "react-bootstrap"
+import { useTheme } from "@emotion/react"
 
 export const MileageChart = ({ athleteActivities }: any) => {
+	const theme = useTheme()
 	const [weekOrMonth, setWeekOrMonth] = useState(SORT_OPTIONS.WEEK)
 	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
 	const mileageData = getMileageArray(athleteActivities, weekOrMonth)
@@ -28,15 +30,17 @@ export const MileageChart = ({ athleteActivities }: any) => {
 	]
 
 	return (
-		<Card>
-			<CardHeader>
-				<GraphTitle>Mileage</GraphTitle>
-				<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
-			</CardHeader>
-			<div>
-				<LabelledStats stats={stats} />
-				<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} />
-			</div>
+		<Card bg={theme.bootstrap.background} text={theme.bootstrap.textColor}>
+			<Card.Body>
+				<CardHeader>
+					<GraphTitle>Mileage</GraphTitle>
+					<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
+				</CardHeader>
+				<div>
+					<LabelledStats stats={stats} />
+					<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} />
+				</div>
+			</Card.Body>
 		</Card>
 	)
 }

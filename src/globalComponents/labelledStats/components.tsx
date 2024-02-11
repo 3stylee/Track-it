@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { small } from "."
+import FeatherIcon from "feather-icons-react"
 
 export const StatsContainer = styled("div")<{ small: small }>`
 	display: flex;
@@ -23,6 +24,7 @@ export const StatsContainer = styled("div")<{ small: small }>`
 
 export const StatHeader = styled("div")`
 	display: flex;
+	color: #b9ace6;
 	align-items: center;
 `
 
@@ -30,15 +32,13 @@ export const Value = styled("p")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "1rem" : "2.25rem")};
 	margin-bottom: 0;
 `
-export const Icon = styled("img")`
-	height: 0.75rem;
+export const Icon = styled(FeatherIcon)`
 	margin-left: 0.375rem;
 `
 
 export const Text = styled("p")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "0.75rem" : "0.875rem")};
 	text-transform: capitalize;
-	color: #b9ace6;
 	margin-bottom: 0;
 `
 

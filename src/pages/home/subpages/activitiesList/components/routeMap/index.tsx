@@ -7,6 +7,7 @@ import { THEMES } from "../../../../../../constants"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
+import { Card, Col } from "react-bootstrap"
 
 export interface RouteMapProps {
 	polyline?: any
@@ -34,29 +35,30 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 			text: "Distance",
 			value: convertToKm(distance),
 			unit: "KM",
-			icon: "map.ico",
+			icon: "map-pin",
 		},
 		{
 			text: "Pace",
 			value: getPaceFromSpeed(speed),
 			unit: "/KM",
-			icon: "speedo.ico",
+			icon: "watch",
 		},
 		{
 			text: "Time",
 			value: getMinsFromSeconds(time),
 			unit: "",
-			icon: "stopwatch.ico",
+			icon: "clock",
 		},
 	]
 
 	return (
-		<div className="col">
+		<Col>
 			<StyledLink to={`/home/activity?id=${id}`}>
 				<CardContainer
 					id="map"
-					className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}
-					theme={theme}>
+					text={theme.bootstrap.textColor}
+					bg={theme.bootstrap.background}
+					className="h-100">
 					<Suspense
 						fallback={
 							<svg style={{ height: "13rem" }}>
@@ -65,12 +67,12 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 						}>
 						<StyledImage src={url} alt="route map" className="card-img-left" />
 					</Suspense>
-					<div className="card-body">
+					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
-					</div>
+					</Card.Body>
 				</CardContainer>
 			</StyledLink>
-		</div>
+		</Col>
 	)
 }

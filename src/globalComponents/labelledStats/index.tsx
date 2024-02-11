@@ -24,7 +24,7 @@ export const LabelledStats = ({ stats, small }: Props) => {
 					<div key={text}>
 						<StatHeader>
 							<Text small={small}>{text}</Text>
-							{icon && <Icon src={require(`../../assets/icons/${icon}`)} />}
+							{icon && <Icon icon={icon} size={"0.75rem"} />}
 						</StatHeader>
 						<Value small={small}>
 							{value}

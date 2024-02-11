@@ -2,8 +2,9 @@ import React from "react"
 import connect from "./connect"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
-import { CardBody } from "./components"
+import { Body } from "./components"
 import { useTheme } from "@emotion/react"
+import { Card } from "react-bootstrap"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
@@ -17,11 +18,11 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 	const theme = useTheme()
 
 	return (
-		<div className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}>
-			<div className="card-header">
+		<Card text={theme.bootstrap.textColor} bg={theme.bootstrap.background} className="h-100">
+			<Card.Header>
 				<p className="m-0">Recent Activities</p>
-			</div>
-			<CardBody className="card-body">
+			</Card.Header>
+			<Body>
 				{filteredData ? (
 					<table className={`table table-bordered m-0 table-${theme.bootstrap.background}`}>
 						<thead className="thead-primary">
@@ -44,8 +45,8 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 				) : (
 					<div>Looks like you don't have any recent activities</div>
 				)}
-			</CardBody>
-		</div>
+			</Body>
+		</Card>
 	)
 }
 

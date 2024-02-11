@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 export const ActivityTitle = styled("h5")`
@@ -30,7 +31,7 @@ export const StyledLink = styled(Link)`
 	color: inherit;
 	text-decoration: none;
 `
-export const CardContainer = styled("div")`
+export const CardContainer = styled(Card)`
 	@media (min-width: 768px) {
 		transition: transform 0.2s;
 		&:hover {

@@ -7,6 +7,7 @@ import connect from "./connect"
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
+import { Col, Row } from "react-bootstrap"
 
 interface DashboardProps {
 	athleteActivities: any
@@ -39,14 +40,14 @@ export const Dashboard = ({
 				<>
 					<TitleHeader />
 					<DataContainer>
-						<div className="row">
-							<div className="col-lg-8 col-12 mb-4">
+						<Row>
+							<Col lg={8} className="mb-4">
 								<MileageChart />
-							</div>
-							<div className="col-lg-4 col-12 mb-4">
+							</Col>
+							<Col lg={4} className="mb-4">
 								<RecentActivities />
-							</div>
-						</div>
+							</Col>
+						</Row>
 					</DataContainer>
 				</>
 			)}

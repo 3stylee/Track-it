@@ -1,51 +1,54 @@
-import React from "react"
-import { IconContainer, SidebarContainer, ThemeToggleContainer } from "./components"
+import React, { useState } from "react"
+import { IconContainer, SettingsButton, SidebarContainer } from "./components"
 import connect from "./connect"
-import { SIDEBAR_ICONS, THEMES } from "../../constants"
+import { SIDEBAR_ICONS } from "../../constants"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Link } from "react-router-dom"
+import { SettingsMenu } from "../settingsMenu"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
+	const [showSettings, setShowSettings] = useState(false)
 	return (
-		<SidebarContainer
-			sidebarExpanded={sidebarExpanded}
-			className={`flex-column text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
-			<ul className="nav flex-column">
-				{SIDEBAR_ICONS.map((navIcon) => {
-					const { path, icon } = navIcon
-					return (
-						<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
-							<IconContainer>
-								<FeatherIcon icon={icon} />
-							</IconContainer>
-						</Link>
-					)
-				})}
-				<hr className="mx-3" />
-				<Link
-					to="/"
-					className={`text-${theme.bootstrap.textColor}`}
-					onClick={() => {
-						localStorage.clear()
-					}}>
-					<IconContainer>
-						<FeatherIcon icon="log-out" />
-					</IconContainer>
-				</Link>
-				<ThemeToggleContainer className="form-check form-switch">
-					<input
-						className="form-check-input"
-						type="checkbox"
-						role="switch"
-						id="flexSwitchCheckChecked"
-						onChange={toggleTheme}
-						checked={theme.name === THEMES.DARK}
-					/>
-				</ThemeToggleContainer>
-			</ul>
-		</SidebarContainer>
+		<>
+			<SidebarContainer
+				sidebarExpanded={sidebarExpanded}
+				className={`flex-column text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
+				<ul className="nav flex-column">
+					{SIDEBAR_ICONS.map((navIcon) => {
+						const { path, icon } = navIcon
+						return (
+							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
+								<IconContainer>
+									<FeatherIcon icon={icon} />
+								</IconContainer>
+							</Link>
+						)
+					})}
+					<hr className="mx-3" />
+					<SettingsButton
+						onClick={() => {
+							setShowSettings(!showSettings)
+						}}>
+						<IconContainer>
+							<FeatherIcon icon="settings" />
+						</IconContainer>
+					</SettingsButton>
+					<Link
+						to="/"
+						className={`text-${theme.bootstrap.textColor}`}
+						onClick={() => {
+							localStorage.clear()
+						}}>
+						<IconContainer>
+							<FeatherIcon icon="log-out" />
+						</IconContainer>
+					</Link>
+				</ul>
+			</SidebarContainer>
+			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} toggleTheme={toggleTheme} />
+		</>
 	)
 }
 
