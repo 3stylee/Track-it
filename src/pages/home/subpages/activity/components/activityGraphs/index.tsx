@@ -14,14 +14,14 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps }:
 		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name)
 
 		return (
-			<Row xl={2} lg={1} className="g-4">
+			<Row xl={2} lg={1} md={1} sm={1} xs={1} className="g-4">
 				<Col>
 					<LapsTable laps={laps} />
 				</Col>
 				{graphs.map((graph) => {
 					const { time, label, data, options, backgroundColor } = graph
 					return (
-						<Col>
+						<Col key={label}>
 							<Card bg={theme.bootstrap.background} text={theme.bootstrap.textColor}>
 								<Card.Body>
 									<LineChart
