@@ -2,7 +2,8 @@ import { getCurrentMonthWeeks } from "../getWeeksOfMonth"
 
 export const getDivisor = (isWeek: boolean) => {
 	if (isWeek) {
-		return new Date().getDay()
+		const day = new Date().getDay()
+		return day === 0 ? 7 : day
 	} else {
 		const weeks = getCurrentMonthWeeks()
 		const today = new Date()
