@@ -31,6 +31,10 @@ export const StatHeader = styled("div")`
 export const Value = styled("p")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "1rem" : "2.25rem")};
 	margin-bottom: 0;
+
+	@media (max-width: 576px) {
+		font-size: ${({ small }) => (small ? "1rem" : "1.25rem")};
+	}
 `
 export const Icon = styled(FeatherIcon)`
 	margin-left: 0.375rem;
@@ -45,4 +49,8 @@ export const Text = styled("p")<{ small: small }>`
 export const Unit = styled("span")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "0.75rem" : "1rem")};
 	color: #b9ace6;
+
+	@media (max-width: 576px) {
+		font-size: 0.75rem;
+	}
 `

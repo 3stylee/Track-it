@@ -1,7 +1,8 @@
 import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import { CardBody, CardContainer, CardHeader } from "./components"
+import { CardBody, CardContainer, CardHeader, TableHeader } from "./components"
 import { useTheme } from "@emotion/react"
+import FeatherIcon from "feather-icons-react"
 
 export const LapsTable = ({ laps }: any) => {
 	const theme = useTheme()
@@ -16,9 +17,24 @@ export const LapsTable = ({ laps }: any) => {
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Distance</th>
-							<th scope="col">Time</th>
-							<th scope="col">Pace</th>
+							<th scope="col">
+								<TableHeader>
+									Distance
+									<FeatherIcon icon="map-pin" size={"1rem"} />
+								</TableHeader>
+							</th>
+							<th scope="col">
+								<TableHeader>
+									Time
+									<FeatherIcon icon="clock" size={"1rem"} />
+								</TableHeader>
+							</th>
+							<th scope="col">
+								<TableHeader>
+									Pace
+									<FeatherIcon icon="watch" size={"1rem"} />
+								</TableHeader>
+							</th>
 						</tr>
 					</thead>
 					<tbody>

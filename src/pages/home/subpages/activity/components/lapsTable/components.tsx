@@ -20,3 +20,8 @@ export const CardHeader = styled("div")`
 	font-size: 0.8rem;
 	font-weight: bold;
 `
+export const TableHeader = styled("div")`
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+`

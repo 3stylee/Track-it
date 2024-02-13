@@ -9,6 +9,6 @@ export const StyledHeader = styled("div")`
 	}
 `
 export const StyledCard = styled("div")`
-	margin: 1.5rem 2.5rem;
+	margin-bottom: 1.5rem;
 	padding: 1.5rem;
 `

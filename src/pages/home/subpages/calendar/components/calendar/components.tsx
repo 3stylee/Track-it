@@ -5,7 +5,6 @@ export const PageContainer = styled("div")`
 	justify-content: center;
 	width: 100%;
 	padding: 2rem;
-	overflow-y: scroll;
 
 	& .blur {
 		filter: blur(2px);

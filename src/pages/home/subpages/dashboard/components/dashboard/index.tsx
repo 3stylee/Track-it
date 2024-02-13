@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { TitleHeader } from "../titleHeader"
-import { DataContainer, PageContainer } from "./components"
+import { PageContainer } from "./components"
 import MileageChart from "../mileageChart"
 import RecentActivities from "../recentActivities"
 import connect from "./connect"
@@ -39,16 +39,15 @@ export const Dashboard = ({
 			) : (
 				<>
 					<TitleHeader />
-					<DataContainer>
-						<Row>
-							<Col lg={8} className="mb-4">
-								<MileageChart />
-							</Col>
-							<Col lg={4} className="mb-4">
-								<RecentActivities />
-							</Col>
-						</Row>
-					</DataContainer>
+
+					<Row>
+						<Col lg={8} className="mb-4">
+							<MileageChart />
+						</Col>
+						<Col lg={4} className="mb-4">
+							<RecentActivities />
+						</Col>
+					</Row>
 				</>
 			)}
 		</PageContainer>

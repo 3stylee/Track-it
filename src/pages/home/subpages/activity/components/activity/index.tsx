@@ -5,7 +5,7 @@ import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import ActivityGraphs from "../activityGraphs"
-import { ActivityTitle } from "../activityTitle"
+import ActivityTitle from "../activityTitle"
 
 export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: any) => {
 	const location = useLocation()
