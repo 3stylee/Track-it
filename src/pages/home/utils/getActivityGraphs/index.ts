@@ -1,6 +1,7 @@
+import { Units } from "../../../../config/models"
 import { getActivityGraphData } from "../getActivityGraphData"
 
-export const getActivityGraphs = (currentActivityStream: any, currentActivity: any, theme: string) => {
+export const getActivityGraphs = (currentActivityStream: any, currentActivity: any, theme: string, units: Units) => {
 	const {
 		time,
 		paceStreamData,
@@ -9,7 +10,7 @@ export const getActivityGraphs = (currentActivityStream: any, currentActivity: a
 		heartRateOptions,
 		altitudeStreamData,
 		altitudeOptions,
-	} = getActivityGraphData(currentActivityStream, currentActivity, theme)
+	} = getActivityGraphData(currentActivityStream, currentActivity, theme, units)
 	return [
 		{
 			time,

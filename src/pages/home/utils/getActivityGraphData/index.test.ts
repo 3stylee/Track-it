@@ -21,7 +21,7 @@ describe("getActivityGraphData", () => {
 		}
 		const theme = "light"
 
-		const result = getActivityGraphData(mockActivityStream, mockActivity, theme)
+		const result = getActivityGraphData(mockActivityStream, mockActivity, theme, { unitString: "km", meters: 1000 })
 
 		expect(result).toHaveProperty("time")
 		expect(result).toHaveProperty("paceStreamData")

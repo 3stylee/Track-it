@@ -4,8 +4,9 @@ import { CardBody, CardContainer, CardHeader, HeadingText, TableHeader, TableRow
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Table } from "react-bootstrap"
+import connect from "./connect"
 
-export const LapsTable = ({ laps }: any) => {
+const LapsTable = ({ laps, units }: any) => {
 	const theme = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
 	return (
@@ -42,11 +43,11 @@ export const LapsTable = ({ laps }: any) => {
 						{laps.map((lap: any) => (
 							<TableRow key={lap.id}>
 								<td>{lap.name}</td>
-								<td>{(lap.distance / 1000).toFixed(2) + " km"}</td>
+								<td>{(lap.distance / units.meters).toFixed(2) + ` ${units.unitString}`}</td>
 								<td>{getMinsFromSeconds(lap.moving_time)}</td>
 								<td>
 									{lap.average_speed > 0
-										? getMinsFromSeconds(1000 / lap.average_speed) + " /km"
+										? getMinsFromSeconds(units.meters / lap.average_speed) + `/ ${units.unitString}`
 										: "--"}
 								</td>
 							</TableRow>
@@ -57,3 +58,5 @@ export const LapsTable = ({ laps }: any) => {
 		</CardContainer>
 	)
 }
+
+export default connect(LapsTable)

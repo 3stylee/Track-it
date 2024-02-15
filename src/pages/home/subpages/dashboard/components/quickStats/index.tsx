@@ -1,39 +1,48 @@
 import React from "react"
 import connect from "./connect"
 import { Stat, StatName, StatValue, StatsList } from "./components"
+import { Units } from "../../../../../../config/models"
 
 interface QuickStatsProps {
 	athleteData: any
+	units: Units
 }
 
 type QuickStatsType = {
-	"Distance This Year (KM)": { count: string }
+	"Distance This Year": { count: string; unit: string }
 	"Runs This Year": { count: number }
-	"Distance All Time (KM)": { count: string }
+	"Distance All Time": { count: string; unit: string }
 	"Runs All Time": { count: number }
-	[key: string]: { count: number | string }
+	[key: string]: { count: number | string; unit?: string }
 }
 
-export const QuickStats = ({ athleteData }: QuickStatsProps) => {
+export const QuickStats = ({ athleteData, units }: QuickStatsProps) => {
+	const { meters, unitString } = units
 	if (athleteData.all_run_totals === undefined) {
 		return null
 	}
 
 	const quickStats: QuickStatsType = {
-		"Distance This Year (KM)": { count: (athleteData.ytd_run_totals.distance / 1000).toFixed(0) },
+		"Distance This Year": { count: (athleteData.ytd_run_totals.distance / meters).toFixed(0), unit: unitString },
 		"Runs This Year": { count: athleteData.ytd_run_totals.count },
-		"Distance All Time (KM)": { count: (athleteData.all_run_totals.distance / 1000).toFixed(0) },
+		"Distance All Time": { count: (athleteData.all_run_totals.distance / meters).toFixed(0), unit: unitString },
 		"Runs All Time": { count: athleteData.all_run_totals.count },
 	}
 
 	return (
 		<StatsList>
-			{Object.keys(quickStats).map((key) => (
-				<Stat key={key}>
-					<StatValue>{quickStats[key].count}</StatValue>
-					<StatName>{key}</StatName>
-				</Stat>
-			))}
+			{Object.keys(quickStats).map((key) => {
+				const { unit, count } = quickStats[key]
+				return (
+					<Stat key={key}>
+						<StatValue>{count}</StatValue>
+						<StatName>
+							{key}
+							{unit !== undefined ? ` (${unit})` : ""}
+						</StatName>
+					</Stat>
+				)
+			})}
 		</StatsList>
 	)
 }

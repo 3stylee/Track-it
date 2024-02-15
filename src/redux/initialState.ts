@@ -1,3 +1,4 @@
+import { Units } from "../config/models"
 import { AUTH_STATES, INITIAL_DATA_MESSAGE } from "../constants"
 
 export interface State {
@@ -10,6 +11,7 @@ export interface State {
 	apiCallsInProgress: number
 	apiError: string
 	sidebarExpanded: boolean
+	units: Units
 }
 
 export default {
@@ -22,4 +24,8 @@ export default {
 	apiCallsInProgress: 0,
 	apiError: "",
 	sidebarExpanded: false,
-}
+	units: {
+		unitString: "km",
+		meters: 1000,
+	},
+} as State

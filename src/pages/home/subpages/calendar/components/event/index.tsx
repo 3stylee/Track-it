@@ -1,8 +1,9 @@
 import React from "react"
 import { AthleteIcon, EventContainer, EventHeader, Title } from "./components"
-import { convertToKm } from "../../../../utils/convertDistanceToKM"
+import { convertMetersToDistance } from "../../../../utils/convertMetersToDistance"
+import connect from "./connect"
 
-export const Event = ({ eventInfo }: any) => {
+const Event = ({ eventInfo, units }: any) => {
 	return (
 		<EventContainer>
 			<EventHeader>
@@ -10,7 +11,11 @@ export const Event = ({ eventInfo }: any) => {
 				<div>{eventInfo.timeText}m</div>
 			</EventHeader>
 			<Title>{eventInfo.event.title}</Title>
-			<div>{convertToKm(eventInfo.event.extendedProps.distance)} Km</div>
+			<div>
+				{convertMetersToDistance(eventInfo.event.extendedProps.distance, units.meters)} {units.unitString}
+			</div>
 		</EventContainer>
 	)
 }
+
+export default connect(Event)

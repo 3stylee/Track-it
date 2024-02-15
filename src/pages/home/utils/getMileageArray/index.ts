@@ -1,11 +1,11 @@
 import { SORT_OPTIONS } from "../../../../constants"
 import { getCurrentMonthWeeks } from "../getWeeksOfMonth"
 
-export const getMileageArray = (data: any, type: string) => {
-	return type === SORT_OPTIONS.WEEK ? getWeekMileageArray(data) : getMonthMileageArray(data)
+export const getMileageArray = (data: any, type: string, divisor: number) => {
+	return type === SORT_OPTIONS.WEEK ? getWeekMileageArray(data, divisor) : getMonthMileageArray(data, divisor)
 }
 
-export const getWeekMileageArray = (data: any) => {
+export const getWeekMileageArray = (data: any, divisor: number) => {
 	if (Array.isArray(data)) {
 		const today = new Date()
 		const currentDayOfWeek = today.getDay()
@@ -22,7 +22,7 @@ export const getWeekMileageArray = (data: any) => {
 
 			if (itemDate >= startDate && itemDate < new Date(today)) {
 				const dayIndex = (itemDate.getDay() + 6) % 7
-				distancePerDay[dayIndex] += parseFloat((item.distance / 1000).toFixed(2))
+				distancePerDay[dayIndex] += parseFloat((item.distance / divisor).toFixed(2))
 			}
 		})
 
@@ -31,7 +31,7 @@ export const getWeekMileageArray = (data: any) => {
 	return []
 }
 
-export const getMonthMileageArray = (data: any) => {
+export const getMonthMileageArray = (data: any, divisor: number) => {
 	if (Array.isArray(data)) {
 		const monthWeeks = getCurrentMonthWeeks()
 		const distancePerWeek = Array(monthWeeks.length).fill(0)
@@ -41,7 +41,7 @@ export const getMonthMileageArray = (data: any) => {
 
 			for (let i = 0; i < distancePerWeek.length; i++) {
 				if (itemDate >= monthWeeks[i].start && itemDate <= monthWeeks[i].end) {
-					distancePerWeek[i] += parseFloat((item.distance / 1000).toFixed(2))
+					distancePerWeek[i] += parseFloat((item.distance / divisor).toFixed(2))
 				}
 			}
 		})

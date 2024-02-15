@@ -5,7 +5,7 @@ import { SIDEBAR_ICONS } from "../../constants"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
-import { SettingsMenu } from "../settingsMenu"
+import SettingsMenu from "../settingsMenu"
 import { LogoutScreen } from "../logoutScreen"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {

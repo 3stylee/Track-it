@@ -2,16 +2,16 @@ import React from "react"
 import { LineChart } from "../lineChart"
 import connect from "./connect"
 import { CenteredDiv } from "./components"
-import { LapsTable } from "../lapsTable"
+import LapsTable from "../lapsTable"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Card, Col, Row } from "react-bootstrap"
 import { getActivityGraphs } from "../../../../utils/getActivityGraphs"
 
-export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps }: any) => {
+export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps, units }: any) => {
 	const theme = useTheme()
 	if (currentActivityStream.distance) {
-		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name)
+		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units)
 
 		return (
 			<Row xl={2} lg={1} md={1} sm={1} xs={1} className="g-4">

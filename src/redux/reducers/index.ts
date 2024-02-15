@@ -7,6 +7,7 @@ import currentActivityStream from "./activityStreamReducer"
 import currentActivity from "./loadCurrentActivityReducer"
 import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
+import units from "./unitReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
 	currentActivity,
 	authState,
 	sidebarExpanded,
+	units,
 })

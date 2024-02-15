@@ -1,13 +1,13 @@
-import React, { Suspense } from "react"
-import { convertToKm } from "../../../../utils/convertDistanceToKM"
+import React from "react"
 import { ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
-import { getPaceFromSpeed } from "../../../../utils/getPaceFromSpeed"
 import { THEMES } from "../../../../../../constants"
-import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
+import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
 import { Card, Col } from "react-bootstrap"
+import { getActivityStats } from "../../../../utils/getActivityStats"
+import connect from "./connect"
+import { Units } from "../../../../../../config/models"
 
 export interface RouteMapProps {
 	polyline?: any
@@ -16,9 +16,10 @@ export interface RouteMapProps {
 	distance: string
 	id: string
 	speed: string
+	units: Units
 }
 
-export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMapProps) => {
+const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMapProps) => {
 	const theme = useTheme()
 
 	let url =
@@ -29,27 +30,7 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 		const coordinatesString = polyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
 		url = getMapboxEndpoint(coordinatesString, theme.name)
 	}
-
-	const stats: Stat[] = [
-		{
-			text: "Distance",
-			value: convertToKm(distance),
-			unit: "KM",
-			icon: "map-pin",
-		},
-		{
-			text: "Pace",
-			value: getPaceFromSpeed(speed),
-			unit: "/KM",
-			icon: "watch",
-		},
-		{
-			text: "Time",
-			value: getMinsFromSeconds(time),
-			unit: "",
-			icon: "clock",
-		},
-	]
+	const stats = getActivityStats(distance, speed, time, units)
 
 	return (
 		<Col>
@@ -59,14 +40,7 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 					text={theme.bootstrap.textColor}
 					bg={theme.bootstrap.background}
 					className="h-100">
-					<Suspense
-						fallback={
-							<svg style={{ height: "13rem" }}>
-								<rect width="100%" height="13rem" fill="#868e96" rx="5px" ry="5px" />
-							</svg>
-						}>
-						<StyledImage src={url} alt="route map" className="card-img-left" />
-					</Suspense>
+					<StyledImage src={url} alt="route map" className="card-img-left" />
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
@@ -76,3 +50,5 @@ export const RouteMap = ({ polyline, speed, name, time, distance, id }: RouteMap
 		</Col>
 	)
 }
+
+export default connect(RouteMap)

@@ -1,6 +1,6 @@
 import React from "react"
 import { StyledContainer } from "./components"
-import { RouteMap } from "../routeMap"
+import RouteMap from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"

@@ -1,7 +1,8 @@
+import { Units } from "../../../../../../../config/models"
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
 import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
-export const getPaceOptions = (length: number, theme: string, min: number, average: number) => {
+export const getPaceOptions = (length: number, theme: string, min: number, average: number, units: Units) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -13,7 +14,7 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 				enabled: true,
 				callbacks: {
 					label: (tooltipItem: any) => {
-						return "Pace: " + getMinsFromSeconds(tooltipItem.parsed.y) + "/km"
+						return `Pace: ${getMinsFromSeconds(tooltipItem.parsed.y)}/ ${units.unitString}`
 					},
 				},
 			},
@@ -35,7 +36,7 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 							display: true,
 							position: "end",
 							color: "white",
-							content: `Average: ${getMinsFromSeconds(average)} /km`,
+							content: `Average: ${getMinsFromSeconds(average)} /${units.unitString}`,
 						},
 					},
 				},
@@ -62,7 +63,7 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 			y: {
 				// top of scale is 15s faster than fastest pace (rounded to nearest 10s)
 				min: Math.round((min - 15) / 10) * 10,
-				max: 600, // no one should be running slower than 10 min /km
+				max: units.unitString === "mi" ? 900 : 600,
 				type: "logarithmic",
 				grid: {
 					display: false,

@@ -3,10 +3,10 @@ import React from "react"
 import { Card, Col, Row } from "react-bootstrap"
 import connect from "./connect"
 import { StyledCard, Title } from "./components"
-import { convertToKm } from "../../../../utils/convertDistanceToKM"
+import { convertMetersToDistance } from "../../../../utils/convertMetersToDistance"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 
-export const ActivityTitle = ({ currentActivity }: any) => {
+export const ActivityTitle = ({ currentActivity, units }: any) => {
 	const theme = useTheme()
 	if (currentActivity.distance === undefined) return null
 	return (
@@ -15,7 +15,7 @@ export const ActivityTitle = ({ currentActivity }: any) => {
 				<Title>{currentActivity.name}</Title>
 				<Row>
 					<Col xs={6} md={4}>
-						{convertToKm(currentActivity.distance)}
+						{convertMetersToDistance(currentActivity.distance, units.meters)}
 					</Col>
 					<Col xs={6} md={4}>
 						{getMinsFromSeconds(currentActivity.moving_time)}
@@ -26,7 +26,7 @@ export const ActivityTitle = ({ currentActivity }: any) => {
 				</Row>
 				<Row>
 					<Col xs={6} md={4}>
-						{getMinsFromSeconds(1000 / currentActivity.average_speed)}
+						{getMinsFromSeconds(units.meters / currentActivity.average_speed)}
 					</Col>
 					<Col xs={6} md={4}>
 						{currentActivity.average_heartrate.toFixed(0)}

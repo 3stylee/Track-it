@@ -5,6 +5,7 @@ const mapStateToProps = (state: State) => {
 	return {
 		currentActivityStream: state.currentActivityStream,
 		currentActivity: state.currentActivity,
+		units: state.units,
 	}
 }
 

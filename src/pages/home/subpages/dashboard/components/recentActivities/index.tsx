@@ -5,12 +5,14 @@ import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
 import { Body, CardHeader, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"
+import { Units } from "../../../../../../config/models"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
+	units: Units
 }
 
-export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) => {
+export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesProps) => {
 	let filteredData
 	if (Array.isArray(athleteActivities)) {
 		filteredData = athleteActivities.slice(0, MAX_RECENT_ACTIVITIES)
@@ -37,7 +39,7 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 								<TableRow key={item.id}>
 									<td>{convertISOToDDMMYY(item.start)}</td>
 									<td>{item.title}</td>
-									<td>{(item.distance / 1000).toFixed(2) + " km"}</td>
+									<td>{(item.distance / units.meters).toFixed(2) + ` ${units.unitString}`}</td>
 								</TableRow>
 							))}
 						</tbody>

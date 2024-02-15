@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 const mapStateToProps = (state: State) => {
 	return {
 		currentActivity: state.currentActivity,
+		units: state.units,
 	}
 }
 

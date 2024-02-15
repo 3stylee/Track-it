@@ -10,22 +10,22 @@ import { LabelledStats, Stat } from "../../../../../../globalComponents/labelled
 import { Card } from "react-bootstrap"
 import { useTheme } from "@emotion/react"
 
-export const MileageChart = ({ athleteActivities }: any) => {
+export const MileageChart = ({ athleteActivities, units }: any) => {
 	const theme = useTheme()
 	const [weekOrMonth, setWeekOrMonth] = useState(SORT_OPTIONS.WEEK)
 	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
-	const mileageData = getMileageArray(athleteActivities, weekOrMonth)
+	const mileageData = getMileageArray(athleteActivities, weekOrMonth, units.meters)
 	const total = mileageData.reduce((partialSum, a) => partialSum + a, 0).toFixed(2)
 	const stats: Stat[] = [
 		{
 			text: "Total",
 			value: total,
-			unit: "KM",
+			unit: units.unitString,
 		},
 		{
 			text: `${isWeek ? "Daily" : "Weekly"} Average`,
 			value: (total / getDivisor(isWeek)).toFixed(2),
-			unit: "KM",
+			unit: units.unitString,
 		},
 	]
 
