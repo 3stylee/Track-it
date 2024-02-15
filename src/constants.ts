@@ -17,6 +17,7 @@ export const ROUTE_PATHS = {
 	DEFAULT: "/",
 	HOME: "/home",
 	DASHBOARD: "/home/dashboard",
+	SESSIONS: "/home/sessions",
 	AUTH_ERROR: "/auth_error",
 	AUTHORIZE: "/authorize",
 	ACTIVITY: "/home/activity",
@@ -43,7 +44,7 @@ export const TITLE_BANNER_HEIGHT = "4rem"
 export const SIDEBAR_ICONS = [
 	{ icon: "home", path: "" },
 	{ icon: "grid", path: "dashboard" },
-	{ icon: "clock", path: "" },
+	{ icon: "clock", path: "sessions" },
 	{ icon: "calendar", path: "calendar" },
 ]
 export const SIDEBAR_WIDTH = "3.5rem"

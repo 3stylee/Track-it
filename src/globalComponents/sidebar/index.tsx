@@ -4,12 +4,18 @@ import connect from "./connect"
 import { SIDEBAR_ICONS } from "../../constants"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { SettingsMenu } from "../settingsMenu"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
+	const location = useLocation()
+	let urlPath = location.pathname.split("/").at(-1)
+	// TODO: probably a better way to do this, works for now
+	if (urlPath === "home") {
+		urlPath = ""
+	}
 	return (
 		<>
 			<SidebarContainer
@@ -20,7 +26,7 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 						const { path, icon } = navIcon
 						return (
 							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
-								<IconContainer>
+								<IconContainer selected={path === urlPath}>
 									<FeatherIcon icon={icon} />
 								</IconContainer>
 							</Link>

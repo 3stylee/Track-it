@@ -15,11 +15,11 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 		transition: margin-left 0.3s;
 	}
 `
-export const IconContainer = styled("li")`
+export const IconContainer = styled("li")<{ selected?: boolean }>`
 	padding: 1rem;
 	text-align: center;
 	transition: background-color 0.3s;
-	border-radius: 0.5rem;
+	${({ selected }) => selected && "box-shadow: inset -2px 0 0 0 var(--bs-primary);"}
 
 	&:hover {
 		background-color: ${({ theme }) => theme.sidebar.iconHover};

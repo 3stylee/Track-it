@@ -47,6 +47,7 @@ const App = () => {
 						<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
 						<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
 						<Route path={ROUTE_PATHS.CALENDAR} element={<Calendar />} />
+						<Route path={ROUTE_PATHS.SESSIONS} element={<></>} />
 					</Route>
 					<Route
 						path="*"
