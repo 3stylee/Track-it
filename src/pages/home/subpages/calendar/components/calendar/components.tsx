@@ -44,6 +44,12 @@ export const CalendarContainer = styled("div")`
 	& .fc-col-header-cell {
 		background-color: ${({ theme }) => theme.background};
 	}
+
+	& .fc-scrollgrid,
+	.fc-theme-standard td,
+	.fc-theme-standard th {
+		border-color: ${({ theme }) => theme.calendar.gridColor};
+	}
 `
 export const SpinnerContainer = styled("div")`
 	width: 4rem;

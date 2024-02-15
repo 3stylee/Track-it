@@ -11,5 +11,8 @@ export default {
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
 	},
+	calendar: {
+		gridColor: "#6d6d6d",
+	},
 	spinnerBackground: "white",
 } as Theme
