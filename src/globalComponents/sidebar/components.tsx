@@ -26,7 +26,7 @@ export const IconContainer = styled("li")<{ selected?: boolean }>`
 	}
 `
 
-export const SettingsButton = styled("div")`
+export const SidebarButton = styled("div")`
 	&:hover {
 		cursor: pointer;
 	}

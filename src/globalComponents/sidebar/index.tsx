@@ -1,15 +1,17 @@
 import React, { useState } from "react"
-import { IconContainer, SettingsButton, SidebarContainer } from "./components"
+import { IconContainer, SidebarButton, SidebarContainer } from "./components"
 import connect from "./connect"
 import { SIDEBAR_ICONS } from "../../constants"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
 import { SettingsMenu } from "../settingsMenu"
+import { LogoutScreen } from "../logoutScreen"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
+	const [showLogout, setShowLogout] = useState(false)
 	const location = useLocation()
 	let urlPath = location.pathname.split("/").at(-1)
 	// TODO: probably a better way to do this, works for now
@@ -33,27 +35,31 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 						)
 					})}
 					<hr className="mx-3" />
-					<SettingsButton
+					<SidebarButton
 						onClick={() => {
 							setShowSettings(!showSettings)
 						}}>
 						<IconContainer>
 							<FeatherIcon icon="settings" />
 						</IconContainer>
-					</SettingsButton>
-					<Link
-						to="/"
-						className={`text-${theme.bootstrap.textColor}`}
+					</SidebarButton>
+					<SidebarButton
 						onClick={() => {
-							localStorage.clear()
+							setShowLogout(!showLogout)
 						}}>
 						<IconContainer>
 							<FeatherIcon icon="log-out" />
 						</IconContainer>
-					</Link>
+					</SidebarButton>
 				</ul>
 			</SidebarContainer>
 			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} toggleTheme={toggleTheme} />
+			<LogoutScreen
+				show={showLogout}
+				handleClose={() => {
+					setShowLogout(false)
+				}}
+			/>
 		</>
 	)
 }

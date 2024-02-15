@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {
-	AUTH_ERROR_BUTTON,
+	TRY_AGAIN_BUTTON,
 	AUTH_ERROR_MESSAGE,
 	AUTH_ERROR_TITLE,
 	NF_404_ERROR_BUTTON,
@@ -9,6 +9,8 @@ import {
 	NF_404_ERROR_TITLE,
 	O_AUTH_URL,
 	ROUTE_PATHS,
+	MISSING_PERMISSIONS_TITLE,
+	MISSING_PERMISSIONS_MESSAGE,
 } from "./constants"
 import TitleBanner from "./globalComponents/titleBanner"
 import LoginPage from "./pages/login/components/login"
@@ -37,7 +39,18 @@ const App = () => {
 							<ErrorPage
 								title={AUTH_ERROR_TITLE}
 								eMessage={AUTH_ERROR_MESSAGE}
-								buttonText={AUTH_ERROR_BUTTON}
+								buttonText={TRY_AGAIN_BUTTON}
+								buttonLink={O_AUTH_URL}
+							/>
+						}
+					/>
+					<Route
+						path={ROUTE_PATHS.MISSING_PERMISSIONS}
+						element={
+							<ErrorPage
+								title={MISSING_PERMISSIONS_TITLE}
+								eMessage={MISSING_PERMISSIONS_MESSAGE}
+								buttonText={TRY_AGAIN_BUTTON}
 								buttonLink={O_AUTH_URL}
 							/>
 						}
