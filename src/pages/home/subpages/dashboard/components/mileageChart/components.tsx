@@ -13,5 +13,5 @@ export const CardHeader = styled("div")`
 	padding: 0.5rem;
 `
 export const GraphTitle = styled("h4")`
-	margin: 0 0 0 0.5rem;
+	margin: 0;
 `

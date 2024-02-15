@@ -2,9 +2,9 @@ import React from "react"
 import connect from "./connect"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES } from "../../../../../../constants"
-import { Body } from "./components"
+import { Body, CardHeader, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
-import { Card } from "react-bootstrap"
+import { Card, Table } from "react-bootstrap"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
@@ -20,28 +20,28 @@ export const RecentActivities = ({ athleteActivities }: RecentActivitiesProps) =
 	return (
 		<Card text={theme.bootstrap.textColor} bg={theme.bootstrap.background} className="h-100">
 			<Card.Header>
-				<p className="m-0">Recent Activities</p>
+				<CardHeader>Recent Activities</CardHeader>
 			</Card.Header>
 			<Body>
 				{filteredData ? (
-					<table className={`table table-bordered m-0 table-${theme.bootstrap.background}`}>
-						<thead className="thead-primary">
+					<Table variant={theme.bootstrap.background} striped className="mb-0">
+						<TableHeader className="thead-light">
 							<tr>
 								<th scope="col">Date</th>
 								<th scope="col">Name</th>
 								<th scope="col">Distance</th>
 							</tr>
-						</thead>
+						</TableHeader>
 						<tbody>
 							{filteredData.map((item: any) => (
-								<tr key={item.id}>
-									<th scope="row">{convertISOToDDMMYY(item.start)}</th>
+								<TableRow key={item.id}>
+									<td>{convertISOToDDMMYY(item.start)}</td>
 									<td>{item.title}</td>
 									<td>{(item.distance / 1000).toFixed(2) + " km"}</td>
-								</tr>
+								</TableRow>
 							))}
 						</tbody>
-					</table>
+					</Table>
 				) : (
 					<div>Looks like you don't have any recent activities</div>
 				)}

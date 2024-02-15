@@ -20,7 +20,32 @@ export const CardHeader = styled("div")`
 	font-size: 0.8rem;
 	font-weight: bold;
 `
-export const TableHeader = styled("div")`
+
+export const TableHeader = styled("thead")`
+	& th {
+		font-weight: 400;
+		border: none;
+	}
+`
+export const TableRow = styled("tr")`
+	& td {
+		vertical-align: middle;
+		border: none;
+	}
+
+	& > :first-of-type {
+		padding-left: 1rem;
+		border-top-left-radius: var(--bs-border-radius);
+		border-bottom-left-radius: var(--bs-border-radius);
+	}
+
+	& > :last-child {
+		border-top-right-radius: var(--bs-border-radius);
+		border-bottom-right-radius: var(--bs-border-radius);
+	}
+`
+
+export const HeadingText = styled("div")`
 	display: flex;
 	align-items: center;
 	gap: 0.25rem;

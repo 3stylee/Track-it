@@ -36,6 +36,14 @@ export const CalendarContainer = styled("div")`
 	& .calendar {
 		padding: 1rem 2rem 4rem 2rem;
 	}
+
+	& .fc-view {
+		background-color: var(--bs-${({ theme }) => theme.bootstrap.background});
+	}
+
+	& .fc-col-header-cell {
+		background-color: ${({ theme }) => theme.background};
+	}
 `
 export const SpinnerContainer = styled("div")`
 	width: 4rem;

@@ -31,11 +31,13 @@ export const MileageChart = ({ athleteActivities }: any) => {
 
 	return (
 		<Card bg={theme.bootstrap.background} text={theme.bootstrap.textColor}>
-			<Card.Body>
+			<Card.Header>
 				<CardHeader>
 					<GraphTitle>Mileage</GraphTitle>
 					<DesktopSort weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
 				</CardHeader>
+			</Card.Header>
+			<Card.Body>
 				<div>
 					<LabelledStats stats={stats} />
 					<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} />

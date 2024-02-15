@@ -1,8 +1,9 @@
 import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import { CardBody, CardContainer, CardHeader, TableHeader } from "./components"
+import { CardBody, CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
+import { Table } from "react-bootstrap"
 
 export const LapsTable = ({ laps }: any) => {
 	const theme = useTheme()
@@ -13,33 +14,33 @@ export const LapsTable = ({ laps }: any) => {
 				<p>Laps</p>
 			</CardHeader>
 			<CardBody className="card-body">
-				<table className={`table table-${theme.bootstrap.background}`}>
-					<thead>
+				<Table variant={theme.bootstrap.background} striped className="mb-0">
+					<TableHeader>
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">
-								<TableHeader>
+								<HeadingText>
 									Distance
 									<FeatherIcon icon="map-pin" size={"1rem"} />
-								</TableHeader>
+								</HeadingText>
 							</th>
 							<th scope="col">
-								<TableHeader>
+								<HeadingText>
 									Time
 									<FeatherIcon icon="clock" size={"1rem"} />
-								</TableHeader>
+								</HeadingText>
 							</th>
 							<th scope="col">
-								<TableHeader>
+								<HeadingText>
 									Pace
 									<FeatherIcon icon="watch" size={"1rem"} />
-								</TableHeader>
+								</HeadingText>
 							</th>
 						</tr>
-					</thead>
+					</TableHeader>
 					<tbody>
 						{laps.map((lap: any) => (
-							<tr key={lap.id}>
+							<TableRow key={lap.id}>
 								<td>{lap.name}</td>
 								<td>{(lap.distance / 1000).toFixed(2) + " km"}</td>
 								<td>{getMinsFromSeconds(lap.moving_time)}</td>
@@ -48,10 +49,10 @@ export const LapsTable = ({ laps }: any) => {
 										? getMinsFromSeconds(1000 / lap.average_speed) + " /km"
 										: "--"}
 								</td>
-							</tr>
+							</TableRow>
 						))}
 					</tbody>
-				</table>
+				</Table>
 			</CardBody>
 		</CardContainer>
 	)

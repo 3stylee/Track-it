@@ -8,8 +8,11 @@ export const PageContainer = styled("div")`
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	overflow-y: scroll;
 
-	@media (max-width: 991px) {
+	@media (max-width: 768px) {
 		margin-left: 0;
+	}
+
+	@media (max-width: 991px) {
 		padding: 1.5rem;
 	}
 `
