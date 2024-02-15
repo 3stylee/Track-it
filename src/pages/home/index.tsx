@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { PageContainer } from "./components"
 import { Outlet, useNavigate } from "react-router-dom"
 import { AUTH_STATES, ROUTE_PATHS } from "../../constants"
 import Sidebar from "../../globalComponents/sidebar"
@@ -38,9 +37,7 @@ export const Home = ({ authState, getAuthToken, toggleTheme }: HomeProps) => {
 			{isTokenValid ? (
 				<>
 					<Sidebar toggleTheme={toggleTheme} />
-					<PageContainer>
-						<Outlet />
-					</PageContainer>
+					<Outlet />
 				</>
 			) : (
 				<AnimatedSpinner />

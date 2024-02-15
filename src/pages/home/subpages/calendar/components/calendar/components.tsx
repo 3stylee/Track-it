@@ -1,10 +1,19 @@
 import styled from "@emotion/styled"
+import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../../../../constants"
 
 export const PageContainer = styled("div")`
 	display: flex;
 	justify-content: center;
-	width: 100%;
+	width: calc(100% - ${SIDEBAR_WIDTH});
 	padding: 2rem;
+	margin-top: ${TITLE_BANNER_HEIGHT};
+	margin-left: ${SIDEBAR_WIDTH};
+	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
+	overflow-y: scroll;
+
+	@media (max-width: 768px) {
+		margin-left: 0;
+	}
 
 	& .blur {
 		filter: blur(2px);
