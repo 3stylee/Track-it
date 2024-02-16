@@ -17,7 +17,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 			{apiCallsInProgress > 0 ? (
 				<AnimatedSpinner />
 			) : (
-				<Row sm={2} md={2} lg={3} xl={4} className="g-4">
+				<Row sm={1} md={2} lg={3} xl={4} className="g-4">
 					{Array.isArray(data) ? (
 						data.map((activity: any) => (
 							<RouteMap

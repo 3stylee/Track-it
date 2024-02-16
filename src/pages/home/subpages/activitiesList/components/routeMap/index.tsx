@@ -1,5 +1,5 @@
-import React from "react"
-import { ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
+import React, { useState } from "react"
+import { ActivityTitle, CardContainer, ImagePlaceholder, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ROUTE_PATHS, THEMES } from "../../../../../../constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
@@ -21,6 +21,7 @@ export interface RouteMapProps {
 
 const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMapProps) => {
 	const theme = useTheme()
+	const [imageLoaded, setImagedLoaded] = useState(false)
 
 	let url =
 		theme.name === THEMES.DARK
@@ -40,7 +41,15 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMap
 					text={theme.bootstrap.textColor}
 					bg={theme.bootstrap.background}
 					className="h-100">
-					<StyledImage src={url} alt="route map" className="card-img-left" />
+					<StyledImage
+						src={url}
+						alt="route map"
+						className={`card-img-left ${!imageLoaded ? "d-none" : ""}`}
+						onLoad={() => {
+							setImagedLoaded(true)
+						}}
+					/>
+					{!imageLoaded && <ImagePlaceholder />}
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
