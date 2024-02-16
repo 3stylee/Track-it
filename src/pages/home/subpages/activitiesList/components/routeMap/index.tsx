@@ -1,7 +1,7 @@
 import React from "react"
 import { ActivityTitle, CardContainer, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
-import { THEMES } from "../../../../../../constants"
+import { ROUTE_PATHS, THEMES } from "../../../../../../constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
 import { Card, Col } from "react-bootstrap"
@@ -34,7 +34,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMap
 
 	return (
 		<Col>
-			<StyledLink to={`/home/activity?id=${id}`}>
+			<StyledLink to={ROUTE_PATHS.ACTIVITY + `?id=${id}`}>
 				<CardContainer
 					id="map"
 					text={theme.bootstrap.textColor}

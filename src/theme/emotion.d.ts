@@ -12,6 +12,10 @@ declare module "@emotion/react" {
 		sidebar: {
 			iconHover: string
 		}
+		labelledStats: {
+			divider: string
+			accent: string
+		}
 		calendar: {
 			gridColor: string
 		}

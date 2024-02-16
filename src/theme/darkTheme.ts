@@ -11,6 +11,10 @@ export default {
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
 	},
+	labelledStats: {
+		divider: "white",
+		accent: "#b9ace6",
+	},
 	calendar: {
 		gridColor: "#6d6d6d",
 	},

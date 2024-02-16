@@ -13,7 +13,7 @@ export const StatsContainer = styled("div")<{ small: small }>`
 	& > * {
 		margin-left: 1rem;
 		padding-right: 1rem;
-		border-right: 1px solid ${({ theme }) => theme.text};
+		border-right: 1px solid ${({ theme }) => theme.labelledStats.divider};
 	}
 
 	& > :last-child {
@@ -24,7 +24,7 @@ export const StatsContainer = styled("div")<{ small: small }>`
 
 export const StatHeader = styled("div")`
 	display: flex;
-	color: #b9ace6;
+	color: ${({ theme }) => theme.labelledStats.accent};
 	align-items: center;
 `
 
@@ -48,7 +48,8 @@ export const Text = styled("p")<{ small: small }>`
 
 export const Unit = styled("span")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "0.75rem" : "1rem")};
-	color: #b9ace6;
+	color: ${({ theme }) => theme.labelledStats.accent};
+	text-transform: uppercase;
 
 	@media (max-width: 576px) {
 		font-size: 0.75rem;

@@ -28,6 +28,9 @@ export const TableHeader = styled("thead")`
 
 export const TableRow = styled("tr")`
 	height: 4rem;
+	cursor: pointer;
+	transition: transform 0.2s;
+
 	& td {
 		vertical-align: middle;
 		border: none;
@@ -42,5 +45,9 @@ export const TableRow = styled("tr")`
 	& > :last-child {
 		border-top-right-radius: var(--bs-border-radius);
 		border-bottom-right-radius: var(--bs-border-radius);
+	}
+
+	&:hover {
+		transform: scale(1.04);
 	}
 `

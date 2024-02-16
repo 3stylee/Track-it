@@ -15,7 +15,7 @@ export const getActivityStats = (distance: string, speed: string, time: number, 
 		{
 			text: "Pace",
 			value: getPaceFromSpeed(speed, units.meters),
-			unit: units.unitString,
+			unit: `/${units.unitString}`,
 			icon: "watch",
 		},
 		{
