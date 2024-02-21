@@ -4,7 +4,6 @@ import { State } from "../../../../../../redux/initialState"
 const mapStateToProps = (state: State) => {
 	return {
 		data: state.athleteActivities,
-		dataType: state.dataType,
 		apiCallsInProgress: state.apiCallsInProgress,
 	}
 }

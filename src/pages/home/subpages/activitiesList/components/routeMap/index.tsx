@@ -4,7 +4,7 @@ import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ROUTE_PATHS, THEMES } from "../../../../../../constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
-import { Card, Col } from "react-bootstrap"
+import { Badge, Card, Col } from "react-bootstrap"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../../../config/models"
@@ -17,9 +17,10 @@ export interface RouteMapProps {
 	id: string
 	speed: string
 	units: Units
+	predictedType: string
 }
 
-const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMapProps) => {
+const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedType }: RouteMapProps) => {
 	const theme = useTheme()
 	const [imageLoaded, setImagedLoaded] = useState(false)
 
@@ -53,6 +54,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units }: RouteMap
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
+						<Badge>{predictedType}</Badge>
 					</Card.Body>
 				</CardContainer>
 			</StyledLink>

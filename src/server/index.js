@@ -2,16 +2,17 @@ const express = require("express")
 const path = require("path")
 const tf = require("@tensorflow/tfjs")
 const predictData = require("./utils/predictData")
+const cors = require("cors")
 
 const app = express()
-const port = 3009
+const port = 3001
 
 // Serve the model files from the specified directory
 const modelDirectory = path.join(__dirname, "tfjs_model")
 app.use(express.static(modelDirectory))
 
 // Load the TensorFlow.js model
-const modelUrl = "http://localhost:3009/model.json"
+const modelUrl = "http://localhost:3001/model.json"
 const loadModel = async () => {
 	try {
 		const model = await tf.loadLayersModel(modelUrl)
@@ -33,9 +34,10 @@ app.use(async (req, res, next) => {
 })
 
 app.use(express.json())
+app.use(cors())
 
 // Endpoint for accessing the loaded model
-app.get("/model.json", (req, res) => {
+app.get("/model.json", cors(), (req, res) => {
 	res.sendFile(path.join(__dirname, "tfjs_model", "model.json"))
 })
 

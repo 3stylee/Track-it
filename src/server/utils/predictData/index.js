@@ -5,7 +5,7 @@ const labelMapping = require("../../constants/label_mapping.json")
 const predictData = async (data) => {
 	const results = []
 	const processedData = processData(data)
-	const model = await tf.loadLayersModel("http:localhost:3009/model.json")
+	const model = await tf.loadLayersModel("http:localhost:3001/model.json")
 
 	for (let row of processedData) {
 		const tensorData = tf.tensor2d([row])

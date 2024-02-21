@@ -19,15 +19,16 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 			) : (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-4">
 					{Array.isArray(data) ? (
-						data.map((activity: any) => (
+						data.map(({ polyline, title, time, distance, speed, id, predictedType }: any) => (
 							<RouteMap
-								polyline={decodePolyLine(activity.polyline)}
-								name={activity.title}
-								time={activity.time}
-								distance={activity.distance}
-								speed={activity.speed}
-								id={activity.id}
-								key={activity.id}
+								polyline={decodePolyLine(polyline)}
+								name={title}
+								time={time}
+								distance={distance}
+								speed={speed}
+								id={id}
+								key={id}
+								predictedType={predictedType}
 							/>
 						))
 					) : (

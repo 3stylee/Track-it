@@ -12,6 +12,9 @@ describe("processAthleteActitivies", () => {
 				athlete: { id: 1 },
 				start_date: "2020-01-01T00:00:00Z",
 				average_speed: 5,
+				type: "Run",
+				total_elevation_gain: 100,
+				average_heartrate: 150,
 			},
 			{
 				name: "Bike ride",
@@ -22,6 +25,9 @@ describe("processAthleteActitivies", () => {
 				athlete: { id: 2 },
 				start_date: "2020-01-01T00:00:00Z",
 				average_speed: 10,
+				type: "Run",
+				total_elevation_gain: 100,
+				average_heartrate: 150,
 			},
 		]
 		const expected = [
@@ -34,6 +40,9 @@ describe("processAthleteActitivies", () => {
 				athlete: { id: 1 },
 				start: "2020-01-01T00:00:00Z",
 				speed: 5,
+				type: "Run",
+				total_elevation_gain: 100,
+				average_heartrate: 150,
 			},
 			{
 				title: "Bike ride",
@@ -44,6 +53,9 @@ describe("processAthleteActitivies", () => {
 				athlete: { id: 2 },
 				start: "2020-01-01T00:00:00Z",
 				speed: 10,
+				type: "Run",
+				total_elevation_gain: 100,
+				average_heartrate: 150,
 			},
 		]
 

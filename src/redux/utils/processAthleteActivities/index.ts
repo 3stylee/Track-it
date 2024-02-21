@@ -7,6 +7,9 @@ export interface Activity {
 	id: number
 	average_speed: number
 	start_date: string
+	type: string
+	total_elevation_gain: number
+	average_heartrate: number
 }
 
 export const processAthleteActivities = (data: Activity[]) => {
@@ -21,6 +24,9 @@ export const processAthleteActivities = (data: Activity[]) => {
 		id: activity.id,
 		start: activity.start_date,
 		speed: activity.average_speed,
+		type: activity.type,
+		elevation: activity.total_elevation_gain,
+		heartrate: activity.average_heartrate,
 	}))
 	return processedData
 }
