@@ -5,9 +5,10 @@ import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Row } from "react-bootstrap"
+import { AthleteActivities } from "../../models"
 
 export interface DataContainerProps {
-	data: any
+	data: AthleteActivities
 	apiCallsInProgress: number
 }
 
@@ -19,7 +20,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 			) : (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-4">
 					{Array.isArray(data) ? (
-						data.map(({ polyline, title, time, distance, speed, id, predictedType }: any) => (
+						data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
 							<RouteMap
 								polyline={decodePolyLine(polyline)}
 								name={title}

@@ -13,9 +13,9 @@ export interface RouteMapProps {
 	polyline?: any
 	name: string
 	time: number
-	distance: string
-	id: string
-	speed: string
+	distance: number
+	id: number
+	speed: number
 	units: Units
 	predictedType: string
 }

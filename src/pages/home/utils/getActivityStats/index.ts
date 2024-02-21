@@ -4,7 +4,7 @@ import { convertMetersToDistance } from "../convertMetersToDistance"
 import { getMinsFromSeconds } from "../getMinsFromSeconds"
 import { getPaceFromSpeed } from "../getPaceFromSpeed"
 
-export const getActivityStats = (distance: string, speed: string, time: number, units: Units) => {
+export const getActivityStats = (distance: number, speed: number, time: number, units: Units) => {
 	const stats: Stat[] = [
 		{
 			text: "Distance",

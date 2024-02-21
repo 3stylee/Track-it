@@ -41,8 +41,8 @@ describe("processAthleteActitivies", () => {
 				start: "2020-01-01T00:00:00Z",
 				speed: 5,
 				type: "Run",
-				total_elevation_gain: 100,
-				average_heartrate: 150,
+				elevation: 100,
+				heartrate: 150,
 			},
 			{
 				title: "Bike ride",
@@ -54,8 +54,8 @@ describe("processAthleteActitivies", () => {
 				start: "2020-01-01T00:00:00Z",
 				speed: 10,
 				type: "Run",
-				total_elevation_gain: 100,
-				average_heartrate: 150,
+				elevation: 100,
+				heartrate: 150,
 			},
 		]
 

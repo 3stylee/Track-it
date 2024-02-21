@@ -1,9 +1,10 @@
-import { Units } from "../config/models"
+import { AthleteActivities } from "../pages/home/subpages/activitiesList/models"
 import { AUTH_STATES, INITIAL_DATA_MESSAGE } from "../constants"
+import { Units } from "../config/models"
 
 export interface State {
 	authState: string
-	athleteActivities: object
+	athleteActivities: AthleteActivities
 	athleteData: object
 	currentActivityStream: object
 	currentActivity: object
@@ -16,7 +17,7 @@ export interface State {
 
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
-	athleteActivities: { text: INITIAL_DATA_MESSAGE },
+	athleteActivities: [],
 	athleteData: { text: INITIAL_DATA_MESSAGE },
 	currentActivityStream: {},
 	currentActivity: {},

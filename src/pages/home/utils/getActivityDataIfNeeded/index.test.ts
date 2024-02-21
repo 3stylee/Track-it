@@ -1,19 +1,18 @@
 import { getActivityDataIfNeeded } from "./index"
-import { INITIAL_DATA_MESSAGE } from "../../../../constants"
 
 describe("getActivityDataIfNeeded", () => {
-	it("calls loadAthleteActivities when text is equal to INITIAL_DATA_MESSAGE", () => {
+	it("calls loadAthleteActivities when data is empty", () => {
 		const loadAthleteActivities = jest.fn()
 
-		getActivityDataIfNeeded(INITIAL_DATA_MESSAGE, loadAthleteActivities)
+		getActivityDataIfNeeded([], loadAthleteActivities)
 
 		expect(loadAthleteActivities).toHaveBeenCalled()
 	})
 
-	it("does not call loadAthleteActivities when text is not equal to INITIAL_DATA_MESSAGE", () => {
+	it("does not call loadAthleteActivities when data is not empty", () => {
 		const loadAthleteActivities = jest.fn()
 
-		getActivityDataIfNeeded("Some other message", loadAthleteActivities)
+		getActivityDataIfNeeded([{}], loadAthleteActivities)
 
 		expect(loadAthleteActivities).not.toHaveBeenCalled()
 	})

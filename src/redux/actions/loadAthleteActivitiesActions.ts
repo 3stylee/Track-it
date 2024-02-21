@@ -22,18 +22,20 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number) =
 
 			// For some reason the API gives data from oldest to newest, we want the opposite
 			let data = processAthleteActivities(response.data.reverse())
-
-			// Feed the data to the model to get the run type predictions
+			// feed the data to the model to get the run type predictions
 			const activities: any = []
 			data.forEach(({ start, time, distance, speed, elevation, type, heartrate }: any) => {
 				activities.push([start, time, distance, speed, elevation, type, heartrate])
 			})
-			getRunTypePredictions(activities).then((response) => {
-				data = data.map((activity: any, index: number) => {
-					return { ...activity, predictedType: response.result[index] }
+			getRunTypePredictions(activities)
+				.then((response) => {
+					data = data.map((activity: any, index: number) => {
+						return { ...activity, predictedType: response.result[index] }
+					})
 				})
-				dispatch(loadDataSuccess(data))
-			})
+				.then(() => {
+					dispatch(loadDataSuccess(data))
+				})
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

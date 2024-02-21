@@ -3,15 +3,16 @@ import DataContainer from "../dataContainer"
 import { PageContainer } from "./components"
 import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import connect from "./connect"
+import { AthleteActivities } from "../../models"
 
 interface ActivitiesListProps {
-	athleteActivities: any
-	loadAthleteActivities: any
+	athleteActivities: AthleteActivities
+	loadAthleteActivities: () => void
 }
 
 export const ActivitiesList = ({ athleteActivities, loadAthleteActivities }: ActivitiesListProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
+		getActivityDataIfNeeded(athleteActivities, loadAthleteActivities)
 	}, [])
 
 	return (

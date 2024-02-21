@@ -1,4 +1,4 @@
-export const convertMetersToDistance = (distanceMeters: string, divisor: number) => {
-	const distance = parseFloat(distanceMeters) / divisor
+export const convertMetersToDistance = (distanceMeters: number, divisor: number) => {
+	const distance = distanceMeters / divisor
 	return distance.toFixed(2)
 }
