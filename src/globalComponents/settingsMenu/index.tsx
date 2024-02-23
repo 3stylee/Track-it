@@ -1,51 +1,35 @@
-import { useTheme } from "@emotion/react"
 import React from "react"
 import { Button, Modal } from "react-bootstrap"
-import { THEMES } from "../../constants"
 import connect from "./connect"
 import { Units } from "../../config/models"
-
+import { AnimatedSwitch } from "../animatedSwitch"
+import { SettingContainer } from "./components"
 interface SettingsProps {
 	show: boolean
 	units: Units
 	setUnitImperial: () => void
 	setUnitMetric: () => void
 	handleClose: () => void
-	toggleTheme: () => void
 }
 
-const SettingsMenu = ({ show, units, setUnitImperial, setUnitMetric, handleClose, toggleTheme }: SettingsProps) => {
-	const theme = useTheme()
+const SettingsMenu = ({ show, units, setUnitImperial, setUnitMetric, handleClose }: SettingsProps) => {
 	return (
 		<Modal show={show} onHide={handleClose} centered>
 			<Modal.Header closeButton>
 				<Modal.Title>Settings</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				Dark Mode:
-				<div className="form-check form-switch">
-					<input
-						className="form-check-input"
-						type="checkbox"
-						role="switch"
-						id="flexSwitchCheckChecked"
-						onChange={toggleTheme}
-						checked={theme.name === THEMES.DARK}
-					/>
-				</div>
-				Normal units of measurement:
-				<div className="form-check form-switch">
-					<input
-						className="form-check-input"
-						type="checkbox"
-						role="switch"
-						id="flexSwitchCheckChecked"
-						onChange={() => {
+				<SettingContainer>
+					Units of Measurement:
+					<AnimatedSwitch
+						isOn={units.unitString === "km"}
+						onClick={() => {
 							units.unitString === "km" ? setUnitImperial() : setUnitMetric()
 						}}
-						checked={units.meters === 1000}
+						offState="MI"
+						onState="KM"
 					/>
-				</div>
+				</SettingContainer>
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="secondary" onClick={handleClose}>

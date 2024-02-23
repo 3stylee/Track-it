@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants"
+import { motion } from "framer-motion"
 
 export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	width: ${SIDEBAR_WIDTH};
@@ -15,19 +16,20 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 		transition: margin-left 0.3s;
 	}
 `
-export const IconContainer = styled("li")<{ selected?: boolean }>`
+export const IconContainer = styled("li")`
+	cursor: pointer;
 	padding: 1rem;
 	text-align: center;
 	transition: background-color 0.3s;
-	${({ selected }) => selected && "box-shadow: inset -2px 0 0 0 var(--bs-primary);"}
 
 	&:hover {
 		background-color: ${({ theme }) => theme.sidebar.iconHover};
 	}
 `
 
-export const SidebarButton = styled("div")`
-	&:hover {
-		cursor: pointer;
-	}
+export const SelectedBar = styled(motion.div)`
+	margin-left: -0.125rem;
+	height: 3.625rem;
+	width: 0.125rem;
+	background-color: var(--bs-primary);
 `

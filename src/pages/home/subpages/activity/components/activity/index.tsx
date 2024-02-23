@@ -18,20 +18,14 @@ export const Activity = ({ loadActivityStream, loadCurrentActivity, currentActiv
 			loadCurrentActivity(id)
 		}
 	}, [])
-
+	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>
-			{apiCallsInProgress > 0 ? (
-				<AnimatedSpinner />
-			) : (
-				<>
-					<ImageContainer>
-						<ActivityTitle />
-						<ActivityImage polyline={currentActivity.polyline} />
-					</ImageContainer>
-					<ActivityGraphs laps={currentActivity.laps} />
-				</>
-			)}
+			<ImageContainer>
+				<ActivityTitle />
+				<ActivityImage polyline={currentActivity.polyline} />
+			</ImageContainer>
+			<ActivityGraphs laps={currentActivity.laps} />
 		</PageContainer>
 	)
 }

@@ -10,7 +10,7 @@ import connect from "./connect"
 import { Units } from "../../../../../../config/models"
 
 export interface RouteMapProps {
-	polyline?: any
+	polyline: number[][]
 	name: string
 	time: number
 	distance: number
@@ -29,7 +29,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 			? require("../../../../../../assets/images/no_gps_dark.png")
 			: require("../../../../../../assets/images/no_gps_light.png")
 	if (polyline.length > 0) {
-		const coordinatesString = polyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
+		const coordinatesString = polyline.map((coord) => `[${coord.join(",")}]`).join(",")
 		url = getMapboxEndpoint(coordinatesString, theme.name)
 	}
 	const stats = getActivityStats(distance, speed, time, units)
@@ -54,7 +54,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
-						<Badge>{predictedType}</Badge>
+						<Badge className="mt-3">{predictedType}</Badge>
 					</Card.Body>
 				</CardContainer>
 			</StyledLink>

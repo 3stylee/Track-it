@@ -13,8 +13,8 @@ const processData = (data) => {
 
 const scaleRow = (row) => {
 	const scaledRow = row.map((value, index) => {
-		const dataMin = scalerInfo.data_min_[index]
-		const dataMax = scalerInfo.data_max_[index]
+		const dataMin = scalerInfo.data_min[index]
+		const dataMax = scalerInfo.data_max[index]
 		const range = dataMax - dataMin
 
 		// Apply Min-Max scaling

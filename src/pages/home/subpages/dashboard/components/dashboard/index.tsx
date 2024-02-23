@@ -25,31 +25,24 @@ export const Dashboard = ({
 	apiCallsInProgress,
 }: DashboardProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(athleteActivities.text, loadAthleteActivities)
-		if (Array.isArray(athleteActivities)) {
+		getActivityDataIfNeeded(athleteActivities, loadAthleteActivities)
+		if (athleteActivities.length > 0) {
 			const athleteID = athleteActivities[0].athlete.id
 			getAthleteDataIfNeeded(athleteData.text, loadAthleteData, athleteID)
 		}
 	}, [athleteActivities])
-
+	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>
-			{apiCallsInProgress > 0 ? (
-				<AnimatedSpinner />
-			) : (
-				<>
-					<TitleHeader />
-
-					<Row>
-						<Col lg={8} className="mb-4">
-							<MileageChart />
-						</Col>
-						<Col lg={4} className="mb-4">
-							<RecentActivities />
-						</Col>
-					</Row>
-				</>
-			)}
+			<TitleHeader />
+			<Row>
+				<Col lg={8} className="mb-4">
+					<MileageChart />
+				</Col>
+				<Col lg={4} className="mb-4">
+					<RecentActivities />
+				</Col>
+			</Row>
 		</PageContainer>
 	)
 }

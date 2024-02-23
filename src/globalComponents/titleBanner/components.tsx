@@ -39,7 +39,7 @@ export const CollapseButton = styled("button")`
 		background-color: #fd4499;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: 769px) {
 		display: none;
 	}
 `

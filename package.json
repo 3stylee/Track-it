@@ -24,6 +24,7 @@
     "concurrently": "^8.2.2",
     "date-fns": "^3.2.0",
     "feather-icons-react": "^0.7.0",
+    "framer-motion": "^11.0.6",
     "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.0",
     "lru-cache": "^10.2.0",

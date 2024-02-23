@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { IconContainer, SidebarButton, SidebarContainer } from "./components"
+import { IconContainer, SelectedBar, SidebarContainer } from "./components"
 import connect from "./connect"
-import { SIDEBAR_ICONS } from "../../constants"
+import { SIDEBAR_ICONS, THEMES } from "../../constants"
 import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
@@ -24,36 +24,38 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 				sidebarExpanded={sidebarExpanded}
 				className={`flex-column text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
 				<ul className="nav flex-column">
-					{SIDEBAR_ICONS.map((navIcon) => {
-						const { path, icon } = navIcon
+					{SIDEBAR_ICONS.map(({ path, icon }) => {
+						const selected = path === urlPath
 						return (
 							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
-								<IconContainer selected={path === urlPath}>
-									<FeatherIcon icon={icon} />
-								</IconContainer>
+								<div className="d-flex">
+									<IconContainer>
+										<FeatherIcon icon={icon} />
+									</IconContainer>
+									{selected && <SelectedBar layoutId="underline" />}
+								</div>
 							</Link>
 						)
 					})}
 					<hr className="mx-3" />
-					<SidebarButton
+					<IconContainer
 						onClick={() => {
 							setShowSettings(!showSettings)
 						}}>
-						<IconContainer>
-							<FeatherIcon icon="settings" />
-						</IconContainer>
-					</SidebarButton>
-					<SidebarButton
+						<FeatherIcon icon="settings" />
+					</IconContainer>
+					<IconContainer
 						onClick={() => {
 							setShowLogout(!showLogout)
 						}}>
-						<IconContainer>
-							<FeatherIcon icon="log-out" />
-						</IconContainer>
-					</SidebarButton>
+						<FeatherIcon icon="log-out" />
+					</IconContainer>
+					<IconContainer onClick={toggleTheme}>
+						<FeatherIcon icon="moon" fill={theme.name === THEMES.DARK ? "white" : undefined} />
+					</IconContainer>
 				</ul>
 			</SidebarContainer>
-			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} toggleTheme={toggleTheme} />
+			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} />
 			<LogoutScreen
 				show={showLogout}
 				handleClose={() => {

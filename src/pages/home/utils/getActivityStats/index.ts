@@ -10,19 +10,16 @@ export const getActivityStats = (distance: number, speed: number, time: number, 
 			text: "Distance",
 			value: convertMetersToDistance(distance, units.meters),
 			unit: units.unitString,
-			icon: "map-pin",
 		},
 		{
 			text: "Pace",
 			value: getPaceFromSpeed(speed, units.meters),
 			unit: `/${units.unitString}`,
-			icon: "watch",
 		},
 		{
 			text: "Time",
 			value: getMinsFromSeconds(time),
 			unit: "",
-			icon: "clock",
 		},
 	]
 	return stats
