@@ -9,7 +9,7 @@ export const PageContainer = styled("div")`
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	@media (max-width: 768px) {
 		margin-left: 0;

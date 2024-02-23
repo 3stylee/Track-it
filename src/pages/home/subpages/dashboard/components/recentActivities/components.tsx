@@ -3,7 +3,7 @@ import { CardBody } from "react-bootstrap"
 
 export const Body = styled(CardBody)`
 	padding-top: 0;
-	overflow-y: scroll;
+	overflow-y: auto;
 	@media (min-width: 1200px) {
 		height: 15.25rem;
 	}

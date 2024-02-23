@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 export const CardBody = styled("div")`
-	overflow-y: scroll;
+	overflow-y: auto;
 	@media (min-width: 1200px) {
 		height: 15.25rem;
 	}
