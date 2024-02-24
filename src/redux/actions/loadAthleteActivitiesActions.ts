@@ -5,11 +5,12 @@ import { getEndpoint } from "../utils/getActivityDataEndpoint"
 import { processAthleteActivities } from "../utils/processAthleteActivities"
 import { getRunTypePredictions } from "../utils/getRunTypePredictions"
 
-export const loadDataSuccess = (data: object) => {
-	return { type: types.LOAD_ATHLETE_ACTIVITIES_SUCCESS, data }
+export const loadDataSuccess = (data: object, filter: boolean) => {
+	const type = filter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
+	return { type, data }
 }
 
-export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number) => {
+export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
 	return async function (dispatch: any) {
 		const endpoint = getEndpoint(dateBefore, dateAfter)
 		dispatch(beginApiCall())
@@ -31,7 +32,7 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number) =
 				data = data.map((activity: any, index: number) => {
 					return { ...activity, predictedType: response.result[index] }
 				})
-				dispatch(loadDataSuccess(data))
+				dispatch(loadDataSuccess(data, hasFilter))
 			})
 		} catch (error) {
 			dispatch(apiCallError(error))

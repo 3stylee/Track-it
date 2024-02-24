@@ -8,12 +8,14 @@ import currentActivity from "./loadCurrentActivityReducer"
 import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
+import dataFlags from "./dataFlagsReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
 	apiError,
 	athleteActivities,
 	athleteData,
+	dataFlags,
 	currentActivityStream,
 	currentActivity,
 	authState,

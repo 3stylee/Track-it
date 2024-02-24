@@ -4,7 +4,7 @@ import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthle
 
 const mapStateToProps = (state: State) => {
 	return {
-		athleteActivities: state.athleteActivities,
+		dataFlags: state.dataFlags,
 		apiCallsInProgress: state.apiCallsInProgress,
 	}
 }

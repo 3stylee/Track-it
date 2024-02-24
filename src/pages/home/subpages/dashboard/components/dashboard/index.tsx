@@ -4,33 +4,35 @@ import { PageContainer } from "./components"
 import MileageChart from "../mileageChart"
 import RecentActivities from "../recentActivities"
 import connect from "./connect"
-import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
-import { getAthleteDataIfNeeded } from "../../../../utils/getAthleteDataIfNeeded"
+import { getActivityData } from "../../../../utils/getActivityData"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
+import { AthleteActivities, DataFlags } from "../../../activitiesList/models"
+import { LoadAthleteActivities } from "../../models"
 
 interface DashboardProps {
-	athleteActivities: any
-	athleteData: any
-	loadAthleteActivities: any
-	loadAthleteData: any
+	athleteActivities: AthleteActivities
+	dataFlags: DataFlags
+	loadAthleteActivities: LoadAthleteActivities
+	loadAthleteData: (athleteID: number) => void
 	apiCallsInProgress: number
 }
 
 export const Dashboard = ({
 	athleteActivities,
+	dataFlags: { gotAthleteData, gotInitialActivities },
 	loadAthleteActivities,
-	athleteData,
 	loadAthleteData,
 	apiCallsInProgress,
 }: DashboardProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(athleteActivities, loadAthleteActivities)
+		if (!gotInitialActivities) getActivityData(loadAthleteActivities)
 		if (athleteActivities.length > 0) {
 			const athleteID = athleteActivities[0].athlete.id
-			getAthleteDataIfNeeded(athleteData.text, loadAthleteData, athleteID)
+			if (!gotAthleteData) loadAthleteData(athleteID)
 		}
 	}, [athleteActivities])
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>

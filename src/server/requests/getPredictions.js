@@ -1,4 +1,4 @@
-fetch("http://localhost:3009/data", {
+fetch("http://localhost:3001/data", {
 	method: "POST",
 	body: JSON.stringify({
 		data: [

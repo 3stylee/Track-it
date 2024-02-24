@@ -1,25 +1,26 @@
 import React, { useEffect } from "react"
 import DataContainer from "../dataContainer"
 import { PageContainer } from "./components"
-import { getActivityDataIfNeeded } from "../../../../utils/getActivityDataIfNeeded"
 import connect from "./connect"
-import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
+import { getActivityData } from "../../../../utils/getActivityData"
+import { DataFlags } from "../../models"
 
 interface ActivitiesListProps {
-	athleteActivities: AthleteActivities
 	apiCallsInProgress: number
+	dataFlags: DataFlags
 	loadAthleteActivities: () => void
 }
 
 export const ActivitiesList = ({
-	athleteActivities,
+	dataFlags: { gotInitialActivities },
 	apiCallsInProgress,
 	loadAthleteActivities,
 }: ActivitiesListProps) => {
 	useEffect(() => {
-		getActivityDataIfNeeded(athleteActivities, loadAthleteActivities)
+		if (!gotInitialActivities) getActivityData(loadAthleteActivities)
 	}, [])
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>
