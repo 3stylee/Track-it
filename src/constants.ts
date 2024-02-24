@@ -17,7 +17,7 @@ export const API_ERROR_MESSAGES = {
 export const ROUTE_PATHS = {
 	DEFAULT: "/",
 	HOME: "/home",
-	DASHBOARD: "/home/dashboard",
+	SEARCH_ACTIVITIES: "/home/search",
 	SESSIONS: "/home/sessions",
 	AUTH_ERROR: "/auth_error",
 	MISSING_PERMISSIONS: "/missing_permissions",
@@ -48,7 +48,7 @@ export const MISSING_PERMISSIONS_MESSAGE =
 export const TITLE_BANNER_HEIGHT = "4rem"
 export const SIDEBAR_ICONS = [
 	{ icon: "home", path: "" },
-	{ icon: "grid", path: "dashboard" },
+	{ icon: "search", path: "search" },
 	{ icon: "clock", path: "sessions" },
 	{ icon: "calendar", path: "calendar" },
 ]

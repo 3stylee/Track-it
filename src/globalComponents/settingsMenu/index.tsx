@@ -1,7 +1,7 @@
 import React from "react"
 import { Button, Modal } from "react-bootstrap"
 import connect from "./connect"
-import { Units } from "../../config/models"
+import { Units } from "../../models"
 import { AnimatedSwitch } from "../animatedSwitch"
 import { SettingContainer } from "./components"
 interface SettingsProps {

@@ -27,15 +27,12 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number) =
 			data.forEach(({ start, time, distance, speed, elevation, type, heartrate }: any) => {
 				activities.push([start, time, distance, speed, elevation, type, heartrate])
 			})
-			getRunTypePredictions(activities)
-				.then((response) => {
-					data = data.map((activity: any, index: number) => {
-						return { ...activity, predictedType: response.result[index] }
-					})
+			getRunTypePredictions(activities).then((response) => {
+				data = data.map((activity: any, index: number) => {
+					return { ...activity, predictedType: response.result[index] }
 				})
-				.then(() => {
-					dispatch(loadDataSuccess(data))
-				})
+				dispatch(loadDataSuccess(data))
+			})
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

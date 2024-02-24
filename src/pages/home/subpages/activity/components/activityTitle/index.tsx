@@ -5,8 +5,15 @@ import connect from "./connect"
 import { StyledCard, Title } from "./components"
 import { convertMetersToDistance } from "../../../../utils/convertMetersToDistance"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
+import { CurrentActivity } from "../../models"
+import { Units } from "../../../../../../models"
 
-export const ActivityTitle = ({ currentActivity, units }: any) => {
+interface ActivityTitleProps {
+	currentActivity: CurrentActivity
+	units: Units
+}
+
+export const ActivityTitle = ({ currentActivity, units }: ActivityTitleProps) => {
 	const theme = useTheme()
 	if (currentActivity.distance === undefined) return null
 	return (

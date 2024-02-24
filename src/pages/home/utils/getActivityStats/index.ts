@@ -1,4 +1,4 @@
-import { Units } from "../../../../config/models"
+import { Units } from "../../../../models"
 import { Stat } from "../../../../globalComponents/labelledStats"
 import { convertMetersToDistance } from "../convertMetersToDistance"
 import { getMinsFromSeconds } from "../getMinsFromSeconds"

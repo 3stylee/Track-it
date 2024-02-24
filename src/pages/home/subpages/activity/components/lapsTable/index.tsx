@@ -5,10 +5,29 @@ import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Table } from "react-bootstrap"
 import connect from "./connect"
+import { categoriseLaps } from "../../../../utils/categoriseLaps"
+import { CurrentActivity, Lap } from "../../models"
+import { Units } from "../../../../../../models"
 
-const LapsTable = ({ laps, units }: any) => {
+interface LapsTableProps {
+	laps: Lap[]
+	units: Units
+	currentActivity: CurrentActivity
+}
+
+const LapsTable = ({ laps, units, currentActivity }: LapsTableProps) => {
 	const theme = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
+	const session = currentActivity.predictedType === "Session"
+	let lapCategories: string[] = []
+	if (session) {
+		lapCategories = categoriseLaps(laps)
+	}
+	const headers = [
+		{ name: "Distance", icon: "map-pin" },
+		{ name: "Time", icon: "clock" },
+		{ name: "Pace", icon: "watch" },
+	]
 	return (
 		<CardContainer className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}>
 			<CardHeader>
@@ -19,29 +38,24 @@ const LapsTable = ({ laps, units }: any) => {
 					<TableHeader>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">
-								<HeadingText>
-									Distance
-									<FeatherIcon icon="map-pin" size={"1rem"} />
-								</HeadingText>
-							</th>
-							<th scope="col">
-								<HeadingText>
-									Time
-									<FeatherIcon icon="clock" size={"1rem"} />
-								</HeadingText>
-							</th>
-							<th scope="col">
-								<HeadingText>
-									Pace
-									<FeatherIcon icon="watch" size={"1rem"} />
-								</HeadingText>
-							</th>
+							{headers.map((header) => (
+								<th scope="col" key={header.name}>
+									<HeadingText>
+										{header.name}
+										<FeatherIcon icon={header.icon} size={"1rem"} />
+									</HeadingText>
+								</th>
+							))}
+							{session && (
+								<th scope="col">
+									<HeadingText>Type</HeadingText>
+								</th>
+							)}
 						</tr>
 					</TableHeader>
 					<tbody>
-						{laps.map((lap: any) => (
-							<TableRow key={lap.id}>
+						{laps.map((lap: Lap, index) => (
+							<TableRow key={lap.id} session={session} muted={lapCategories[index] === "Recovery"}>
 								<td>{lap.name}</td>
 								<td>{(lap.distance / units.meters).toFixed(2) + ` ${units.unitString}`}</td>
 								<td>{getMinsFromSeconds(lap.moving_time)}</td>
@@ -50,6 +64,7 @@ const LapsTable = ({ laps, units }: any) => {
 										? getMinsFromSeconds(units.meters / lap.average_speed) + `/ ${units.unitString}`
 										: "--"}
 								</td>
+								{session && <td>{lapCategories[index]}</td>}
 							</TableRow>
 						))}
 					</tbody>

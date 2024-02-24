@@ -1,3 +1,24 @@
+export interface CurrentActivity {
+	id: number
+	name: string
+	distance: number
+	moving_time: number
+	start_date: string
+	type: string
+	elapsed_time: number
+	polyline: string
+	average_speed: number
+	max_speed: number
+	has_heartrate: boolean
+	average_heartrate: number
+	max_heartrate: number
+	description: string
+	total_elevation_gain: number
+	splits_metric: any
+	splits_standard: any
+	laps: any
+}
+
 export const processActivityData = (activityData: any) => {
 	return {
 		id: activityData.id,
@@ -16,5 +37,7 @@ export const processActivityData = (activityData: any) => {
 		splits_metric: activityData.splits_metric,
 		splits_standard: activityData.splits_standard,
 		laps: activityData.laps,
+		date: activityData.start_date,
+		type: activityData.type,
 	}
 }

@@ -1,4 +1,4 @@
-import { Units } from "../../../../../../../config/models"
+import { Units } from "../../../../../../../models"
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
 import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 

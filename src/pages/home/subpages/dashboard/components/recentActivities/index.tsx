@@ -5,7 +5,7 @@ import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../../../constants"
 import { Body, CardHeader, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"
-import { Units } from "../../../../../../config/models"
+import { Units } from "../../../../../../models"
 import { useNavigate } from "react-router-dom"
 
 interface RecentActivitiesProps {

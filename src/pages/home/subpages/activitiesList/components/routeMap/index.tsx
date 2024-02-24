@@ -7,7 +7,7 @@ import { useTheme } from "@emotion/react"
 import { Badge, Card, Col } from "react-bootstrap"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
-import { Units } from "../../../../../../config/models"
+import { Units } from "../../../../../../models"
 
 export interface RouteMapProps {
 	polyline: number[][]

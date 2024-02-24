@@ -56,8 +56,8 @@ const App = () => {
 						}
 					/>
 					<Route path={ROUTE_PATHS.HOME} element={<Home toggleTheme={toggleTheme} />}>
-						<Route path="" element={<ActivitiesList />} />
-						<Route path={ROUTE_PATHS.DASHBOARD} element={<Dashboard />} />
+						<Route path="" element={<Dashboard />} />
+						<Route path={ROUTE_PATHS.SEARCH_ACTIVITIES} element={<ActivitiesList />} />
 						<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
 						<Route path={ROUTE_PATHS.CALENDAR} element={<Calendar />} />
 						<Route path={ROUTE_PATHS.SESSIONS} element={<></>} />

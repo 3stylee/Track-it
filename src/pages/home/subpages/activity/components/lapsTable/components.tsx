@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 export const CardBody = styled("div")`
 	overflow-y: auto;
 	@media (min-width: 1200px) {
-		height: 15.25rem;
+		height: 13.25rem;
 	}
 	@media (max-width: 1199px) {
 		max-height: 30rem;
@@ -27,10 +27,11 @@ export const TableHeader = styled("thead")`
 		border: none;
 	}
 `
-export const TableRow = styled("tr")`
+export const TableRow = styled("tr")<{ session: boolean; muted: boolean }>`
 	& td {
 		vertical-align: middle;
 		border: none;
+		color: ${({ muted, session }) => (session && muted ? "grey" : "")};
 	}
 
 	& > :first-of-type {

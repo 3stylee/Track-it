@@ -4,7 +4,15 @@ import { CategoryScale, LogarithmicScale, PointElement, LineElement, Chart, Titl
 import annotationPlugin from "chartjs-plugin-annotation"
 Chart.register(CategoryScale, LogarithmicScale, PointElement, LineElement, Title, Tooltip, Filler, annotationPlugin)
 
-export const LineChart = ({ time, label, streamData, backgroundColor, options }: any) => {
+interface LineChartProps {
+	time: string[]
+	label: string
+	streamData: number[]
+	backgroundColor: string
+	options: any
+}
+
+export const LineChart = ({ time, label, streamData, backgroundColor, options }: LineChartProps) => {
 	const data = {
 		labels: time,
 		datasets: [
@@ -22,7 +30,7 @@ export const LineChart = ({ time, label, streamData, backgroundColor, options }:
 
 	return (
 		<div>
-			<Line options={options as any} data={data} />
+			<Line options={options} data={data} />
 		</div>
 	)
 }

@@ -4,11 +4,15 @@ import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ImageContainer, RoundedImage } from "./components"
 import { useTheme } from "@emotion/react"
 
-export const ActivityImage = ({ polyline }: any) => {
+interface ActivityImageProps {
+	polyline: string
+}
+
+export const ActivityImage = ({ polyline }: ActivityImageProps) => {
 	const theme = useTheme()
 	if (polyline === undefined || polyline === "") return null
 	const decodedPolyline = decodePolyLine(polyline)
-	const coordinatesString = decodedPolyline.map((coord: any[]) => `[${coord.join(",")}]`).join(",")
+	const coordinatesString = decodedPolyline.map((coord) => `[${coord.join(",")}]`).join(",")
 	const url = getMapboxEndpoint(coordinatesString, theme.name)
 	return (
 		<ImageContainer>

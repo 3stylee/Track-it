@@ -1,7 +1,13 @@
-import { Units } from "../../../../config/models"
+import { Units } from "../../../../models"
+import { CurrentActivity, CurrentActivityStream } from "../../subpages/activity/models"
 import { getActivityGraphData } from "../getActivityGraphData"
 
-export const getActivityGraphs = (currentActivityStream: any, currentActivity: any, theme: string, units: Units) => {
+export const getActivityGraphs = (
+	currentActivityStream: CurrentActivityStream,
+	currentActivity: CurrentActivity,
+	theme: string,
+	units: Units
+) => {
 	const {
 		time,
 		paceStreamData,

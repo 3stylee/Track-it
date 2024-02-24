@@ -7,12 +7,20 @@ import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Card, Col, Row } from "react-bootstrap"
 import { getActivityGraphs } from "../../../../utils/getActivityGraphs"
+import { CurrentActivity, Lap, CurrentActivityStream } from "../../models"
+import { Units } from "../../../../../../models"
 
-export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps, units }: any) => {
+interface ActivityGraphsProps {
+	currentActivityStream: CurrentActivityStream
+	currentActivity: CurrentActivity
+	laps: Lap[]
+	units: Units
+}
+
+export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps, units }: ActivityGraphsProps) => {
 	const theme = useTheme()
 	if (currentActivityStream.distance) {
 		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units)
-
 		return (
 			<Row xl={2} lg={1} md={1} sm={1} xs={1} className="g-4">
 				<Col>

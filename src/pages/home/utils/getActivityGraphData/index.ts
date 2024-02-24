@@ -1,13 +1,19 @@
-import { Units } from "../../../../config/models"
+import { Units } from "../../../../models"
 import { STREAM_RESOLUTION_FACTOR } from "../../../../constants"
 import { getAltitudeOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/altitudeOptions"
 import { getHeartrateOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/heartrateOptions"
 import { getPaceOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/paceOptions"
 import { getSecondsPerUnit } from "../getSecondsPerUnit"
 import { getTimeSeries } from "../getTimeSeries"
+import { CurrentActivity, CurrentActivityStream } from "../../subpages/activity/models"
 
-export const getActivityGraphData = (currentActivityStream: any, currentActivity: any, theme: string, units: Units) => {
-	const length = parseInt(currentActivityStream.distance.original_size) / STREAM_RESOLUTION_FACTOR
+export const getActivityGraphData = (
+	currentActivityStream: CurrentActivityStream,
+	currentActivity: CurrentActivity,
+	theme: string,
+	units: Units
+) => {
+	const length = currentActivityStream.distance.original_size / STREAM_RESOLUTION_FACTOR
 	const time = getTimeSeries(length)
 
 	const paceStreamData = getSecondsPerUnit(currentActivityStream.distance.data, units.meters)

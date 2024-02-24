@@ -1,7 +1,7 @@
 import React from "react"
 import connect from "./connect"
 import { Stat, StatName, StatValue, StatsList } from "./components"
-import { Units } from "../../../../../../config/models"
+import { Units } from "../../../../../../models"
 
 interface QuickStatsProps {
 	athleteData: any
