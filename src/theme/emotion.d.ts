@@ -19,6 +19,9 @@ declare module "@emotion/react" {
 		calendar: {
 			gridColor: string
 		}
+		datePicker: {
+			background: string
+		}
 		spinnerBackground: string
 	}
 }

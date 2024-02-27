@@ -48,7 +48,7 @@ export const MISSING_PERMISSIONS_MESSAGE =
 export const TITLE_BANNER_HEIGHT = "4rem"
 export const SIDEBAR_ICONS = [
 	{ icon: "home", path: "" },
-	{ icon: "search", path: "search" },
+	{ icon: "grid", path: "search" },
 	{ icon: "clock", path: "sessions" },
 	{ icon: "calendar", path: "calendar" },
 ]

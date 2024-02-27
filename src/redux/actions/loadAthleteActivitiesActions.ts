@@ -21,8 +21,10 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 				},
 			})
 
-			// For some reason the API gives data from oldest to newest, we want the opposite
-			let data = processAthleteActivities(response.data.reverse())
+			// API returns oldest -> newest, when no filter applied
+			let data = hasFilter ? response.data : response.data.reverse()
+			data = processAthleteActivities(data)
+
 			// feed the data to the model to get the run type predictions
 			const activities: any = []
 			data.forEach(({ start, time, distance, speed, elevation, type, heartrate }: any) => {

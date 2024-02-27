@@ -1,18 +1,20 @@
 import React from "react"
-import { StyledContainer } from "./components"
 import RouteMap from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
 import { Row } from "react-bootstrap"
 import { AthleteActivities } from "../../models"
+import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 
 export interface DataContainerProps {
 	data: AthleteActivities
+	apiCallsInProgress: number
 }
 
-export const DataContainer = ({ data }: DataContainerProps) => {
+export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
+	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
-		<StyledContainer>
+		<div>
 			<Row sm={1} md={2} lg={3} xl={4} className="g-4">
 				{data.length > 0 ? (
 					data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
@@ -28,10 +30,10 @@ export const DataContainer = ({ data }: DataContainerProps) => {
 						/>
 					))
 				) : (
-					<p>We are having trouble finding your data</p>
+					<p>No Results Found</p>
 				)}
 			</Row>
-		</StyledContainer>
+		</div>
 	)
 }
 

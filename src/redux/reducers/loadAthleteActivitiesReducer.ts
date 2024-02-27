@@ -5,6 +5,8 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 	switch (action.type) {
 		case types.LOAD_ATHLETE_ACTIVITIES_SUCCESS:
 			return action.data
+		case types.LOAD_FILTERED_ACTIVITIES_SUCCESS:
+			return action.data
 		default:
 			return state
 	}

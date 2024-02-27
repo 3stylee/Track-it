@@ -18,5 +18,8 @@ export default {
 	calendar: {
 		gridColor: "#ddd",
 	},
+	datePicker: {
+		background: "#e7edff",
+	},
 	spinnerBackground: "#0b1623",
 } as Theme
