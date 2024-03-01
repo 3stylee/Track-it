@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../../../../constants"
 
 export const PageContainer = styled("div")`
-	padding: 2rem 3rem;
+	padding: 2rem 2.5rem;
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
@@ -12,10 +12,4 @@ export const PageContainer = styled("div")`
 		margin-left: 0;
 		padding: 1.5rem;
 	}
-`
-export const Filters = styled("div")`
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	margin-bottom: 2rem;
 `

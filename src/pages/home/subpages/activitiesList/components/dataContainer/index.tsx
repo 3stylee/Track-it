@@ -5,6 +5,7 @@ import decodePolyLine from "../../../../utils/decodePolyline"
 import { Row } from "react-bootstrap"
 import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
+import { NoResults } from "../noResults"
 
 export interface DataContainerProps {
 	data: AthleteActivities
@@ -15,9 +16,9 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<div>
-			<Row sm={1} md={2} lg={3} xl={4} className="g-4">
-				{data.length > 0 ? (
-					data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
+			{data.length > 0 ? (
+				<Row sm={1} md={2} lg={3} xl={4} className="g-4">
+					{data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
 						<RouteMap
 							polyline={decodePolyLine(polyline)}
 							name={title}
@@ -28,11 +29,11 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 							key={id}
 							predictedType={predictedType}
 						/>
-					))
-				) : (
-					<p>No Results Found</p>
-				)}
-			</Row>
+					))}
+				</Row>
+			) : (
+				<NoResults />
+			)}
 		</div>
 	)
 }

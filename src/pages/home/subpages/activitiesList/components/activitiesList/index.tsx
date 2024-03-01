@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react"
 import DataContainer from "../dataContainer"
-import { Filters, PageContainer } from "./components"
+import { PageContainer } from "./components"
 import connect from "./connect"
 import { getActivityData } from "../../../../utils/getActivityData"
 import { DataFlags } from "../../models"
-import { DatePicker } from "../datePicker"
 import { DateRange } from "react-day-picker"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
+import TitleHeader from "../titleHeader"
 
 interface ActivitiesListProps {
 	dataFlags: DataFlags
@@ -30,23 +30,13 @@ export const ActivitiesList = ({ dataFlags: { gotInitialActivities }, loadAthlet
 
 	return (
 		<PageContainer ref={containerRef}>
-			<Filters>
-				<DatePicker
-					onClick={() => {
-						const { before, after } = getBeforeAndAfterDates(selected)
-						window.history.pushState({}, "", `?before=${before}&after=${after}`)
-						loadAthleteActivities(before, after, true)
-					}}
-					selected={selected}
-					setSelected={setSelected}
-					containerRef={containerRef}
-					clearFilter={() => {
-						window.history.pushState({}, "", "/home/search")
-					}}
-					filterApplied={filterApplied}
-					setFilterApplied={setFilterApplied}
-				/>
-			</Filters>
+			<TitleHeader
+				selected={selected}
+				setSelected={setSelected}
+				filterApplied={filterApplied}
+				setFilterApplied={setFilterApplied}
+				containerRef={containerRef}
+			/>
 			<DataContainer />
 		</PageContainer>
 	)

@@ -13,7 +13,7 @@ export const Container = styled("div")<{ top: number }>`
 	border: 1px solid var(--bs-primary);
 	position: absolute;
 	top: calc(${TITLE_BANNER_HEIGHT} + 2rem + 2.375rem - ${({ top }) => top}px);
-	right: 3rem;
+	right: 2.5rem;
 	z-index: 100;
 `
 export const Footer = styled("div")`
