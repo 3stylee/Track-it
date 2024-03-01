@@ -4,16 +4,24 @@ import axios from "axios"
 import { getEndpoint } from "../utils/getActivityDataEndpoint"
 import { processAthleteActivities } from "../utils/processAthleteActivities"
 import { getRunTypePredictions } from "../utils/getRunTypePredictions"
+import { LRUCache } from "lru-cache"
 
 export const loadDataSuccess = (data: object, filter: boolean) => {
 	const type = filter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
 	return { type, data }
 }
 
+let cache = new LRUCache<string, any>({ max: 20, ttl: 1000 * 60 * 60 })
+
 export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
 	return async function (dispatch: any) {
 		const endpoint = getEndpoint(dateBefore, dateAfter)
 		dispatch(beginApiCall())
+		if (cache.has(endpoint)) {
+			dispatch(loadDataSuccess(cache.get(endpoint), hasFilter))
+			return
+		}
+
 		try {
 			const response = await axios.get(endpoint, {
 				headers: {
@@ -34,6 +42,7 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 				data = data.map((activity: any, index: number) => {
 					return { ...activity, predictedType: response.result[index] }
 				})
+				cache.set(endpoint, data)
 				dispatch(loadDataSuccess(data, hasFilter))
 			})
 		} catch (error) {

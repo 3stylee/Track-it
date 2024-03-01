@@ -11,14 +11,23 @@ interface DatePickerProps {
 	onClick: (dates: DateRange | undefined) => void
 	containerRef: React.RefObject<HTMLDivElement | null>
 	selected: DateRange | undefined
-	setSelected: (dates: DateRange | undefined) => void
+	setSelected: (dates: DateRange) => void
 	clearFilter: () => void
+	filterApplied: boolean
+	setFilterApplied: (value: boolean) => void
 }
 
-export const DatePicker = ({ onClick, containerRef, selected, setSelected, clearFilter }: DatePickerProps) => {
+export const DatePicker = ({
+	onClick,
+	containerRef,
+	selected,
+	setSelected,
+	clearFilter,
+	filterApplied,
+	setFilterApplied,
+}: DatePickerProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [scrollHeight, setScrollHeight] = useState(0)
-	const [filterApplied, setFilterApplied] = useState(false)
 	const wrapperRef = useRef<HTMLDivElement | null>(null)
 	const footerText = getDatePickerText(selected)
 
@@ -43,7 +52,7 @@ export const DatePicker = ({ onClick, containerRef, selected, setSelected, clear
 						onClick={() => {
 							setIsOpen(false)
 							setFilterApplied(false)
-							setSelected(undefined)
+							setSelected({ from: undefined, to: undefined })
 							clearFilter()
 						}}>
 						Clear Filter
@@ -57,7 +66,7 @@ export const DatePicker = ({ onClick, containerRef, selected, setSelected, clear
 						mode="range"
 						selected={selected}
 						onSelect={(dates) => {
-							setSelected(dates)
+							if (dates) setSelected(dates)
 						}}
 						footer={
 							<Footer>
