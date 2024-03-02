@@ -59,3 +59,9 @@ export const THEMES = {
 	LIGHT: "light",
 	DARK: "dark",
 }
+export const LAP_TABLE_HEADERS = [
+	{ name: "Distance", icon: "map-pin" },
+	{ name: "Time", icon: "clock" },
+	{ name: "Pace", icon: "watch" },
+]
+export const SESSION_TYPES = ["Session", "Hill Session"]

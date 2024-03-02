@@ -8,6 +8,7 @@ import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
 import { CurrentActivity, Lap } from "../../models"
 import { Units } from "../../../../../../models"
+import { LAP_TABLE_HEADERS, SESSION_TYPES } from "../../../../../../constants"
 
 interface LapsTableProps {
 	laps: Lap[]
@@ -16,33 +17,30 @@ interface LapsTableProps {
 }
 
 const LapsTable = ({ laps, units, currentActivity }: LapsTableProps) => {
-	const theme = useTheme()
+	const {
+		bootstrap: { textColor, background },
+	} = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
-	const session = currentActivity.predictedType === "Session"
+	const session = SESSION_TYPES.includes(currentActivity.predictedType)
 	let lapCategories: string[] = []
 	if (session) {
 		lapCategories = categoriseLaps(laps)
 	}
-	const headers = [
-		{ name: "Distance", icon: "map-pin" },
-		{ name: "Time", icon: "clock" },
-		{ name: "Pace", icon: "watch" },
-	]
 	return (
-		<CardContainer className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background} h-100`}>
+		<CardContainer className={`card text-${textColor} bg-${background} h-100`}>
 			<CardHeader>
 				<p>Laps</p>
 			</CardHeader>
 			<CardBody className="card-body">
-				<Table variant={theme.bootstrap.background} striped className="mb-0">
+				<Table variant={background} striped className="mb-0">
 					<TableHeader>
 						<tr>
 							<th scope="col">#</th>
-							{headers.map((header) => (
-								<th scope="col" key={header.name}>
+							{LAP_TABLE_HEADERS.map(({ name, icon }) => (
+								<th scope="col" key={name}>
 									<HeadingText>
-										{header.name}
-										<FeatherIcon icon={header.icon} size={"1rem"} />
+										{name}
+										<FeatherIcon icon={icon} size={"1rem"} />
 									</HeadingText>
 								</th>
 							))}
