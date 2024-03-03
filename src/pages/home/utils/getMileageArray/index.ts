@@ -1,11 +1,12 @@
 import { SORT_OPTIONS } from "../../../../constants"
+import { AthleteActivities } from "../../subpages/activitiesList/models"
 import { getCurrentMonthWeeks } from "../getWeeksOfMonth"
 
-export const getMileageArray = (data: any, type: string, divisor: number) => {
+export const getMileageArray = (data: AthleteActivities, type: string, divisor: number) => {
 	return type === SORT_OPTIONS.WEEK ? getWeekMileageArray(data, divisor) : getMonthMileageArray(data, divisor)
 }
 
-export const getWeekMileageArray = (data: any, divisor: number) => {
+export const getWeekMileageArray = (data: AthleteActivities, divisor: number): number[] => {
 	if (Array.isArray(data)) {
 		const today = new Date()
 		const currentDayOfWeek = today.getDay()
@@ -17,7 +18,7 @@ export const getWeekMileageArray = (data: any, divisor: number) => {
 
 		const distancePerDay = Array(7).fill(0)
 
-		data.forEach((item: any) => {
+		data.forEach((item) => {
 			const itemDate = new Date(item.start)
 
 			if (itemDate >= startDate && itemDate < new Date(today)) {
@@ -31,12 +32,12 @@ export const getWeekMileageArray = (data: any, divisor: number) => {
 	return []
 }
 
-export const getMonthMileageArray = (data: any, divisor: number) => {
+export const getMonthMileageArray = (data: AthleteActivities, divisor: number): number[] => {
 	if (Array.isArray(data)) {
 		const monthWeeks = getCurrentMonthWeeks()
 		const distancePerWeek = Array(monthWeeks.length).fill(0)
 
-		data.forEach((item: any) => {
+		data.forEach((item) => {
 			const itemDate = new Date(item.start)
 
 			for (let i = 0; i < distancePerWeek.length; i++) {

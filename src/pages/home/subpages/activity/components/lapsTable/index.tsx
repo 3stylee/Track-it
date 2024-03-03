@@ -6,26 +6,23 @@ import FeatherIcon from "feather-icons-react"
 import { Table } from "react-bootstrap"
 import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
-import { CurrentActivity, Lap } from "../../models"
+import { Lap } from "../../models"
 import { Units } from "../../../../../../models"
 import { LAP_TABLE_HEADERS, SESSION_TYPES } from "../../../../../../constants"
 
 interface LapsTableProps {
 	laps: Lap[]
 	units: Units
-	currentActivity: CurrentActivity
+	predictedType: string
 }
 
-const LapsTable = ({ laps, units, currentActivity }: LapsTableProps) => {
+const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsTableProps) => {
 	const {
 		bootstrap: { textColor, background },
 	} = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
-	const session = SESSION_TYPES.includes(currentActivity.predictedType)
-	let lapCategories: string[] = []
-	if (session) {
-		lapCategories = categoriseLaps(laps)
-	}
+	const session = SESSION_TYPES.includes(predictedType)
+	const lapCategories = categoriseLaps(laps, session)
 	return (
 		<CardContainer className={`card text-${textColor} bg-${background} h-100`}>
 			<CardHeader>
@@ -52,14 +49,14 @@ const LapsTable = ({ laps, units, currentActivity }: LapsTableProps) => {
 						</tr>
 					</TableHeader>
 					<tbody>
-						{laps.map((lap: Lap, index) => (
-							<TableRow key={lap.id} session={session} muted={lapCategories[index] === "Recovery"}>
-								<td>{lap.name}</td>
-								<td>{(lap.distance / units.meters).toFixed(2) + ` ${units.unitString}`}</td>
-								<td>{getMinsFromSeconds(lap.moving_time)}</td>
+						{laps.map(({ id, name, distance, moving_time, average_speed }: Lap, index) => (
+							<TableRow key={id} session={session} muted={lapCategories[index] === "Recovery"}>
+								<td>{name}</td>
+								<td>{(distance / meters).toFixed(2) + ` ${unitString}`}</td>
+								<td>{getMinsFromSeconds(moving_time)}</td>
 								<td>
-									{lap.average_speed > 0
-										? getMinsFromSeconds(units.meters / lap.average_speed) + `/ ${units.unitString}`
+									{average_speed > 0
+										? getMinsFromSeconds(meters / average_speed) + `/ ${unitString}`
 										: "--"}
 								</td>
 								{session && <td>{lapCategories[index]}</td>}

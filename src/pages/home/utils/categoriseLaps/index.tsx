@@ -1,6 +1,7 @@
 import { Lap } from "../../subpages/activity/models"
 
-export const categoriseLaps = (laps: Lap[]) => {
+export const categoriseLaps = (laps: Lap[], session: boolean) => {
+	if (!session) return []
 	const averageLapSpeed = getAverageLapSpeed(laps)
 	const categorisedLaps: string[] = []
 	laps.forEach((lap) => {

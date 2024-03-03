@@ -11,7 +11,7 @@ export const loadDataSuccess = (data: object, filter: boolean) => {
 	return { type, data }
 }
 
-let cache = new LRUCache<string, any>({ max: 20, ttl: 1000 * 60 * 60 })
+let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
 export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
 	return async function (dispatch: any) {

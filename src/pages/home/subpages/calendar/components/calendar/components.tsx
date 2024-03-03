@@ -10,6 +10,9 @@ export const PageContainer = styled("div")`
 	margin-left: ${SIDEBAR_WIDTH};
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	overflow-y: auto;
+	--fc-button-bg-color: var(--bs-primary);
+	--fc-button-hover-bg-color: var(--bs-primary);
+	--fc-button-active-bg-color: var(--bs-primary);
 
 	@media (max-width: 768px) {
 		margin-left: 0;

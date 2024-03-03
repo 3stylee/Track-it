@@ -4,30 +4,24 @@ import { CardHeader, GraphTitle } from "./components"
 import { DesktopSort } from "../desktopSort"
 import { SORT_OPTIONS } from "../../../../../../constants"
 import { getMileageArray } from "../../../../utils/getMileageArray"
+import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import connect from "./connect"
-import { getDivisor } from "../../../../utils/getDivisor"
-import { LabelledStats, Stat } from "../../../../../../globalComponents/labelledStats"
 import { Card } from "react-bootstrap"
 import { useTheme } from "@emotion/react"
+import { AthleteActivities } from "../../../activitiesList/models"
+import { Units } from "../../../../../../models"
+import { getMilageChartStats } from "../../../../utils/getMileageChartStats"
 
-export const MileageChart = ({ athleteActivities, units }: any) => {
+interface MileageChartProps {
+	athleteActivities: AthleteActivities
+	units: Units
+}
+
+export const MileageChart = ({ athleteActivities, units }: MileageChartProps) => {
 	const theme = useTheme()
 	const [weekOrMonth, setWeekOrMonth] = useState(SORT_OPTIONS.WEEK)
-	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
 	const mileageData = getMileageArray(athleteActivities, weekOrMonth, units.meters)
-	const total = mileageData.reduce((partialSum, a) => partialSum + a, 0).toFixed(2)
-	const stats: Stat[] = [
-		{
-			text: "Total",
-			value: total,
-			unit: units.unitString,
-		},
-		{
-			text: `${isWeek ? "Daily" : "Weekly"} Average`,
-			value: (total / getDivisor(isWeek)).toFixed(2),
-			unit: units.unitString,
-		},
-	]
+	const stats = getMilageChartStats(mileageData, weekOrMonth, units)
 
 	return (
 		<Card bg={theme.bootstrap.background} text={theme.bootstrap.textColor}>
