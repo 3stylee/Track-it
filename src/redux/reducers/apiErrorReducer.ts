@@ -8,7 +8,7 @@ const actionTypeEndsInSuccess = (type: string) => {
 const apiErrorReducer = (state = initialState.apiError, action: { type: string; data: any }): string => {
 	switch (action.type) {
 		case types.API_CALL_ERROR:
-			return action.data.response.data.message
+			return action.data.response.data.message || "An error occurred"
 		default:
 			if (actionTypeEndsInSuccess(action.type)) {
 				return ""
