@@ -1,4 +1,4 @@
-import { SORT_OPTIONS } from "../../../../constants"
+import { SORT_OPTIONS } from "../../../../constants/constants"
 
 export const getDate = (weekOrMonth: string) => {
 	const now = new Date()

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../../../../constants"
+import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../../../../constants/constants"
 
 export const PageContainer = styled("div")`
 	display: flex;

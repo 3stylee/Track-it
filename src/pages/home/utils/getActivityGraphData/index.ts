@@ -1,5 +1,5 @@
 import { Units } from "../../../../models"
-import { STREAM_RESOLUTION_FACTOR } from "../../../../constants"
+import { STREAM_RESOLUTION_FACTOR } from "../../../../constants/constants"
 import { getAltitudeOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/altitudeOptions"
 import { getHeartrateOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/heartrateOptions"
 import { getPaceOptions } from "../../subpages/activity/components/activityGraphs/graphOptions/paceOptions"

@@ -1,4 +1,4 @@
-import { MAPBOX_ACCESS_TOKEN, THEMES } from "../../../../constants"
+import { MAPBOX_ACCESS_TOKEN, THEMES } from "../../../../constants/constants"
 
 export const getMapboxEndpoint = (coordinatesString: string, theme?: string) => {
 	const style = theme === THEMES.DARK ? "3stylee/clrp7f0qp00ag01r4gbqe64pp" : "mapbox/streets-v12"

@@ -8,7 +8,7 @@ import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
 import { Lap } from "../../models"
 import { Units } from "../../../../../../models"
-import { LAP_TABLE_HEADERS, SESSION_TYPES } from "../../../../../../constants"
+import { LAP_TABLE_HEADERS, SESSION_TYPES } from "../../../../../../constants/constants"
 
 interface LapsTableProps {
 	laps: Lap[]

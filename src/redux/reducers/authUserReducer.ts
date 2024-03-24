@@ -1,4 +1,4 @@
-import { AUTH_STATES } from "../../constants"
+import { AUTH_STATES } from "../../constants/constants"
 import * as types from "../actions/actionTypes"
 import initialState from "../initialState"
 

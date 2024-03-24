@@ -1,5 +1,5 @@
 import { getDate } from "./index"
-import { SORT_OPTIONS } from "../../../../constants"
+import { SORT_OPTIONS } from "../../../../constants/constants"
 
 describe("getDate", () => {
 	let dateSpy: jest.SpyInstance

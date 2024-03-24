@@ -1,6 +1,6 @@
 import React from "react"
 import { Line } from "react-chartjs-2"
-import { SORT_OPTIONS, WEEK_GRAPH_LABELS } from "../../../../../../constants"
+import { SORT_OPTIONS, WEEK_GRAPH_LABELS } from "../../../../../../constants/constants"
 import { CategoryScale, LinearScale, PointElement, LineElement, Chart, Title, Tooltip, Filler } from "chart.js"
 import options from "./chartOptions"
 import { getCurrentMonthWeeks } from "../../../../utils/getWeeksOfMonth"

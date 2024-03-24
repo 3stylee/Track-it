@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { ActivityTitle, CardContainer, ImagePlaceholder, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
-import { ROUTE_PATHS, THEMES } from "../../../../../../constants"
+import { ROUTE_PATHS, THEMES } from "../../../../../../constants/constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
 import { Badge, Card, Col } from "react-bootstrap"

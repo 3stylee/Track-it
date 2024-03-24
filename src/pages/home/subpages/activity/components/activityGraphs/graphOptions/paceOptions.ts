@@ -1,5 +1,5 @@
 import { Units } from "../../../../../../../models"
-import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
+import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants/constants"
 import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
 export const getPaceOptions = (length: number, theme: string, min: number, average: number, units: Units) => {

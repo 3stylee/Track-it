@@ -1,7 +1,7 @@
 import React from "react"
 import connect from "./connect"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
-import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../../../constants"
+import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../../../constants/constants"
 import { Body, CardHeader, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"

@@ -40,7 +40,7 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 			})
 			getRunTypePredictions(activities).then((response) => {
 				data = data.map((activity: any, index: number) => {
-					return { ...activity, predictedType: response.result[index] }
+					return { ...activity, predictedType: response[index] }
 				})
 				cache.set(endpoint, data)
 				dispatch(loadDataSuccess(data, hasFilter))

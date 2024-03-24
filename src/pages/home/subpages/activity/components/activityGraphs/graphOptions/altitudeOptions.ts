@@ -1,4 +1,4 @@
-import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
+import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants/constants"
 
 export const getAltitudeOptions = (length: number, theme: string, max: number, eGain: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)

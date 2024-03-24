@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_BASE_URL } from "../../constants"
+import { API_BASE_URL } from "../../constants/constants"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { reduceResolution } from "../utils/reduceStreamResolution"

@@ -1,5 +1,5 @@
 export const CLIENT_ID = "115309"
-export const REDIRECT_URI = "http://localhost:3000/authorize"
+export const REDIRECT_URI = "https://trackittraining.tech/authorize"
 export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
@@ -65,3 +65,21 @@ export const LAP_TABLE_HEADERS = [
 	{ name: "Pace", icon: "watch" },
 ]
 export const SESSION_TYPES = ["Session", "Hill Session"]
+export const ACTIVITY_LABEL_MAPPING = {
+	0: "Easy",
+	1: "Session",
+	2: "Tempo",
+	3: "Long Run",
+	4: "X-Train",
+	5: "Race",
+	6: "Hill Session",
+}
+export const MODEL_SCALER_INFO = {
+	data_min: [0.0, 24.0, 0.0, 0.0, 0.0, 0.0, 34.2],
+	data_max: [6.0, 4900.0, 23412.4, 8.948, 427.2, 2.0, 194.4],
+}
+export const ACTIVITY_TYPE_MAPPING = {
+	Run: 0,
+	Ride: 1,
+	Swim: 2,
+}

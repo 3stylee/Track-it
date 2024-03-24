@@ -1,19 +1,9 @@
-import axios from "axios"
+import { predictData } from "../predictData"
 
 export const getRunTypePredictions = async (activities: any) => {
 	try {
-		const response = await axios.post(
-			"http://localhost:3001/data",
-			{
-				data: activities,
-			},
-			{
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-				},
-			}
-		)
-		return response.data
+		const response = await predictData(activities)
+		return response
 	} catch (error) {
 		console.error(error)
 		throw error

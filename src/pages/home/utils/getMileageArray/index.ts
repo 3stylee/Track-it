@@ -1,4 +1,4 @@
-import { SORT_OPTIONS } from "../../../../constants"
+import { SORT_OPTIONS } from "../../../../constants/constants"
 import { AthleteActivities } from "../../subpages/activitiesList/models"
 import { getCurrentMonthWeeks } from "../getWeeksOfMonth"
 

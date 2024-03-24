@@ -1,7 +1,7 @@
 import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
-import { API_BASE_URL } from "../../constants"
+import { API_BASE_URL } from "../../constants/constants"
 import { processActivityData } from "../utils/processActivityData"
 import { getRunTypePredictions } from "../utils/getRunTypePredictions"
 
@@ -26,7 +26,7 @@ export const loadCurrentActivity = (id: number) => {
 			getRunTypePredictions([
 				[date, moving_time, distance, average_speed, total_elevation_gain, type, average_heartrate],
 			]).then((response) => {
-				const appendedData = { ...data, predictedType: response.result[0] }
+				const appendedData = { ...data, predictedType: response[0] }
 				dispatch(loadDataSuccess(appendedData))
 			})
 		} catch (error) {

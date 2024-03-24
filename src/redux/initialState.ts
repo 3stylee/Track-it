@@ -1,5 +1,5 @@
 import { AthleteActivities, DataFlags } from "../pages/home/subpages/activitiesList/models"
-import { AUTH_STATES } from "../constants"
+import { AUTH_STATES } from "../constants/constants"
 import { Units } from "../models"
 import { CurrentActivity, CurrentActivityStream } from "../pages/home/subpages/activity/models"
 import { AthleteData } from "../pages/home/subpages/dashboard/models"

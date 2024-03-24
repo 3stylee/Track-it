@@ -1,4 +1,4 @@
-import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants"
+import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../../../constants/constants"
 
 export const getHeartrateOptions = (length: number, theme: string, average: number) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)

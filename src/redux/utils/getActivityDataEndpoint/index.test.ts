@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../../constants"
+import { API_BASE_URL } from "../../../constants/constants"
 import { getEndpoint } from "./index"
 
 describe("getEndpoint", () => {

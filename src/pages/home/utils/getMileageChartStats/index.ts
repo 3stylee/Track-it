@@ -1,4 +1,4 @@
-import { SORT_OPTIONS } from "../../../../constants"
+import { SORT_OPTIONS } from "../../../../constants/constants"
 import { Units } from "../../../../models"
 import { getDivisor } from "../getDivisor"
 

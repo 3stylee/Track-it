@@ -1,4 +1,4 @@
-import { STREAM_RESOLUTION_FACTOR } from "../../../../constants"
+import { STREAM_RESOLUTION_FACTOR } from "../../../../constants/constants"
 
 export const getSecondsPerUnit = (distanceStream: any, divisor: number) => {
 	const paceList = []

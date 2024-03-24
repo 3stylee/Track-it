@@ -1,5 +1,5 @@
 import React from "react"
-import { SORT_OPTIONS } from "../../../../../../constants"
+import { SORT_OPTIONS } from "../../../../../../constants/constants"
 
 export const DesktopSort = ({ weekOrMonth, setWeekOrMonth }: any) => {
 	const handleItemClick = (selectedValue: string) => {

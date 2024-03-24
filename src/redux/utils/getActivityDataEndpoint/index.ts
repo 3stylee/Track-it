@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../../constants"
+import { API_BASE_URL } from "../../../constants/constants"
 
 export const getEndpoint = (dateBefore?: number, dateAfter?: number) => {
 	let endpoint = API_BASE_URL

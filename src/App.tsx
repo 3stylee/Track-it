@@ -11,7 +11,7 @@ import {
 	ROUTE_PATHS,
 	MISSING_PERMISSIONS_TITLE,
 	MISSING_PERMISSIONS_MESSAGE,
-} from "./constants"
+} from "./constants/constants"
 import TitleBanner from "./globalComponents/titleBanner"
 import LoginPage from "./pages/login/components/login"
 import OAuthorisationCallback from "./pages/login/components/OAuthorisationCallback"

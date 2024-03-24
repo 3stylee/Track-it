@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { DayPicker } from "react-day-picker"
-import { TITLE_BANNER_HEIGHT } from "../../../../../../constants"
+import { TITLE_BANNER_HEIGHT } from "../../../../../../constants/constants"
 
 export const StyledDayPicker = styled(DayPicker)`
 	--rdp-accent-color: var(--bs-primary);

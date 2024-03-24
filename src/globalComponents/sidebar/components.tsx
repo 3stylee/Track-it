@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants"
+import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants/constants"
 import { motion } from "framer-motion"
 
 export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`

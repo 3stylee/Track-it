@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { TITLE_BANNER_HEIGHT } from "../../constants"
+import { TITLE_BANNER_HEIGHT } from "../../constants/constants"
 
 export const BannerBackground = styled("div")`
 	background-color: var(--bs-primary);

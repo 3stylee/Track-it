@@ -1,6 +1,6 @@
 import React from "react"
 import { AuthorizeButton, ContainerCard } from "./components"
-import { LOGIN_MESSAGE, O_AUTH_URL } from "../../../../constants"
+import { LOGIN_MESSAGE, O_AUTH_URL } from "../../../../constants/constants"
 
 export const AuthorizeCard = () => {
 	const connectWithStrava = require("../../../../assets/images/btn_strava_connectwith_orange@2x.png")

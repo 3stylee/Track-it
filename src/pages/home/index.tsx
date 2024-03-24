@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { AUTH_STATES, ROUTE_PATHS } from "../../constants"
+import { AUTH_STATES, ROUTE_PATHS } from "../../constants/constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
