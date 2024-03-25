@@ -55,6 +55,7 @@ export const SIDEBAR_ICONS = [
 export const CHOOSE_DATES = "Choose Dates"
 export const CLEAR_FILTER = "Clear Filter"
 export const SELECT_DATE_RANGE = "Select a date range"
+export const NO_RESULTS = "Please try another selection, or check you have uploaded your activity to Strava"
 export const SIDEBAR_WIDTH = "3.5rem"
 export const STREAM_RESOLUTION_FACTOR = 15
 export const ACTIVITY_GRAPH_TIME_LABELS = 8

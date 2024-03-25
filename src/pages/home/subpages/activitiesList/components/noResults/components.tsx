@@ -17,4 +17,5 @@ export const NoResultsDescription = styled("p")`
 	width: 50%;
 	margin: 0;
 	color: ${({ theme }) => theme.text};
+	text-align: center;
 `
