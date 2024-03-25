@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react"
 import styled from "@emotion/styled"
-import { Card } from "react-bootstrap"
+import { Badge, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 export const ActivityTitle = styled("h5")`
@@ -72,4 +72,11 @@ export const ImagePlaceholder = styled("div")`
 		background: linear-gradient(90deg, #eee, #f4f4f4, #eee);
 		animation: ${gradient} 1s infinite ease-in-out;
 	}
+`
+export const StyledBadge = styled(Badge)<{ display: boolean }>`
+	display: ${({ display }) => (display ? "inline" : "none")};
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	${({ theme }) => theme.name === "dark" && `border: 1px solid ${theme.text};`}
 `

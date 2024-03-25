@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import { ActivityTitle, CardContainer, ImagePlaceholder, StyledImage, StyledLink } from "./components"
+import { ActivityTitle, CardContainer, ImagePlaceholder, StyledBadge, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ROUTE_PATHS, THEMES } from "../../../../../../constants/constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
-import { Badge, Card, Col } from "react-bootstrap"
+import { Card, Col } from "react-bootstrap"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../../../models"
@@ -50,11 +50,11 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 							setImagedLoaded(true)
 						}}
 					/>
+					<StyledBadge display={imageLoaded}>{predictedType}</StyledBadge>
 					{!imageLoaded && <ImagePlaceholder />}
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>
 						<LabelledStats stats={stats} small={true} />
-						<Badge className="mt-3">{predictedType}</Badge>
 					</Card.Body>
 				</CardContainer>
 			</StyledLink>

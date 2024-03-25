@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap"
 import FeatherIcon from "feather-icons-react"
 import { addDatePickerListeners } from "../../../../utils/addDatePickerListeners"
 import { getDatePickerText } from "../../../../utils/getDatePickerText"
+import { CHOOSE_DATES, CLEAR_FILTER, SELECT_DATE_RANGE } from "../../../../../../constants/constants"
 
 interface DatePickerProps {
 	onClick: (dates: DateRange | undefined) => void
@@ -43,7 +44,7 @@ export const DatePicker = ({
 			<FilterButtonContainer>
 				<Button onClick={() => setIsOpen(!isOpen)}>
 					<ButtonText>
-						{filterApplied ? footerText : "Filter by date"}
+						{filterApplied ? footerText : CHOOSE_DATES}
 						<FeatherIcon icon="calendar" size={18} />
 					</ButtonText>
 				</Button>
@@ -55,7 +56,7 @@ export const DatePicker = ({
 							setSelected({ from: undefined, to: undefined })
 							clearFilter()
 						}}>
-						Clear Filter
+						{CLEAR_FILTER}
 						<FeatherIcon icon="x" size={18} />
 					</ClearButton>
 				)}
@@ -70,7 +71,7 @@ export const DatePicker = ({
 						}}
 						footer={
 							<Footer>
-								{footerText || "Select a date range"}
+								{footerText || SELECT_DATE_RANGE}
 								<Button
 									disabled={!(selected?.from && selected?.to)}
 									onClick={() => {

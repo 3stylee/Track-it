@@ -9,10 +9,11 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	transition: margin-left 0.3s;
 	position: fixed;
 	height: 100%;
+	z-index: 3;
 
 	@media (max-width: 768px) {
 		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
-		z-index: 1;
+		z-index: 3;
 		transition: margin-left 0.3s;
 	}
 `
