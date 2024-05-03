@@ -3,7 +3,14 @@ import { BannerBackground, BannerText, BannerTitle, CollapseButton, HomeLink, St
 import connect from "./connect"
 import FeatherIcon from "feather-icons-react"
 
-export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: any) => {
+export interface TitleBannerProps {
+	openSidebar: () => void
+	closeSidebar: () => void
+	sidebarExpanded: boolean
+	authState: string
+}
+
+export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded, authState }: TitleBannerProps) => {
 	const toggleSidebar = (): any => {
 		if (sidebarExpanded) {
 			closeSidebar()
@@ -15,7 +22,7 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: any)
 	const stravaLogo = require("../../assets/images/api_logo_pwrdBy_strava_stack_white.png")
 	return (
 		<BannerBackground>
-			<CollapseButton onClick={toggleSidebar}>
+			<CollapseButton onClick={toggleSidebar} showButton={authState === "authorised"}>
 				<FeatherIcon icon={`chevrons-${sidebarExpanded ? "left" : "right"}`} size="36px" />
 			</CollapseButton>
 			<BannerTitle>

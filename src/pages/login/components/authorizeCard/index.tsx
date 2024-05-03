@@ -5,7 +5,7 @@ import { LOGIN_MESSAGE, O_AUTH_URL } from "../../../../constants/constants"
 export const AuthorizeCard = () => {
 	const connectWithStrava = require("../../../../assets/images/btn_strava_connectwith_orange@2x.png")
 	return (
-		<ContainerCard className="card w-25">
+		<ContainerCard className="card">
 			<div className="card-body">
 				<img
 					className="card-img"
