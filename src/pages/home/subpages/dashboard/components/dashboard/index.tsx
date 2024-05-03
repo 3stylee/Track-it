@@ -9,6 +9,7 @@ import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpin
 import { Col, Row } from "react-bootstrap"
 import { AthleteActivities, DataFlags } from "../../../activitiesList/models"
 import { LoadAthleteActivities } from "../../models"
+//import { YearStats } from "../yearStats"
 
 interface DashboardProps {
 	athleteActivities: AthleteActivities
@@ -45,6 +46,11 @@ export const Dashboard = ({
 					<RecentActivities />
 				</Col>
 			</Row>
+			{/* <Row>
+				<Col sm={12}>
+					<YearStats />
+				</Col>
+			</Row> */}
 		</PageContainer>
 	)
 }

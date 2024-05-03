@@ -68,7 +68,7 @@ export const LAP_TABLE_HEADERS = [
 	{ name: "Time", icon: "clock" },
 	{ name: "Pace", icon: "watch" },
 ]
-export const SESSION_TYPES = ["Session", "Hill Session"]
+export const SESSION_TYPES = ["Session", "Hill Session", "Tempo"]
 export const ACTIVITY_LABEL_MAPPING = {
 	0: "Easy",
 	1: "Session",
