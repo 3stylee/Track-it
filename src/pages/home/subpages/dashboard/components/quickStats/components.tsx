@@ -6,7 +6,9 @@ export const StatsList = styled("ul")`
 	padding: 0;
 	margin: 0;
 	@media (max-width: 768px) {
+		flex-wrap: wrap;
 		margin: 2rem 0;
+		justify-content: center;
 	}
 `
 export const Stat = styled("li")`

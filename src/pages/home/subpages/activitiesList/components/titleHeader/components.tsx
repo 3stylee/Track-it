@@ -5,6 +5,12 @@ export const Filters = styled("div")`
 	justify-content: space-between;
 	align-items: center;
 	padding: 2rem;
+	flex-wrap: wrap;
+
+	@media (max-width: 768px) {
+		padding: 1rem;
+		padding-left: 1.25rem;
+	}
 `
 export const Title = styled("h3")`
 	margin: 0;

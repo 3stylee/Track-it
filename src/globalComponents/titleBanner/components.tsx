@@ -34,6 +34,7 @@ export const CollapseButton = styled("button")`
 	background: none;
 	transition: background-color 0.3s;
 	border-radius: 50%;
+	color: black;
 
 	&:hover {
 		background-color: #fd4499;
