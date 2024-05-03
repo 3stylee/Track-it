@@ -8,6 +8,8 @@ const authUserReducer = (state = initialState.authState, action: { type: string 
 			return AUTH_STATES.AUTHORISED
 		case types.AUTHORISE_USER_ERROR:
 			return AUTH_STATES.AUTH_ERROR
+		case types.LOGOUT_USER:
+			return AUTH_STATES.UNAUTHORISED
 		default:
 			return state
 	}

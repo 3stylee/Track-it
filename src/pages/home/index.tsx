@@ -9,9 +9,10 @@ export interface HomeProps {
 	authState: string
 	getAuthToken: any
 	toggleTheme: () => void
+	authUserSuccess: () => void
 }
 
-export const Home = ({ authState, getAuthToken, toggleTheme }: HomeProps) => {
+export const Home = ({ authState, getAuthToken, toggleTheme, authUserSuccess }: HomeProps) => {
 	const navigate = useNavigate()
 	const [isTokenValid, setIsTokenValid] = React.useState(false)
 
@@ -19,6 +20,8 @@ export const Home = ({ authState, getAuthToken, toggleTheme }: HomeProps) => {
 	useEffect(() => {
 		if (!(localStorage.getItem("access_code") || authState === AUTH_STATES.AUTHORISED)) {
 			navigate(ROUTE_PATHS.DEFAULT)
+		} else {
+			authUserSuccess()
 		}
 	}, [])
 

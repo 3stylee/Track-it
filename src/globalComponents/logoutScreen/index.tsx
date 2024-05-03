@@ -1,13 +1,15 @@
 import React from "react"
 import { Button, Modal } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import connect from "./connect"
 
 interface LogoutProps {
 	show: boolean
 	handleClose: () => void
+	logoutUser: () => void
 }
 
-export const LogoutScreen = ({ show, handleClose }: LogoutProps) => {
+const LogoutScreen = ({ show, handleClose, logoutUser }: LogoutProps) => {
 	const navigate = useNavigate()
 	return (
 		<Modal show={show} onHide={handleClose} centered>
@@ -19,6 +21,7 @@ export const LogoutScreen = ({ show, handleClose }: LogoutProps) => {
 				<Button
 					variant="danger"
 					onClick={() => {
+						logoutUser()
 						localStorage.clear()
 						navigate("/")
 					}}>
@@ -31,3 +34,5 @@ export const LogoutScreen = ({ show, handleClose }: LogoutProps) => {
 		</Modal>
 	)
 }
+
+export default connect(LogoutScreen)

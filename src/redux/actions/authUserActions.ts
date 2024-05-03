@@ -11,6 +11,10 @@ export const authUserError = () => {
 	return { type: types.AUTHORISE_USER_ERROR }
 }
 
+export const logoutUser = () => {
+	return { type: types.LOGOUT_USER }
+}
+
 export const getAuthToken = (code: string, refresh?: boolean) => {
 	return async function (dispatch: any) {
 		const payload = {

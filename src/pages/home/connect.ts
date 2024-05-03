@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../redux/initialState"
-import { getAuthToken } from "../../redux/actions/authUserActions"
+import { authUserSuccess, getAuthToken } from "../../redux/actions/authUserActions"
 
 export const mapStateToProps = (state: State) => {
 	return {
@@ -10,6 +10,7 @@ export const mapStateToProps = (state: State) => {
 
 export const mapDispatchToProps = {
 	getAuthToken,
+	authUserSuccess,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

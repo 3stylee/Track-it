@@ -6,7 +6,7 @@ import { useTheme } from "@emotion/react"
 import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
-import { LogoutScreen } from "../logoutScreen"
+import LogoutScreen from "../logoutScreen"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
