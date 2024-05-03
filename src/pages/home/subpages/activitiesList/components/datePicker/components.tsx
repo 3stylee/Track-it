@@ -15,6 +15,11 @@ export const Container = styled("div")<{ top: number }>`
 	top: calc(${TITLE_BANNER_HEIGHT} + 2rem + 2.375rem - ${({ top }) => top}px);
 	right: 2rem;
 	z-index: 100;
+
+	@media (max-width: 768px) {
+		top: calc(${TITLE_BANNER_HEIGHT} + 1rem + 2.375rem - ${({ top }) => top}px);
+		right: 1rem;
+	}
 `
 export const Footer = styled("div")`
 	display: flex;

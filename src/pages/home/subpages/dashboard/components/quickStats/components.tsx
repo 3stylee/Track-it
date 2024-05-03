@@ -16,6 +16,10 @@ export const Stat = styled("li")`
 	flex-direction: column;
 	text-align: center;
 	margin: 0 1rem;
+
+	@media (max-width: 768px) {
+		margin-bottom: 1rem;
+	}
 `
 export const StatName = styled("span")`
 	font-size: 0.75rem;

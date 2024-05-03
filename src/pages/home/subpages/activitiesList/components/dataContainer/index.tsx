@@ -18,7 +18,7 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 	return (
 		<Container>
 			{data.length > 0 ? (
-				<Row sm={1} md={2} lg={3} xl={4} className="g-4">
+				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
 					{data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
 						<RouteMap
 							polyline={decodePolyLine(polyline)}
