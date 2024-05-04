@@ -18,9 +18,11 @@ export const Home = ({ authState, getAuthToken, toggleTheme, authUserSuccess }: 
 
 	// Boot user back to login if they haven't authorised their strava account
 	useEffect(() => {
-		if (!(localStorage.getItem("access_code") || authState === AUTH_STATES.AUTHORISED)) {
+		if (!localStorage.getItem("access_code")) {
 			navigate(ROUTE_PATHS.DEFAULT)
-		} else {
+		}
+		// Update auth state
+		if (authState !== AUTH_STATES.AUTHORISED) {
 			authUserSuccess()
 		}
 	}, [])

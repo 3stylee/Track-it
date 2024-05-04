@@ -76,3 +76,16 @@ export const StravaLogo = styled("img")`
 		margin-right: 0.25rem;
 	}
 `
+
+export const TrackLogo = styled("img")`
+	height: 4rem;
+
+	@media (max-width: 576px) {
+		height: 3rem;
+		margin-left: 0.25rem;
+	}
+
+	@media (max-width: 320px) {
+		display: none;
+	}
+`
