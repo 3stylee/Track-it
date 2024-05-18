@@ -32,7 +32,7 @@ export const getActivityTitleStats = (currentActivity: CurrentActivity, units: U
 		},
 		{
 			text: "Average Pace",
-			value: getMinsFromSeconds(meters / average_speed),
+			value: average_speed > 0 ? getMinsFromSeconds(meters / average_speed) : "--:--",
 			unit: ` /${unitString}`,
 		},
 		{

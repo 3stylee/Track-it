@@ -1,4 +1,4 @@
-const processData = require("./index")
+import processData from "."
 
 const mockData = [
 	["2024-02-16T12:43:26Z", 2835, 9881.5, 3.486, 32, "Run", 153.9],

@@ -7,17 +7,13 @@ import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
 import LogoutScreen from "../logoutScreen"
+import { getUrlPath } from "../../pages/home/utils/getUrlPath"
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
 	const [showLogout, setShowLogout] = useState(false)
 	const location = useLocation()
-	let urlPath = location.pathname.split("/").at(-1)
-	// TODO: probably a better way to do this, works for now
-	if (urlPath === "home") {
-		urlPath = ""
-	}
 	return (
 		<>
 			<SidebarContainer
@@ -25,7 +21,7 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 				className={`flex-column text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
 				<ul className="nav flex-column">
 					{SIDEBAR_ICONS.map(({ path, icon }) => {
-						const selected = path === urlPath
+						const selected = path === getUrlPath(location)
 						return (
 							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
 								<div className="d-flex">

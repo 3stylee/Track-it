@@ -19,6 +19,9 @@ interface ActivityGraphsProps {
 
 export const ActivityGraphs = ({ currentActivityStream, currentActivity, laps, units }: ActivityGraphsProps) => {
 	const theme = useTheme()
+	if (currentActivity.type !== "Run") {
+		return null
+	}
 	if (currentActivityStream.distance) {
 		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units)
 		return (
