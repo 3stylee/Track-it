@@ -16,6 +16,8 @@ export const API_ERROR_MESSAGES = {
 }
 export const ROUTE_PATHS = {
 	DEFAULT: "/",
+	LOGIN: "/login",
+	REGISTER: "/register",
 	HOME: "/home",
 	SEARCH_ACTIVITIES: "/home/search",
 	SESSIONS: "/home/sessions",

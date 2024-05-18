@@ -1,32 +1,21 @@
 import React, { useState } from "react"
 import { Button, Form } from "react-bootstrap"
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { CentralCard, PageContainer } from "../components"
 import { useNavigate } from "react-router-dom"
 import { ROUTE_PATHS } from "../../../../constants/constants"
 
-export const Login = () => {
+export const Register = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [error, setError] = useState(null)
 	const navigate = useNavigate()
 
-	const handleLogin = async (event: any) => {
+	const handleRegister = async (event: any) => {
 		event.preventDefault()
 		const auth = getAuth()
 		try {
-			await signInWithEmailAndPassword(auth, email, password)
-			navigate(ROUTE_PATHS.HOME)
-		} catch (error: any) {
-			setError(error.message)
-		}
-	}
-
-	const handleGoogleLogin = async () => {
-		const auth = getAuth()
-		const provider = new GoogleAuthProvider()
-		try {
-			await signInWithPopup(auth, provider)
+			await createUserWithEmailAndPassword(auth, email, password)
 			navigate(ROUTE_PATHS.HOME)
 		} catch (error: any) {
 			setError(error.message)
@@ -36,7 +25,7 @@ export const Login = () => {
 	return (
 		<PageContainer>
 			<CentralCard>
-				<Form onSubmit={handleLogin}>
+				<Form onSubmit={handleRegister}>
 					<Form.Group controlId="formBasicEmail">
 						<Form.Label>Email address</Form.Label>
 						<Form.Control
@@ -60,13 +49,9 @@ export const Login = () => {
 					{error && <p>{error}</p>}
 
 					<Button variant="primary mt-3" type="submit">
-						Login
+						Register
 					</Button>
 				</Form>
-				<hr />
-				<Button variant="secondary" onClick={handleGoogleLogin}>
-					Login with Google
-				</Button>
 			</CentralCard>
 		</PageContainer>
 	)
