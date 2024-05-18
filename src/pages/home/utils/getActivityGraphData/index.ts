@@ -7,6 +7,16 @@ import { getSecondsPerUnit } from "../getSecondsPerUnit"
 import { getTimeSeries } from "../getTimeSeries"
 import { CurrentActivity, CurrentActivityStream } from "../../subpages/activity/models"
 
+/**
+ * Prepares the data for the activity graphs including pace, heart rate, and altitude.
+ *
+ * @param {CurrentActivityStream} currentActivityStream - The stream data of the current activity.
+ * @param {CurrentActivity} currentActivity - The data of the current activity.
+ * @param {string} theme - The theme for the graph options.
+ * @param {Units} units - The units to be used for the graph data.
+ *
+ * @returns {Object} An object containing the data needed to construct the graphs
+ */
 export const getActivityGraphData = (
 	currentActivityStream: CurrentActivityStream,
 	currentActivity: CurrentActivity,

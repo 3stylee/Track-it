@@ -2,6 +2,13 @@ import processData from "../processData"
 import * as tf from "@tensorflow/tfjs"
 import { ACTIVITY_LABEL_MAPPING } from "../../../constants/constants"
 
+/**
+ * Feeds an array of objects representing activities through a Neural Network. Returns an array of predicted activity types (tempo, long run etc...).
+ *
+ * @param {Object[]} data - An array of objects, each representing an activity.
+ *
+ * @returns {String[]} - An array of strings, each representing a predicted activity type.
+ */
 export const predictData = async (data) => {
 	const results = []
 	const processedData = processData(data)

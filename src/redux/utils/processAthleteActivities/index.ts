@@ -12,6 +12,13 @@ export interface Activity {
 	average_heartrate: number
 }
 
+/**
+ * Processes an array of raw athlete activities and returns an array of processed activities.
+ *
+ * @param {Activity[]} data - An array of raw Activity objects.
+ *
+ * @returns {Object[]} An array of objects, each representing a processed activity.
+ */
 export const processAthleteActivities = (data: Activity[]) => {
 	const processedData = data.map((activity: Activity) => ({
 		athlete: {

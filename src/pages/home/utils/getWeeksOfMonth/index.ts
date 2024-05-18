@@ -1,3 +1,8 @@
+/**
+ * Generates an array of objects, each representing a week in the current month.
+ *
+ * @returns {Object[]} An array of objects, each representing a week in the current month. Each object has start and end dates,
+ */
 export const getCurrentMonthWeeks = () => {
 	const weeks = []
 

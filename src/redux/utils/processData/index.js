@@ -1,6 +1,13 @@
 import { MODEL_SCALER_INFO } from "../../../constants/constants"
 import { ACTIVITY_TYPE_MAPPING } from "../../../constants/constants"
 
+/**
+ * Processes an array of predictors and scales them into normalised predictors.
+ *
+ * @param {Array}data - the raw predictors to process.
+ *
+ * @returns {Array} the normalised predictors.
+ */
 const processData = (data) => {
 	const processedData = data.map((row) => {
 		const dateObject = new Date(row[0])
@@ -11,6 +18,13 @@ const processData = (data) => {
 	return processedData
 }
 
+/**
+ * Processes an array of raw predictors and scales them into normalised predictors.
+ *
+ * @param {Array}row - the raw predictors to process.
+ *
+ * @returns {Array} the normalised predictors.
+ */
 const scaleRow = (row) => {
 	const scaledRow = row.map((value, index) => {
 		const dataMin = MODEL_SCALER_INFO.data_min[index]

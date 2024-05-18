@@ -1,6 +1,11 @@
 import { SORT_OPTIONS } from "../../../../constants/constants"
 import { getDate } from "../getDate"
 
+/**
+ * Fetches athlete activities data starting from six days before the start of the current month.
+ *
+ * @param {Function} loadAthleteActivities - A redux action to load athlete activities.
+ */
 export const getActivityData = (
 	loadAthleteActivities: (
 		dateBefore?: number | undefined,

@@ -5,6 +5,13 @@ export interface dumbPredictors {
 	distance: number
 }
 
+/**
+ * Predicts the type of each run in a dataset (tempo, long run etc...). Done using a simple rule-based system hence the name "dumb".
+ *
+ * @param {dumbPredictors[]} data - An array of objects, each representing an activity.
+ *
+ * @returns {string[]} An array of strings, each representing the predicted type of a specific activity.
+ */
 export const dumbPredictData = (data: dumbPredictors[]) => {
 	const results = []
 	for (let row of data) {
@@ -15,6 +22,14 @@ export const dumbPredictData = (data: dumbPredictors[]) => {
 	return results
 }
 
+/**
+ * Classifies a workout based on the average heart rate and speed.
+ *
+ * @param {number} avg_bpm - The average heart rate during the workout in beats per minute.
+ * @param {number} avg_speed - The average speed during the workout in kilometers per hour.
+ *
+ * @returns {string} A string representing the type of the workout.
+ */
 export const classifyWorkout = (avg_bpm: number, avg_speed: number) => {
 	let easyScore = 0
 	let tempoScore = 0

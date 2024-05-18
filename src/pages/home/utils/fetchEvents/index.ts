@@ -5,6 +5,16 @@ import { LRUCache } from "lru-cache"
 
 let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
 
+/**
+ * Fetches a list of athlete activities and processes it so it can be used by FullCalendar.
+ * The data is cached for future use.
+ *
+ * @param {Object} info - An object containing the start and end dates for the data to fetch.
+ * @param {Function} successCallback - A function that is called on successful fetch.
+ * @param {Function} failureCallback - A function that is called with an error message on failure.
+ *
+ * @returns {Promise<void>} Returns a Promise that resolves when the data has been fetched and processed.
+ */
 export const fetchEvents = async (info: any, successCallback: any, failureCallback: any) => {
 	const today = new Date()
 	today.setHours(0, 0, 0, 0)

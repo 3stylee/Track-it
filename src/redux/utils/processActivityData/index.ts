@@ -19,6 +19,13 @@ export interface CurrentActivity {
 	laps: any
 }
 
+/**
+ * Processes raw activity data and returns an object with selected properties.
+ *
+ * @param {Object} activityData - An object representing raw activity data.
+ *
+ * @returns {Object} An object with desired properties.
+ */
 export const processActivityData = (activityData: any) => {
 	return {
 		id: activityData.id,

@@ -1,5 +1,10 @@
 import { Lap } from "../../subpages/activity/models"
 
+/**
+ * Will categorise laps into Effort and Recovery based on the average speed of the laps
+ * @param {Array} laps - A list of laps to categorise
+ * @returns {Array} A list of the categorised laps
+ */
 export const categoriseLaps = (laps: Lap[], session: boolean) => {
 	if (!session) return []
 	const averageLapSpeed = getAverageLapSpeed(laps)

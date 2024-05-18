@@ -69,6 +69,13 @@ interface AthleteData {
 	}
 }
 
+/**
+ * Processes a raw object of athlete data and returns an object with selected properties.
+ *
+ * @param {AthleteData} data - An array of raw Athlete data.
+ *
+ * @returns {Object} A processed object with desired properties.
+ */
 export const processAthleteData = (data: AthleteData) => {
 	return {
 		yearTotalRuns: data.ytd_run_totals.count,

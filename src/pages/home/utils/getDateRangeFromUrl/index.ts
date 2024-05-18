@@ -1,3 +1,8 @@
+/**
+ * Extracts the before and after parameters from the URL query string and converts them into a date range.
+ *
+ * @returns {Object} The date range object.
+ */
 export const getDateRangeFromUrl = () => {
 	const params = window.location.search
 	const searchParams = new URLSearchParams(params)
