@@ -5,10 +5,12 @@ import initialState from "../initialState"
 const authUserReducer = (state = initialState.authState, action: { type: string }): string => {
 	switch (action.type) {
 		case types.AUTHORISE_USER_SUCCESS:
+		case types.MANUAL_AUTHORISE_USER:
 			return AUTH_STATES.AUTHORISED
 		case types.AUTHORISE_USER_ERROR:
+		case types.LOGOUT_USER_ERROR:
 			return AUTH_STATES.AUTH_ERROR
-		case types.LOGOUT_USER:
+		case types.LOGOUT_USER_SUCCESS:
 			return AUTH_STATES.UNAUTHORISED
 		default:
 			return state

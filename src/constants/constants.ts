@@ -1,5 +1,5 @@
 export const CLIENT_ID = "115309"
-export const REDIRECT_URI = "https://trackittraining.tech/authorize"
+export const REDIRECT_URI = "http://localhost:3000/authorize"
 export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
@@ -27,6 +27,10 @@ export const ROUTE_PATHS = {
 	ACTIVITY: "/home/activity",
 	CALENDAR: "/home/calendar",
 }
+export const LOGIN_ERROR_MESSAGE = "Incorrect email or password, please try again"
+export const INVALID_EMAIL = "Invalid Email."
+export const PASSWORD_BLANK = "Password cannot be blank."
+export const SIGN_UP_MESSAGE = "Don't have an account? Sign up here"
 export const DATA_ERROR_MESSAGE = "Sorry, we had trouble getting your data, please try again"
 export const INITIAL_DATA_MESSAGE = ""
 export const MAPBOX_ACCESS_TOKEN =

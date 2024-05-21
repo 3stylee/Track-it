@@ -13,7 +13,7 @@ import {
 	MISSING_PERMISSIONS_MESSAGE,
 } from "./constants/constants"
 import TitleBanner from "./globalComponents/titleBanner"
-import ConnectStrava from "./pages/connectStrava/components/connectStrava"
+//import ConnectStrava from "./pages/connectStrava/components/connectStrava"
 import OAuthorisationCallback from "./pages/connectStrava/components/OAuthorisationCallback"
 import Home from "./pages/home"
 import ErrorPage from "./pages/errorPage"
@@ -23,7 +23,7 @@ import Activity from "./pages/home/subpages/activity/components/activity"
 import { Calendar } from "./pages/home/subpages/calendar/components/calendar"
 import { ThemeProvider } from "@emotion/react"
 import useCustomTheme from "./theme/useCustomTheme"
-import { Login } from "./pages/login/components/login"
+import Login from "./pages/login/components/login"
 import { Register } from "./pages/login/components/register"
 
 const App = () => {
@@ -33,9 +33,9 @@ const App = () => {
 			<TitleBanner />
 			<BrowserRouter>
 				<Routes>
+					<Route path={ROUTE_PATHS.DEFAULT} element={<Login />} />
 					<Route path={ROUTE_PATHS.LOGIN} element={<Login />} />
 					<Route path={ROUTE_PATHS.REGISTER} element={<Register />} />
-					<Route path={ROUTE_PATHS.DEFAULT} element={<ConnectStrava />} />
 					<Route path={ROUTE_PATHS.AUTHORIZE} element={<OAuthorisationCallback />} />
 					<Route
 						path={ROUTE_PATHS.AUTH_ERROR}

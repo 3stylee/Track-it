@@ -1,15 +1,17 @@
 import { connect } from "react-redux"
-import { getAuthToken, manualAuthUser } from "../../redux/actions/authUserActions"
+import { authGoogleUser, authUser } from "../../../../redux/actions/authUserActions"
 
 export const mapStateToProps = (state: any) => {
 	return {
+		apiCallsInProgress: state.apiCallsInProgress,
 		authState: state.authState,
+		apiError: state.apiError,
 	}
 }
 
 export const mapDispatchToProps = {
-	getAuthToken,
-	manualAuthUser,
+	authUser,
+	authGoogleUser,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

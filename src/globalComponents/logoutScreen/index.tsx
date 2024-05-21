@@ -16,14 +16,13 @@ const LogoutScreen = ({ show, handleClose, logoutUser }: LogoutProps) => {
 			<Modal.Header closeButton>
 				<Modal.Title>Log Out</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>Do you want to log out and revoke our access to your Strava account?</Modal.Body>
+			<Modal.Body>Do you want to log out?</Modal.Body>
 			<Modal.Footer>
 				<Button
 					variant="danger"
 					onClick={() => {
 						logoutUser()
-						localStorage.clear()
-						navigate("/")
+						navigate("/login")
 					}}>
 					Log out
 				</Button>
