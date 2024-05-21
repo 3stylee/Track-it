@@ -1,6 +1,6 @@
 import { AthleteActivities, DataFlags } from "../pages/home/subpages/activitiesList/models"
 import { AUTH_STATES } from "../constants/constants"
-import { Units } from "../models"
+import { Units, UserData } from "../models"
 import { CurrentActivity, CurrentActivityStream } from "../pages/home/subpages/activity/models"
 import { AthleteData } from "../pages/home/subpages/dashboard/models"
 
@@ -16,6 +16,7 @@ export interface State {
 	apiError: string
 	sidebarExpanded: boolean
 	units: Units
+	userData: UserData
 }
 
 export default {
@@ -35,5 +36,9 @@ export default {
 	units: {
 		unitString: "km",
 		meters: 1000,
+	},
+	userData: {
+		stravaAccess: false,
+		email: "",
 	},
 } as State

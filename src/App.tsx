@@ -13,7 +13,7 @@ import {
 	MISSING_PERMISSIONS_MESSAGE,
 } from "./constants/constants"
 import TitleBanner from "./globalComponents/titleBanner"
-//import ConnectStrava from "./pages/connectStrava/components/connectStrava"
+import ConnectStrava from "./pages/connectStrava/components/connectStrava"
 import OAuthorisationCallback from "./pages/connectStrava/components/OAuthorisationCallback"
 import Home from "./pages/home"
 import ErrorPage from "./pages/errorPage"
@@ -59,6 +59,7 @@ const App = () => {
 							/>
 						}
 					/>
+					<Route path={ROUTE_PATHS.CONNECT} element={<ConnectStrava />} />
 					<Route path={ROUTE_PATHS.HOME} element={<Home toggleTheme={toggleTheme} />}>
 						<Route path="" element={<Dashboard />} />
 						<Route path={ROUTE_PATHS.SEARCH_ACTIVITIES} element={<ActivitiesList />} />

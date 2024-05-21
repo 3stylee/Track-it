@@ -16,6 +16,7 @@ export const API_ERROR_MESSAGES = {
 }
 export const ROUTE_PATHS = {
 	DEFAULT: "/",
+	CONNECT: "/connect",
 	LOGIN: "/login",
 	REGISTER: "/register",
 	HOME: "/home",

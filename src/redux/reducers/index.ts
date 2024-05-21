@@ -9,6 +9,7 @@ import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
 import dataFlags from "./dataFlagsReducer"
+import userData from "./userDataReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
@@ -21,4 +22,5 @@ export const rootReducer = combineReducers({
 	authState,
 	sidebarExpanded,
 	units,
+	userData,
 })

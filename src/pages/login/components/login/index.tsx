@@ -13,6 +13,7 @@ import {
 	SIGN_UP_MESSAGE,
 } from "../../../../constants/constants"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { GoogleSignInButton } from "../googleSignInButton"
 
 interface LoginProps {
 	authState: string
@@ -89,9 +90,7 @@ const Login = ({ apiCallsInProgress, apiError, authUser, authGoogleUser }: Login
 					)}
 				</Form>
 				<CentralSmallText>OR</CentralSmallText>
-				<Button variant="secondary" onClick={handleGoogleLogin}>
-					Login with Google
-				</Button>
+				<GoogleSignInButton onClick={handleGoogleLogin} />
 				<hr />
 				<CentralTextLink
 					onClick={() => {

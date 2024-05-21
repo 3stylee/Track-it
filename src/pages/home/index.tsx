@@ -5,15 +5,18 @@ import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { UserData } from "../../models"
 
 export interface HomeProps {
 	getAuthToken: any
 	authState: string
+	userData: UserData
+	loadUserData: () => void
 	manualAuthUser: () => void
 	toggleTheme: () => void
 }
 
-export const Home = ({ getAuthToken, authState, manualAuthUser, toggleTheme }: HomeProps) => {
+export const Home = ({ getAuthToken, authState, userData, loadUserData, manualAuthUser, toggleTheme }: HomeProps) => {
 	const navigate = useNavigate()
 	const [isTokenValid, setIsTokenValid] = useState(false)
 
@@ -29,6 +32,17 @@ export const Home = ({ getAuthToken, authState, manualAuthUser, toggleTheme }: H
 			}
 		})
 	}, [])
+
+	// If strava connection not present, redirect to connect page
+	useEffect(() => {
+		loadUserData()
+	}, [])
+
+	useEffect(() => {
+		if (userData.email !== "" && !userData.stravaAccess) {
+			navigate(ROUTE_PATHS.CONNECT)
+		}
+	})
 
 	// If auth token expires, refresh auth token
 	useEffect(() => {
