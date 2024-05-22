@@ -11,6 +11,11 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				stravaAccess: false,
 				email: "",
 			}
+		case types.STORE_STRAVA_AUTH_SUCCESS:
+			return {
+				...state,
+				stravaAccess: true,
+			}
 		default:
 			return state
 	}

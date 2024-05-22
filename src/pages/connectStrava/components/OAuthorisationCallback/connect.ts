@@ -1,16 +1,17 @@
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
-import { getAuthToken } from "../../../../redux/actions/authUserActions"
+import { storeStravaAuth } from "../../../../redux/actions/stravaActions"
 
 const mapStateToProps = (state: State) => {
 	return {
-		authState: state.authState,
+		userData: state.userData,
+		apiError: state.apiError,
 		apiCallsInProgress: state.apiCallsInProgress,
 	}
 }
 
 const mapDispatchToProps = {
-	getAuthToken,
+	storeStravaAuth,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

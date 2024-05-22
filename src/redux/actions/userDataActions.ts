@@ -33,7 +33,7 @@ export const loadUserData = () => {
 						dispatch(loadUserDataSuccess(initialData))
 					}
 				} else {
-					dispatch(loadUserDataError())
+					dispatch(apiCallError("User not logged in"))
 				}
 			})
 		} catch (error: any) {

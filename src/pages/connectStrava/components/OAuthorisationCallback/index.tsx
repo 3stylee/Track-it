@@ -1,29 +1,32 @@
 import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { AUTH_PERMISSIONS, AUTH_STATES, ROUTE_PATHS } from "../../../../constants/constants"
+import { AUTH_PERMISSIONS, ROUTE_PATHS } from "../../../../constants/constants"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
+import { UserData } from "../../../../models"
 
 export interface OAuthorisationCallbackProps {
-	authState: string
+	userData: UserData
 	apiCallsInProgress: number
-	getAuthToken: any
+	apiError: string
+	storeStravaAuth: (code: string) => void
 }
 
 export const OAuthorisationCallback = ({
-	authState,
+	userData,
 	apiCallsInProgress,
-	getAuthToken,
+	apiError,
+	storeStravaAuth,
 }: OAuthorisationCallbackProps) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		if (authState === AUTH_STATES.AUTHORISED) {
+		if (userData.stravaAccess) {
 			navigate(ROUTE_PATHS.HOME)
 			return
 		}
 
-		if (authState === AUTH_STATES.AUTH_ERROR) {
+		if (apiError !== "") {
 			navigate(ROUTE_PATHS.AUTH_ERROR)
 			return
 		}
@@ -44,8 +47,8 @@ export const OAuthorisationCallback = ({
 		}
 
 		const code = urlParams.get("code")
-		if (code) getAuthToken(code)
-	}, [authState])
+		if (code) storeStravaAuth(code)
+	}, [userData, apiError])
 
 	return apiCallsInProgress > 0 ? <AnimatedSpinner /> : null
 }
