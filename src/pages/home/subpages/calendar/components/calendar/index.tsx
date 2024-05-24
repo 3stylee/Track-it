@@ -8,10 +8,14 @@ import { fetchEvents } from "../../../../utils/fetchEvents"
 import Lottie from "lottie-react"
 import loadingAnimation from "../../../../../../assets/animations/olympics.json"
 import { setCalendarClasses } from "../../../../utils/setCalendarClasses"
+import connect from "./connect"
+import ApiError from "../../../../../../globalComponents/apiError"
 
-export const Calendar = () => {
+const Calendar = ({ apiError, accessToken }: any) => {
 	const spinnerRef = useRef<HTMLDivElement>(null)
 	const calendarRef = useRef<HTMLDivElement>(null)
+
+	if (apiError !== "") return <ApiError />
 
 	return (
 		<PageContainer>
@@ -29,7 +33,7 @@ export const Calendar = () => {
 						fixedWeekCount={false}
 						eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
 						events={(info, successCallback, failureCallback) => {
-							fetchEvents(info, successCallback, failureCallback)
+							fetchEvents(info, accessToken, successCallback, failureCallback)
 						}}
 						firstDay={1}
 						showNonCurrentDates={false}
@@ -43,3 +47,5 @@ export const Calendar = () => {
 		</PageContainer>
 	)
 }
+
+export default connect(Calendar)

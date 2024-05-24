@@ -15,7 +15,7 @@ let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
  *
  * @returns {Promise<void>} Returns a Promise that resolves when the data has been fetched and processed.
  */
-export const fetchEvents = async (info: any, successCallback: any, failureCallback: any) => {
+export const fetchEvents = async (info: any, accessToken: any, successCallback: any, failureCallback: any) => {
 	const today = new Date()
 	today.setHours(0, 0, 0, 0)
 	if (info.start > today) {
@@ -33,7 +33,7 @@ export const fetchEvents = async (info: any, successCallback: any, failureCallba
 	try {
 		const response = await axios.get(endpoint, {
 			headers: {
-				Authorization: `Bearer ${localStorage.getItem("access_code")}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		})
 		const data = processAthleteActivities(response.data)

@@ -13,6 +13,7 @@ export const AUTH_STATES = {
 }
 export const API_ERROR_MESSAGES = {
 	UNAUTHORISED: "Authorization Error",
+	STRAVA_FETCH_ERROR: "Sorry, we are having trouble accessing your Strava data right now.",
 }
 export const ROUTE_PATHS = {
 	DEFAULT: "/",

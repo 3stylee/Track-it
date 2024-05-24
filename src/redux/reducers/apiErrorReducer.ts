@@ -5,7 +5,7 @@ const actionTypeEndsInSuccess = (type: string) => {
 	return type.substring(type.length - 8) === "_SUCCESS"
 }
 
-const apiErrorReducer = (state = initialState.apiError, action: { type: string; data: any }): string => {
+const apiErrorReducer = (state = initialState.apiError, action: { type: string; data: any }): string | object => {
 	switch (action.type) {
 		case types.API_CALL_ERROR:
 			return action.data || "An error occurred"

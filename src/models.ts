@@ -6,4 +6,7 @@ export interface Units {
 export interface UserData {
 	stravaAccess: boolean
 	email: string
+	access_token: string
+	refresh_token: string
+	expires_at: number
 }

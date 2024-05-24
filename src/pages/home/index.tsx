@@ -13,10 +13,19 @@ export interface HomeProps {
 	loadUserData: () => void
 	manualAuthUser: () => void
 	toggleTheme: () => void
+	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
 }
 
-export const Home = ({ authState, userData, loadUserData, manualAuthUser, toggleTheme }: HomeProps) => {
+export const Home = ({
+	authState,
+	userData,
+	loadUserData,
+	manualAuthUser,
+	toggleTheme,
+	storeStravaAuth,
+}: HomeProps) => {
 	const navigate = useNavigate()
+	const [validToken, setValidToken] = React.useState(false)
 
 	// Boot user back to login if they haven't logged in
 	useEffect(() => {
@@ -29,18 +38,30 @@ export const Home = ({ authState, userData, loadUserData, manualAuthUser, toggle
 				manualAuthUser()
 			}
 		})
-	}, [authState])
+	}, [authState, manualAuthUser, navigate])
 
 	// If strava connection not present, redirect to connect page
 	useEffect(() => {
-		if (authState === AUTH_STATES.AUTHORISED) loadUserData()
-	}, [authState])
+		if (authState === AUTH_STATES.AUTHORISED && userData.email === "") {
+			loadUserData()
+		}
+	}, [authState, userData.email, loadUserData])
 
 	useEffect(() => {
 		if (userData.email !== "" && !userData.stravaAccess) navigate(ROUTE_PATHS.CONNECT)
-	}, [userData])
+	}, [userData, navigate])
 
-	if (!(authState === AUTH_STATES.AUTHORISED && userData.stravaAccess)) return <AnimatedSpinner />
+	// If strava access token has expired, refresh it
+	useEffect(() => {
+		if (!userData.stravaAccess) return
+		if (Math.floor(Date.now() / 1000) >= userData.expires_at) {
+			storeStravaAuth(userData.refresh_token, true)
+		} else {
+			setValidToken(true)
+		}
+	}, [userData, storeStravaAuth])
+
+	if (!(authState === AUTH_STATES.AUTHORISED && userData.stravaAccess && validToken)) return <AnimatedSpinner />
 	return (
 		<>
 			<Sidebar toggleTheme={toggleTheme} />

@@ -7,6 +7,7 @@ const mapStateToProps = (state: State) => {
 	return {
 		apiCallsInProgress: state.apiCallsInProgress,
 		currentActivity: state.currentActivity,
+		apiError: state.apiError,
 	}
 }
 

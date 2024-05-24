@@ -8,13 +8,19 @@ import { DateRange } from "react-day-picker"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import TitleHeader from "../titleHeader"
+import ApiError from "../../../../../../globalComponents/apiError"
 
 interface ActivitiesListProps {
 	dataFlags: DataFlags
+	apiError: string | object
 	loadAthleteActivities: (dateBefore?: number, dateAfter?: number, hasFilter?: boolean) => void
 }
 
-export const ActivitiesList = ({ dataFlags: { gotInitialActivities }, loadAthleteActivities }: ActivitiesListProps) => {
+export const ActivitiesList = ({
+	dataFlags: { gotInitialActivities },
+	apiError,
+	loadAthleteActivities,
+}: ActivitiesListProps) => {
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [selected, setSelected] = useState<DateRange>(getDateRangeFromUrl())
 	const [filterApplied, setFilterApplied] = useState(selected?.from !== undefined)
@@ -28,6 +34,7 @@ export const ActivitiesList = ({ dataFlags: { gotInitialActivities }, loadAthlet
 		}
 	}, [filterApplied])
 
+	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer ref={containerRef}>
 			<TitleHeader

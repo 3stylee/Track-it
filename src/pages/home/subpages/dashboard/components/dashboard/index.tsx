@@ -9,6 +9,7 @@ import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpin
 import { Col, Row } from "react-bootstrap"
 import { AthleteActivities, DataFlags } from "../../../activitiesList/models"
 import { LoadAthleteActivities } from "../../models"
+import ApiError from "../../../../../../globalComponents/apiError"
 //import { YearStats } from "../yearStats"
 
 interface DashboardProps {
@@ -17,6 +18,7 @@ interface DashboardProps {
 	loadAthleteActivities: LoadAthleteActivities
 	loadAthleteData: (athleteID: number) => void
 	apiCallsInProgress: number
+	apiError: string | object
 }
 
 export const Dashboard = ({
@@ -25,6 +27,7 @@ export const Dashboard = ({
 	loadAthleteActivities,
 	loadAthleteData,
 	apiCallsInProgress,
+	apiError,
 }: DashboardProps) => {
 	useEffect(() => {
 		if (!gotInitialActivities) getActivityData(loadAthleteActivities)
@@ -35,6 +38,7 @@ export const Dashboard = ({
 	}, [athleteActivities])
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
+	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<TitleHeader />

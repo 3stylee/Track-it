@@ -10,6 +10,9 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 			return {
 				stravaAccess: false,
 				email: "",
+				access_token: "",
+				refresh_token: "",
+				expires_at: Infinity,
 			}
 		case types.STORE_STRAVA_AUTH_SUCCESS:
 			return {

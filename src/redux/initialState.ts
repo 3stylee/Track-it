@@ -13,7 +13,7 @@ export interface State {
 	currentActivity: CurrentActivity
 	dataType: string
 	apiCallsInProgress: number
-	apiError: string
+	apiError: string | object
 	sidebarExpanded: boolean
 	units: Units
 	userData: UserData
@@ -39,6 +39,9 @@ export default {
 	},
 	userData: {
 		stravaAccess: false,
+		access_token: "",
+		refresh_token: "",
+		expires_at: Infinity,
 		email: "",
 	},
 } as State

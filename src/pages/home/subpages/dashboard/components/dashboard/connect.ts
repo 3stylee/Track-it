@@ -8,6 +8,7 @@ const mapStateToProps = (state: State) => {
 		athleteActivities: state.athleteActivities,
 		dataFlags: state.dataFlags,
 		apiCallsInProgress: state.apiCallsInProgress,
+		apiError: state.apiError,
 	}
 }
 

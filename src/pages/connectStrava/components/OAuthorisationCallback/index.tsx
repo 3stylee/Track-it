@@ -8,7 +8,7 @@ import { UserData } from "../../../../models"
 export interface OAuthorisationCallbackProps {
 	userData: UserData
 	apiCallsInProgress: number
-	apiError: string
+	apiError: string | object
 	storeStravaAuth: (code: string) => void
 }
 

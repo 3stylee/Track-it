@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import { manualAuthUser } from "../../redux/actions/authUserActions"
 import { loadUserData } from "../../redux/actions/userDataActions"
+import { storeStravaAuth } from "../../redux/actions/stravaActions"
 
 export const mapStateToProps = (state: any) => {
 	return {
@@ -12,6 +13,7 @@ export const mapStateToProps = (state: any) => {
 export const mapDispatchToProps = {
 	loadUserData,
 	manualAuthUser,
+	storeStravaAuth,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

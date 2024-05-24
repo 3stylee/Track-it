@@ -14,7 +14,11 @@ export const loadDataSuccess = (data: object, filter: boolean) => {
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
 export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
-	return async function (dispatch: any) {
+	return async function (dispatch: any, getState: any) {
+		const {
+			userData: { access_token },
+		} = getState()
+
 		const endpoint = getEndpoint(dateBefore, dateAfter)
 		dispatch(beginApiCall())
 		if (cache.has(endpoint)) {
@@ -25,7 +29,7 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 		try {
 			const response = await axios.get(endpoint, {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem("access_code")}`,
+					Authorization: `Bearer ${access_token}`,
 				},
 			})
 
