@@ -21,6 +21,7 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 
 		const endpoint = getEndpoint(dateBefore, dateAfter)
 		dispatch(beginApiCall())
+
 		if (cache.has(endpoint)) {
 			dispatch(loadDataSuccess(cache.get(endpoint), hasFilter))
 			return

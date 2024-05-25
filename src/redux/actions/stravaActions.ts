@@ -25,6 +25,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 		try {
 			const response = await axios.post(AUTH_TOKEN_BASE_URL, payload)
 			const { access_token, refresh_token, expires_at } = response.data
+			if (refresh) dispatch(refreshStravaToken({ access_token, refresh_token, expires_at }))
 
 			// Store the access token, refresh token, and expiration time in Firestore.
 			const auth = getAuth()
@@ -38,7 +39,6 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 						{ merge: true }
 					)
 					dispatch(storeAuthSuccess())
-					if (refresh) dispatch(refreshStravaToken({ access_token, refresh_token, expires_at }))
 				} else {
 					throw new Error("No logged in user found")
 				}

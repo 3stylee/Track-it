@@ -14,22 +14,14 @@ interface TitleHeaderProps {
 	setFilterApplied: (filter: boolean) => void
 }
 
-const TitleHeader = ({
-	loadAthleteActivities,
-	selected,
-	setSelected,
-	containerRef,
-	filterApplied,
-	setFilterApplied,
-}: TitleHeaderProps) => {
+const TitleHeader = ({ selected, setSelected, containerRef, filterApplied, setFilterApplied }: TitleHeaderProps) => {
 	return (
 		<Filters>
-			<Title>Activities</Title>
+			<Title>Your Activities</Title>
 			<DatePicker
 				onClick={() => {
 					const { before, after } = getBeforeAndAfterDates(selected)
 					window.history.pushState({}, "", `?before=${before}&after=${after}`)
-					loadAthleteActivities(before, after, true)
 				}}
 				selected={selected}
 				setSelected={setSelected}

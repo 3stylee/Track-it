@@ -60,7 +60,7 @@ export const SIDEBAR_ICONS = [
 	{ icon: "clock", path: "sessions" },
 	{ icon: "calendar", path: "calendar" },
 ]
-export const CHOOSE_DATES = "Choose Dates"
+export const FILTER_RESULTS = "Filter Results"
 export const CLEAR_FILTER = "Clear Filter"
 export const SELECT_DATE_RANGE = "Select a date range"
 export const NO_RESULTS = "Please try another selection, or check you have uploaded your activity to Strava"
