@@ -9,6 +9,10 @@ export const storeAuthSuccess = () => {
 	return { type: types.STORE_STRAVA_AUTH_SUCCESS }
 }
 
+export const refreshStravaToken = (data: any) => {
+	return { type: types.REFRESH_STRAVA_TOKEN, data }
+}
+
 export const storeStravaAuth = (code: string, refresh?: boolean) => {
 	return async function (dispatch: any) {
 		const payload = {
@@ -34,6 +38,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 						{ merge: true }
 					)
 					dispatch(storeAuthSuccess())
+					if (refresh) dispatch(refreshStravaToken({ access_token, refresh_token, expires_at }))
 				} else {
 					throw new Error("No logged in user found")
 				}

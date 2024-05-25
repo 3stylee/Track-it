@@ -73,8 +73,8 @@ export const ImagePlaceholder = styled("div")`
 		animation: ${gradient} 1s infinite ease-in-out;
 	}
 `
-export const StyledBadge = styled(Badge)<{ display: boolean }>`
-	display: ${({ display }) => (display ? "inline" : "none")};
+export const StyledBadge = styled(Badge)<{ showBadge: boolean }>`
+	display: ${({ showBadge }) => (showBadge ? "inline" : "none")};
 	position: absolute;
 	right: 0.5rem;
 	top: 0.5rem;

@@ -19,6 +19,13 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				...state,
 				stravaAccess: true,
 			}
+		case types.REFRESH_STRAVA_TOKEN:
+			return {
+				...state,
+				access_token: action.data.access_token,
+				refresh_token: action.data.refresh_token,
+				expires_at: action.data.expires_at,
+			}
 		default:
 			return state
 	}

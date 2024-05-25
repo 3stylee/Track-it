@@ -50,7 +50,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 							setImagedLoaded(true)
 						}}
 					/>
-					<StyledBadge display={imageLoaded}>{predictedType}</StyledBadge>
+					<StyledBadge showBadge={imageLoaded}>{predictedType}</StyledBadge>
 					{!imageLoaded && <ImagePlaceholder />}
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>

@@ -26,6 +26,7 @@ export const Home = ({
 }: HomeProps) => {
 	const navigate = useNavigate()
 	const [validToken, setValidToken] = React.useState(false)
+	const [refreshingToken, setRefreshingToken] = React.useState(false)
 
 	// Boot user back to login if they haven't logged in
 	useEffect(() => {
@@ -38,14 +39,14 @@ export const Home = ({
 				manualAuthUser()
 			}
 		})
-	}, [authState, manualAuthUser, navigate])
+	}, [authState])
 
 	// If strava connection not present, redirect to connect page
 	useEffect(() => {
 		if (authState === AUTH_STATES.AUTHORISED && userData.email === "") {
 			loadUserData()
 		}
-	}, [authState, userData.email, loadUserData])
+	}, [authState, userData.email])
 
 	useEffect(() => {
 		if (userData.email !== "" && !userData.stravaAccess) navigate(ROUTE_PATHS.CONNECT)
@@ -54,12 +55,13 @@ export const Home = ({
 	// If strava access token has expired, refresh it
 	useEffect(() => {
 		if (!userData.stravaAccess) return
-		if (Math.floor(Date.now() / 1000) >= userData.expires_at) {
-			storeStravaAuth(userData.refresh_token, true)
-		} else {
+		if (Math.floor(Date.now() / 1000) <= userData.expires_at) {
 			setValidToken(true)
+		} else if (!refreshingToken) {
+			storeStravaAuth(userData.refresh_token, true)
+			setRefreshingToken(true)
 		}
-	}, [userData, storeStravaAuth])
+	}, [userData, validToken])
 
 	if (!(authState === AUTH_STATES.AUTHORISED && userData.stravaAccess && validToken)) return <AnimatedSpinner />
 	return (

@@ -39,7 +39,7 @@ const Login = ({ apiCallsInProgress, apiError, authUser, authGoogleUser }: Login
 			}
 			setCheckedAuth(true)
 		})
-	}, [])
+	}, [navigate])
 
 	const handleLogin = async (event: any) => {
 		event.preventDefault()
