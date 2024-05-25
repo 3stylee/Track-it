@@ -5,13 +5,7 @@ import { useNavigate } from "react-router-dom"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { validateLoginForm } from "../../../home/utils/validateLoginForm"
-import {
-	INVALID_EMAIL,
-	LOGIN_ERROR_MESSAGE,
-	PASSWORD_BLANK,
-	ROUTE_PATHS,
-	SIGN_UP_MESSAGE,
-} from "../../../../constants/constants"
+import { INVALID_EMAIL, PASSWORD_BLANK, ROUTE_PATHS, SIGN_UP_MESSAGE } from "../../../../constants/constants"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { GoogleSignInButton } from "../googleSignInButton"
 
@@ -79,7 +73,7 @@ const Login = ({ apiCallsInProgress, apiError, authUser, authGoogleUser }: Login
 						/>
 						<Form.Control.Feedback type="invalid">{PASSWORD_BLANK}</Form.Control.Feedback>
 					</Form.Group>
-					{apiError && <p className="text-danger my-3">{LOGIN_ERROR_MESSAGE}</p>}
+					{apiError && <p className="text-danger my-3">{apiError}</p>}
 					<hr />
 					{apiCallsInProgress > 0 ? (
 						<AnimatedSpinner height="7rem" noMargin />

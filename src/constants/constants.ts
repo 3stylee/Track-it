@@ -29,7 +29,6 @@ export const ROUTE_PATHS = {
 	ACTIVITY: "/home/activity",
 	CALENDAR: "/home/calendar",
 }
-export const LOGIN_ERROR_MESSAGE = "Incorrect email or password, please try again"
 export const INVALID_EMAIL = "Invalid Email."
 export const PASSWORD_BLANK = "Password cannot be blank."
 export const SIGN_UP_MESSAGE = "Don't have an account? Sign up here"

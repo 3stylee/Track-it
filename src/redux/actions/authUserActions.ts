@@ -2,6 +2,7 @@ import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopu
 import { ROUTE_PATHS } from "../../constants/constants"
 import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
+import { getFirebaseError } from "../utils/getFirebaseError"
 
 export const manualAuthUser = () => {
 	return { type: types.MANUAL_AUTHORISE_USER }
@@ -32,7 +33,7 @@ export const authUser = (email: string, password: string, navigate: (path: strin
 			dispatch(authUserSuccess())
 			navigate(ROUTE_PATHS.HOME)
 		} catch (error: any) {
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(getFirebaseError(error.code)))
 			dispatch(authUserError())
 		}
 	}
@@ -49,7 +50,7 @@ export const authGoogleUser = (navigate: (path: string) => void) => {
 			navigate(ROUTE_PATHS.HOME)
 		} catch (error: any) {
 			console.error("Error signing in: ", error)
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(getFirebaseError(error.code)))
 			dispatch(authUserError())
 		}
 	}
@@ -64,7 +65,7 @@ export const logoutUser = () => {
 			dispatch(authLogoutSuccess())
 		} catch (error: any) {
 			console.error("Error signing out: ", error)
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(getFirebaseError(error.code)))
 			dispatch(authLogoutError())
 		}
 	}
