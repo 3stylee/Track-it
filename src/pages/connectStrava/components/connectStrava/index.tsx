@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { AuthorizeCard } from "../authorizeCard"
 import { CentralContainer } from "./components"
 import connect from "./connect"
@@ -8,10 +8,14 @@ import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 
 const ConnectStrava = ({ loadUserData, userData }: any) => {
 	const navigate = useNavigate()
+	const [loadingData, setLoadingData] = useState(false)
 
 	// If strava connection present, redirect to home page
 	useEffect(() => {
-		loadUserData()
+		if (!loadingData) {
+			loadUserData()
+			setLoadingData(true)
+		}
 	}, [])
 
 	useEffect(() => {

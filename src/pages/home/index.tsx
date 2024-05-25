@@ -54,7 +54,7 @@ export const Home = ({
 
 	// If strava access token has expired, refresh it
 	useEffect(() => {
-		if (!userData.stravaAccess) return
+		if (!(userData.stravaAccess && userData.email)) return
 		if (Math.floor(Date.now() / 1000) <= userData.expires_at) {
 			setValidToken(true)
 		} else if (!refreshingToken) {
