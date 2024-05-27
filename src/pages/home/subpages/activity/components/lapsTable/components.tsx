@@ -2,12 +2,7 @@ import styled from "@emotion/styled"
 
 export const CardBody = styled("div")`
 	overflow-y: auto;
-	@media (min-width: 1200px) {
-		height: 13.25rem;
-	}
-	@media (max-width: 1199px) {
-		max-height: 30rem;
-	}
+	max-height: 30rem;
 `
 export const CardContainer = styled("div")`
 	@media (max-width: 991px) {

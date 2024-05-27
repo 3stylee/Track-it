@@ -27,27 +27,37 @@ export const getActivityGraphs = (
 		altitudeStreamData,
 		altitudeOptions,
 	} = getActivityGraphData(currentActivityStream, currentActivity, theme, units)
-	return [
-		{
+
+	const graphs = []
+	if (paceStreamData.length > 0) {
+		graphs.push({
 			time,
 			label: "Pace",
 			data: paceStreamData,
 			options: paceOptions,
 			backgroundColor: "rgba(102, 61, 255, 0.7)",
-		},
-		{
+		})
+	}
+
+	if (heartRateStreamData.length > 0) {
+		graphs.push({
 			time,
 			label: "Heart Rate",
 			data: heartRateStreamData,
 			options: heartRateOptions,
 			backgroundColor: "rgba(204, 68, 153, 0.7)",
-		},
-		{
+		})
+	}
+
+	if (altitudeStreamData.length > 0) {
+		graphs.push({
 			time,
 			label: "Altitude",
 			data: altitudeStreamData,
 			options: altitudeOptions,
 			backgroundColor: "rgba(68, 118, 243, 0.7)",
-		},
-	]
+		})
+	}
+
+	return graphs
 }

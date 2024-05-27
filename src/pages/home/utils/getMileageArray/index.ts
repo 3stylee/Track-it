@@ -36,6 +36,7 @@ export const getWeekMileageArray = (data: AthleteActivities, divisor: number): n
 		const distancePerDay = Array(7).fill(0)
 
 		data.forEach((item) => {
+			if (item.type !== "Run") return
 			const itemDate = new Date(item.start)
 
 			if (itemDate >= startDate && itemDate < new Date(today)) {
@@ -63,6 +64,7 @@ export const getMonthMileageArray = (data: AthleteActivities, divisor: number): 
 		const distancePerWeek = Array(monthWeeks.length).fill(0)
 
 		data.forEach((item) => {
+			if (item.type !== "Run") return
 			const itemDate = new Date(item.start)
 
 			for (let i = 0; i < distancePerWeek.length; i++) {

@@ -72,4 +72,10 @@ export interface CurrentActivityStream {
 		series_type: string
 		resolution: string
 	}
+	time: {
+		data: number[]
+		original_size: number
+		series_type: string
+		resolution: string
+	}
 }

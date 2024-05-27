@@ -43,7 +43,7 @@ const Activity = ({
 				<ActivityTitle />
 				<ActivityImage polyline={currentActivity.polyline} />
 			</ImageContainer>
-			<ActivityGraphs laps={currentActivity.laps} />
+			<ActivityGraphs />
 		</PageContainer>
 	)
 }
