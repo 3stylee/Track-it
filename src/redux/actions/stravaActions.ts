@@ -3,7 +3,10 @@ import { AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET } from "../../constants/c
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { doc, getFirestore, setDoc } from "firebase/firestore"
+import { doc, getFirestore, setDoc, writeBatch } from "firebase/firestore"
+import { getEndpoint } from "../utils/getActivityDataEndpoint"
+import { getNewActivities } from "../utils/getNewActivites"
+import { AthleteActivities } from "../../pages/home/subpages/activitiesList/models"
 
 export const storeAuthSuccess = () => {
 	return { type: types.STORE_STRAVA_AUTH_SUCCESS }
@@ -11,6 +14,10 @@ export const storeAuthSuccess = () => {
 
 export const refreshStravaToken = (data: any) => {
 	return { type: types.REFRESH_STRAVA_TOKEN, data }
+}
+
+export const copyActivitiesSuccess = () => {
+	return { type: types.COPY_STRAVA_ACTVITIES_SUCCESS }
 }
 
 export const storeStravaAuth = (code: string, refresh?: boolean) => {
@@ -39,6 +46,37 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 						{ merge: true }
 					)
 					dispatch(storeAuthSuccess())
+				} else {
+					throw new Error("No logged in user found")
+				}
+			})
+		} catch (error: any) {
+			dispatch(apiCallError(error.message))
+		}
+	}
+}
+
+export const copyStravaActivities = (dateOfLastCopy: number) => {
+	return async function (dispatch: any, getState: any) {
+		const accessToken = getState().userData.access_token
+		const endpoint = getEndpoint(undefined, dateOfLastCopy)
+		dispatch(beginApiCall())
+		try {
+			let data: AthleteActivities = []
+			await getNewActivities(data, endpoint, accessToken)
+
+			// copy data to firestore
+			const auth = getAuth()
+			onAuthStateChanged(auth, async (user) => {
+				if (user) {
+					const db = getFirestore()
+					const batch = writeBatch(db)
+					for (const activity of data) {
+						const docRef = doc(db, "activities", activity.id.toString())
+						batch.set(docRef, { ...activity, userId: user.uid }, { merge: true })
+					}
+					await batch.commit()
+					dispatch(copyActivitiesSuccess())
 				} else {
 					throw new Error("No logged in user found")
 				}

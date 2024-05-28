@@ -25,6 +25,7 @@ import { ThemeProvider } from "@emotion/react"
 import useCustomTheme from "./theme/useCustomTheme"
 import Login from "./pages/login/components/login"
 import { Register } from "./pages/login/components/register"
+import { Sessions } from "./pages/home/subpages/sessions/components/sessions"
 
 const App = () => {
 	const { theme, toggleTheme } = useCustomTheme()
@@ -65,7 +66,7 @@ const App = () => {
 						<Route path={ROUTE_PATHS.SEARCH_ACTIVITIES} element={<ActivitiesList />} />
 						<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
 						<Route path={ROUTE_PATHS.CALENDAR} element={<Calendar />} />
-						<Route path={ROUTE_PATHS.SESSIONS} element={<></>} />
+						<Route path={ROUTE_PATHS.SESSIONS} element={<Sessions />} />
 					</Route>
 					<Route
 						path="*"
