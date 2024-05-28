@@ -13,6 +13,7 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				access_token: "",
 				refresh_token: "",
 				expires_at: Infinity,
+				dateOfLastBackup: undefined,
 			}
 		case types.STORE_STRAVA_AUTH_SUCCESS:
 			return {
@@ -25,6 +26,11 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				access_token: action.data.access_token,
 				refresh_token: action.data.refresh_token,
 				expires_at: action.data.expires_at,
+			}
+		case types.COPY_STRAVA_ACTVITIES_SUCCESS:
+			return {
+				...state,
+				dateOfLastBackup: Date.now() / 1000,
 			}
 		default:
 			return state

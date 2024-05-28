@@ -6,6 +6,7 @@ import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { UserData } from "../../models"
+import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 
 export interface HomeProps {
 	authState: string
@@ -14,6 +15,7 @@ export interface HomeProps {
 	manualAuthUser: () => void
 	toggleTheme: () => void
 	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
+	copyStravaActivities: (lastBackup: number | undefined) => void
 }
 
 export const Home = ({
@@ -23,6 +25,7 @@ export const Home = ({
 	manualAuthUser,
 	toggleTheme,
 	storeStravaAuth,
+	copyStravaActivities,
 }: HomeProps) => {
 	const navigate = useNavigate()
 	const [validToken, setValidToken] = React.useState(false)
@@ -46,7 +49,7 @@ export const Home = ({
 		if (authState === AUTH_STATES.AUTHORISED && userData.email === "") {
 			loadUserData()
 		}
-	}, [authState, userData.email])
+	}, [authState, loadUserData, userData.email])
 
 	useEffect(() => {
 		if (userData.email !== "" && !userData.stravaAccess) navigate(ROUTE_PATHS.CONNECT)
@@ -63,12 +66,24 @@ export const Home = ({
 		}
 	}, [userData, validToken])
 
-	if (!(authState === AUTH_STATES.AUTHORISED && userData.stravaAccess && validToken)) return <AnimatedSpinner />
-	return (
-		<>
-			<Sidebar toggleTheme={toggleTheme} />
-			<Outlet />
-		</>
+	// Copy activities to firestore if not already done
+	useEffect(() => {
+		if (userData.stravaAccess && userData.email && !userData.dateOfLastBackup) {
+			copyStravaActivities(undefined)
+		}
+	}, [userData])
+
+	return authState === AUTH_STATES.AUTHORISED && userData.stravaAccess && validToken ? (
+		userData.dateOfLastBackup ? (
+			<>
+				<Sidebar toggleTheme={toggleTheme} />
+				<Outlet />
+			</>
+		) : (
+			<CopyDataScreen />
+		)
+	) : (
+		<AnimatedSpinner />
 	)
 }
 

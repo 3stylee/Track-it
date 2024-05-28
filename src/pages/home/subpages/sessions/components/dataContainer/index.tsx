@@ -9,10 +9,9 @@ import { getSessions } from "../../../../utils/getSessions"
 export interface DataContainerProps {
 	athleteActivities: AthleteActivities
 	apiCallsInProgress: number
-	copyStravaActivities: (dateBefore: number) => void
 }
 
-export const DataContainer = ({ athleteActivities, apiCallsInProgress, copyStravaActivities }: DataContainerProps) => {
+export const DataContainer = ({ athleteActivities, apiCallsInProgress }: DataContainerProps) => {
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	const data = getSessions(athleteActivities)
 	return (
@@ -32,7 +31,6 @@ export const DataContainer = ({ athleteActivities, apiCallsInProgress, copyStrav
 			) : (
 				<div>No sessions found</div>
 			)}
-			<button onClick={() => copyStravaActivities(1714989984)}></button>
 		</Container>
 	)
 }

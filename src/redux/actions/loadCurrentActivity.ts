@@ -25,11 +25,9 @@ export const loadCurrentActivity = (id: number) => {
 					Authorization: `Bearer ${access_token}`,
 				},
 			})
+			const dumbPredictedType = dumbPredictData([response.data])
 			const data = processActivityData(response.data)
-			const { average_speed, average_heartrate, type, distance } = data
-			const dumbPredictedType = dumbPredictData([{ average_speed, average_heartrate, type, distance }])
-			const appendedData = { ...data, predictedType: dumbPredictedType[0] }
-			dispatch(loadDataSuccess(appendedData))
+			dispatch(loadDataSuccess({ ...data, dumbPredictedType: dumbPredictedType[0] }))
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

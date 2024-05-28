@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import { State } from "../../../../../../redux/initialState"
-import { copyStravaActivities } from "../../../../../../redux/actions/stravaActions"
 
 const mapStateToProps = (state: State) => {
 	return {
@@ -9,8 +8,4 @@ const mapStateToProps = (state: State) => {
 	}
 }
 
-const mapDispatchToProps = {
-	copyStravaActivities,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connect(mapStateToProps)

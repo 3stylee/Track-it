@@ -1,18 +1,13 @@
-export interface dumbPredictors {
-	average_heartrate: number
-	average_speed: number
-	type: string
-	distance: number
-}
+import { Activity } from "../processAthleteActivities"
 
 /**
  * Predicts the type of each run in a dataset (tempo, long run etc...). Done using a simple rule-based system hence the name "dumb".
  *
- * @param {dumbPredictors[]} data - An array of objects, each representing an activity.
+ * @param {Activity[]} data - An array of objects, each representing an activity.
  *
  * @returns {string[]} An array of strings, each representing the predicted type of a specific activity.
  */
-export const dumbPredictData = (data: dumbPredictors[]) => {
+export const dumbPredictData = (data: Activity[]) => {
 	const results = []
 	for (let row of data) {
 		if (row.type !== "Run") results.push(row.type)

@@ -56,7 +56,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 	}
 }
 
-export const copyStravaActivities = (dateOfLastCopy: number) => {
+export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 	return async function (dispatch: any, getState: any) {
 		const accessToken = getState().userData.access_token
 		const endpoint = getEndpoint(undefined, dateOfLastCopy)
@@ -76,6 +76,11 @@ export const copyStravaActivities = (dateOfLastCopy: number) => {
 						batch.set(docRef, { ...activity, userId: user.uid }, { merge: true })
 					}
 					await batch.commit()
+
+					// Update dateOfLastBackup in the user's document
+					const dateOfLastBackup = Date.now().toFixed(0)
+					const userDocRef = doc(db, "users", user.uid)
+					await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
 					dispatch(copyActivitiesSuccess())
 				} else {
 					throw new Error("No logged in user found")

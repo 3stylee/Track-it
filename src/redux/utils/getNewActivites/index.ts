@@ -7,23 +7,15 @@ export const getNewActivities = async (data: object[], endpoint: string, accessT
 	const maxAttempts = 30 // no more than 6000 activites
 	let counter = 0
 	while (continuePagination && counter < maxAttempts) {
-		const response = await axios.get(endpoint, {
+		const response = await axios.get(endpoint + `&page=${counter + 1}`, {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		})
 
 		// feed the data to the model to get the run type predictions
-		const activities: any = []
-		let dataToPredict = processAthleteActivities(response.data)
-		dataToPredict.forEach(({ speed, heartrate, type, distance }: any) => {
-			activities.push({ average_heartrate: heartrate, average_speed: speed, type, distance })
-		})
-		const dumbPredictions = dumbPredictData(activities)
-		dataToPredict = dataToPredict.map((activity: any, index: number) => {
-			return { ...activity, predictedType: dumbPredictions[index] }
-		})
-		data.push(...dataToPredict)
+		let dumbPredictions = dumbPredictData(response.data)
+		data.push(...processAthleteActivities(response.data, dumbPredictions))
 
 		counter++
 		if (response.data.length < 200) continuePagination = false

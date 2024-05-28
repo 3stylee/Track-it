@@ -36,17 +36,11 @@ export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, h
 
 			// API returns oldest -> newest, when no filter applied
 			let data = hasFilter ? response.data : response.data.reverse()
-			data = processAthleteActivities(data)
 
-			// feed the data to the model to get the run type predictions
-			const activities: any = []
-			data.forEach(({ speed, heartrate, type, distance }: any) => {
-				activities.push({ average_heartrate: heartrate, average_speed: speed, type, distance })
-			})
-			const dumbPredictions = dumbPredictData(activities)
-			data = data.map((activity: any, index: number) => {
-				return { ...activity, predictedType: dumbPredictions[index] }
-			})
+			// Feed the data to the model to get the run type predictions
+			let dumbPredictions = dumbPredictData(data)
+			data = processAthleteActivities(response.data, dumbPredictions)
+
 			cache.set(endpoint, data)
 			dispatch(loadDataSuccess(data, hasFilter))
 		} catch (error) {
