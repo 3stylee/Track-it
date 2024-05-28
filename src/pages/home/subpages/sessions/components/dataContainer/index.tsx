@@ -1,24 +1,26 @@
-import React from "react"
-import { AthleteActivities } from "../../../activitiesList/models"
+import React, { useEffect } from "react"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Card, Col, Row } from "react-bootstrap"
 import { Container } from "./components"
 import connect from "./connect"
-import { getSessions } from "../../../../utils/getSessions"
 
 export interface DataContainerProps {
-	athleteActivities: AthleteActivities
+	sessions: any[]
 	apiCallsInProgress: number
+	loadSessions: () => void
 }
 
-export const DataContainer = ({ athleteActivities, apiCallsInProgress }: DataContainerProps) => {
+export const DataContainer = ({ sessions, apiCallsInProgress, loadSessions }: DataContainerProps) => {
+	useEffect(() => {
+		if (sessions.length === 0) loadSessions()
+	}, [sessions, loadSessions])
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
-	const data = getSessions(athleteActivities)
 	return (
 		<Container>
-			{data.length > 0 ? (
+			{sessions.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{data.map(({ title }) => (
+					{sessions.map(({ title }) => (
 						<Col key={title}>
 							<Card className="h-100">
 								<Card.Body>

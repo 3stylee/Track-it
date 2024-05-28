@@ -1,11 +1,16 @@
 import { connect } from "react-redux"
 import { State } from "../../../../../../redux/initialState"
+import { loadSessions } from "../../../../../../redux/actions/loadSessionsActions"
 
 const mapStateToProps = (state: State) => {
 	return {
-		athleteActivities: state.athleteActivities,
+		sessions: state.sessions,
 		apiCallsInProgress: state.apiCallsInProgress,
 	}
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = {
+	loadSessions,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)

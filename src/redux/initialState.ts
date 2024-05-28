@@ -8,6 +8,7 @@ export interface State {
 	authState: string
 	athleteActivities: AthleteActivities
 	athleteData: AthleteData
+	sessions: object[]
 	dataFlags: DataFlags
 	currentActivityStream: CurrentActivityStream
 	currentActivity: CurrentActivity
@@ -22,6 +23,7 @@ export interface State {
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
 	athleteActivities: [],
+	sessions: [],
 	athleteData: {} as AthleteData,
 	dataFlags: {
 		gotAthleteData: false,
