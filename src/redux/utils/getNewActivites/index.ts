@@ -4,7 +4,7 @@ import { dumbPredictData } from "../dumbPredictData"
 
 export const getNewActivities = async (data: object[], endpoint: string, accessToken: string, initialCopy: boolean) => {
 	let continuePagination = true
-	const maxAttempts = 30 // no more than 6000 activites
+	const maxAttempts = 32 // we will store no more than 6400 activites
 	let counter = 0
 	while (continuePagination && counter < maxAttempts) {
 		// make mulitple requests at once to speed things up on initial copy

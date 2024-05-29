@@ -27,10 +27,10 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				refresh_token: action.data.refresh_token,
 				expires_at: action.data.expires_at,
 			}
-		case types.COPY_STRAVA_ACTVITIES_SUCCESS:
+		case types.COPY_STRAVA_ACTVITIES:
 			return {
 				...state,
-				dateOfLastBackup: Date.now() / 1000,
+				dateOfLastBackup: new Date().toISOString(),
 			}
 		default:
 			return state

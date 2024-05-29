@@ -22,7 +22,6 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }
 		currentActivityStream.distance || currentActivityStream.heartrate || currentActivityStream.altitude
 	if (graphData) {
 		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units)
-		console.log(graphs)
 		const { laps } = currentActivity
 		return (
 			<Row sm={1} className="g-4">

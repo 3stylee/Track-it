@@ -5,7 +5,7 @@ export interface Units {
 
 export interface UserData {
 	stravaAccess: boolean
-	dateOfLastBackup: number | undefined
+	dateOfLastBackup: string | undefined
 	email: string
 	access_token: string
 	refresh_token: string

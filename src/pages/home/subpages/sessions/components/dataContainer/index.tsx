@@ -20,8 +20,8 @@ export const DataContainer = ({ sessions, apiCallsInProgress, loadSessions }: Da
 		<Container>
 			{sessions.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{sessions.map(({ title }) => (
-						<Col key={title}>
+					{sessions.map(({ title, id }) => (
+						<Col key={id}>
 							<Card className="h-100">
 								<Card.Body>
 									<Card.Title>{title}</Card.Title>

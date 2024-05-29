@@ -17,7 +17,7 @@ export const refreshStravaToken = (data: any) => {
 }
 
 export const copyActivitiesSuccess = () => {
-	return { type: types.COPY_STRAVA_ACTVITIES_SUCCESS }
+	return { type: types.COPY_STRAVA_ACTVITIES }
 }
 
 export const storeStravaAuth = (code: string, refresh?: boolean) => {
@@ -61,12 +61,10 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 		const accessToken = getState().userData.access_token
 		const endpoint = getEndpoint(undefined, dateOfLastCopy)
 		const initialCopy = dateOfLastCopy === undefined
-		dispatch(beginApiCall())
 		try {
 			let data: AthleteActivities = []
 			await getNewActivities(data, endpoint, accessToken, initialCopy)
 
-			// copy data to firestore
 			const auth = getAuth()
 			onAuthStateChanged(auth, async (user) => {
 				if (user) {
@@ -79,7 +77,7 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 					await batch.commit()
 
 					// Update dateOfLastBackup in the user's document
-					const dateOfLastBackup = Date.now().toFixed(0)
+					const dateOfLastBackup = new Date().toISOString()
 					const userDocRef = doc(db, "users", user.uid)
 					await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
 					dispatch(copyActivitiesSuccess())

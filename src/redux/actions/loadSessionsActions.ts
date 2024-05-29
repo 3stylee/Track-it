@@ -22,7 +22,6 @@ export const loadSessions = () => {
 					)
 					const querySnapshot = await getDocs(q)
 					const sessions = querySnapshot.docs.map((doc) => doc.data())
-					console.log(sessions)
 					dispatch(loadSessionsSuccess(sessions))
 				} else {
 					throw new Error("No logged in user found")

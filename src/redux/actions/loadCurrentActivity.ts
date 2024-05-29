@@ -27,7 +27,7 @@ export const loadCurrentActivity = (id: number) => {
 			})
 			const dumbPredictedType = dumbPredictData([response.data])
 			const data = processActivityData(response.data)
-			dispatch(loadDataSuccess({ ...data, dumbPredictedType: dumbPredictedType[0] }))
+			dispatch(loadDataSuccess({ ...data, predictedType: dumbPredictedType[0] }))
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}
