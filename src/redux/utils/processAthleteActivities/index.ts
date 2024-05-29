@@ -16,6 +16,7 @@ export interface Activity {
  * Processes an array of raw athlete activities and returns an array of processed activities.
  *
  * @param {Activity[]} data - An array of raw Activity objects.
+ * @param {string[]} predictedTypes - An array of predicted activity types.
  *
  * @returns {Object[]} An array of objects, each representing a processed activity.
  */

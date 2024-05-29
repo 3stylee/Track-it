@@ -60,10 +60,11 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 	return async function (dispatch: any, getState: any) {
 		const accessToken = getState().userData.access_token
 		const endpoint = getEndpoint(undefined, dateOfLastCopy)
+		const initialCopy = dateOfLastCopy === undefined
 		dispatch(beginApiCall())
 		try {
 			let data: AthleteActivities = []
-			await getNewActivities(data, endpoint, accessToken)
+			await getNewActivities(data, endpoint, accessToken, initialCopy)
 
 			// copy data to firestore
 			const auth = getAuth()
