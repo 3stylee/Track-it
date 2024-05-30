@@ -14,13 +14,18 @@ export const loadDataSuccess = (data: object, filter: boolean) => {
 
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
-export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
+export const loadAthleteActivities = (
+	dateBefore?: number,
+	dateAfter?: number,
+	hasFilter: boolean = false,
+	limit?: number
+) => {
 	return async function (dispatch: any, getState: any) {
 		const {
 			userData: { access_token, dateOfLastBackup },
 		} = getState()
 
-		const endpoint = getEndpoint(dateBefore, dateAfter)
+		const endpoint = getEndpoint(dateBefore, dateAfter, limit)
 		dispatch(beginApiCall())
 
 		if (cache.has(endpoint)) {

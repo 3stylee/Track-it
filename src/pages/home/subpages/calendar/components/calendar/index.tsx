@@ -11,7 +11,7 @@ import { setCalendarClasses } from "../../../../utils/setCalendarClasses"
 import connect from "./connect"
 import ApiError from "../../../../../../globalComponents/apiError"
 
-const Calendar = ({ apiError, accessToken }: any) => {
+const Calendar = ({ apiError }: any) => {
 	const spinnerRef = useRef<HTMLDivElement>(null)
 	const calendarRef = useRef<HTMLDivElement>(null)
 
@@ -33,7 +33,7 @@ const Calendar = ({ apiError, accessToken }: any) => {
 						fixedWeekCount={false}
 						eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
 						events={(info, successCallback, failureCallback) => {
-							fetchEvents(info, accessToken, successCallback, failureCallback)
+							fetchEvents(info, successCallback, failureCallback)
 						}}
 						firstDay={1}
 						showNonCurrentDates={false}

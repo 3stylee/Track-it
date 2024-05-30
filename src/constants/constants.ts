@@ -94,3 +94,4 @@ export const ACTIVITY_TYPE_MAPPING = {
 	Ride: 1,
 	Swim: 2,
 }
+export const INITIAL_PAGE_ACTIVITIES = 32

@@ -3,6 +3,7 @@ import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpin
 import { Card, Col, Row } from "react-bootstrap"
 import { Container } from "./components"
 import connect from "./connect"
+import { useTheme } from "@emotion/react"
 
 export interface DataContainerProps {
 	sessions: any[]
@@ -14,6 +15,7 @@ export const DataContainer = ({ sessions, apiCallsInProgress, loadSessions }: Da
 	useEffect(() => {
 		if (sessions.length === 0) loadSessions()
 	}, [sessions, loadSessions])
+	const theme = useTheme()
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
@@ -22,7 +24,7 @@ export const DataContainer = ({ sessions, apiCallsInProgress, loadSessions }: Da
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
 					{sessions.map(({ title, id }) => (
 						<Col key={id}>
-							<Card className="h-100">
+							<Card className="h-100" text={theme.bootstrap.textColor} bg={theme.bootstrap.background}>
 								<Card.Body>
 									<Card.Title>{title}</Card.Title>
 								</Card.Body>

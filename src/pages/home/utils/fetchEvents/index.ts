@@ -1,7 +1,6 @@
-import axios from "axios"
-import { getEndpoint } from "../../../../redux/utils/getActivityDataEndpoint"
-import { processAthleteActivities } from "../../../../redux/utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 
 let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
 
@@ -15,7 +14,7 @@ let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
  *
  * @returns {Promise<void>} Returns a Promise that resolves when the data has been fetched and processed.
  */
-export const fetchEvents = async (info: any, accessToken: any, successCallback: any, failureCallback: any) => {
+export const fetchEvents = async (info: any, successCallback: any, failureCallback: any) => {
 	const today = new Date()
 	today.setHours(0, 0, 0, 0)
 	if (info.start > today) {
@@ -23,22 +22,31 @@ export const fetchEvents = async (info: any, accessToken: any, successCallback: 
 		return
 	}
 
-	const endpoint = getEndpoint(info.end.getTime() / 1000, info.start.getTime() / 1000)
-
-	if (cache.has(endpoint)) {
-		successCallback(cache.get(endpoint))
+	const id = info.startStr + info.endStr
+	if (cache.has(id)) {
+		successCallback(cache.get(id))
 		return
 	}
 
 	try {
-		const response = await axios.get(endpoint, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
+		const auth = getAuth()
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				const db = getFirestore()
+				const q = query(
+					collection(db, "activities"),
+					where("userId", "==", user.uid),
+					where("start", ">=", info.startStr),
+					where("start", "<=", info.endStr)
+				)
+				const querySnapshot = await getDocs(q)
+				const events = querySnapshot.docs.map((doc) => doc.data())
+				cache.set(id, events)
+				successCallback(events)
+			} else {
+				failureCallback("No logged in user found")
+			}
 		})
-		const data = processAthleteActivities(response.data)
-		cache.set(endpoint, data)
-		successCallback(data)
 	} catch (error) {
 		failureCallback(error)
 	}

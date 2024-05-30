@@ -8,7 +8,6 @@ import currentActivity from "./loadCurrentActivityReducer"
 import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
-import dataFlags from "./dataFlagsReducer"
 import userData from "./userDataReducer"
 import sessions from "./loadSessionsReducer"
 
@@ -18,7 +17,6 @@ export const rootReducer = combineReducers({
 	athleteActivities,
 	sessions,
 	athleteData,
-	dataFlags,
 	currentActivityStream,
 	currentActivity,
 	authState,

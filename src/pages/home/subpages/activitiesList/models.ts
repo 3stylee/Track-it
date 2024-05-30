@@ -16,8 +16,3 @@ type ProcessedActivity = {
 }
 
 export type AthleteActivities = ProcessedActivity[]
-
-export interface DataFlags {
-	gotAthleteData: boolean
-	gotInitialActivities: boolean
-}
