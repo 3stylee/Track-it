@@ -7,7 +7,7 @@ import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates
 import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import TitleHeader from "../titleHeader"
 import ApiError from "../../../../../../globalComponents/apiError"
-import { INITIAL_PAGE_ACTIVITIES } from "../../../../../../constants/constants"
+import { PAGE_SIZE } from "../../../../../../constants/constants"
 
 interface ActivitiesListProps {
 	apiError: string | object
@@ -25,7 +25,7 @@ export const ActivitiesList = ({ apiError, gotInitialActivities, loadAthleteActi
 			const { before, after } = getBeforeAndAfterDates(selected)
 			loadAthleteActivities(before, after, true)
 		} else if (!gotInitialActivities) {
-			loadAthleteActivities(undefined, undefined, false, INITIAL_PAGE_ACTIVITIES)
+			loadAthleteActivities(undefined, undefined, false, PAGE_SIZE)
 		}
 	}, [filterApplied])
 

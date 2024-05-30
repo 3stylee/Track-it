@@ -1,6 +1,6 @@
 import { AthleteActivities } from "../pages/home/subpages/activitiesList/models"
 import { AUTH_STATES } from "../constants/constants"
-import { Units, UserData } from "../models"
+import { LoadMore, Units, UserData } from "../models"
 import { CurrentActivity, CurrentActivityStream } from "../pages/home/subpages/activity/models"
 import { AthleteData } from "../pages/home/subpages/dashboard/models"
 
@@ -13,6 +13,7 @@ export interface State {
 	currentActivity: CurrentActivity
 	dataType: string
 	apiCallsInProgress: number
+	loadMore: LoadMore
 	apiError: string | object
 	sidebarExpanded: boolean
 	units: Units
@@ -27,6 +28,10 @@ export default {
 	currentActivityStream: {} as CurrentActivityStream,
 	currentActivity: {} as CurrentActivity,
 	dataType: "",
+	loadMore: {
+		hasMore: true,
+		loadingMore: false,
+	},
 	apiCallsInProgress: 0,
 	apiError: "",
 	sidebarExpanded: false,

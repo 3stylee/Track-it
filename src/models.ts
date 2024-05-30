@@ -11,3 +11,8 @@ export interface UserData {
 	refresh_token: string
 	expires_at: number
 }
+
+export interface LoadMore {
+	hasMore: boolean
+	loadingMore: boolean
+}

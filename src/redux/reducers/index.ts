@@ -10,10 +10,12 @@ import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
 import userData from "./userDataReducer"
 import sessions from "./loadSessionsReducer"
+import loadMore from "./loadMoreReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
 	apiError,
+	loadMore,
 	athleteActivities,
 	sessions,
 	athleteData,

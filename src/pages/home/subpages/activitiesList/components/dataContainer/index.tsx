@@ -2,7 +2,7 @@ import React from "react"
 import RouteMap from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
-import { Row } from "react-bootstrap"
+import { Button, Row } from "react-bootstrap"
 import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { NoResults } from "../noResults"
@@ -11,9 +11,18 @@ import { Container } from "./components"
 export interface DataContainerProps {
 	data: AthleteActivities
 	apiCallsInProgress: number
+	loadingMore: boolean
+	hasMore: boolean
+	loadMoreAthleteActivities: () => void
 }
 
-export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
+export const DataContainer = ({
+	data,
+	apiCallsInProgress,
+	loadingMore,
+	hasMore,
+	loadMoreAthleteActivities,
+}: DataContainerProps) => {
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<Container>
@@ -31,6 +40,17 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 							predictedType={predictedType}
 						/>
 					))}
+					<div className="d-flex justify-content-center w-100">
+						{loadingMore ? (
+							<AnimatedSpinner height="7rem" noMargin />
+						) : (
+							hasMore && (
+								<Button variant="primary" className="w-25" onClick={loadMoreAthleteActivities}>
+									Load More
+								</Button>
+							)
+						)}
+					</div>
 				</Row>
 			) : (
 				<NoResults />
