@@ -41,6 +41,9 @@ const Calendar = ({ apiError }: any) => {
 						dayMaxEventRows={3}
 						height={"auto"}
 						stickyHeaderDates={false}
+						validRange={{
+							end: new Date(), // Prevent navigation to future dates
+						}}
 					/>
 				</div>
 			</CalendarContainer>

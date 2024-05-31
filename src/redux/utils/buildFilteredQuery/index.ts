@@ -1,5 +1,5 @@
 import { collection, getFirestore, orderBy, query, where, limit, startAfter } from "firebase/firestore"
-import { FIREBASE_COLLECTIONS, PAGE_SIZE } from "../../../constants/constants"
+import { FIREBASE_COLLECTIONS, INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../../constants/constants"
 
 export const buildFilteredQuery = (
 	uId: string,
@@ -13,7 +13,7 @@ export const buildFilteredQuery = (
 		collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 		where("userId", "==", uId),
 		orderBy("start", "desc"),
-		limit(PAGE_SIZE)
+		limit(page > 0 ? PAGE_SIZE : INITIAL_PAGE_SIZE)
 	)
 
 	if (dateAfter) {

@@ -16,13 +16,6 @@ let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
  * @returns {Promise<void>} Returns a Promise that resolves when the data has been fetched and processed.
  */
 export const fetchEvents = async (info: any, successCallback: any, failureCallback: any) => {
-	const today = new Date()
-	today.setHours(0, 0, 0, 0)
-	if (info.start > today) {
-		failureCallback("You can only view past activities")
-		return
-	}
-
 	const id = info.startStr + info.endStr
 	if (cache.has(id)) {
 		successCallback(cache.get(id))

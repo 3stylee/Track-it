@@ -8,7 +8,7 @@ import { dumbPredictData } from "../utils/dumbPredictData"
 import { copyStravaActivities } from "./stravaActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDocs } from "firebase/firestore"
-import { NO_LOGGED_IN_USER, PAGE_SIZE } from "../../constants/constants"
+import { NO_LOGGED_IN_USER, INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../utils/buildFilteredQuery"
 
@@ -52,7 +52,7 @@ export const loadInitialAthleteActivities = (limit?: number, after?: number) => 
 
 			cache.set(endpoint, data)
 			dispatch(loadDataSuccess(data))
-			if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
+			if (data.length < INITIAL_PAGE_SIZE) dispatch(hasNoMoreActivities())
 
 			// if the data is newer than the last backup, copy it to firestore
 			if (data[0].start > dateOfLastBackup) {
@@ -75,7 +75,8 @@ export const loadAthleteActivities = (page: number, dateBefore?: number, dateAft
 					const querySnapshot = await getDocs(q)
 					const activities = querySnapshot.docs.map((doc) => doc.data())
 					dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities))
-					if (activities.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
+					const pageSize = page > 0 ? PAGE_SIZE : INITIAL_PAGE_SIZE
+					if (activities.length < pageSize) dispatch(hasNoMoreActivities())
 				} else {
 					throw new Error(NO_LOGGED_IN_USER)
 				}

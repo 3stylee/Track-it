@@ -17,7 +17,7 @@ export interface DataContainerProps {
 	loadingMore: boolean
 	hasMore: boolean
 	page: number
-	setPage: (newPage: number) => void
+	setPage: any
 	loadAthleteActivities: (page: number, before?: number, after?: number) => void
 }
 
@@ -58,8 +58,8 @@ export const DataContainer = ({
 								<LoadMoreButton
 									variant="primary"
 									onClick={() => {
-										loadAthleteActivities(page, before, after)
 										setPage(page + 1)
+										loadAthleteActivities(page + 1, before, after)
 									}}>
 									Load More
 								</LoadMoreButton>

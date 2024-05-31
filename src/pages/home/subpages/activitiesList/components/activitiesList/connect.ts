@@ -4,13 +4,13 @@ import {
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
 } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
-import { PAGE_SIZE } from "../../../../../../constants/constants"
+import { INITIAL_PAGE_SIZE } from "../../../../../../constants/constants"
 
 const mapStateToProps = (state: State) => {
 	const athleteActivitiesLength = state.athleteActivities ? state.athleteActivities.length : 0
 	return {
 		apiError: state.apiError,
-		gotInitialActivities: athleteActivitiesLength >= PAGE_SIZE,
+		gotInitialActivities: athleteActivitiesLength >= INITIAL_PAGE_SIZE,
 	}
 }
 

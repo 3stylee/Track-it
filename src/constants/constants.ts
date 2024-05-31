@@ -95,7 +95,8 @@ export const ACTIVITY_TYPE_MAPPING = {
 	Ride: 1,
 	Swim: 2,
 }
-export const PAGE_SIZE = 36 // Keep as multiple of 12 for grid layout
+export const INITIAL_PAGE_SIZE = 36 // Keep as multiple of 12 for grid layout
+export const PAGE_SIZE = 72
 export const FIREBASE_COLLECTIONS = {
 	ACTIVITIES: "activities",
 	USERS: "users",
