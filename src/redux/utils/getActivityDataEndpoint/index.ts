@@ -9,16 +9,12 @@ import { API_BASE_URL } from "../../../constants/constants"
  *
  * @returns {string} The endpoint URL to be called.
  */
-export const getEndpoint = (dateBefore?: number, dateAfter?: number, limit?: number) => {
+export const getEndpoint = (limit?: number, dateAfter?: number) => {
 	let endpoint = API_BASE_URL
 	endpoint += "/athlete/activities"
 	// The API limits the response data to 30 activities by default, and when passed as a parameter
 	// it maxes out at 200. In the edge case a user has more than 200 activities in a month, they will not see all of them
 	endpoint += `?per_page=${limit ? limit : 200}`
-
-	if (dateBefore) {
-		endpoint += `&before=${dateBefore}`
-	}
 
 	if (dateAfter) {
 		endpoint += `&after=${dateAfter}`

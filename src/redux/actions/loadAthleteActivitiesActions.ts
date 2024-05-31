@@ -7,59 +7,55 @@ import { LRUCache } from "lru-cache"
 import { dumbPredictData } from "../utils/dumbPredictData"
 import { copyStravaActivities } from "./stravaActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { collection, getDocs, getFirestore, limit, orderBy, query, where } from "firebase/firestore"
+import { getDocs } from "firebase/firestore"
 import { PAGE_SIZE } from "../../constants/constants"
-import { beginLoadMoreApiCall, hasMoreActivities, hasNoMoreActivities } from "./loadMoreActions"
+import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
+import { buildFilteredQuery } from "../utils/buildFilteredQuery"
 
-export const loadDataSuccess = (data: object, filter: boolean) => {
-	const type = filter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
-	return { type, data }
+export const loadDataSuccess = (data: object) => {
+	return { type: types.LOAD_ATHLETE_ACTIVITIES_SUCCESS, data }
 }
 
 export const loadMoreSuccess = (data: object) => {
 	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
 }
 
+export const clearFilter = () => {
+	return { type: types.CLEAR_FILTER }
+}
+
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
-export const loadAthleteActivities = (
-	dateBefore?: number,
-	dateAfter?: number,
-	hasFilter: boolean = false,
-	limit?: number
-) => {
+export const loadInitialAthleteActivities = (limit?: number, after?: number) => {
 	return async function (dispatch: any, getState: any) {
 		const {
 			userData: { access_token, dateOfLastBackup },
 		} = getState()
+		const endpoint = getEndpoint(limit, after)
 
-		const endpoint = getEndpoint(dateBefore, dateAfter, limit)
 		dispatch(beginApiCall())
-		dispatch(hasMoreActivities())
-
 		if (cache.has(endpoint)) {
-			dispatch(loadDataSuccess(cache.get(endpoint), hasFilter))
+			dispatch(loadDataSuccess(cache.get(endpoint)))
 			return
 		}
-
 		try {
 			const response = await axios.get(endpoint, {
 				headers: {
 					Authorization: `Bearer ${access_token}`,
 				},
 			})
-			// API returns oldest -> newest, when no filter applied
-			let data = hasFilter || limit ? response.data : response.data.reverse()
+			// API returns oldest -> newest, when no limit applied
+			let data = limit ? response.data : response.data.reverse()
 			// Feed the data to the model to get the run type predictions
 			let dumbPredictions = dumbPredictData(data)
 			data = processAthleteActivities(response.data, dumbPredictions)
 
 			cache.set(endpoint, data)
+			dispatch(loadDataSuccess(data))
 			if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
-			dispatch(loadDataSuccess(data, hasFilter))
 
 			// if the data is newer than the last backup, copy it to firestore
-			if (!hasFilter && data[0].start > dateOfLastBackup) {
+			if (data[0].start > dateOfLastBackup) {
 				dispatch(copyStravaActivities(new Date(dateOfLastBackup).getTime() / 1000))
 			}
 		} catch (error) {
@@ -68,27 +64,18 @@ export const loadAthleteActivities = (
 	}
 }
 
-export const loadMoreAthleteActivities = () => {
+export const loadAthleteActivities = (page: number, dateBefore?: number, dateAfter?: number) => {
 	return async function (dispatch: any, getState: any) {
-		const activities = getState().athleteActivities
-		const activityToCompareWith = activities[activities.length - 1].start
-		dispatch(beginLoadMoreApiCall())
+		dispatch(page > 0 ? beginLoadMoreApiCall() : beginApiCall())
 		try {
 			const auth = getAuth()
 			onAuthStateChanged(auth, async (user) => {
 				if (user) {
-					const db = getFirestore()
-					const q = query(
-						collection(db, "activities"),
-						where("userId", "==", user.uid),
-						where("start", "<", activityToCompareWith),
-						orderBy("start", "desc"),
-						limit(PAGE_SIZE)
-					)
+					const q = buildFilteredQuery(user.uid, getState, page, dateBefore, dateAfter)
 					const querySnapshot = await getDocs(q)
 					const activities = querySnapshot.docs.map((doc) => doc.data())
+					dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities))
 					if (activities.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
-					dispatch(loadMoreSuccess(activities))
 				} else {
 					throw new Error("No logged in user found")
 				}

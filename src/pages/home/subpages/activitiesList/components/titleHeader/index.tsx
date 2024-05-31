@@ -6,20 +6,30 @@ import connect from "./connect"
 import { DateRange } from "react-day-picker"
 
 interface TitleHeaderProps {
-	loadAthleteActivities: (dateBefore?: number, dateAfter?: number, hasFilter?: boolean) => void
 	selected: DateRange
 	setSelected: (date: DateRange) => void
+	setPage: (newPage: number) => void
 	containerRef: React.RefObject<HTMLDivElement>
 	filterApplied: boolean
 	setFilterApplied: (filter: boolean) => void
+	clearFilter: () => void
 }
 
-const TitleHeader = ({ selected, setSelected, containerRef, filterApplied, setFilterApplied }: TitleHeaderProps) => {
+const TitleHeader = ({
+	selected,
+	setSelected,
+	setPage,
+	containerRef,
+	filterApplied,
+	setFilterApplied,
+	clearFilter,
+}: TitleHeaderProps) => {
 	return (
 		<Filters>
 			<Title>Your Activities</Title>
 			<DatePicker
 				onClick={() => {
+					setPage(0)
 					const { before, after } = getBeforeAndAfterDates(selected)
 					window.history.pushState({}, "", `?before=${before}&after=${after}`)
 				}}
@@ -27,6 +37,7 @@ const TitleHeader = ({ selected, setSelected, containerRef, filterApplied, setFi
 				setSelected={setSelected}
 				containerRef={containerRef}
 				clearFilter={() => {
+					clearFilter()
 					window.history.pushState({}, "", "/home/search")
 				}}
 				filterApplied={filterApplied}

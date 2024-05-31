@@ -5,11 +5,11 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 	switch (action.type) {
 		case types.LOAD_ATHLETE_ACTIVITIES_SUCCESS:
 			return action.data
-		case types.LOAD_FILTERED_ACTIVITIES_SUCCESS:
-			return action.data
 		case types.LOAD_MORE_ATHLETE_ACTIVITIES:
 			if (state === null) return action.data
 			return [...state, ...action.data]
+		case types.CLEAR_FILTER:
+			return []
 		default:
 			return state
 	}

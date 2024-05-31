@@ -1,8 +1,9 @@
 import { connect } from "react-redux"
-import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
+import { clearFilter, loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 
 const mapDispatchToProps = {
 	loadAthleteActivities,
+	clearFilter,
 }
 
 export default connect(null, mapDispatchToProps)

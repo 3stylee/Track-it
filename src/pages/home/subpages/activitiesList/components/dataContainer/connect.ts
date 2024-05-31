@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../../../../../redux/initialState"
-import { loadMoreAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
+import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 
 const mapStateToProps = (state: State) => {
 	const { hasMore, loadingMore } = state.loadMore
@@ -13,7 +13,7 @@ const mapStateToProps = (state: State) => {
 }
 
 const mapDispatchToProps = {
-	loadMoreAthleteActivities,
+	loadAthleteActivities,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

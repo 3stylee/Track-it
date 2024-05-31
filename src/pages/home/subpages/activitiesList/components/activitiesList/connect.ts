@@ -1,6 +1,9 @@
 import { State } from "../../../../../../redux/initialState"
 import { connect } from "react-redux"
-import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
+import {
+	loadAthleteActivities,
+	loadInitialAthleteActivities,
+} from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 import { PAGE_SIZE } from "../../../../../../constants/constants"
 
 const mapStateToProps = (state: State) => {
@@ -13,6 +16,7 @@ const mapStateToProps = (state: State) => {
 
 const mapDispatchToProps = {
 	loadAthleteActivities,
+	loadInitialAthleteActivities,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

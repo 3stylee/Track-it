@@ -17,7 +17,7 @@ interface DashboardProps {
 	athleteId: number
 	apiError: string | object
 	apiCallsInProgress: number
-	loadAthleteActivities: LoadAthleteActivities
+	loadInitialAthleteActivities: LoadAthleteActivities
 	loadAthleteData: (athleteID: number) => void
 }
 
@@ -28,11 +28,11 @@ export const Dashboard = ({
 	apiCallsInProgress,
 	apiError,
 	loadAthleteData,
-	loadAthleteActivities,
+	loadInitialAthleteActivities,
 }: DashboardProps) => {
 	useEffect(() => {
 		if (!gotSufficientActivities) {
-			getActivityData(loadAthleteActivities)
+			getActivityData(loadInitialAthleteActivities)
 		}
 	}, [])
 

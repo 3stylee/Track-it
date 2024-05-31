@@ -13,12 +13,12 @@ const loadingMoreReducer = (state = initalState.loadMore, action: { type: any })
 				...state,
 				loadingMore: true,
 			}
-		case types.HAS_NO_MORE_ACTIVITIES:
+		case types.NO_MORE_ACTIVITIES:
 			return {
 				...state,
 				hasMore: false,
 			}
-		case types.HAS_MORE_ACTIVITIES:
+		case types.LOAD_ATHLETE_ACTIVITIES_SUCCESS:
 			return {
 				...state,
 				hasMore: true,

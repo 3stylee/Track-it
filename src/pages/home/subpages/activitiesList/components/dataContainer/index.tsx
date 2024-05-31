@@ -7,13 +7,18 @@ import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { NoResults } from "../noResults"
 import { Container } from "./components"
+import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
+import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
+import { trimData } from "../../../../utils/trimData"
 
 export interface DataContainerProps {
 	data: AthleteActivities
 	apiCallsInProgress: number
 	loadingMore: boolean
 	hasMore: boolean
-	loadMoreAthleteActivities: () => void
+	page: number
+	setPage: (newPage: number) => void
+	loadAthleteActivities: (page: number, before?: number, after?: number) => void
 }
 
 export const DataContainer = ({
@@ -21,8 +26,12 @@ export const DataContainer = ({
 	apiCallsInProgress,
 	loadingMore,
 	hasMore,
-	loadMoreAthleteActivities,
+	page,
+	setPage,
+	loadAthleteActivities,
 }: DataContainerProps) => {
+	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
+	if (!(before || after)) data = trimData(data)
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<Container>
@@ -45,7 +54,13 @@ export const DataContainer = ({
 							<AnimatedSpinner height="7rem" noMargin />
 						) : (
 							hasMore && (
-								<Button variant="primary" className="w-25" onClick={loadMoreAthleteActivities}>
+								<Button
+									variant="primary"
+									className="w-25"
+									onClick={() => {
+										loadAthleteActivities(page, before, after)
+										setPage(page + 1)
+									}}>
 									Load More
 								</Button>
 							)

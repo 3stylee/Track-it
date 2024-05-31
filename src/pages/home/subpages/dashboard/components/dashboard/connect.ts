@@ -1,9 +1,9 @@
 import { State } from "../../../../../../redux/initialState"
 import { connect } from "react-redux"
-import { loadAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 import { loadAthleteData } from "../../../../../../redux/actions/loadAthleteDataActions"
 import { getDate } from "../../../../utils/getDate"
 import { SORT_OPTIONS } from "../../../../../../constants/constants"
+import { loadInitialAthleteActivities } from "../../../../../../redux/actions/loadAthleteActivitiesActions"
 
 const mapStateToProps = (state: State) => {
 	const athleteActivities = state.athleteActivities || []
@@ -22,7 +22,7 @@ const mapStateToProps = (state: State) => {
 }
 
 const mapDispatchToProps = {
-	loadAthleteActivities,
+	loadInitialAthleteActivities,
 	loadAthleteData,
 }
 
