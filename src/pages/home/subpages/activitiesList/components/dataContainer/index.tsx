@@ -2,17 +2,17 @@ import React from "react"
 import RouteMap from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
-import { Button, Row } from "react-bootstrap"
+import { Row } from "react-bootstrap"
 import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { NoResults } from "../noResults"
-import { Container } from "./components"
+import { Container, LoadMoreButton, LoadMoreContainer } from "./components"
 import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { trimData } from "../../../../utils/trimData"
 
 export interface DataContainerProps {
-	data: AthleteActivities
+	athleteActivities: AthleteActivities
 	apiCallsInProgress: number
 	loadingMore: boolean
 	hasMore: boolean
@@ -22,7 +22,7 @@ export interface DataContainerProps {
 }
 
 export const DataContainer = ({
-	data,
+	athleteActivities,
 	apiCallsInProgress,
 	loadingMore,
 	hasMore,
@@ -31,13 +31,14 @@ export const DataContainer = ({
 	loadAthleteActivities,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
-	if (!(before || after)) data = trimData(data)
+	if (!(before || after)) athleteActivities = trimData(athleteActivities)
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<Container>
-			{data.length > 0 ? (
+			{athleteActivities.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
+					{athleteActivities.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
 						<RouteMap
 							polyline={decodePolyLine(polyline)}
 							name={title}
@@ -49,23 +50,22 @@ export const DataContainer = ({
 							predictedType={predictedType}
 						/>
 					))}
-					<div className="d-flex justify-content-center w-100">
+					<LoadMoreContainer>
 						{loadingMore ? (
 							<AnimatedSpinner height="7rem" noMargin />
 						) : (
 							hasMore && (
-								<Button
+								<LoadMoreButton
 									variant="primary"
-									className="w-25"
 									onClick={() => {
 										loadAthleteActivities(page, before, after)
 										setPage(page + 1)
 									}}>
 									Load More
-								</Button>
+								</LoadMoreButton>
 							)
 						)}
-					</div>
+					</LoadMoreContainer>
 				</Row>
 			) : (
 				<NoResults />

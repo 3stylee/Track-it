@@ -47,6 +47,7 @@ export const NF_404_ERROR_TITLE = "404 Page Not Found"
 export const NF_404_ERROR_MESSAGE = "Sorry, but the page you are looking for does not exist"
 export const NF_404_ERROR_BUTTON = "Go back home »"
 export const AUTH_ERROR_TITLE = "Authentication Error"
+export const NO_LOGGED_IN_USER = "No logged in user found"
 export const AUTH_ERROR_MESSAGE = "Sorry, but we were unable to authenticate your Strava account. Please try again"
 export const TRY_AGAIN_BUTTON = "Try again »"
 export const MISSING_PERMISSIONS_TITLE = "Missing permissions"
@@ -95,3 +96,7 @@ export const ACTIVITY_TYPE_MAPPING = {
 	Swim: 2,
 }
 export const PAGE_SIZE = 36 // Keep as multiple of 12 for grid layout
+export const FIREBASE_COLLECTIONS = {
+	ACTIVITIES: "activities",
+	USERS: "users",
+}

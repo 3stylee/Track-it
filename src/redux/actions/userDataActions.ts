@@ -2,6 +2,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore"
+import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
 
 export const loadUserDataSuccess = (data: any) => {
 	return { type: types.LOAD_USER_DATA_SUCCESS, data }
@@ -19,7 +20,7 @@ export const loadUserData = () => {
 			onAuthStateChanged(auth, async (user) => {
 				if (user) {
 					const db = getFirestore()
-					const docRef = doc(db, "users", user.uid)
+					const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, user.uid)
 					const docSnap = await getDoc(docRef)
 
 					if (docSnap.exists()) {
@@ -33,7 +34,7 @@ export const loadUserData = () => {
 						dispatch(loadUserDataSuccess(initialData))
 					}
 				} else {
-					dispatch(apiCallError("User not logged in"))
+					dispatch(apiCallError(NO_LOGGED_IN_USER))
 				}
 			})
 		} catch (error: any) {

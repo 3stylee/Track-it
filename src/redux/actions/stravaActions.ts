@@ -1,5 +1,11 @@
 import axios from "axios"
-import { AUTH_TOKEN_BASE_URL, CLIENT_ID, CLIENT_SECRET } from "../../constants/constants"
+import {
+	AUTH_TOKEN_BASE_URL,
+	CLIENT_ID,
+	CLIENT_SECRET,
+	FIREBASE_COLLECTIONS,
+	NO_LOGGED_IN_USER,
+} from "../../constants/constants"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
@@ -39,7 +45,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 			onAuthStateChanged(auth, async (user) => {
 				if (user) {
 					const db = getFirestore()
-					const docRef = doc(db, "users", user.uid)
+					const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, user.uid)
 					await setDoc(
 						docRef,
 						{ access_token, refresh_token, expires_at, stravaAccess: true },
@@ -47,7 +53,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 					)
 					dispatch(storeAuthSuccess())
 				} else {
-					throw new Error("No logged in user found")
+					throw new Error(NO_LOGGED_IN_USER)
 				}
 			})
 		} catch (error: any) {
@@ -71,18 +77,18 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 					const db = getFirestore()
 					const batch = writeBatch(db)
 					for (const activity of data) {
-						const docRef = doc(db, "activities", activity.id.toString())
+						const docRef = doc(db, FIREBASE_COLLECTIONS.ACTIVITIES, activity.id.toString())
 						batch.set(docRef, { ...activity, userId: user.uid }, { merge: true })
 					}
 					await batch.commit()
 
 					// Update dateOfLastBackup in the user's document
 					const dateOfLastBackup = new Date().toISOString()
-					const userDocRef = doc(db, "users", user.uid)
+					const userDocRef = doc(db, FIREBASE_COLLECTIONS.USERS, user.uid)
 					await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
 					dispatch(copyActivitiesSuccess())
 				} else {
-					throw new Error("No logged in user found")
+					throw new Error(NO_LOGGED_IN_USER)
 				}
 			})
 		} catch (error: any) {

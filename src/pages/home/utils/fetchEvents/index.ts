@@ -1,6 +1,7 @@
 import { LRUCache } from "lru-cache"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
+import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../../../constants/constants"
 
 let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
 
@@ -34,7 +35,7 @@ export const fetchEvents = async (info: any, successCallback: any, failureCallba
 			if (user) {
 				const db = getFirestore()
 				const q = query(
-					collection(db, "activities"),
+					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 					where("userId", "==", user.uid),
 					where("start", ">=", info.startStr),
 					where("start", "<=", info.endStr)
@@ -44,7 +45,7 @@ export const fetchEvents = async (info: any, successCallback: any, failureCallba
 				cache.set(id, events)
 				successCallback(events)
 			} else {
-				failureCallback("No logged in user found")
+				failureCallback(NO_LOGGED_IN_USER)
 			}
 		})
 	} catch (error) {

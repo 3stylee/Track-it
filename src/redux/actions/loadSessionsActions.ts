@@ -2,6 +2,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
+import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }
@@ -16,7 +17,7 @@ export const loadSessions = () => {
 				if (user) {
 					const db = getFirestore()
 					const q = query(
-						collection(db, "activities"),
+						collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 						where("userId", "==", user.uid),
 						where("predictedType", "==", "Session")
 					)
@@ -24,7 +25,7 @@ export const loadSessions = () => {
 					const sessions = querySnapshot.docs.map((doc) => doc.data())
 					dispatch(loadSessionsSuccess(sessions))
 				} else {
-					throw new Error("No logged in user found")
+					throw new Error(NO_LOGGED_IN_USER)
 				}
 			})
 		} catch (error: any) {

@@ -8,7 +8,7 @@ import { dumbPredictData } from "../utils/dumbPredictData"
 import { copyStravaActivities } from "./stravaActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDocs } from "firebase/firestore"
-import { PAGE_SIZE } from "../../constants/constants"
+import { NO_LOGGED_IN_USER, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../utils/buildFilteredQuery"
 
@@ -77,7 +77,7 @@ export const loadAthleteActivities = (page: number, dateBefore?: number, dateAft
 					dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities))
 					if (activities.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
 				} else {
-					throw new Error("No logged in user found")
+					throw new Error(NO_LOGGED_IN_USER)
 				}
 			})
 		} catch (error: any) {

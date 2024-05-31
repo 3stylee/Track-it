@@ -4,6 +4,7 @@ import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates
 import { DatePicker } from "../datePicker"
 import connect from "./connect"
 import { DateRange } from "react-day-picker"
+import { ROUTE_PATHS } from "../../../../../../constants/constants"
 
 interface TitleHeaderProps {
 	selected: DateRange
@@ -38,7 +39,7 @@ const TitleHeader = ({
 				containerRef={containerRef}
 				clearFilter={() => {
 					clearFilter()
-					window.history.pushState({}, "", "/home/search")
+					window.history.pushState({}, "", ROUTE_PATHS.SEARCH_ACTIVITIES)
 				}}
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}
