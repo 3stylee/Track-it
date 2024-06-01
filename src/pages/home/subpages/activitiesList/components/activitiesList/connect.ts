@@ -8,9 +8,10 @@ import { INITIAL_PAGE_SIZE } from "../../../../../../constants/constants"
 
 const mapStateToProps = (state: State) => {
 	const athleteActivitiesLength = state.athleteActivities ? state.athleteActivities.length : 0
+	const gotInitialActivities = athleteActivitiesLength >= INITIAL_PAGE_SIZE && !state.activitiesHasFilter
 	return {
 		apiError: state.apiError,
-		gotInitialActivities: athleteActivitiesLength >= INITIAL_PAGE_SIZE,
+		gotInitialActivities,
 	}
 }
 

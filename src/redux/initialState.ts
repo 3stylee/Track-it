@@ -7,6 +7,7 @@ import { AthleteData } from "../pages/home/subpages/dashboard/models"
 export interface State {
 	authState: string
 	athleteActivities: AthleteActivities | null
+	activitiesHasFilter: boolean
 	athleteData: AthleteData
 	sessions: object[]
 	currentActivityStream: CurrentActivityStream
@@ -23,6 +24,7 @@ export interface State {
 export default {
 	authState: AUTH_STATES.UNAUTHORISED,
 	athleteActivities: null,
+	activitiesHasFilter: false,
 	sessions: [],
 	athleteData: {} as AthleteData,
 	currentActivityStream: {} as CurrentActivityStream,

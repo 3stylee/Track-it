@@ -42,7 +42,7 @@ const Calendar = ({ apiError }: any) => {
 						height={"auto"}
 						stickyHeaderDates={false}
 						validRange={{
-							end: new Date(), // Prevent navigation to future dates
+							end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0), // Prevent navigation to future months
 						}}
 					/>
 				</div>

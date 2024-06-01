@@ -13,7 +13,6 @@ interface TitleHeaderProps {
 	containerRef: React.RefObject<HTMLDivElement>
 	filterApplied: boolean
 	setFilterApplied: (filter: boolean) => void
-	clearFilter: () => void
 }
 
 const TitleHeader = ({
@@ -23,7 +22,6 @@ const TitleHeader = ({
 	containerRef,
 	filterApplied,
 	setFilterApplied,
-	clearFilter,
 }: TitleHeaderProps) => {
 	return (
 		<Filters>
@@ -38,7 +36,6 @@ const TitleHeader = ({
 				setSelected={setSelected}
 				containerRef={containerRef}
 				clearFilter={() => {
-					clearFilter()
 					window.history.pushState({}, "", ROUTE_PATHS.SEARCH_ACTIVITIES)
 				}}
 				filterApplied={filterApplied}

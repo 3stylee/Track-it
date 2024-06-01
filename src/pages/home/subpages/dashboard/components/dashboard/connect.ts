@@ -8,7 +8,8 @@ import { loadInitialAthleteActivities } from "../../../../../../redux/actions/lo
 const mapStateToProps = (state: State) => {
 	const athleteActivities = state.athleteActivities || []
 	const finalActivityDate = athleteActivities[athleteActivities.length - 1]?.start || Infinity
-	const gotSufficientActivities = finalActivityDate <= getDate(SORT_OPTIONS.MONTH).toISOString()
+	const gotSufficientActivities =
+		finalActivityDate <= getDate(SORT_OPTIONS.MONTH).toISOString() && !state.activitiesHasFilter
 	const gotAthleteData = Object.keys(state.athleteData).length !== 0
 	const athleteId = state.athleteActivities ? state.athleteActivities[0].athlete.id : 0
 
