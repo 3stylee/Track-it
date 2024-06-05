@@ -1,6 +1,6 @@
 import axios from "axios"
 import { processAthleteActivities } from "../processAthleteActivities"
-import { dumbPredictData } from "../dumbPredictData"
+import { predictData } from "../predictData"
 
 export const getNewActivities = async (data: object[], endpoint: string, accessToken: string, initialCopy: boolean) => {
 	let continuePagination = true
@@ -20,8 +20,8 @@ export const getNewActivities = async (data: object[], endpoint: string, accessT
 
 		// feed the data to the model to get the run type predictions
 		for (const response of responses) {
-			let dumbPredictions = dumbPredictData(response.data)
-			data.push(...processAthleteActivities(response.data, dumbPredictions))
+			let predictions = predictData(response.data)
+			data.push(...processAthleteActivities(response.data, predictions))
 
 			if (response.data.length < 200) continuePagination = false
 		}

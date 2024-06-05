@@ -10,11 +10,20 @@ import { ACTIVITY_TYPE_MAPPING } from "../../../constants/constants"
  */
 const processData = (data) => {
 	const processedData = data.map((row) => {
-		const dateObject = new Date(row[0])
+		const dateObject = new Date(row.start_date)
 		const dayOfWeek = dateObject.getDay()
-		const type = ACTIVITY_TYPE_MAPPING[row[5]]
-		return scaleRow([dayOfWeek, row[1], row[2], row[3], row[4], type, row[6]])
+		const type = ACTIVITY_TYPE_MAPPING[row.type]
+		return scaleRow([
+			dayOfWeek,
+			row.moving_time,
+			row.distance,
+			row.average_speed,
+			row.total_elevation_gain,
+			type,
+			row.average_heartrate,
+		])
 	})
+	console.log(processedData)
 	return processedData
 }
 

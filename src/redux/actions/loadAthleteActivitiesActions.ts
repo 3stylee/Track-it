@@ -4,13 +4,13 @@ import axios from "axios"
 import { getEndpoint } from "../utils/getActivityDataEndpoint"
 import { processAthleteActivities } from "../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
-import { dumbPredictData } from "../utils/dumbPredictData"
 import { copyStravaActivities } from "./stravaActions"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDocs } from "firebase/firestore"
 import { INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../utils/buildFilteredQuery"
+import { predictData } from "../utils/predictData"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
@@ -45,8 +45,8 @@ export const loadInitialAthleteActivities =
 			})
 
 			let data = limit ? responseData : responseData.reverse()
-			const dumbPredictions = dumbPredictData(data)
-			data = processAthleteActivities(responseData, dumbPredictions)
+			const predictions = await predictData(data)
+			data = processAthleteActivities(responseData, predictions)
 
 			cache.set(endpoint, data)
 			dispatch(loadDataSuccess(data))
