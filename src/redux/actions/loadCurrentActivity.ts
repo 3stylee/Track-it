@@ -25,7 +25,7 @@ export const loadCurrentActivity = (id: number) => {
 					Authorization: `Bearer ${access_token}`,
 				},
 			})
-			const predictedType = predictData([response.data])
+			const predictedType = await predictData([response.data])
 			const data = processActivityData(response.data)
 			dispatch(loadDataSuccess({ ...data, predictedType: predictedType[0] }))
 		} catch (error) {

@@ -20,7 +20,7 @@ export const getNewActivities = async (data: object[], endpoint: string, accessT
 
 		// feed the data to the model to get the run type predictions
 		for (const response of responses) {
-			let predictions = predictData(response.data)
+			let predictions = await predictData(response.data)
 			data.push(...processAthleteActivities(response.data, predictions))
 
 			if (response.data.length < 200) continuePagination = false

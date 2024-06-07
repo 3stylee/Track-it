@@ -10,6 +10,7 @@ export interface State {
 	activitiesHasFilter: boolean
 	athleteData: AthleteData
 	sessions: object[]
+	sessionGroups: number[][]
 	currentActivityStream: CurrentActivityStream
 	currentActivity: CurrentActivity
 	dataType: string
@@ -26,6 +27,7 @@ export default {
 	athleteActivities: null,
 	activitiesHasFilter: false,
 	sessions: [],
+	sessionGroups: [],
 	athleteData: {} as AthleteData,
 	currentActivityStream: {} as CurrentActivityStream,
 	currentActivity: {} as CurrentActivity,
@@ -44,6 +46,7 @@ export default {
 	userData: {
 		stravaAccess: false,
 		dateOfLastBackup: undefined,
+		sessionsLastCopy: undefined,
 		access_token: "",
 		refresh_token: "",
 		expires_at: Infinity,

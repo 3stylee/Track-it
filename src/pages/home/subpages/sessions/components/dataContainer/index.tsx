@@ -1,36 +1,43 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Card, Col, Row } from "react-bootstrap"
-import { Container } from "./components"
+import { Container, StyledLink } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
+import { ROUTE_PATHS } from "../../../../../../constants/constants"
 
 export interface DataContainerProps {
+	sessionGroups: any[]
 	sessions: any[]
 	apiCallsInProgress: number
-	loadSessions: () => void
 }
 
-export const DataContainer = ({ sessions, apiCallsInProgress, loadSessions }: DataContainerProps) => {
-	useEffect(() => {
-		if (sessions.length === 0) loadSessions()
-	}, [sessions, loadSessions])
+export const DataContainer = ({ sessionGroups, sessions, apiCallsInProgress }: DataContainerProps) => {
 	const theme = useTheme()
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner />
+	if (apiCallsInProgress > 0) return <AnimatedSpinner height="90%" />
 	return (
 		<Container>
-			{sessions.length > 0 ? (
+			{sessionGroups.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{sessions.map(({ title, id }) => (
-						<Col key={id}>
-							<Card className="h-100" text={theme.bootstrap.textColor} bg={theme.bootstrap.background}>
-								<Card.Body>
-									<Card.Title>{title}</Card.Title>
-								</Card.Body>
-							</Card>
-						</Col>
-					))}
+					{sessionGroups.map(([firstGroupId]) => {
+						const firstGroupSession = sessions.find((session) => session.id === firstGroupId)
+						return firstGroupSession ? (
+							<Col key={firstGroupId}>
+								<StyledLink to={ROUTE_PATHS.SESSIONS + `/${firstGroupId}`}>
+									<Card
+										className="h-100"
+										text={theme.bootstrap.textColor}
+										bg={theme.bootstrap.background}>
+										<Card.Body>
+											<Card.Title>{firstGroupSession.title}</Card.Title>
+											{firstGroupSession.heartrate}
+										</Card.Body>
+									</Card>
+								</StyledLink>
+							</Col>
+						) : null
+					})}
 				</Row>
 			) : (
 				<div>No sessions found</div>

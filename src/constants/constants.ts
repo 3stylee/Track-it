@@ -100,4 +100,5 @@ export const PAGE_SIZE = 72
 export const FIREBASE_COLLECTIONS = {
 	ACTIVITIES: "activities",
 	USERS: "users",
+	SESSION_GROUPS: "sessionGroups",
 }

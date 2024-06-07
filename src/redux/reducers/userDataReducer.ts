@@ -14,6 +14,7 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				refresh_token: "",
 				expires_at: Infinity,
 				dateOfLastBackup: undefined,
+				sessionsLastCopy: undefined,
 			}
 		case types.STORE_STRAVA_AUTH_SUCCESS:
 			return {
@@ -31,6 +32,11 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 			return {
 				...state,
 				dateOfLastBackup: new Date().toISOString(),
+			}
+		case types.UPDATE_FIRESTORE_SESSIONS:
+			return {
+				...state,
+				sessionsLastCopy: new Date().toISOString(),
 			}
 		default:
 			return state

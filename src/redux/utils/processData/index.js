@@ -23,7 +23,6 @@ const processData = (data) => {
 			row.average_heartrate,
 		])
 	})
-	console.log(processedData)
 	return processedData
 }
 
