@@ -18,6 +18,7 @@ export interface DataContainerProps {
 	hasMore: boolean
 	page: number
 	setPage: any
+	shouldTrimData?: boolean
 	loadAthleteActivities: (page: number, before?: number, after?: number) => void
 }
 
@@ -28,10 +29,11 @@ export const DataContainer = ({
 	hasMore,
 	page,
 	setPage,
+	shouldTrimData = true,
 	loadAthleteActivities,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
-	if (!(before || after)) athleteActivities = trimData(athleteActivities)
+	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (

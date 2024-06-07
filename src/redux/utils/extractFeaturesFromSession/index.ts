@@ -1,7 +1,8 @@
 import axios from "axios"
 import { removeSpaces } from "../removeSpaces"
+import { AthleteActivities } from "../../../pages/home/subpages/activitiesList/models"
 
-export const extractEntities = async (fullSessions: any[]) => {
+export const extractEntities = async (fullSessions: AthleteActivities) => {
 	const sessions = []
 	for (const session of fullSessions) {
 		sessions.push({

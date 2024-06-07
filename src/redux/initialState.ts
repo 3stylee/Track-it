@@ -9,7 +9,7 @@ export interface State {
 	athleteActivities: AthleteActivities | null
 	activitiesHasFilter: boolean
 	athleteData: AthleteData
-	sessions: object[]
+	sessions: AthleteActivities | []
 	sessionGroups: number[][]
 	currentActivityStream: CurrentActivityStream
 	currentActivity: CurrentActivity

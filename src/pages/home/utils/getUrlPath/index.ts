@@ -1,18 +1,18 @@
 /**
- * Extracts the last segment from the current URL path and returns it.
+ * Extracts the second segment from the current URL path and returns it.
  *
  * @param {Object} location - An object representing the location.
  *
- * @returns {string} The last segment of the URL path.
+ * @returns {string} The second segment of the URL path.
  */
 export const getUrlPath = (location: any) => {
 	const pathSegments = location.pathname.split("/")
-	let urlPath = pathSegments.at(-1)
-	if (urlPath === "home") {
+	let secondSegment = pathSegments.at(2)
+	if (secondSegment === undefined) {
 		return ""
 	}
-	if (urlPath === "activity") {
-		urlPath = "search"
+	if (secondSegment === "activity") {
+		return "search"
 	}
-	return urlPath
+	return secondSegment
 }

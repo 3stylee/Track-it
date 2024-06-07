@@ -1,37 +1,43 @@
 import React from "react"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Card, Col, Row } from "react-bootstrap"
-import { Container, StyledLink } from "./components"
+import { Container, PageTitle, StyledLink, StyledTitle } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { ROUTE_PATHS } from "../../../../../../constants/constants"
+import { AthleteActivities } from "../../../activitiesList/models"
 
-export interface DataContainerProps {
+export interface GroupCardsProps {
 	sessionGroups: any[]
-	sessions: any[]
+	sessions: AthleteActivities
 	apiCallsInProgress: number
 }
 
-export const DataContainer = ({ sessionGroups, sessions, apiCallsInProgress }: DataContainerProps) => {
+export const GroupCards = ({ sessionGroups, sessions, apiCallsInProgress }: GroupCardsProps) => {
 	const theme = useTheme()
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="90%" />
 	return (
 		<Container>
+			<PageTitle>Your Sessions</PageTitle>
 			{sessionGroups.length > 0 ? (
-				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{sessionGroups.map(([firstGroupId]) => {
+				<Row xs={1} sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
+					{sessionGroups.map((group) => {
+						const firstGroupId = group[0]
 						const firstGroupSession = sessions.find((session) => session.id === firstGroupId)
+						const link =
+							group.length > 1
+								? ROUTE_PATHS.SESSIONS + `/${firstGroupId}`
+								: ROUTE_PATHS.ACTIVITY + `?id=${firstGroupId}`
 						return firstGroupSession ? (
 							<Col key={firstGroupId}>
-								<StyledLink to={ROUTE_PATHS.SESSIONS + `/${firstGroupId}`}>
+								<StyledLink to={link}>
 									<Card
 										className="h-100"
 										text={theme.bootstrap.textColor}
 										bg={theme.bootstrap.background}>
 										<Card.Body>
-											<Card.Title>{firstGroupSession.title}</Card.Title>
-											{firstGroupSession.heartrate}
+											<StyledTitle>{firstGroupSession.title}</StyledTitle>
 										</Card.Body>
 									</Card>
 								</StyledLink>
@@ -46,4 +52,4 @@ export const DataContainer = ({ sessionGroups, sessions, apiCallsInProgress }: D
 	)
 }
 
-export default connect(DataContainer)
+export default connect(GroupCards)

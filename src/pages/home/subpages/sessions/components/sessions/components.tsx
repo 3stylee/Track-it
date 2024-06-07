@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../../../../constants/constants"
 
 export const PageContainer = styled("div")`
-	padding: 2rem;
+	padding-top: 2rem;
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
@@ -15,8 +15,4 @@ export const PageContainer = styled("div")`
 	@media (max-width: 991px) {
 		padding: 1.5rem;
 	}
-`
-
-export const PageTitle = styled("h3")`
-	color: ${({ theme }) => theme.text};
 `
