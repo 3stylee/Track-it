@@ -11,7 +11,6 @@ type ProcessedActivity = {
 	speed: number
 	type: string
 	elevation: number
-	heartrate: number
 	predictedType: string
 }
 

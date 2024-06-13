@@ -30,7 +30,7 @@ export const updateFirestoreSessionGroups = async (sessionGroups: number[][], di
 				await setDoc(userDocRef, { sessionsLastCopy }, { merge: true })
 				dispatch(updateFirestoreSessions())
 			} else {
-				throw new Error(NO_LOGGED_IN_USER)
+				console.error(NO_LOGGED_IN_USER)
 			}
 		})
 	} catch (error) {

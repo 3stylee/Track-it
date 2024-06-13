@@ -1,7 +1,7 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
+import { collection, getDocs, getFirestore, orderBy, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
 import { extractEntities } from "../utils/extractFeaturesFromSession"
 import { updateFirestoreSessionGroups } from "../utils/updateFirestoreSessionGroups"
@@ -28,13 +28,14 @@ export const loadSessions = () => async (dispatch: any) => {
 				const q = query(
 					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 					where("userId", "==", user.uid),
-					where("predictedType", "==", "Session")
+					where("predictedType", "==", "Session"),
+					orderBy("start", "desc")
 				)
 				const querySnapshot = await getDocs(q)
 				const sessions = querySnapshot.docs.map((doc) => doc.data())
 				dispatch(loadSessionsSuccess(sessions))
 			} else {
-				throw new Error(NO_LOGGED_IN_USER)
+				dispatch(apiCallError(NO_LOGGED_IN_USER))
 			}
 		})
 	} catch (error: any) {
@@ -66,7 +67,7 @@ export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
 					const sessionGroups = querySnapshot.docs.map((doc) => doc.data().sessions)
 					dispatch(loadSessionGroupsSuccess(sessionGroups))
 				} else {
-					throw new Error(NO_LOGGED_IN_USER)
+					dispatch(apiCallError(NO_LOGGED_IN_USER))
 				}
 			})
 		} catch (error: any) {

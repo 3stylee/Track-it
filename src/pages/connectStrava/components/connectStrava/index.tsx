@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { AuthorizeCard } from "../authorizeCard"
+import AuthorizeCard from "../authorizeCard"
 import { CentralContainer } from "./components"
 import connect from "./connect"
 import { ROUTE_PATHS } from "../../../../constants/constants"

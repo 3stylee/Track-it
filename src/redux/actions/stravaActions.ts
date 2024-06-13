@@ -53,7 +53,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => {
 					)
 					dispatch(storeAuthSuccess())
 				} else {
-					throw new Error(NO_LOGGED_IN_USER)
+					dispatch(apiCallError(NO_LOGGED_IN_USER))
 				}
 			})
 		} catch (error: any) {
@@ -88,7 +88,7 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => {
 					await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
 					dispatch(copyActivitiesSuccess())
 				} else {
-					throw new Error(NO_LOGGED_IN_USER)
+					dispatch(apiCallError(NO_LOGGED_IN_USER))
 				}
 			})
 		} catch (error: any) {

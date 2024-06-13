@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { Button } from "react-bootstrap"
 
 export const ContainerCard = styled("div")`
 	width: 30rem;
@@ -20,4 +21,13 @@ export const LinkText = styled("span")`
 	color: #007bff;
 	cursor: pointer;
 	text-decoration: underline;
+`
+export const LogoutButton = styled(Button)`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+`
+export const CenterContainer = styled("div")`
+	display: flex;
+	justify-content: center;
 `

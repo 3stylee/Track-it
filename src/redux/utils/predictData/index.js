@@ -16,11 +16,17 @@ export const predictData = async (data) => {
 		"https://raw.githubusercontent.com/3stylee/Track-it/master/src/constants/tfjs_model/model.json"
 	)
 
-	for (let row of processedData) {
-		const tensorData = tf.tensor2d([row])
-		const prediction = model.predict(tensorData)
-		const predictedClassIndex = prediction.argMax(1).dataSync()[0]
-		results.push(ACTIVITY_LABEL_MAPPING[predictedClassIndex])
+	for (let i = 0; i < processedData.length; i++) {
+		const row = processedData[i]
+		if (data[i].type !== "Run") {
+			results.push(data[i].type)
+		} else {
+			console.log(row)
+			const tensorData = tf.tensor2d([row])
+			const prediction = model.predict(tensorData)
+			const predictedClassIndex = prediction.argMax(1).dataSync()[0]
+			results.push(ACTIVITY_LABEL_MAPPING[predictedClassIndex])
+		}
 	}
 	return results
 }

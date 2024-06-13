@@ -76,24 +76,17 @@ export const LAP_TABLE_HEADERS = [
 	{ name: "Time", icon: "clock" },
 	{ name: "Pace", icon: "watch" },
 ]
-export const SESSION_TYPES = ["Session", "Hill Session", "Tempo"]
+export const SESSION_TYPES = ["Session", "Tempo"]
 export const ACTIVITY_LABEL_MAPPING = {
 	0: "Easy",
 	1: "Session",
 	2: "Tempo",
 	3: "Long Run",
-	4: "X-Train",
-	5: "Race",
-	6: "Hill Session",
+	4: "Race",
 }
 export const MODEL_SCALER_INFO = {
-	data_min: [0.0, 24.0, 0.0, 0.0, 0.0, 0.0, 34.2],
-	data_max: [6.0, 4900.0, 23412.4, 8.948, 427.2, 2.0, 194.4],
-}
-export const ACTIVITY_TYPE_MAPPING = {
-	Run: 0,
-	Ride: 1,
-	Swim: 2,
+	data_min: [0.0, 24.0, 0.0, 0.612, 2.9, 0.0],
+	data_max: [18347.5, 4900.0, 436.0, 8.948, 12.0, 116.0],
 }
 export const INITIAL_PAGE_SIZE = 36 // Keep as multiple of 12 for grid layout
 export const PAGE_SIZE = 72
