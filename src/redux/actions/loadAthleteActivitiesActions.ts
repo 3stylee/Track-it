@@ -5,7 +5,6 @@ import { getEndpoint } from "../utils/getActivityDataEndpoint"
 import { processAthleteActivities } from "../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDocs } from "firebase/firestore"
 import { INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
@@ -77,15 +76,13 @@ export const loadAthleteActivities =
 		}
 
 		try {
-			const auth = getAuth()
-			onAuthStateChanged(auth, async (user) => {
-				if (!user) return
-				const q = buildFilteredQuery(user.uid, getState, page, dateBefore, dateAfter)
-				const activities = (await getDocs(q)).docs.map((doc) => doc.data())
-				cache.set(cacheKey, activities)
-				const hasFilter = dateBefore !== undefined || dateAfter !== undefined
-				dispatchData(dispatch, activities, page, pageSize, hasFilter)
-			})
+			const uId = localStorage.getItem("uId")
+			if (!uId) return
+			const q = buildFilteredQuery(uId, getState, page, dateBefore, dateAfter)
+			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
+			cache.set(cacheKey, activities)
+			const hasFilter = dateBefore !== undefined || dateAfter !== undefined
+			dispatchData(dispatch, activities, page, pageSize, hasFilter)
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

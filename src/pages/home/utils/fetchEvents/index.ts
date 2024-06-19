@@ -1,5 +1,4 @@
 import { LRUCache } from "lru-cache"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../../../constants/constants"
 
@@ -23,24 +22,22 @@ export const fetchEvents = async (info: any, successCallback: any, failureCallba
 	}
 
 	try {
-		const auth = getAuth()
-		onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				const db = getFirestore()
-				const q = query(
-					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
-					where("userId", "==", user.uid),
-					where("start", ">=", info.startStr),
-					where("start", "<=", info.endStr)
-				)
-				const querySnapshot = await getDocs(q)
-				const events = querySnapshot.docs.map((doc) => doc.data())
-				cache.set(id, events)
-				successCallback(events)
-			} else {
-				failureCallback(NO_LOGGED_IN_USER)
-			}
-		})
+		const uId = localStorage.getItem("uId")
+		if (uId) {
+			const db = getFirestore()
+			const q = query(
+				collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
+				where("userId", "==", uId),
+				where("start", ">=", info.startStr),
+				where("start", "<=", info.endStr)
+			)
+			const querySnapshot = await getDocs(q)
+			const events = querySnapshot.docs.map((doc) => doc.data())
+			cache.set(id, events)
+			successCallback(events)
+		} else {
+			failureCallback(NO_LOGGED_IN_USER)
+		}
 	} catch (error) {
 		failureCallback(error)
 	}

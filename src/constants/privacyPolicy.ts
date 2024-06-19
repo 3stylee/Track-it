@@ -1,6 +1,6 @@
 export const privacyPolicyText = `Privacy Policy
 
-Effective Date: 01/01/2024
+Last Updated: 01/01/2024
 
 1. Introduction
 

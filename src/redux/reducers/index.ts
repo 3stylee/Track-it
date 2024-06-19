@@ -5,7 +5,6 @@ import athleteActivities from "./loadAthleteActivitiesReducer"
 import athleteData from "./loadAthleteDataReducer"
 import currentActivityStream from "./activityStreamReducer"
 import currentActivity from "./loadCurrentActivityReducer"
-import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
 import userData from "./userDataReducer"
@@ -25,7 +24,6 @@ export const rootReducer = combineReducers({
 	athleteData,
 	currentActivityStream,
 	currentActivity,
-	authState,
 	sidebarExpanded,
 	units,
 	userData,

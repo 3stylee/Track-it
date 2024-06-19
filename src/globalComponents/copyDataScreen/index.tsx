@@ -7,7 +7,7 @@ export const CopyDataScreen = () => {
 	return (
 		<Container>
 			<Lottie animationData={downloadAnimation} />
-			Hang tight whilst we opy your data across from Strava. This shouldn't take more than a minute.
+			Hang tight whilst we copy your data across from Strava. This shouldn't take more than a minute.
 		</Container>
 	)
 }

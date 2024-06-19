@@ -1,11 +1,9 @@
 import { AthleteActivities } from "../pages/home/subpages/activitiesList/models"
-import { AUTH_STATES } from "../constants/constants"
 import { LoadMore, Units, UserData } from "../models"
 import { CurrentActivity, CurrentActivityStream } from "../pages/home/subpages/activity/models"
 import { AthleteData } from "../pages/home/subpages/dashboard/models"
 
 export interface State {
-	authState: string
 	athleteActivities: AthleteActivities | null
 	activitiesHasFilter: boolean
 	athleteData: AthleteData
@@ -23,7 +21,6 @@ export interface State {
 }
 
 export default {
-	authState: AUTH_STATES.UNAUTHORISED,
 	athleteActivities: null,
 	activitiesHasFilter: false,
 	sessions: [],

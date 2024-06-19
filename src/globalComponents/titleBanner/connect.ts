@@ -10,7 +10,6 @@ const mapDispatchToProps = {
 const mapStateToProps = (state: State) => {
 	return {
 		sidebarExpanded: state.sidebarExpanded,
-		authState: state.authState,
 	}
 }
 

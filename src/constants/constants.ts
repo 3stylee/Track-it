@@ -3,14 +3,10 @@ export const REDIRECT_URI = "http://localhost:3000/authorize"
 export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
+export const USER_DATA_URL = "https://www.strava.com/api/v3/athlete"
 export const CLIENT_SECRET = "f60cf0fe4050d4142d4e64cba03214b450e6e12e"
 export const API_BASE_URL = "https://www.strava.com/api/v3"
 export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
-export const AUTH_STATES = {
-	AUTHORISED: "authorised",
-	AUTH_ERROR: "auth_error",
-	UNAUTHORISED: "unauthorised",
-}
 export const API_ERROR_MESSAGES = {
 	UNAUTHORISED: "Authorization Error",
 	STRAVA_FETCH_ERROR: "Sorry, we are having trouble accessing your Strava data right now.",

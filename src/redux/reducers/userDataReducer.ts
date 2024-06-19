@@ -9,7 +9,6 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 		case types.LOAD_USER_DATA_ERROR:
 			return {
 				stravaAccess: false,
-				email: "",
 				access_token: "",
 				refresh_token: "",
 				expires_at: Infinity,

@@ -1,11 +1,9 @@
 import React, { useState } from "react"
-import { AuthorizeButton, ContainerCard, LinkText, LogoutButton, SmallText, CenterContainer } from "./components"
+import { AuthorizeButton, ContainerCard, LinkText, SmallText } from "./components"
 import { CONNECT_STRAVA_MESSAGE, O_AUTH_URL } from "../../../../constants/constants"
 import PrivacyPolicyModal from "../privacyPolicyModal"
-import connect from "./connect"
-import FeatherIcon from "feather-icons-react"
 
-const AuthorizeCard = ({ logoutUser }: any) => {
+export const AuthorizeCard = () => {
 	const connectWithStrava = require("../../../../assets/images/btn_strava_connectwith_orange@2x.png")
 	const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
 
@@ -28,15 +26,7 @@ const AuthorizeCard = ({ logoutUser }: any) => {
 					<LinkText onClick={() => setShowPrivacyPolicy(true)}>privacy policy</LinkText>.
 				</SmallText>
 				<PrivacyPolicyModal show={showPrivacyPolicy} handleClose={() => setShowPrivacyPolicy(false)} />
-				<CenterContainer>
-					<LogoutButton variant="danger" onClick={() => logoutUser()}>
-						Logout
-						<FeatherIcon icon="log-out" size={16} />
-					</LogoutButton>
-				</CenterContainer>
 			</div>
 		</ContainerCard>
 	)
 }
-
-export default connect(AuthorizeCard)

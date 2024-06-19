@@ -1,4 +1,3 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { collection, getDocs, getFirestore, orderBy, query, where } from "firebase/firestore"
@@ -21,23 +20,21 @@ export const updateFirestoreSessions = () => {
 export const loadSessions = () => async (dispatch: any) => {
 	dispatch(beginApiCall())
 	try {
-		const auth = getAuth()
-		onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				const db = getFirestore()
-				const q = query(
-					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
-					where("userId", "==", user.uid),
-					where("predictedType", "==", "Session"),
-					orderBy("start", "desc")
-				)
-				const querySnapshot = await getDocs(q)
-				const sessions = querySnapshot.docs.map((doc) => doc.data())
-				dispatch(loadSessionsSuccess(sessions))
-			} else {
-				dispatch(apiCallError(NO_LOGGED_IN_USER))
-			}
-		})
+		const uId = localStorage.getItem("uId")
+		if (uId) {
+			const db = getFirestore()
+			const q = query(
+				collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
+				where("userId", "==", uId),
+				where("predictedType", "==", "Session"),
+				orderBy("start", "desc")
+			)
+			const querySnapshot = await getDocs(q)
+			const sessions = querySnapshot.docs.map((doc) => doc.data())
+			dispatch(loadSessionsSuccess(sessions))
+		} else {
+			dispatch(apiCallError(NO_LOGGED_IN_USER))
+		}
 	} catch (error: any) {
 		dispatch(apiCallError(error.message))
 	}
@@ -57,19 +54,17 @@ export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
 		await updateFirestoreSessionGroups(sessionGroups, dispatch)
 	} else {
 		try {
-			const auth = getAuth()
-			onAuthStateChanged(auth, async (user) => {
-				if (user) {
-					const db = getFirestore()
-					const querySnapshot = await getDocs(
-						query(collection(db, FIREBASE_COLLECTIONS.SESSION_GROUPS), where("athleteId", "==", user.uid))
-					)
-					const sessionGroups = querySnapshot.docs.map((doc) => doc.data().sessions)
-					dispatch(loadSessionGroupsSuccess(sessionGroups))
-				} else {
-					dispatch(apiCallError(NO_LOGGED_IN_USER))
-				}
-			})
+			const uId = localStorage.getItem("uId")
+			if (uId) {
+				const db = getFirestore()
+				const querySnapshot = await getDocs(
+					query(collection(db, FIREBASE_COLLECTIONS.SESSION_GROUPS), where("athleteId", "==", uId))
+				)
+				const sessionGroups = querySnapshot.docs.map((doc) => doc.data().sessions)
+				dispatch(loadSessionGroupsSuccess(sessionGroups))
+			} else {
+				dispatch(apiCallError(NO_LOGGED_IN_USER))
+			}
 		} catch (error: any) {
 			dispatch(apiCallError(error.message))
 		}
