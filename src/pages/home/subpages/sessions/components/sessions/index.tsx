@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { PageContainer } from "./components"
-import GroupCards from "../groupCards"
+import GroupsTable from "../groupsTable"
 import { Outlet, useParams } from "react-router-dom"
 import connect from "./connect"
 import { AthleteActivities } from "../../../activitiesList/models"
@@ -22,7 +22,7 @@ const Sessions = ({ sessions, sessionGroups, loadSessions, loadSessionGroups }: 
 	}, [sessions.length])
 
 	const { id } = useParams<{ id: string }>()
-	return <PageContainer>{id ? <Outlet /> : <GroupCards />}</PageContainer>
+	return <PageContainer>{id ? <Outlet /> : <GroupsTable />}</PageContainer>
 }
 
 export default connect(Sessions)

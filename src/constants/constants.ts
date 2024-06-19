@@ -79,10 +79,10 @@ export const LAP_TABLE_HEADERS = [
 export const SESSION_TYPES = ["Session", "Tempo"]
 export const ACTIVITY_LABEL_MAPPING = {
 	0: "Easy",
-	1: "Session",
-	2: "Tempo",
-	3: "Long Run",
-	4: "Race",
+	1: "Long Run",
+	2: "Race",
+	3: "Session",
+	4: "Tempo",
 }
 export const MODEL_SCALER_INFO = {
 	data_min: [0.0, 24.0, 0.0, 0.612, 2.9, 0.0],

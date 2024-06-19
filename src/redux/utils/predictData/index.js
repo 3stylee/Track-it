@@ -13,7 +13,7 @@ export const predictData = async (data) => {
 	const results = []
 	const processedData = processData(data)
 	const model = await tf.loadLayersModel(
-		"https://raw.githubusercontent.com/3stylee/Track-it/master/src/constants/tfjs_model/model.json"
+		"https://raw.githubusercontent.com/3stylee/Track-it/V2/src/constants/tfjs_model/model.json"
 	)
 
 	for (let i = 0; i < processedData.length; i++) {
@@ -21,7 +21,6 @@ export const predictData = async (data) => {
 		if (data[i].type !== "Run") {
 			results.push(data[i].type)
 		} else {
-			console.log(row)
 			const tensorData = tf.tensor2d([row])
 			const prediction = model.predict(tensorData)
 			const predictedClassIndex = prediction.argMax(1).dataSync()[0]

@@ -40,7 +40,7 @@ export const DataContainer = ({
 		<Container>
 			{athleteActivities.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{athleteActivities.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
+					{athleteActivities.map(({ polyline, title, time, distance, speed, id, predictedType, start }) => (
 						<RouteMap
 							polyline={decodePolyLine(polyline)}
 							name={title}
@@ -50,6 +50,7 @@ export const DataContainer = ({
 							id={id}
 							key={id}
 							predictedType={predictedType}
+							start={start}
 						/>
 					))}
 					<LoadMoreContainer>

@@ -13,14 +13,10 @@ export const updateFirestoreSessionGroups = async (sessionGroups: number[][], di
 
 				for (const group of sessionGroups) {
 					const docRef = doc(db, FIREBASE_COLLECTIONS.SESSION_GROUPS, group[0].toString())
-					batch.set(
-						docRef,
-						{
-							athleteId: user.uid,
-							sessions: group,
-						},
-						{ merge: true }
-					)
+					batch.set(docRef, {
+						athleteId: user.uid,
+						sessions: group,
+					})
 				}
 				await batch.commit()
 

@@ -1,5 +1,13 @@
 import React, { useState } from "react"
-import { ActivityTitle, CardContainer, ImagePlaceholder, StyledBadge, StyledImage, StyledLink } from "./components"
+import {
+	ActivityTitle,
+	CardContainer,
+	DateText,
+	ImagePlaceholder,
+	StyledBadge,
+	StyledImage,
+	StyledLink,
+} from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ROUTE_PATHS, THEMES } from "../../../../../../constants/constants"
 import { LabelledStats } from "../../../../../../globalComponents/labelledStats"
@@ -8,6 +16,7 @@ import { Card, Col } from "react-bootstrap"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../../../models"
+import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 
 export interface RouteMapProps {
 	polyline: number[][]
@@ -18,9 +27,10 @@ export interface RouteMapProps {
 	speed: number
 	units: Units
 	predictedType: string
+	start: string
 }
 
-const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedType }: RouteMapProps) => {
+const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedType, start }: RouteMapProps) => {
 	const theme = useTheme()
 	const [imageLoaded, setImagedLoaded] = useState(false)
 
@@ -29,8 +39,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 			? require("../../../../../../assets/images/no_gps_dark.png")
 			: require("../../../../../../assets/images/no_gps_light.png")
 	if (polyline.length > 0) {
-		const coordinatesString = polyline.map((coord) => `[${coord.join(",")}]`).join(",")
-		url = getMapboxEndpoint(coordinatesString, theme.name)
+		url = getMapboxEndpoint(polyline, theme.name)
 	}
 	const stats = getActivityStats(distance, speed, time, units)
 
@@ -51,6 +60,7 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 						}}
 					/>
 					<StyledBadge showBadge={imageLoaded}>{predictedType}</StyledBadge>
+					<DateText>{convertISOToDDMMYY(start)}</DateText>
 					{!imageLoaded && <ImagePlaceholder />}
 					<Card.Body>
 						<ActivityTitle className="card-title">{name}</ActivityTitle>

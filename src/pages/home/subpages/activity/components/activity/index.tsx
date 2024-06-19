@@ -41,7 +41,7 @@ const Activity = ({
 		<PageContainer>
 			<ImageContainer>
 				<ActivityTitle />
-				<ActivityImage polyline={currentActivity.polyline} />
+				<ActivityImage polyline={currentActivity.polyline} predictedType={currentActivity.predictedType} />
 			</ImageContainer>
 			<ActivityGraphs />
 		</PageContainer>

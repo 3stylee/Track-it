@@ -10,23 +10,6 @@ export const ActivityTitle = styled("h5")`
 	font-weight: bold;
 	margin-bottom: 1rem;
 `
-export const ActivityStats = styled("div")`
-	display: flex;
-
-	& > * {
-		border-right: 1px solid ${({ theme }) => theme.text};
-		padding-right: 0.75rem;
-		margin-left: 0.75rem;
-	}
-
-	& > *:first-of-type {
-		margin-left: 0;
-	}
-
-	& > *:last-child {
-		border-right: none;
-	}
-`
 
 export const StyledLink = styled(Link)`
 	color: inherit;
@@ -79,4 +62,12 @@ export const StyledBadge = styled(Badge)<{ showBadge: boolean }>`
 	right: 0.5rem;
 	top: 0.5rem;
 	${({ theme }) => theme.name === "dark" && `border: 1px solid ${theme.text};`}
+`
+
+export const DateText = styled("p")`
+	position: absolute;
+	left: 0.5rem;
+	top: 0.5rem;
+	font-size: 0.75rem;
+	font-weight: bold;
 `
