@@ -13,7 +13,7 @@ export const predictData = async (data) => {
 	const results = []
 	const processedData = processData(data)
 	const model = await tf.loadLayersModel(
-		"https://raw.githubusercontent.com/3stylee/Track-it/V2/src/constants/tfjs_model/model.json"
+		"https://raw.githubusercontent.com/3stylee/Track-it/master/src/constants/tfjs_model/model.json"
 	)
 
 	for (let i = 0; i < processedData.length; i++) {

@@ -12,7 +12,7 @@ export const extractEntities = async (fullSessions: AthleteActivities) => {
 	}
 	try {
 		const response = await axios.post(
-			"http://localhost:3009/extract_entities",
+			"https://urchin-app-q9ue8.ondigitalocean.app/extract_entities",
 			{ sessions },
 			{
 				headers: {
