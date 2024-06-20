@@ -7,15 +7,23 @@ import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpin
 import ActivityGraphs from "../activityGraphs"
 import ActivityTitle from "../activityTitle"
 import { CurrentActivity } from "../../models"
+import ApiError from "../../../../../../globalComponents/apiError"
 
 interface ActivityProps {
 	loadActivityStream: (id: number) => void
 	loadCurrentActivity: (id: number) => void
+	apiError: string | object
 	currentActivity: CurrentActivity
 	apiCallsInProgress: number
 }
 
-const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, apiCallsInProgress }: ActivityProps) => {
+const Activity = ({
+	loadActivityStream,
+	loadCurrentActivity,
+	apiError,
+	currentActivity,
+	apiCallsInProgress,
+}: ActivityProps) => {
 	const location = useLocation()
 	const searchParams = new URLSearchParams(location.search)
 	const id = parseInt(searchParams.get("id") || "")
@@ -28,13 +36,14 @@ const Activity = ({ loadActivityStream, loadCurrentActivity, currentActivity, ap
 	}, [])
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
+	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<ImageContainer>
 				<ActivityTitle />
-				<ActivityImage polyline={currentActivity.polyline} />
+				<ActivityImage polyline={currentActivity.polyline} predictedType={currentActivity.predictedType} />
 			</ImageContainer>
-			<ActivityGraphs laps={currentActivity.laps} />
+			<ActivityGraphs />
 		</PageContainer>
 	)
 }

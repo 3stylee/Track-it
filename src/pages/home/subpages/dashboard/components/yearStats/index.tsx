@@ -12,6 +12,7 @@ export const YearStats = () => {
 					<h4 className="m-0">Year Stats</h4>
 				</Header>
 			</Card.Header>
+			<Card.Body>Hello</Card.Body>
 		</Card>
 	)
 }

@@ -1,7 +1,7 @@
 export interface Activity {
 	name: string
 	moving_time: number
-	distance: string
+	distance: number
 	map: { summary_polyline: string }
 	athlete: { id: number }
 	id: number
@@ -16,11 +16,12 @@ export interface Activity {
  * Processes an array of raw athlete activities and returns an array of processed activities.
  *
  * @param {Activity[]} data - An array of raw Activity objects.
+ * @param {string[]} predictedTypes - An array of predicted activity types.
  *
  * @returns {Object[]} An array of objects, each representing a processed activity.
  */
-export const processAthleteActivities = (data: Activity[]) => {
-	const processedData = data.map((activity: Activity) => ({
+export const processAthleteActivities = (data: Activity[], predictedTypes?: string[]) => {
+	const processedData = data.map((activity: Activity, index) => ({
 		athlete: {
 			id: activity.athlete.id,
 		},
@@ -33,7 +34,8 @@ export const processAthleteActivities = (data: Activity[]) => {
 		speed: activity.average_speed,
 		type: activity.type,
 		elevation: activity.total_elevation_gain,
-		heartrate: activity.average_heartrate,
+		heartrate: activity.average_heartrate || 0,
+		predictedType: predictedTypes ? predictedTypes[index] : "",
 	}))
 	return processedData
 }

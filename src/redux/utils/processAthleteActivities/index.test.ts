@@ -5,7 +5,7 @@ describe("processAthleteActitivies", () => {
 		const activities: Activity[] = [
 			{
 				name: "Run in the park",
-				distance: "5000",
+				distance: 5000,
 				moving_time: 1000,
 				map: { summary_polyline: "_p~iF~ps|U_ulLnnqC_mqNvxq`@" },
 				id: 1,
@@ -18,7 +18,7 @@ describe("processAthleteActitivies", () => {
 			},
 			{
 				name: "Bike ride",
-				distance: "15000",
+				distance: 15000,
 				moving_time: 1500,
 				map: { summary_polyline: "_ibE_seK_seK_seK" },
 				id: 2,
@@ -33,7 +33,7 @@ describe("processAthleteActitivies", () => {
 		const expected = [
 			{
 				title: "Run in the park",
-				distance: "5000",
+				distance: 5000,
 				time: 1000,
 				polyline: "_p~iF~ps|U_ulLnnqC_mqNvxq`@",
 				id: 1,
@@ -46,7 +46,7 @@ describe("processAthleteActitivies", () => {
 			},
 			{
 				title: "Bike ride",
-				distance: "15000",
+				distance: 15000,
 				time: 1500,
 				polyline: "_ibE_seK_seK_seK",
 				id: 2,

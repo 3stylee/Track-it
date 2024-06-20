@@ -4,38 +4,39 @@ import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates
 import { DatePicker } from "../datePicker"
 import connect from "./connect"
 import { DateRange } from "react-day-picker"
+import { ROUTE_PATHS } from "../../../../../../constants/constants"
 
 interface TitleHeaderProps {
-	loadAthleteActivities: (dateBefore?: number, dateAfter?: number, hasFilter?: boolean) => void
 	selected: DateRange
 	setSelected: (date: DateRange) => void
+	setPage: (newPage: number) => void
 	containerRef: React.RefObject<HTMLDivElement>
 	filterApplied: boolean
 	setFilterApplied: (filter: boolean) => void
 }
 
 const TitleHeader = ({
-	loadAthleteActivities,
 	selected,
 	setSelected,
+	setPage,
 	containerRef,
 	filterApplied,
 	setFilterApplied,
 }: TitleHeaderProps) => {
 	return (
 		<Filters>
-			<Title>Activities</Title>
+			<Title>Your Activities</Title>
 			<DatePicker
 				onClick={() => {
+					setPage(0)
 					const { before, after } = getBeforeAndAfterDates(selected)
 					window.history.pushState({}, "", `?before=${before}&after=${after}`)
-					loadAthleteActivities(before, after, true)
 				}}
 				selected={selected}
 				setSelected={setSelected}
 				containerRef={containerRef}
 				clearFilter={() => {
-					window.history.pushState({}, "", "/home/search")
+					window.history.pushState({}, "", ROUTE_PATHS.SEARCH_ACTIVITIES)
 				}}
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}

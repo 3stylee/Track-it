@@ -1,0 +1,43 @@
+import React from "react"
+import { useParams } from "react-router-dom"
+import { DataContainer } from "../../../activitiesList/components/dataContainer"
+import { AthleteActivities } from "../../../activitiesList/models"
+import connect from "./connect"
+import { CountText } from "./components"
+
+export interface SessionGroupProps {
+	sessionGroups: number[][]
+	sessions: AthleteActivities
+	apiCallsInProgress: number
+}
+
+const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGroupProps) => {
+	const { id } = useParams<{ id: string }>()
+	const sessionGroup = sessionGroups.find(([firstGroupElement]) => firstGroupElement.toString() === id)
+	const groupSessions = sessions.filter(({ id }) => sessionGroup?.includes(id))
+	return (
+		<div>
+			{sessionGroup ? (
+				<>
+					<CountText>
+						Looks like you've completed this session or similar {groupSessions.length} times
+					</CountText>
+					<DataContainer
+						apiCallsInProgress={apiCallsInProgress}
+						page={1}
+						setPage={undefined}
+						hasMore={false}
+						loadingMore={false}
+						athleteActivities={groupSessions}
+						loadAthleteActivities={() => {}}
+						shouldTrimData={false}
+					/>
+				</>
+			) : (
+				<div>No group found</div>
+			)}
+		</div>
+	)
+}
+
+export default connect(SessionGroup)

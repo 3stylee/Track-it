@@ -21,6 +21,12 @@ describe("getActivityGraphData", () => {
 				resolution: "high",
 				series_type: "altitude",
 			},
+			time: {
+				original_size: 200,
+				data: [100, 200, 300, 400, 500],
+				resolution: "high",
+				series_type: "time",
+			},
 		}
 		const mockActivity = {
 			id: 10802511154,

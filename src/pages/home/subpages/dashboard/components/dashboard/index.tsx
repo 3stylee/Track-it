@@ -7,34 +7,43 @@ import connect from "./connect"
 import { getActivityData } from "../../../../utils/getActivityData"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
-import { AthleteActivities, DataFlags } from "../../../activitiesList/models"
 import { LoadAthleteActivities } from "../../models"
-//import { YearStats } from "../yearStats"
+import ApiError from "../../../../../../globalComponents/apiError"
+import { YearStats } from "../yearStats"
 
 interface DashboardProps {
-	athleteActivities: AthleteActivities
-	dataFlags: DataFlags
-	loadAthleteActivities: LoadAthleteActivities
-	loadAthleteData: (athleteID: number) => void
+	gotSufficientActivities: boolean
+	gotAthleteData: boolean
+	athleteId: number
+	apiError: string | object
 	apiCallsInProgress: number
+	loadInitialAthleteActivities: LoadAthleteActivities
+	loadAthleteData: (athleteID: number) => void
 }
 
 export const Dashboard = ({
-	athleteActivities,
-	dataFlags: { gotAthleteData, gotInitialActivities },
-	loadAthleteActivities,
-	loadAthleteData,
+	gotSufficientActivities,
+	gotAthleteData,
+	athleteId,
 	apiCallsInProgress,
+	apiError,
+	loadAthleteData,
+	loadInitialAthleteActivities,
 }: DashboardProps) => {
 	useEffect(() => {
-		if (!gotInitialActivities) getActivityData(loadAthleteActivities)
-		if (athleteActivities.length > 0) {
-			const athleteID = athleteActivities[0].athlete.id
-			if (!gotAthleteData) loadAthleteData(athleteID)
+		if (!gotSufficientActivities) {
+			getActivityData(loadInitialAthleteActivities)
 		}
-	}, [athleteActivities])
+	}, [])
+
+	useEffect(() => {
+		if (gotSufficientActivities && !gotAthleteData) {
+			loadAthleteData(athleteId)
+		}
+	}, [gotSufficientActivities, gotAthleteData])
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
+	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<TitleHeader />
@@ -46,11 +55,11 @@ export const Dashboard = ({
 					<RecentActivities />
 				</Col>
 			</Row>
-			{/* <Row>
+			<Row>
 				<Col sm={12}>
 					<YearStats />
 				</Col>
-			</Row> */}
+			</Row>
 		</PageContainer>
 	)
 }

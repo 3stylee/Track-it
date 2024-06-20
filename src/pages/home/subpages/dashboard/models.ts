@@ -5,11 +5,7 @@ export interface AthleteData {
 	allTotalRunDistance: number
 }
 
-export type LoadAthleteActivities = (
-	dateBefore?: number | undefined,
-	dateAfter?: number | undefined,
-	hasFilter?: boolean
-) => void
+export type LoadAthleteActivities = (limit?: number) => void
 
 export type QuickStatsType = {
 	"Distance This Year": { count: string; unit: string }

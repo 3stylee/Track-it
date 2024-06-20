@@ -16,6 +16,7 @@ export const PageContainer = styled("div")`
 
 	@media (max-width: 768px) {
 		margin-left: 0;
+		width: 100%;
 	}
 
 	& .blur {

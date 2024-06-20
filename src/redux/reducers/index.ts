@@ -5,20 +5,26 @@ import athleteActivities from "./loadAthleteActivitiesReducer"
 import athleteData from "./loadAthleteDataReducer"
 import currentActivityStream from "./activityStreamReducer"
 import currentActivity from "./loadCurrentActivityReducer"
-import authState from "./authUserReducer"
 import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
-import dataFlags from "./dataFlagsReducer"
+import userData from "./userDataReducer"
+import sessions from "./loadSessionsReducer"
+import sessionGroups from "./loadSessionGroupsReducer"
+import loadMore from "./loadMoreReducer"
+import activitiesHasFilter from "./activitiesFilterReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
 	apiError,
+	loadMore,
 	athleteActivities,
+	activitiesHasFilter,
+	sessions,
+	sessionGroups,
 	athleteData,
-	dataFlags,
 	currentActivityStream,
 	currentActivity,
-	authState,
 	sidebarExpanded,
 	units,
+	userData,
 })

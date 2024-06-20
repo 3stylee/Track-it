@@ -15,10 +15,9 @@ export interface TitleBannerProps {
 	openSidebar: () => void
 	closeSidebar: () => void
 	sidebarExpanded: boolean
-	authState: string
 }
 
-export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded, authState }: TitleBannerProps) => {
+export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: TitleBannerProps) => {
 	const toggleSidebar = (): any => {
 		if (sidebarExpanded) {
 			closeSidebar()
@@ -30,7 +29,7 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded, authSt
 	const trackLogo = require("../../assets/images/olympics.png")
 	return (
 		<BannerBackground>
-			<CollapseButton onClick={toggleSidebar} showButton={authState === "authorised"}>
+			<CollapseButton onClick={toggleSidebar} showButton={localStorage.getItem("uId") !== null}>
 				<FeatherIcon icon={`chevrons-${sidebarExpanded ? "left" : "right"}`} size="36px" />
 			</CollapseButton>
 			<BannerTitle>

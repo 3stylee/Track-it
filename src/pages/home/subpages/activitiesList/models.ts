@@ -11,13 +11,7 @@ type ProcessedActivity = {
 	speed: number
 	type: string
 	elevation: number
-	heartrate: number
 	predictedType: string
 }
 
 export type AthleteActivities = ProcessedActivity[]
-
-export interface DataFlags {
-	gotAthleteData: boolean
-	gotInitialActivities: boolean
-}

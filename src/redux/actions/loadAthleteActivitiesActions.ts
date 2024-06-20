@@ -4,48 +4,86 @@ import axios from "axios"
 import { getEndpoint } from "../utils/getActivityDataEndpoint"
 import { processAthleteActivities } from "../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
-import { dumbPredictData } from "../utils/dumbPredictData"
+import { copyStravaActivities } from "./stravaActions"
+import { getDocs } from "firebase/firestore"
+import { INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
+import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
+import { buildFilteredQuery } from "../utils/buildFilteredQuery"
+import { predictData } from "../utils/predictData"
 
-export const loadDataSuccess = (data: object, filter: boolean) => {
-	const type = filter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
+export const loadDataSuccess = (data: object, hasFilter = false) => {
+	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
 	return { type, data }
+}
+
+export const loadMoreSuccess = (data: object) => {
+	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
 }
 
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
-export const loadAthleteActivities = (dateBefore?: number, dateAfter?: number, hasFilter: boolean = false) => {
-	return async function (dispatch: any) {
-		const endpoint = getEndpoint(dateBefore, dateAfter)
+export const loadInitialAthleteActivities =
+	(limit?: number, after?: number) => async (dispatch: any, getState: any) => {
+		const {
+			userData: { access_token, dateOfLastBackup },
+		} = getState()
+		const endpoint = getEndpoint(limit, after)
+
 		dispatch(beginApiCall())
+
 		if (cache.has(endpoint)) {
-			dispatch(loadDataSuccess(cache.get(endpoint), hasFilter))
+			dispatch(loadDataSuccess(cache.get(endpoint)))
 			return
 		}
 
 		try {
-			const response = await axios.get(endpoint, {
+			const { data: responseData } = await axios.get(endpoint, {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem("access_code")}`,
+					Authorization: `Bearer ${access_token}`,
 				},
 			})
 
-			// API returns oldest -> newest, when no filter applied
-			let data = hasFilter ? response.data : response.data.reverse()
-			data = processAthleteActivities(data)
+			let data = limit ? responseData : responseData.reverse()
+			const predictions = await predictData(data)
+			data = processAthleteActivities(responseData, predictions)
 
-			// feed the data to the model to get the run type predictions
-			const activities: any = []
-			data.forEach(({ speed, heartrate, type, distance }: any) => {
-				activities.push({ average_heartrate: heartrate, average_speed: speed, type, distance })
-			})
-			const dumbPredictions = dumbPredictData(activities)
-			data = data.map((activity: any, index: number) => {
-				return { ...activity, predictedType: dumbPredictions[index] }
-			})
 			cache.set(endpoint, data)
-			dispatch(loadDataSuccess(data, hasFilter))
+			dispatch(loadDataSuccess(data))
+
+			if (data.length < INITIAL_PAGE_SIZE) dispatch(hasNoMoreActivities())
+			if (data[0].start > dateOfLastBackup) {
+				dispatch(copyStravaActivities(new Date(dateOfLastBackup).getTime() / 1000))
+			}
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}
 	}
+
+const dispatchData = (dispatch: any, activities: any, page: number, pageSize: number, hasFilter = false) => {
+	dispatch(page ? loadMoreSuccess(activities) : loadDataSuccess(activities, hasFilter))
+	activities.length < pageSize && dispatch(hasNoMoreActivities())
 }
+
+export const loadAthleteActivities =
+	(page: number, dateBefore?: number, dateAfter?: number) => async (dispatch: any, getState: any) => {
+		dispatch(page ? beginLoadMoreApiCall() : beginApiCall())
+		const pageSize = page ? PAGE_SIZE : INITIAL_PAGE_SIZE
+		const cacheKey = `${page}-${dateBefore}-${dateAfter}`
+
+		if (cache.has(cacheKey)) {
+			dispatchData(dispatch, cache.get(cacheKey), page, pageSize)
+			return
+		}
+
+		try {
+			const uId = localStorage.getItem("uId")
+			if (!uId) return
+			const q = buildFilteredQuery(uId, getState, page, dateBefore, dateAfter)
+			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
+			cache.set(cacheKey, activities)
+			const hasFilter = dateBefore !== undefined || dateAfter !== undefined
+			dispatchData(dispatch, activities, page, pageSize, hasFilter)
+		} catch (error) {
+			dispatch(apiCallError(error))
+		}
+	}

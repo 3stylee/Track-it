@@ -1,53 +1,63 @@
 import React, { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { AUTH_STATES, ROUTE_PATHS } from "../../constants/constants"
+import { ROUTE_PATHS } from "../../constants/constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
+import { UserData } from "../../models"
+import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 
 export interface HomeProps {
-	authState: string
-	getAuthToken: any
+	userData: UserData
+	loadUserData: () => void
 	toggleTheme: () => void
-	authUserSuccess: () => void
+	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
+	copyStravaActivities: (lastBackup: number | undefined) => void
 }
 
-export const Home = ({ authState, getAuthToken, toggleTheme, authUserSuccess }: HomeProps) => {
+export const Home = ({ userData, loadUserData, toggleTheme, storeStravaAuth, copyStravaActivities }: HomeProps) => {
 	const navigate = useNavigate()
-	const [isTokenValid, setIsTokenValid] = React.useState(false)
+	const [validToken, setValidToken] = React.useState(false)
+	const [refreshingToken, setRefreshingToken] = React.useState(false)
 
-	// Boot user back to login if they haven't authorised their strava account
+	// If strava account not connected, redirect to connect page
 	useEffect(() => {
-		if (!localStorage.getItem("access_code")) {
-			navigate(ROUTE_PATHS.DEFAULT)
-		}
-		// Update auth state
-		if (authState !== AUTH_STATES.AUTHORISED) {
-			authUserSuccess()
-		}
+		if (!localStorage.getItem("uId")) navigate(ROUTE_PATHS.CONNECT)
+	}, [userData, navigate])
+
+	// If strava access token has expired, refresh it
+	useEffect(() => {
+		loadUserData()
 	}, [])
 
-	// If auth token expires, refresh auth token
 	useEffect(() => {
-		if (Math.floor(Date.now() / 1000) >= parseInt(localStorage.getItem("expires_at") || "0")) {
-			const refreshCode = localStorage.getItem("refresh_code")
-			getAuthToken(refreshCode, true).then(() => setIsTokenValid(true))
-		} else {
-			setIsTokenValid(true)
+		if (!userData.stravaAccess) return
+		if (Math.floor(Date.now() / 1000) <= userData.expires_at) {
+			setValidToken(true)
+		} else if (!refreshingToken) {
+			storeStravaAuth(userData.refresh_token, true)
+			setRefreshingToken(true)
 		}
-	}, [])
+	}, [userData, validToken])
 
-	return (
-		<>
-			{isTokenValid ? (
-				<>
-					<Sidebar toggleTheme={toggleTheme} />
-					<Outlet />
-				</>
-			) : (
-				<AnimatedSpinner />
-			)}
-		</>
+	// Copy activities to firestore if not already done
+	useEffect(() => {
+		if (userData.stravaAccess && userData.access_token && !userData.dateOfLastBackup) {
+			copyStravaActivities(undefined)
+		}
+	}, [userData])
+
+	return userData.stravaAccess && userData.access_token && validToken ? (
+		userData.dateOfLastBackup ? (
+			<>
+				<Sidebar toggleTheme={toggleTheme} />
+				<Outlet />
+			</>
+		) : (
+			<CopyDataScreen />
+		)
+	) : (
+		<AnimatedSpinner />
 	)
 }
 

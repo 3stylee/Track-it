@@ -6,20 +6,41 @@ import { Row } from "react-bootstrap"
 import { AthleteActivities } from "../../models"
 import { AnimatedSpinner } from "../../../../../../globalComponents/animatedSpinner"
 import { NoResults } from "../noResults"
-import { Container } from "./components"
+import { Container, LoadMoreButton, LoadMoreContainer } from "./components"
+import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
+import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
+import { trimData } from "../../../../utils/trimData"
 
 export interface DataContainerProps {
-	data: AthleteActivities
+	athleteActivities: AthleteActivities
 	apiCallsInProgress: number
+	loadingMore: boolean
+	hasMore: boolean
+	page: number
+	setPage: any
+	shouldTrimData?: boolean
+	loadAthleteActivities: (page: number, before?: number, after?: number) => void
 }
 
-export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) => {
+export const DataContainer = ({
+	athleteActivities,
+	apiCallsInProgress,
+	loadingMore,
+	hasMore,
+	page,
+	setPage,
+	shouldTrimData = true,
+	loadAthleteActivities,
+}: DataContainerProps) => {
+	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
+	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<Container>
-			{data.length > 0 ? (
+			{athleteActivities.length > 0 ? (
 				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					{data.map(({ polyline, title, time, distance, speed, id, predictedType }) => (
+					{athleteActivities.map(({ polyline, title, time, distance, speed, id, predictedType, start }) => (
 						<RouteMap
 							polyline={decodePolyLine(polyline)}
 							name={title}
@@ -29,8 +50,25 @@ export const DataContainer = ({ data, apiCallsInProgress }: DataContainerProps) 
 							id={id}
 							key={id}
 							predictedType={predictedType}
+							start={start}
 						/>
 					))}
+					<LoadMoreContainer>
+						{loadingMore ? (
+							<AnimatedSpinner height="7rem" noMargin />
+						) : (
+							hasMore && (
+								<LoadMoreButton
+									variant="primary"
+									onClick={() => {
+										setPage(page + 1)
+										loadAthleteActivities(page + 1, before, after)
+									}}>
+									Load More
+								</LoadMoreButton>
+							)
+						)}
+					</LoadMoreContainer>
 				</Row>
 			) : (
 				<NoResults />

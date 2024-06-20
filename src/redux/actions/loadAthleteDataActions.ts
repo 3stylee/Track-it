@@ -9,7 +9,11 @@ export const loadDataSuccess = (data: object) => {
 }
 
 export const loadAthleteData = (athleteID: number) => {
-	return async function (dispatch: any) {
+	return async function (dispatch: any, getState: any) {
+		const {
+			userData: { access_token },
+		} = getState()
+
 		let endpoint = API_BASE_URL
 		endpoint += `/athletes/${athleteID}/stats`
 
@@ -17,7 +21,7 @@ export const loadAthleteData = (athleteID: number) => {
 		try {
 			const response = await axios.get(endpoint, {
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem("access_code")}`,
+					Authorization: `Bearer ${access_token}`,
 				},
 			})
 			const processedData = processAthleteData(response.data)

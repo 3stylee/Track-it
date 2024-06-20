@@ -3,6 +3,7 @@ import { Lap } from "../../subpages/activity/models"
 /**
  * Will categorise laps into Effort and Recovery based on the average speed of the laps
  * @param {Array} laps - A list of laps to categorise
+ * @param {Boolean} session - A boolean denoting if the activity is a session or not
  * @returns {Array} A list of the categorised laps
  */
 export const categoriseLaps = (laps: Lap[], session: boolean) => {
