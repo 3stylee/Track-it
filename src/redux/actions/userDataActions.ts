@@ -1,6 +1,6 @@
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore"
+import { doc, getDoc, getFirestore } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS } from "../../constants/constants"
 
 export const loadUserDataSuccess = (data: any) => {
@@ -27,7 +27,6 @@ export const loadUserData = () => {
 				const initialData = {
 					stravaAccess: false,
 				}
-				await setDoc(docRef, initialData)
 				dispatch(loadUserDataSuccess(initialData))
 			}
 		} catch (error: any) {
