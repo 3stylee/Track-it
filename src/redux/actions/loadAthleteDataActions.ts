@@ -2,7 +2,7 @@ import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
 import { API_BASE_URL } from "../../constants/constants"
-import { processAthleteData } from "../utils/processAthleteData"
+import { processAthleteData } from "../../utils/processAthleteData"
 
 export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_ATHLETE_DATA_SUCCESS, data }

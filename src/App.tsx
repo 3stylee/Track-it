@@ -13,18 +13,18 @@ import {
 	MISSING_PERMISSIONS_MESSAGE,
 } from "./constants/constants"
 import TitleBanner from "./globalComponents/titleBanner"
-import { ConnectStrava } from "./pages/connectStrava/components/connectStrava"
-import OAuthorisationCallback from "./pages/connectStrava/components/OAuthorisationCallback"
+import { ConnectStrava } from "./pages/connectStrava/connectStrava"
+import OAuthorisationCallback from "./pages/connectStrava/OAuthorisationCallback"
 import Home from "./pages/home"
 import ErrorPage from "./pages/errorPage"
-import ActivitiesList from "./pages/home/subpages/activitiesList/components/activitiesList"
-import Dashboard from "./pages/home/subpages/dashboard/components/dashboard"
-import Activity from "./pages/home/subpages/activity/components/activity"
-import Calendar from "./pages/home/subpages/calendar/components/calendar"
+import ActivitiesList from "./pages/home/activitiesList"
+import Dashboard from "./pages/home/dashboard"
+import Activity from "./pages/home/activity"
 import { ThemeProvider } from "@emotion/react"
 import useCustomTheme from "./theme/useCustomTheme"
-import Sessions from "./pages/home/subpages/sessions/components/sessions"
-import SessionGroup from "./pages/home/subpages/sessions/components/sessionGroup"
+import Calendar from "./pages/home/calendar"
+import Sessions from "./pages/home/sessions"
+import SessionGroup from "./pages/home/sessions/sessionGroup"
 
 const App = () => {
 	const { theme, toggleTheme } = useCustomTheme()

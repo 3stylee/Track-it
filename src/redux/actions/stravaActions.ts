@@ -9,10 +9,10 @@ import {
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { doc, getFirestore, setDoc, writeBatch } from "firebase/firestore"
-import { getEndpoint } from "../utils/getActivityDataEndpoint"
-import { getNewActivities } from "../utils/getNewActivites"
-import { AthleteActivities } from "../../pages/home/subpages/activitiesList/models"
-import { getUserId } from "../utils/getUserId"
+import { getEndpoint } from "../../utils/getActivityDataEndpoint"
+import { getNewActivities } from "../../utils/getNewActivites"
+import { getUserId } from "../../utils/getUserId"
+import { AthleteActivities } from "../../models/activities"
 
 export const storeAuthSuccess = () => {
 	return { type: types.STORE_STRAVA_AUTH_SUCCESS }

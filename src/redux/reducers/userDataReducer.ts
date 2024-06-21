@@ -1,4 +1,4 @@
-import { UserData } from "../../models"
+import { UserData } from "../../models/state"
 import * as types from "../actions/actionTypes"
 import initialState from "../initialState"
 

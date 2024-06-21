@@ -1,4 +1,4 @@
-import { Units } from "../../models"
+import { Units } from "../../models/state"
 import * as types from "../actions/actionTypes"
 import initialState from "../initialState"
 

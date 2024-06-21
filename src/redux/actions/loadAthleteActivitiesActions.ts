@@ -1,15 +1,15 @@
 import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
-import { getEndpoint } from "../utils/getActivityDataEndpoint"
-import { processAthleteActivities } from "../utils/processAthleteActivities"
+import { getEndpoint } from "../../utils/getActivityDataEndpoint"
+import { processAthleteActivities } from "../../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
 import { getDocs } from "firebase/firestore"
 import { INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
-import { buildFilteredQuery } from "../utils/buildFilteredQuery"
-import { predictData } from "../utils/predictData"
+import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
+import { predictData } from "../../utils/predictData"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS

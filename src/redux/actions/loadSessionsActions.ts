@@ -2,8 +2,8 @@ import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { collection, getDocs, getFirestore, orderBy, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
-import { extractEntities } from "../utils/extractFeaturesFromSession"
-import { updateFirestoreSessionGroups } from "../utils/updateFirestoreSessionGroups"
+import { extractEntities } from "../../utils/extractFeaturesFromSession"
+import { updateFirestoreSessionGroups } from "../../utils/updateFirestoreSessionGroups"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }

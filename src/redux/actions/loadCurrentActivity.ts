@@ -2,8 +2,8 @@ import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
 import { API_BASE_URL } from "../../constants/constants"
-import { processActivityData } from "../utils/processActivityData"
-import { predictData } from "../utils/predictData"
+import { processActivityData } from "../../utils/processActivityData"
+import { predictData } from "../../utils/predictData"
 
 export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_CURRENT_ACTIVITY_SUCCESS, data }

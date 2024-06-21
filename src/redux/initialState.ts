@@ -1,7 +1,6 @@
-import { AthleteActivities } from "../pages/home/subpages/activitiesList/models"
-import { LoadMore, Units, UserData } from "../models"
-import { CurrentActivity, CurrentActivityStream } from "../pages/home/subpages/activity/models"
-import { AthleteData } from "../pages/home/subpages/dashboard/models"
+import { AthleteActivities, CurrentActivity, CurrentActivityStream } from "../models/activities"
+import { AthleteData } from "../models/athlete"
+import { LoadMore, Units, UserData } from "../models/state"
 
 export interface State {
 	athleteActivities: AthleteActivities | null

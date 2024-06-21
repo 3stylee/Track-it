@@ -4,7 +4,7 @@ import { ROUTE_PATHS } from "../../constants/constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
-import { UserData } from "../../models"
+import { UserData } from "../../models/state"
 import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 
 export interface HomeProps {
