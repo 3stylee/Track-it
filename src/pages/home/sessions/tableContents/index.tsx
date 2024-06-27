@@ -8,19 +8,23 @@ import { ActivityMap, StyledRow } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { AthleteActivities } from "../../../../models/activities"
+import { filterSessionGroups } from "../../../../utils/filterSesssionGroups"
 
 export interface TableContentsProps {
 	sessions: AthleteActivities
 	sessionGroups: number[][]
+	searchText: string
+	sortOption: number
 }
 
-const TableContents = ({ sessionGroups, sessions }: TableContentsProps) => {
+const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: TableContentsProps) => {
 	const navigate = useNavigate()
 	const theme = useTheme()
+	const filteredGroups = filterSessionGroups(sessionGroups, sessions, searchText, sortOption)
 
-	return (
+	return filteredGroups.length > 0 ? (
 		<>
-			{sessionGroups.map((group) => {
+			{filteredGroups.map((group) => {
 				const firstGroupId = group[0]
 				const firstGroupSession = sessions.find((session) => session.id === firstGroupId)
 				const link =
@@ -48,6 +52,10 @@ const TableContents = ({ sessionGroups, sessions }: TableContentsProps) => {
 				) : null
 			})}
 		</>
+	) : (
+		<tr>
+			<td>No sessions found</td>
+		</tr>
 	)
 }
 

@@ -15,3 +15,24 @@ export const SessionCount = styled("p")`
 	margin-bottom: 1rem;
 	color: ${({ theme }) => theme.text};
 `
+export const TableContainer = styled("div")`
+	max-height: calc(100vh - 16rem);
+	overflow-y: scroll;
+	overflow-x: hidden;
+`
+export const FilterContainer = styled("div")`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`
+
+export const SortableHeader = styled("div")`
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+`
+export const StyledRow = styled("tr")`
+	& th {
+		vertical-align: middle;
+	}
+`

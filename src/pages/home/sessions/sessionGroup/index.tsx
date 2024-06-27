@@ -20,7 +20,7 @@ const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGr
 			{sessionGroup ? (
 				<>
 					<CountText>
-						Looks like you've completed this session or similar {groupSessions.length} times
+						Looks like you've completed this session or similar {groupSessions.length} times:
 					</CountText>
 					<DataContainer
 						apiCallsInProgress={apiCallsInProgress}
