@@ -1,10 +1,10 @@
 export const CLIENT_ID = "115309"
-export const REDIRECT_URI = "https://trackittraining.tech/authorize"
+export const REDIRECT_URI = `${process.env.REACT_APP_BASE_URL}/authorize`
 export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
 export const USER_DATA_URL = "https://www.strava.com/api/v3/athlete"
-export const CLIENT_SECRET = "f60cf0fe4050d4142d4e64cba03214b450e6e12e"
+export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 export const API_BASE_URL = "https://www.strava.com/api/v3"
 export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
 export const API_ERROR_MESSAGES = {
@@ -30,8 +30,7 @@ export const PASSWORD_BLANK = "Password cannot be blank."
 export const SIGN_UP_MESSAGE = "Don't have an account? Sign up here"
 export const DATA_ERROR_MESSAGE = "Sorry, we had trouble getting your data, please try again"
 export const INITIAL_DATA_MESSAGE = ""
-export const MAPBOX_ACCESS_TOKEN =
-	"pk.eyJ1IjoiM3N0eWxlZSIsImEiOiJjbG80YWMxd3gwMDA4MmtvMmoyeTZsaHRyIn0.j9ejh2FFTVEQoXqWtMMB5A"
+export const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN
 export const SORT_OPTIONS = {
 	WEEK: "Week",
 	MONTH: "Month",
