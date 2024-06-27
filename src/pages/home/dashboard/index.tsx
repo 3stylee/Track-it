@@ -8,7 +8,6 @@ import { getActivityData } from "../../../utils/getActivityData"
 import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
 import ApiError from "../../../globalComponents/apiError"
-import { YearStats } from "./yearStats"
 import { LoadAthleteActivities } from "../../../models/athlete"
 
 interface DashboardProps {
@@ -53,11 +52,6 @@ export const Dashboard = ({
 				</Col>
 				<Col lg={4} className="mb-4">
 					<RecentActivities />
-				</Col>
-			</Row>
-			<Row>
-				<Col sm={12}>
-					<YearStats />
 				</Col>
 			</Row>
 		</PageContainer>
