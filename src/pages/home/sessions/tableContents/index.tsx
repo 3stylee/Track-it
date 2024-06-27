@@ -52,11 +52,7 @@ const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: Tabl
 				) : null
 			})}
 		</>
-	) : (
-		<tr>
-			<td>No sessions found</td>
-		</tr>
-	)
+	) : null
 }
 
 export default connect(TableContents)

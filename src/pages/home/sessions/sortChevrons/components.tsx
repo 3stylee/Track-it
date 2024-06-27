@@ -6,7 +6,7 @@ export const Container = styled("div")`
 	display: flex;
 	flex-direction: column;
 `
-export const Chevron = styled(FeatherIcon)<{ active?: boolean }>`
+export const Chevron = styled(FeatherIcon)<{ active: boolean }>`
 	height: 0.75rem;
 	color: ${({ theme, active }) => (active ? "var(--bs-primary)" : theme.text)};
 `

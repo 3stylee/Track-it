@@ -48,8 +48,8 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 								<StyledRow>
 									<th scope="col">Session</th>
 									{sortableHeaders.map((header, index) => (
-										<th scope="col">
-											<SortableHeader key={header} onClick={handleClick(index)}>
+										<th scope="col" key={header}>
+											<SortableHeader onClick={handleClick(index)}>
 												{header}
 												<SortChevrons number={index} sortOption={sortOption} />
 											</SortableHeader>
