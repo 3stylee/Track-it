@@ -30,6 +30,7 @@ export default {
 	dataType: "",
 	loadMore: {
 		hasMore: true,
+		page: 0,
 		loadingMore: false,
 	},
 	apiCallsInProgress: 0,

@@ -7,12 +7,12 @@ import { getBeforeAndAfterDates } from "../../../utils/getBeforeAndAfterDates"
 import { getDateRangeFromUrl } from "../../../utils/getDateRangeFromUrl"
 import TitleHeader from "./titleHeader"
 import ApiError from "../../../globalComponents/apiError"
-import { INITIAL_PAGE_SIZE } from "../../../constants/constants"
+import { PAGE_SIZE } from "../../../constants/constants"
 
 interface ActivitiesListProps {
 	apiError: string | object
 	gotInitialActivities: boolean
-	loadAthleteActivities: (page: number, dateBefore?: number, dateAfter?: number) => void
+	loadAthleteActivities: (dateBefore?: number, dateAfter?: number) => void
 	loadInitialAthleteActivities: (limit?: number) => void
 }
 
@@ -25,14 +25,13 @@ export const ActivitiesList = ({
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [selected, setSelected] = useState<DateRange>(getDateRangeFromUrl())
 	const [filterApplied, setFilterApplied] = useState(selected?.from !== undefined)
-	const [page, setPage] = useState(0)
 
 	useEffect(() => {
 		if (selected.from && selected.to) {
 			const { before, after } = getBeforeAndAfterDates(selected)
-			loadAthleteActivities(page, before, after)
+			loadAthleteActivities(before, after)
 		} else if (!gotInitialActivities) {
-			loadInitialAthleteActivities(INITIAL_PAGE_SIZE)
+			loadInitialAthleteActivities(PAGE_SIZE)
 		}
 	}, [filterApplied])
 
@@ -42,12 +41,11 @@ export const ActivitiesList = ({
 			<TitleHeader
 				selected={selected}
 				setSelected={setSelected}
-				setPage={setPage}
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}
 				containerRef={containerRef}
 			/>
-			<DataContainer setPage={setPage} page={page} />
+			<DataContainer />
 		</PageContainer>
 	)
 }

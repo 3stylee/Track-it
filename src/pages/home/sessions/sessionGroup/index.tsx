@@ -23,9 +23,10 @@ const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGr
 						Looks like you've completed this session or similar {groupSessions.length} times:
 					</CountText>
 					<DataContainer
+						page={0}
+						prevPage={undefined}
 						apiCallsInProgress={apiCallsInProgress}
-						page={1}
-						setPage={undefined}
+						nextPage={undefined}
 						hasMore={false}
 						loadingMore={false}
 						athleteActivities={groupSessions}

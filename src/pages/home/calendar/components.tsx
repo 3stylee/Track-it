@@ -5,7 +5,6 @@ export const PageContainer = styled("div")`
 	display: flex;
 	justify-content: center;
 	width: calc(100% - ${SIDEBAR_WIDTH});
-	padding: 2rem;
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
@@ -38,7 +37,11 @@ export const CalendarContainer = styled("div")`
 	}
 
 	& .calendar {
-		padding: 1rem 2rem 4rem 2rem;
+		padding: 2rem 2rem 4rem 2rem;
+
+		@media (max-width: 768px) {
+			padding: 1rem;
+		}
 	}
 
 	& .fc-view {

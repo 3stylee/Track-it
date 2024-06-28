@@ -6,7 +6,7 @@ import { processAthleteActivities } from "../../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
 import { getDocs } from "firebase/firestore"
-import { INITIAL_PAGE_SIZE, PAGE_SIZE } from "../../constants/constants"
+import { MAX_PAGES, PAGE_SIZE } from "../../constants/constants"
 import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
 import { predictData } from "../../utils/predictData"
@@ -18,6 +18,10 @@ export const loadDataSuccess = (data: object, hasFilter = false) => {
 
 export const loadMoreSuccess = (data: object) => {
 	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
+}
+
+export const loadPreviousSuccess = (data: object) => {
+	return { type: types.LOAD_PREVIOUS_ATHLETE_ACTIVITIES, data }
 }
 
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
@@ -50,7 +54,7 @@ export const loadInitialAthleteActivities =
 			cache.set(endpoint, data)
 			dispatch(loadDataSuccess(data))
 
-			if (data.length < INITIAL_PAGE_SIZE) dispatch(hasNoMoreActivities())
+			if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
 			if (data[0].start > dateOfLastBackup) {
 				dispatch(copyStravaActivities(new Date(dateOfLastBackup).getTime() / 1000))
 			}
@@ -59,19 +63,27 @@ export const loadInitialAthleteActivities =
 		}
 	}
 
-const dispatchData = (dispatch: any, activities: any, page: number, pageSize: number, hasFilter = false) => {
-	dispatch(page ? loadMoreSuccess(activities) : loadDataSuccess(activities, hasFilter))
-	activities.length < pageSize && dispatch(hasNoMoreActivities())
+const dispatchData = (dispatch: any, activities: any, page: number, hasFilter = false, loadPrevious = false) => {
+	if (loadPrevious) {
+		dispatch(loadPreviousSuccess(activities))
+	} else {
+		dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities, hasFilter))
+	}
+	activities.length < PAGE_SIZE && dispatch(hasNoMoreActivities())
 }
 
 export const loadAthleteActivities =
-	(page: number, dateBefore?: number, dateAfter?: number) => async (dispatch: any, getState: any) => {
-		dispatch(page ? beginLoadMoreApiCall() : beginApiCall())
-		const pageSize = page ? PAGE_SIZE : INITIAL_PAGE_SIZE
+	(dateBefore?: number, dateAfter?: number, loadPrevious = false) =>
+	async (dispatch: any, getState: any) => {
+		let {
+			loadMore: { page },
+		} = getState()
+		dispatch(page > 0 ? beginLoadMoreApiCall() : beginApiCall())
+		if (loadPrevious) page = page - (MAX_PAGES - 1)
 		const cacheKey = `${page}-${dateBefore}-${dateAfter}`
 
 		if (cache.has(cacheKey)) {
-			dispatchData(dispatch, cache.get(cacheKey), page, pageSize)
+			dispatchData(dispatch, cache.get(cacheKey), page, false, loadPrevious)
 			return
 		}
 
@@ -82,7 +94,7 @@ export const loadAthleteActivities =
 			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
 			cache.set(cacheKey, activities)
 			const hasFilter = dateBefore !== undefined || dateAfter !== undefined
-			dispatchData(dispatch, activities, page, pageSize, hasFilter)
+			dispatchData(dispatch, activities, page, hasFilter, loadPrevious)
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

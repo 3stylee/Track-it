@@ -1,6 +1,7 @@
 import FeatherIcon from "feather-icons-react"
 import React from "react"
 import { IconContainer, SearchbarContainer } from "./components"
+import { useTheme } from "@emotion/react"
 
 export interface searchbarProps {
 	searchText: string
@@ -8,11 +9,12 @@ export interface searchbarProps {
 }
 
 export const Searchbar = ({ searchText, setSearchText }: searchbarProps) => {
+	const theme = useTheme()
 	return (
-		<SearchbarContainer className="input-group mb-3">
+		<SearchbarContainer data-bs-theme={theme.name}>
 			<input
 				type="text"
-				className="form-control"
+				className={"form-control "}
 				placeholder="Search"
 				aria-label="Search"
 				onChange={({ target }) => setSearchText(target.value)}

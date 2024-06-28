@@ -14,5 +14,6 @@ export interface UserData {
 
 export interface LoadMore {
 	hasMore: boolean
+	page: number
 	loadingMore: boolean
 }
