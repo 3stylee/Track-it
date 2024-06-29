@@ -8,8 +8,3 @@ export const Container = styled("div")`
 		padding: 0rem 1rem;
 	}
 `
-export const LoadMoreContainer = styled("div")`
-	display: flex;
-	justify-content: center;
-	width: 100%;
-`

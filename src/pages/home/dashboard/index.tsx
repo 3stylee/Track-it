@@ -8,7 +8,7 @@ import { getActivityData } from "../../../utils/getActivityData"
 import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
 import ApiError from "../../../globalComponents/apiError"
-import { LoadAthleteActivities } from "../../../models/athlete"
+import { LoadInitialAthleteActivities } from "../../../models/athlete"
 
 interface DashboardProps {
 	gotSufficientActivities: boolean
@@ -16,7 +16,7 @@ interface DashboardProps {
 	athleteId: number
 	apiError: string | object
 	apiCallsInProgress: number
-	loadInitialAthleteActivities: LoadAthleteActivities
+	loadInitialAthleteActivities: LoadInitialAthleteActivities
 	loadAthleteData: (athleteID: number) => void
 }
 

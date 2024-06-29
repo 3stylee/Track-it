@@ -2,14 +2,14 @@ import React from "react"
 import RouteMap from "../routeMap"
 import connect from "./connect"
 import decodePolyLine from "../../../../utils/decodePolyline"
-import { Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { NoResults } from "../noResults"
-import { Container, LoadMoreContainer } from "./components"
+import { Container } from "./components"
 import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { trimData } from "../../../../utils/trimData"
-import { AthleteActivities } from "../../../../models/activities"
+import { AthleteActivities, LoadAthleteActivities } from "../../../../models/activities"
 import { MAX_PAGES } from "../../../../constants/constants"
 import { useInfiniteScroll } from "./infiniteScroll"
 
@@ -22,7 +22,7 @@ export interface DataContainerProps {
 	prevPage: any
 	page: number
 	shouldTrimData?: boolean
-	loadAthleteActivities: (before?: number, after?: number, loadPrevious?: boolean) => void
+	loadAthleteActivities: LoadAthleteActivities
 }
 
 export const DataContainer = ({
@@ -40,12 +40,16 @@ export const DataContainer = ({
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
 
 	const scrollUp = () => {
-		prevPage()
-		loadAthleteActivities(before, after, true)
+		if (!loadingMore) {
+			prevPage()
+			loadAthleteActivities(before, after, true)
+		}
 	}
 	const scrollDown = () => {
-		nextPage()
-		loadAthleteActivities(before, after)
+		if (!loadingMore) {
+			nextPage()
+			loadAthleteActivities(before, after)
+		}
 	}
 	const { topRef, bottomRef } = useInfiniteScroll(scrollUp, scrollDown, before, after)
 
@@ -53,31 +57,28 @@ export const DataContainer = ({
 	return (
 		<Container>
 			{athleteActivities.length > 0 ? (
-				<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
-					<LoadMoreContainer>
-						{loadingMore ? (
-							<AnimatedSpinner height="7rem" noMargin />
-						) : (
-							page > MAX_PAGES - 1 && <div ref={topRef} />
+				<>
+					{loadingMore && <AnimatedSpinner height="7rem" noMargin />}
+					<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
+						{athleteActivities.map(
+							({ polyline, title, time, distance, speed, id, predictedType, start }, index) => (
+								<Col key={id} ref={index === 0 && page >= MAX_PAGES ? topRef : null}>
+									<RouteMap
+										polyline={decodePolyLine(polyline)}
+										name={title}
+										time={time}
+										distance={distance}
+										speed={speed}
+										id={id}
+										predictedType={predictedType}
+										start={start}
+									/>
+								</Col>
+							)
 						)}
-					</LoadMoreContainer>
-					{athleteActivities.map(({ polyline, title, time, distance, speed, id, predictedType, start }) => (
-						<RouteMap
-							polyline={decodePolyLine(polyline)}
-							name={title}
-							time={time}
-							distance={distance}
-							speed={speed}
-							id={id}
-							key={id}
-							predictedType={predictedType}
-							start={start}
-						/>
-					))}
-					<LoadMoreContainer>
-						{loadingMore ? <AnimatedSpinner height="7rem" noMargin /> : hasMore && <div ref={bottomRef} />}
-					</LoadMoreContainer>
-				</Row>
+					</Row>
+					{loadingMore ? <AnimatedSpinner height="7rem" noMargin /> : hasMore && <div ref={bottomRef} />}
+				</>
 			) : (
 				<NoResults />
 			)}

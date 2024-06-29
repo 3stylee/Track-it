@@ -97,3 +97,5 @@ export interface CurrentActivityStream {
 		resolution: string
 	}
 }
+
+export type LoadAthleteActivities = (before?: number, after?: number, loadPrevious?: boolean) => void
