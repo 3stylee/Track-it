@@ -9,9 +9,12 @@ const mapStateToProps = (state: State) => {
 	const athleteActivities = state.athleteActivities || []
 	const finalActivityDate = athleteActivities[athleteActivities.length - 1]?.start || Infinity
 	const firstActivityDate = athleteActivities[0]?.start || 0
-	const startOfMonth = getDate(SORT_OPTIONS.MONTH).toISOString()
+	const startOfMonth = getDate(SORT_OPTIONS.MONTH)
+	const activitiesStartDate = new Date(startOfMonth.getDate() - 6).toISOString()
 	const gotSufficientActivities =
-		finalActivityDate <= startOfMonth && firstActivityDate >= startOfMonth && !state.activitiesHasFilter
+		finalActivityDate <= startOfMonth.toISOString() &&
+		firstActivityDate >= activitiesStartDate &&
+		!state.activitiesHasFilter
 	const gotAthleteData = Object.keys(state.athleteData).length !== 0
 	const athleteId = state.athleteActivities ? state.athleteActivities[0].athlete.id : 0
 

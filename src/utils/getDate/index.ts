@@ -1,3 +1,4 @@
+import { startOfMonth, startOfWeek } from "date-fns"
 import { SORT_OPTIONS } from "../../constants/constants"
 
 /**
@@ -8,18 +9,14 @@ import { SORT_OPTIONS } from "../../constants/constants"
  * @returns {Date} The date for the start of the week or month.
  */
 export const getDate = (weekOrMonth: string) => {
-	const now = new Date()
-
+	let now = new Date()
 	if (weekOrMonth === SORT_OPTIONS.WEEK) {
-		const currentDayOfWeek = now.getDay()
-		const daysUntilMonday = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1
-		now.setDate(now.getDate() - daysUntilMonday)
+		now = startOfWeek(now, { weekStartsOn: 1 }) // Assumes week starts on Monday
 	}
 	if (weekOrMonth === SORT_OPTIONS.MONTH) {
-		now.setDate(1)
+		now = startOfMonth(now)
+		const timezoneOffset = now.getTimezoneOffset() * 60000
+		now = new Date(now.getTime() - timezoneOffset)
 	}
-
-	now.setHours(0, 0, 0, 0)
-
 	return now
 }
