@@ -10,7 +10,6 @@ import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { trimData } from "../../../../utils/trimData"
 import { AthleteActivities, LoadAthleteActivities } from "../../../../models/activities"
-import { MAX_PAGES } from "../../../../constants/constants"
 import { useInfiniteScroll } from "./infiniteScroll"
 
 export interface DataContainerProps {
@@ -18,11 +17,10 @@ export interface DataContainerProps {
 	apiCallsInProgress: number
 	loadingMore: boolean
 	hasMore: boolean
-	nextPage: any
-	prevPage: any
-	page: number
 	shouldTrimData?: boolean
+	nextPage: () => void
 	loadAthleteActivities: LoadAthleteActivities
+	beginLoadMoreApiCall: () => void
 }
 
 export const DataContainer = ({
@@ -30,39 +28,35 @@ export const DataContainer = ({
 	apiCallsInProgress,
 	loadingMore,
 	hasMore,
-	nextPage,
-	prevPage,
-	page,
 	shouldTrimData = true,
+	nextPage,
 	loadAthleteActivities,
+	beginLoadMoreApiCall,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
 
-	const scrollUp = () => {
-		if (!loadingMore) {
-			prevPage()
-			loadAthleteActivities(before, after, true)
-		}
-	}
 	const scrollDown = () => {
-		if (!loadingMore) {
+		if (loadingMore) return
+		beginLoadMoreApiCall()
+		setTimeout(() => {
 			nextPage()
 			loadAthleteActivities(before, after)
-		}
+		}, 100)
 	}
-	const { topRef, bottomRef } = useInfiniteScroll(scrollUp, scrollDown, before, after)
+	const { bottomRef } = useInfiniteScroll(scrollDown, before, after)
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
 	return (
 		<Container>
 			{athleteActivities.length > 0 ? (
 				<>
-					{loadingMore && <AnimatedSpinner height="7rem" noMargin />}
 					<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
 						{athleteActivities.map(
 							({ polyline, title, time, distance, speed, id, predictedType, start }, index) => (
-								<Col key={id} ref={index === 0 && page >= MAX_PAGES ? topRef : null}>
+								<Col
+									key={id}
+									ref={index + 1 === athleteActivities.length && hasMore ? bottomRef : null}>
 									<RouteMap
 										polyline={decodePolyLine(polyline)}
 										name={title}
@@ -77,7 +71,7 @@ export const DataContainer = ({
 							)
 						)}
 					</Row>
-					{loadingMore ? <AnimatedSpinner height="7rem" noMargin /> : hasMore && <div ref={bottomRef} />}
+					{loadingMore && <AnimatedSpinner height="10rem" noMargin />}
 				</>
 			) : (
 				<NoResults />

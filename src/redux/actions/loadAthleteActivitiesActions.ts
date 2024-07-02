@@ -6,8 +6,8 @@ import { processAthleteActivities } from "../../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
 import { getDocs } from "firebase/firestore"
-import { MAX_PAGES, PAGE_SIZE } from "../../constants/constants"
-import { beginLoadMoreApiCall, hasNoMoreActivities } from "./loadMoreActions"
+import { PAGE_SIZE } from "../../constants/constants"
+import { hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
 import { predictData } from "../../utils/predictData"
 
@@ -18,10 +18,6 @@ export const loadDataSuccess = (data: object, hasFilter = false) => {
 
 export const loadMoreSuccess = (data: object) => {
 	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
-}
-
-export const loadPreviousSuccess = (data: object) => {
-	return { type: types.LOAD_PREVIOUS_ATHLETE_ACTIVITIES, data }
 }
 
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
@@ -63,27 +59,21 @@ export const loadInitialAthleteActivities =
 		}
 	}
 
-const dispatchData = (dispatch: any, activities: any, page: number, hasFilter = false, loadPrevious = false) => {
-	if (loadPrevious) {
-		dispatch(loadPreviousSuccess(activities))
-	} else {
-		dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities, hasFilter))
-	}
+const dispatchData = (dispatch: any, activities: any, page: number, hasFilter = false) => {
+	dispatch(page > 0 ? loadMoreSuccess(activities) : loadDataSuccess(activities, hasFilter))
 	activities.length < PAGE_SIZE && dispatch(hasNoMoreActivities())
 }
 
 export const loadAthleteActivities =
-	(dateBefore?: number, dateAfter?: number, loadPrevious = false) =>
-	async (dispatch: any, getState: any) => {
+	(dateBefore?: number, dateAfter?: number) => async (dispatch: any, getState: any) => {
 		let {
 			loadMore: { page },
 		} = getState()
-		dispatch(page > 0 ? beginLoadMoreApiCall() : beginApiCall())
-		if (loadPrevious) page = page - (MAX_PAGES - 1)
+		if (page === 0) dispatch(beginApiCall())
 		const cacheKey = `${page}-${dateBefore}-${dateAfter}`
 
 		if (cache.has(cacheKey)) {
-			dispatchData(dispatch, cache.get(cacheKey), page, false, loadPrevious)
+			dispatchData(dispatch, cache.get(cacheKey), page, false)
 			return
 		}
 
@@ -94,7 +84,7 @@ export const loadAthleteActivities =
 			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
 			cache.set(cacheKey, activities)
 			const hasFilter = dateBefore !== undefined || dateAfter !== undefined
-			dispatchData(dispatch, activities, page, hasFilter, loadPrevious)
+			dispatchData(dispatch, activities, page, hasFilter)
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

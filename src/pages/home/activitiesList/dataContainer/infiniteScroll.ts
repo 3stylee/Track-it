@@ -1,12 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export const useInfiniteScroll = (
-	scrollUp: () => void,
-	scrollDown: () => void,
-	before: number | undefined,
-	after: number | undefined
-) => {
-	const topRef = useRef(null)
+export const useInfiniteScroll = (scrollDown: () => void, before: number | undefined, after: number | undefined) => {
 	const bottomRef = useRef(null)
 
 	useEffect(() => {
@@ -14,9 +8,7 @@ export const useInfiniteScroll = (
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						if (entry.target === topRef.current) {
-							scrollUp()
-						} else if (entry.target === bottomRef.current) {
+						if (entry.target === bottomRef.current) {
 							scrollDown()
 						}
 					}
@@ -29,15 +21,12 @@ export const useInfiniteScroll = (
 			}
 		)
 
-		if (topRef.current) {
-			observer.observe(topRef.current)
-		}
 		if (bottomRef.current) {
 			observer.observe(bottomRef.current)
 		}
 
 		return () => observer.disconnect()
-	}, [scrollUp, scrollDown, before, after])
+	}, [scrollDown, before, after])
 
-	return { topRef, bottomRef }
+	return { bottomRef }
 }

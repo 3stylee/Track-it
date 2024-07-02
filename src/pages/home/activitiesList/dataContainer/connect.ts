@@ -1,23 +1,22 @@
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
 import { loadAthleteActivities } from "../../../../redux/actions/loadAthleteActivitiesActions"
-import { nextPage, prevPage } from "../../../../redux/actions/loadMoreActions"
+import { beginLoadMoreApiCall, nextPage } from "../../../../redux/actions/loadMoreActions"
 
 const mapStateToProps = (state: State) => {
-	const { hasMore, loadingMore, page } = state.loadMore
+	const { hasMore, loadingMore } = state.loadMore
 	return {
 		athleteActivities: state.athleteActivities || [],
 		apiCallsInProgress: state.apiCallsInProgress,
 		hasMore,
 		loadingMore,
-		page,
 	}
 }
 
 const mapDispatchToProps = {
 	loadAthleteActivities,
 	nextPage,
-	prevPage,
+	beginLoadMoreApiCall,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

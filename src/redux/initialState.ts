@@ -29,9 +29,9 @@ export default {
 	currentActivity: {} as CurrentActivity,
 	dataType: "",
 	loadMore: {
+		loadingMore: false,
 		hasMore: true,
 		page: 0,
-		loadingMore: false,
 	},
 	apiCallsInProgress: 0,
 	apiError: "",

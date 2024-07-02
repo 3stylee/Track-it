@@ -13,7 +13,7 @@ export interface UserData {
 }
 
 export interface LoadMore {
+	loadingMore: boolean
 	hasMore: boolean
 	page: number
-	loadingMore: boolean
 }

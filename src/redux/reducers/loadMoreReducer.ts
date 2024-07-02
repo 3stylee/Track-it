@@ -4,7 +4,6 @@ import initalState from "../initialState"
 const loadingMoreReducer = (state = initalState.loadMore, action: { type: any }) => {
 	switch (action.type) {
 		case types.LOAD_MORE_ATHLETE_ACTIVITIES:
-		case types.LOAD_PREVIOUS_ATHLETE_ACTIVITIES:
 		case types.API_CALL_ERROR:
 			return {
 				...state,
@@ -29,11 +28,6 @@ const loadingMoreReducer = (state = initalState.loadMore, action: { type: any })
 			return {
 				...state,
 				page: state.page + 1,
-			}
-		case types.PREV_PAGE:
-			return {
-				...state,
-				page: state.page - 1,
 			}
 		case types.RESET_PAGE_NUMBER:
 			return {
