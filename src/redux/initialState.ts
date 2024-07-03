@@ -4,6 +4,7 @@ import { LoadMore, Units, UserData } from "../models/state"
 
 export interface State {
 	athleteActivities: AthleteActivities | null
+	gotInitialActivities: boolean
 	activitiesHasFilter: boolean
 	athleteData: AthleteData
 	sessions: AthleteActivities | []
@@ -21,6 +22,7 @@ export interface State {
 
 export default {
 	athleteActivities: null,
+	gotInitialActivities: false,
 	activitiesHasFilter: false,
 	sessions: [],
 	sessionGroups: [],

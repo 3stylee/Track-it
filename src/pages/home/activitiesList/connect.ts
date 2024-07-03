@@ -3,21 +3,20 @@ import { connect } from "react-redux"
 import {
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
+	resetListSize,
 } from "../../../redux/actions/loadAthleteActivitiesActions"
-import { PAGE_SIZE } from "../../../constants/constants"
 
 const mapStateToProps = (state: State) => {
-	const athleteActivitiesLength = state.athleteActivities ? state.athleteActivities.length : 0
-	const gotInitialActivities = athleteActivitiesLength >= PAGE_SIZE && !state.activitiesHasFilter
 	return {
 		apiError: state.apiError,
-		gotInitialActivities,
+		gotInitialActivities: state.gotInitialActivities,
 	}
 }
 
 const mapDispatchToProps = {
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
+	resetListSize,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

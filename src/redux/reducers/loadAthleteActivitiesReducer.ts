@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from "../../constants/constants"
 import * as types from "../actions/actionTypes"
 import initalState from "../initialState"
 
@@ -10,6 +11,9 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 		case types.LOAD_MORE_ATHLETE_ACTIVITIES:
 			if (state === null) return action.data
 			return [...state, ...action.data]
+		case types.RESET_ATHLETE_ACTIVITIES_SIZE:
+			if (state === null) return action.data
+			return [...state.slice(0, PAGE_SIZE)]
 		default:
 			return state
 	}

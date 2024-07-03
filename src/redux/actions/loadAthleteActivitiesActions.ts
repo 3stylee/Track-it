@@ -20,6 +20,10 @@ export const loadMoreSuccess = (data: object) => {
 	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
 }
 
+export const resetListSize = () => {
+	return { type: types.RESET_ATHLETE_ACTIVITIES_SIZE }
+}
+
 let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 
 export const loadInitialAthleteActivities =

@@ -12,9 +12,11 @@ import sessions from "./loadSessionsReducer"
 import sessionGroups from "./loadSessionGroupsReducer"
 import loadMore from "./loadMoreReducer"
 import activitiesHasFilter from "./activitiesFilterReducer"
+import gotInitialActivities from "./initialActivitiesReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
+	gotInitialActivities,
 	apiError,
 	loadMore,
 	athleteActivities,

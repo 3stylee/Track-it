@@ -14,6 +14,7 @@ interface ActivitiesListProps {
 	gotInitialActivities: boolean
 	loadAthleteActivities: (dateBefore?: number, dateAfter?: number) => void
 	loadInitialAthleteActivities: (limit?: number) => void
+	resetListSize: () => void
 }
 
 export const ActivitiesList = ({
@@ -21,10 +22,15 @@ export const ActivitiesList = ({
 	gotInitialActivities,
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
+	resetListSize,
 }: ActivitiesListProps) => {
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [selected, setSelected] = useState<DateRange>(getDateRangeFromUrl())
 	const [filterApplied, setFilterApplied] = useState(selected?.from !== undefined)
+
+	useEffect(() => {
+		if (gotInitialActivities) resetListSize()
+	}, [])
 
 	useEffect(() => {
 		if (selected.from && selected.to) {
