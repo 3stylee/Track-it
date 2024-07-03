@@ -30,7 +30,7 @@ export const ActivitiesList = ({
 
 	useEffect(() => {
 		if (gotInitialActivities) resetListSize()
-	}, [])
+	}, [resetListSize])
 
 	useEffect(() => {
 		if (selected.from && selected.to) {
