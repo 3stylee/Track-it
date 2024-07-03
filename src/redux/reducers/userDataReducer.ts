@@ -12,6 +12,7 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				access_token: "",
 				refresh_token: "",
 				expires_at: Infinity,
+				firstActivityDate: undefined,
 				dateOfLastBackup: undefined,
 				sessionsLastCopy: undefined,
 			}

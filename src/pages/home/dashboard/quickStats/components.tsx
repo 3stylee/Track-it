@@ -5,7 +5,7 @@ export const StatsList = styled("ul")`
 	display: flex;
 	padding: 0;
 	margin: 0;
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		flex-wrap: wrap;
 		margin: 2rem 0;
 		justify-content: center;
@@ -17,7 +17,7 @@ export const Stat = styled("li")`
 	text-align: center;
 	margin: 0 1rem;
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		margin-bottom: 1rem;
 	}
 `

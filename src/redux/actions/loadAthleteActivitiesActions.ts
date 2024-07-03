@@ -74,10 +74,11 @@ export const loadAthleteActivities =
 			loadMore: { page },
 		} = getState()
 		if (page === 0) dispatch(beginApiCall())
+		const hasFilter = dateBefore !== undefined || dateAfter !== undefined
 		const cacheKey = `${page}-${dateBefore}-${dateAfter}`
 
 		if (cache.has(cacheKey)) {
-			dispatchData(dispatch, cache.get(cacheKey), page, false)
+			dispatchData(dispatch, cache.get(cacheKey), page, hasFilter)
 			return
 		}
 
@@ -87,7 +88,6 @@ export const loadAthleteActivities =
 			const q = buildFilteredQuery(uId, getState, page, dateBefore, dateAfter)
 			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
 			cache.set(cacheKey, activities)
-			const hasFilter = dateBefore !== undefined || dateAfter !== undefined
 			dispatchData(dispatch, activities, page, hasFilter)
 		} catch (error) {
 			dispatch(apiCallError(error))

@@ -13,7 +13,7 @@ export const PageContainer = styled("div")`
 	--fc-button-hover-bg-color: var(--bs-primary);
 	--fc-button-active-bg-color: var(--bs-primary);
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		margin-left: 0;
 		width: 100%;
 	}
@@ -39,7 +39,7 @@ export const CalendarContainer = styled("div")`
 	& .calendar {
 		padding: 2rem 2rem 4rem 2rem;
 
-		@media (max-width: 768px) {
+		@media (max-width: 767px) {
 			padding: 1rem;
 		}
 	}

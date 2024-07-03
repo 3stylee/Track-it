@@ -29,14 +29,10 @@ export const StatHeader = styled("div")`
 `
 
 export const Value = styled("p")<{ small: small }>`
-	font-size: ${({ small }) => (small ? "1rem" : "2.25rem")};
+	font-size: ${({ small }) => (small ? "0.875rem" : "2.25rem")};
 	margin-bottom: 0;
 
-	@media (max-width: 991px) {
-		font-size: ${({ small }) => (small ? "1.25rem" : "")};
-	}
-
-	@media (max-width: 576px) {
+	@media (max-width: 575px) {
 		font-size: ${({ small }) => (small ? "1rem" : "1.25rem")};
 	}
 `
@@ -51,15 +47,11 @@ export const Text = styled("p")<{ small: small }>`
 `
 
 export const Unit = styled("span")<{ small: small }>`
-	font-size: ${({ small }) => (small ? "0.625rem" : "1rem")};
+	font-size: ${({ small }) => (small ? "0.5rem" : "1rem")};
 	color: ${({ theme }) => theme.labelledStats.accent};
 	text-transform: uppercase;
 
-	@media (max-width: 991px) {
-		font-size: ${({ small }) => (small ? "0.75rem" : "")};
-	}
-
-	@media (max-width: 576px) {
+	@media (max-width: 575px) {
 		font-size: 0.75rem;
 	}
 `

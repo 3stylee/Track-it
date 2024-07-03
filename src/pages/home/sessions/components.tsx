@@ -8,7 +8,7 @@ export const PageContainer = styled("div")`
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	overflow-y: auto;
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		margin-left: 0;
 	}
 

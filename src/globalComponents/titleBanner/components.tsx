@@ -41,7 +41,7 @@ export const CollapseButton = styled("button")<{ showButton: boolean }>`
 		background-color: #fd4499;
 	}
 
-	@media (min-width: 769px) {
+	@media (min-width: 768px) {
 		display: none;
 	}
 `
@@ -51,7 +51,7 @@ export const BannerTitle = styled("div")`
 	justify-content: center;
 	padding-left: 60px;
 
-	@media (min-width: 769px) {
+	@media (min-width: 768px) {
 		padding-left: 111px;
 	}
 

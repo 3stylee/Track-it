@@ -7,7 +7,7 @@ export const Filters = styled("div")`
 	padding: 2rem;
 	flex-wrap: wrap;
 
-	@media (max-width: 768px) {
+	@media (max-width: 767px) {
 		padding: 1rem;
 		padding-left: 1.25rem;
 	}

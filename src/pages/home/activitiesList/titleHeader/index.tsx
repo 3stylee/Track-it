@@ -8,6 +8,7 @@ import { ROUTE_PATHS } from "../../../../constants/constants"
 
 interface TitleHeaderProps {
 	selected: DateRange
+	firstActivityDate: string | undefined
 	setSelected: (date: DateRange) => void
 	containerRef: React.RefObject<HTMLDivElement>
 	filterApplied: boolean
@@ -17,6 +18,7 @@ interface TitleHeaderProps {
 
 const TitleHeader = ({
 	selected,
+	firstActivityDate,
 	setSelected,
 	containerRef,
 	filterApplied,
@@ -40,6 +42,7 @@ const TitleHeader = ({
 				}}
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}
+				firstActivityDate={firstActivityDate}
 			/>
 		</Filters>
 	)

@@ -16,6 +16,7 @@ interface DatePickerProps {
 	clearFilter: () => void
 	filterApplied: boolean
 	setFilterApplied: (value: boolean) => void
+	firstActivityDate: string | undefined
 }
 
 export const DatePicker = ({
@@ -26,6 +27,7 @@ export const DatePicker = ({
 	clearFilter,
 	filterApplied,
 	setFilterApplied,
+	firstActivityDate,
 }: DatePickerProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [scrollHeight, setScrollHeight] = useState(0)
@@ -65,6 +67,7 @@ export const DatePicker = ({
 				<Container top={scrollHeight}>
 					<StyledDayPicker
 						mode="range"
+						captionLayout="dropdown-buttons"
 						selected={selected}
 						onSelect={(dates) => {
 							if (dates) setSelected(dates)
@@ -83,6 +86,7 @@ export const DatePicker = ({
 								</Button>
 							</Footer>
 						}
+						fromDate={new Date(firstActivityDate || new Date())}
 						toDate={new Date()}
 					/>
 				</Container>

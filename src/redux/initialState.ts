@@ -44,6 +44,7 @@ export default {
 	},
 	userData: {
 		stravaAccess: false,
+		firstActivityDate: undefined,
 		dateOfLastBackup: undefined,
 		sessionsLastCopy: undefined,
 		access_token: "",

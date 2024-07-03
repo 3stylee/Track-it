@@ -73,10 +73,15 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => asyn
 			}
 			await batch.commit()
 
-			// Update dateOfLastBackup in the user's document
+			// Update dateOfLastBackup and firstActivityDate (if initialCopy) in the user document
 			const dateOfLastBackup = new Date().toISOString()
 			const userDocRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
-			await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
+			if (initialCopy) {
+				const firstActivityDate = data[data.length - 1].start
+				await setDoc(userDocRef, { dateOfLastBackup, firstActivityDate }, { merge: true })
+			} else {
+				await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })
+			}
 			dispatch(copyActivitiesSuccess())
 		} else {
 			dispatch(apiCallError(NO_LOGGED_IN_USER))

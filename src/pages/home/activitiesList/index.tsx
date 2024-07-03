@@ -12,6 +12,7 @@ import { PAGE_SIZE } from "../../../constants/constants"
 interface ActivitiesListProps {
 	apiError: string | object
 	gotInitialActivities: boolean
+	activityCount: number
 	loadAthleteActivities: (dateBefore?: number, dateAfter?: number) => void
 	loadInitialAthleteActivities: (limit?: number) => void
 	resetListSize: () => void
@@ -20,6 +21,7 @@ interface ActivitiesListProps {
 export const ActivitiesList = ({
 	apiError,
 	gotInitialActivities,
+	activityCount,
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
 	resetListSize,
@@ -28,8 +30,9 @@ export const ActivitiesList = ({
 	const [selected, setSelected] = useState<DateRange>(getDateRangeFromUrl())
 	const [filterApplied, setFilterApplied] = useState(selected?.from !== undefined)
 
+	// On initial load trim the activities list to page size to avoid rendering all activities at once
 	useEffect(() => {
-		if (gotInitialActivities) resetListSize()
+		if (activityCount > PAGE_SIZE) resetListSize()
 	}, [resetListSize])
 
 	useEffect(() => {

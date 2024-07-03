@@ -5,16 +5,13 @@ import PrivacyPolicyModal from "../privacyPolicyModal"
 
 export const AuthorizeCard = () => {
 	const connectWithStrava = require("../../../assets/images/btn_strava_connectwith_orange@2x.png")
+	const stravaLogo = require("../../../assets/images/strava-logo-2016.png")
 	const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
 
 	return (
 		<ContainerCard className="card">
 			<div className="card-body">
-				<img
-					className="card-img"
-					src="https://cdn.road.cc/sites/default/files/styles/schema_org/public/strava-logo-2016.png"
-					alt="Strava Logo"
-				/>
+				<img className="card-img" src={stravaLogo} alt="Strava Logo" />
 				<h5 className="card-title pt-3">{CONNECT_STRAVA_MESSAGE}</h5>
 
 				<a className="btn" href={O_AUTH_URL}>

@@ -51,7 +51,7 @@ export const DataContainer = ({
 		<Container>
 			{athleteActivities.length > 0 ? (
 				<>
-					<Row sm={1} md={2} lg={3} xl={4} className="g-3 g-md-4">
+					<Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-3">
 						{athleteActivities.map(
 							({ polyline, title, time, distance, speed, id, predictedType, start }, index) => (
 								<Col
