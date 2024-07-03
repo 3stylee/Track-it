@@ -9,7 +9,7 @@ import {
 	TrackLogo,
 } from "./components"
 import connect from "./connect"
-import FeatherIcon from "feather-icons-react"
+import { ChevronLeft, ChevronRight } from "react-feather"
 
 export interface TitleBannerProps {
 	openSidebar: () => void
@@ -30,7 +30,7 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: Titl
 	return (
 		<BannerBackground>
 			<CollapseButton onClick={toggleSidebar} showButton={localStorage.getItem("uId") !== null}>
-				<FeatherIcon icon={`chevrons-${sidebarExpanded ? "left" : "right"}`} size="36px" />
+			{sidebarExpanded ? <ChevronLeft size="36px" /> : <ChevronRight size="36px" />}
 			</CollapseButton>
 			<BannerTitle>
 				<HomeLink href="/home">

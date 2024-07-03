@@ -1,7 +1,7 @@
-import FeatherIcon from "feather-icons-react"
 import React from "react"
 import { IconContainer, SearchbarContainer } from "./components"
 import { useTheme } from "@emotion/react"
+import { Search } from "react-feather"
 
 export interface searchbarProps {
 	searchText: string
@@ -22,7 +22,7 @@ export const Searchbar = ({ searchText, setSearchText }: searchbarProps) => {
 			/>
 			<div className="input-group-prepend">
 				<IconContainer className="input-group-text">
-					<FeatherIcon icon="search" size={20} />
+					<Search size={20} />
 				</IconContainer>
 			</div>
 		</SearchbarContainer>

@@ -2,13 +2,19 @@ import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 import { CardBody, CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
-import FeatherIcon from "feather-icons-react"
 import { Table } from "react-bootstrap"
 import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
 import { Units } from "../../../../models/state"
 import { LAP_TABLE_HEADERS, SESSION_TYPES } from "../../../../constants/constants"
 import { Lap } from "../../../../models/activities"
+import { Clock, MapPin, Watch } from "react-feather"
+
+const iconMap = {
+	"map-pin": MapPin,
+	clock: Clock,
+	watch: Watch,
+} as any
 
 interface LapsTableProps {
 	laps: Lap[]
@@ -33,14 +39,17 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 					<TableHeader>
 						<tr>
 							<th scope="col">#</th>
-							{LAP_TABLE_HEADERS.map(({ name, icon }) => (
-								<th scope="col" key={name}>
-									<HeadingText>
-										{name}
-										<FeatherIcon icon={icon} size={"1rem"} />
-									</HeadingText>
-								</th>
-							))}
+							{LAP_TABLE_HEADERS.map(({ name, icon }) => {
+								const IconComponent = iconMap[icon]
+								return (
+									<th scope="col" key={name}>
+										<HeadingText>
+											{name}
+											<IconComponent size={"1rem"} />
+										</HeadingText>
+									</th>
+								)
+							})}
 							{session && (
 								<th scope="col">
 									<HeadingText>Type</HeadingText>

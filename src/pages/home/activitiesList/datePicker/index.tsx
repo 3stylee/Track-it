@@ -3,10 +3,10 @@ import { DateRange } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 import { ButtonText, ClearButton, Container, FilterButtonContainer, Footer, StyledDayPicker } from "./components"
 import { Button } from "react-bootstrap"
-import FeatherIcon from "feather-icons-react"
 import { addDatePickerListeners } from "../../../../utils/addDatePickerListeners"
 import { getDatePickerText } from "../../../../utils/getDatePickerText"
 import { CLEAR_FILTER, FILTER_RESULTS, SELECT_DATE_RANGE } from "../../../../constants/constants"
+import { Calendar, X } from "react-feather"
 
 interface DatePickerProps {
 	onClick: (dates: DateRange | undefined) => void
@@ -47,7 +47,7 @@ export const DatePicker = ({
 				<Button onClick={() => setIsOpen(!isOpen)}>
 					<ButtonText>
 						{filterApplied ? footerText : FILTER_RESULTS}
-						<FeatherIcon icon="calendar" size={18} />
+						<Calendar size={18} />
 					</ButtonText>
 				</Button>
 				{filterApplied && (
@@ -59,7 +59,7 @@ export const DatePicker = ({
 							clearFilter()
 						}}>
 						{CLEAR_FILTER}
-						<FeatherIcon icon="x" size={18} />
+						<X size={18} />
 					</ClearButton>
 				)}
 			</FilterButtonContainer>

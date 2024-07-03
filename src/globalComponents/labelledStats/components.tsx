@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { small } from "."
-import FeatherIcon from "feather-icons-react"
 
 export const StatsContainer = styled("div")<{ small: small }>`
 	display: flex;
@@ -35,9 +34,6 @@ export const Value = styled("p")<{ small: small }>`
 	@media (max-width: 575px) {
 		font-size: ${({ small }) => (small ? "1rem" : "1.25rem")};
 	}
-`
-export const Icon = styled(FeatherIcon)`
-	margin-left: 0.375rem;
 `
 
 export const Text = styled("p")<{ small: small }>`

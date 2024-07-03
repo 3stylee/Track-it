@@ -3,11 +3,18 @@ import { IconContainer, SelectedBar, SidebarContainer } from "./components"
 import connect from "./connect"
 import { SIDEBAR_ICONS, THEMES } from "../../constants/constants"
 import { useTheme } from "@emotion/react"
-import FeatherIcon from "feather-icons-react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
 import { LogoutScreen } from "../logoutScreen"
 import { getUrlPath } from "../../utils/getUrlPath"
+import { Calendar, Clock, Grid, Home, LogOut, Moon, Settings } from "react-feather"
+
+const iconMap = {
+	home: Home,
+	grid: Grid,
+	clock: Clock,
+	calendar: Calendar,
+} as any
 
 export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 	const theme = useTheme()
@@ -22,11 +29,12 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 				<ul className="nav flex-column">
 					{SIDEBAR_ICONS.map(({ path, icon }) => {
 						const selected = path === getUrlPath(location)
+						const IconComponent = iconMap[icon]
 						return (
 							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
 								<div className="d-flex">
 									<IconContainer>
-										<FeatherIcon icon={icon} />
+										<IconComponent />
 									</IconContainer>
 									{selected && <SelectedBar layoutId="underline" />}
 								</div>
@@ -38,16 +46,16 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 						onClick={() => {
 							setShowSettings(!showSettings)
 						}}>
-						<FeatherIcon icon="settings" />
+						<Settings />
 					</IconContainer>
 					<IconContainer
 						onClick={() => {
 							setShowLogout(!showLogout)
 						}}>
-						<FeatherIcon icon="log-out" />
+						<LogOut />
 					</IconContainer>
 					<IconContainer onClick={toggleTheme}>
-						<FeatherIcon icon="moon" fill={theme.name === THEMES.DARK ? "white" : undefined} />
+						<Moon fill={theme.name === THEMES.DARK ? "white" : undefined} />
 					</IconContainer>
 				</ul>
 			</SidebarContainer>
