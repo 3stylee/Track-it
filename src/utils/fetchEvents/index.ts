@@ -1,6 +1,7 @@
 import { LRUCache } from "lru-cache"
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
+import { db } from "../../firebase"
 
 let cache = new LRUCache<string, any>({ max: 10, ttl: 1000 * 60 * 60 })
 
@@ -24,7 +25,6 @@ export const fetchEvents = async (info: any, successCallback: any, failureCallba
 	try {
 		const uId = localStorage.getItem("uId")
 		if (uId) {
-			const db = getFirestore()
 			const q = query(
 				collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 				where("userId", "==", uId),

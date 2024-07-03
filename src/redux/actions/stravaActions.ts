@@ -8,11 +8,12 @@ import {
 } from "../../constants/constants"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
-import { doc, getFirestore, setDoc, writeBatch } from "firebase/firestore"
+import { doc, setDoc, writeBatch } from "firebase/firestore"
 import { getEndpoint } from "../../utils/getActivityDataEndpoint"
 import { getNewActivities } from "../../utils/getNewActivites"
 import { getUserId } from "../../utils/getUserId"
 import { AthleteActivities } from "../../models/activities"
+import { db } from "../../firebase"
 
 export const storeAuthSuccess = () => {
 	return { type: types.STORE_STRAVA_AUTH_SUCCESS }
@@ -43,7 +44,6 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 		// Store the access token, refresh token, and expiration time in Firestore.
 		const uId = localStorage.getItem("uId")
 		if (uId) {
-			const db = getFirestore()
 			const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
 			await setDoc(docRef, { access_token, refresh_token, expires_at, stravaAccess: true }, { merge: true })
 			dispatch(storeAuthSuccess())
@@ -65,7 +65,6 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => asyn
 
 		const uId = localStorage.getItem("uId")
 		if (uId) {
-			const db = getFirestore()
 			const batch = writeBatch(db)
 			for (const activity of data) {
 				const docRef = doc(db, FIREBASE_COLLECTIONS.ACTIVITIES, activity.id.toString())

@@ -1,9 +1,10 @@
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
-import { collection, getDocs, getFirestore, orderBy, query, where } from "firebase/firestore"
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
 import { extractEntities } from "../../utils/extractFeaturesFromSession"
 import { updateFirestoreSessionGroups } from "../../utils/updateFirestoreSessionGroups"
+import { db } from "../../firebase"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }
@@ -22,7 +23,6 @@ export const loadSessions = () => async (dispatch: any) => {
 	try {
 		const uId = localStorage.getItem("uId")
 		if (uId) {
-			const db = getFirestore()
 			const q = query(
 				collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 				where("userId", "==", uId),
@@ -56,7 +56,6 @@ export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
 		try {
 			const uId = localStorage.getItem("uId")
 			if (uId) {
-				const db = getFirestore()
 				const querySnapshot = await getDocs(
 					query(collection(db, FIREBASE_COLLECTIONS.SESSION_GROUPS), where("athleteId", "==", uId))
 				)

@@ -1,7 +1,8 @@
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
-import { doc, getDoc, getFirestore } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS } from "../../constants/constants"
+import { db } from "../../firebase"
 
 export const loadUserDataSuccess = (data: any) => {
 	return { type: types.LOAD_USER_DATA_SUCCESS, data }
@@ -17,7 +18,6 @@ export const loadUserData = () => {
 		try {
 			const uId = localStorage.getItem("uId") || "noId"
 
-			const db = getFirestore()
 			const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
 			const docSnap = await getDoc(docRef)
 

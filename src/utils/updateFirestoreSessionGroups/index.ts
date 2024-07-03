@@ -1,12 +1,12 @@
-import { doc, getFirestore, setDoc, writeBatch } from "firebase/firestore"
+import { doc, setDoc, writeBatch } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
 import { updateFirestoreSessions } from "../../redux/actions/loadSessionsActions"
+import { db } from "../../firebase"
 
 export const updateFirestoreSessionGroups = async (sessionGroups: number[][], dispatch: any) => {
 	try {
 		const uId = localStorage.getItem("uId")
 		if (uId) {
-			const db = getFirestore()
 			const batch = writeBatch(db)
 
 			for (const group of sessionGroups) {
