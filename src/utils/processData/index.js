@@ -9,7 +9,7 @@ import { MODEL_SCALER_INFO } from "../../constants/constants"
  */
 const processData = (data) => {
 	const processedData = data.map((row) => {
-		return scaleRow([
+		const weights = scaleRow([
 			row.distance,
 			row.moving_time,
 			row.total_elevation_gain,
@@ -17,6 +17,7 @@ const processData = (data) => {
 			row.max_speed,
 			row.average_cadence,
 		])
+		return [...weights, row.type]
 	})
 	return processedData
 }

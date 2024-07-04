@@ -72,13 +72,6 @@ export const LAP_TABLE_HEADERS = [
 	{ name: "Pace", icon: "watch" },
 ]
 export const SESSION_TYPES = ["Session", "Tempo"]
-export const ACTIVITY_LABEL_MAPPING = {
-	0: "Easy",
-	1: "Long Run",
-	2: "Race",
-	3: "Session",
-	4: "Tempo",
-}
 export const MODEL_SCALER_INFO = {
 	data_min: [0.0, 24.0, 0.0, 0.612, 2.9, 0.0],
 	data_max: [18347.5, 4900.0, 436.0, 8.948, 12.0, 116.0],
