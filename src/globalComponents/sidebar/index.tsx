@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { IconContainer, SelectedBar, SidebarContainer } from "./components"
 import connect from "./connect"
-import { SIDEBAR_ICONS, THEMES } from "../../constants/constants"
+import { SIDEBAR_ICONS } from "../../constants/constants"
 import { useTheme } from "@emotion/react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
@@ -55,7 +55,7 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 						<LogOut />
 					</IconContainer>
 					<IconContainer onClick={toggleTheme}>
-						<Moon fill={theme.name === THEMES.DARK ? "white" : undefined} />
+						<Moon fill="white" />
 					</IconContainer>
 				</ul>
 			</SidebarContainer>

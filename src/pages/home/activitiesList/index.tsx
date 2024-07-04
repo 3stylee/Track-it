@@ -39,7 +39,7 @@ export const ActivitiesList = ({
 		if (selected.from && selected.to) {
 			const { before, after } = getBeforeAndAfterDates(selected)
 			loadAthleteActivities(before, after)
-		} else if (!gotInitialActivities) {
+		} else if (!gotInitialActivities || activityCount < PAGE_SIZE) {
 			loadInitialAthleteActivities(PAGE_SIZE)
 		}
 	}, [filterApplied])
