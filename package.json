@@ -12,6 +12,7 @@
 		"@testing-library/user-event": "^13.5.0",
 		"@types/js-cookie": "^3.0.6",
 		"@types/lru-cache": "^7.10.10",
+		"@types/mapbox__polyline": "^1.0.5",
 		"@types/react": "^18.2.29",
 		"@types/react-dom": "^18.2.14",
 		"axios": "^1.5.1",
@@ -63,7 +64,6 @@
 		]
 	},
 	"devDependencies": {
-		"@types/mapbox__polyline": "^1.0.4",
 		"source-map-explorer": "^2.5.3"
 	}
 }
