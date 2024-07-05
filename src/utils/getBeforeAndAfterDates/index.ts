@@ -15,3 +15,9 @@ export const getBeforeAndAfterDates = (dateRange: DateRange | undefined) => {
 	const before = dateRange.to.getTime() / 1000
 	return { before, after }
 }
+
+export const getBeforeAndAfterForCalendar = (currentMonth: number, currentYear: number) => {
+	const after = new Date(currentYear, currentMonth, 1).getTime() / 1000
+	const before = new Date(currentYear, currentMonth + 1, 1).getTime() / 1000
+	return { before, after }
+}

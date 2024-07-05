@@ -82,3 +82,4 @@ export const FIREBASE_COLLECTIONS = {
 	USERS: "users",
 	SESSION_GROUPS: "sessionGroups",
 }
+export const DAYS_OF_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

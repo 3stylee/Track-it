@@ -6,6 +6,8 @@ export const EventContainer = styled("div")`
 	width: 100%;
 	border-radius: var(--bs-border-radius);
 	color: white;
+	margin-bottom: 0.25rem;
+	font-size: 0.75rem;
 `
 export const AthleteIcon = styled("img")`
 	width: 0.85rem;
@@ -16,6 +18,7 @@ export const EventHeader = styled("div")`
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 0.25rem;
+	text-transform: lowercase;
 `
 export const Title = styled("div")`
 	text-overflow: ellipsis;

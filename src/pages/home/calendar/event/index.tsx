@@ -2,17 +2,19 @@ import React from "react"
 import { AthleteIcon, EventContainer, EventHeader, Title } from "./components"
 import { convertMetersToDistance } from "../../../../utils/convertMetersToDistance"
 import connect from "./connect"
+import { format } from "date-fns"
 
-const Event = ({ eventInfo, units }: any) => {
+const Event = ({ activity, units }: any) => {
+	const timeText = format(new Date(activity.start), "h:mma")
 	return (
 		<EventContainer>
 			<EventHeader>
 				<AthleteIcon src={require("../../../../assets/icons/athlete.ico")} alt="athlete icon" />
-				<div>{eventInfo.timeText}m</div>
+				<div>{timeText}</div>
 			</EventHeader>
-			<Title>{eventInfo.event.title}</Title>
+			<Title>{activity.title}</Title>
 			<div>
-				{convertMetersToDistance(eventInfo.event.extendedProps.distance, units.meters)} {units.unitString}
+				{convertMetersToDistance(activity.distance, units.meters)} {units.unitString}
 			</div>
 		</EventContainer>
 	)

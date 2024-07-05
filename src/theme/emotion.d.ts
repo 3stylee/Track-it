@@ -17,7 +17,9 @@ declare module "@emotion/react" {
 			accent: string
 		}
 		calendar: {
-			gridColor: string
+			emptyCell: string
+			dayCell: string
+			borderColor: string
 		}
 		datePicker: {
 			background: string

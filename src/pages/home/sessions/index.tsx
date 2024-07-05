@@ -3,23 +3,22 @@ import { PageContainer } from "./components"
 import GroupsTable from "./groupsTable"
 import { Outlet, useParams } from "react-router-dom"
 import connect from "./connect"
-import { AthleteActivities } from "../../../models/activities"
 
 export interface SessionsProps {
-	sessions: AthleteActivities
-	sessionGroups: number[][]
+	sessionsLength: number
+	sessionGroupsLength: number
 	loadSessions: () => void
 	loadSessionGroups: () => void
 }
 
-const Sessions = ({ sessions, sessionGroups, loadSessions, loadSessionGroups }: SessionsProps) => {
+const Sessions = ({ sessionsLength, sessionGroupsLength, loadSessions, loadSessionGroups }: SessionsProps) => {
 	useEffect(() => {
-		if (sessions.length === 0) loadSessions()
-	}, [sessions, loadSessions])
+		if (sessionsLength === 0) loadSessions()
+	}, [sessionsLength, loadSessions])
 
 	useEffect(() => {
-		if (sessions.length > 0 && sessionGroups.length === 0) loadSessionGroups()
-	}, [sessions.length])
+		if (sessionsLength > 0 && sessionGroupsLength === 0) loadSessionGroups()
+	}, [sessionsLength])
 
 	const { id } = useParams<{ id: string }>()
 	return <PageContainer>{id ? <Outlet /> : <GroupsTable />}</PageContainer>

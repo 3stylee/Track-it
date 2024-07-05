@@ -16,7 +16,9 @@ export default {
 		accent: "#b9ace6",
 	},
 	calendar: {
-		gridColor: "#6d6d6d",
+		emptyCell: "rgba(77, 81, 84, 0.4)",
+		dayCell: "#212529",
+		borderColor: "rgb(77, 81, 84)",
 	},
 	datePicker: {
 		background: "#4461b9",

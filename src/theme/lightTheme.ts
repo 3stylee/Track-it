@@ -16,7 +16,9 @@ export default {
 		accent: "var(--bs-primary)",
 	},
 	calendar: {
-		gridColor: "#ddd",
+		emptyCell: "rgba(209, 209, 209, 0.3)",
+		dayCell: "var(--bs-body-bg)",
+		borderColor: "#dddddd",
 	},
 	datePicker: {
 		background: "#e7edff",

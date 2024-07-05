@@ -5,10 +5,6 @@
 	"dependencies": {
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
-		"@fullcalendar/core": "^6.1.10",
-		"@fullcalendar/daygrid": "^6.1.10",
-		"@fullcalendar/interaction": "^6.1.10",
-		"@fullcalendar/react": "^6.1.10",
 		"@mapbox/polyline": "^1.2.1",
 		"@reduxjs/toolkit": "^1.9.7",
 		"@testing-library/jest-dom": "^5.17.0",
@@ -45,7 +41,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"analyze": "source-map-explorer 'build/static/js/*.js'"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -66,6 +63,7 @@
 		]
 	},
 	"devDependencies": {
-		"@types/mapbox__polyline": "^1.0.4"
+		"@types/mapbox__polyline": "^1.0.4",
+		"source-map-explorer": "^2.5.3"
 	}
 }

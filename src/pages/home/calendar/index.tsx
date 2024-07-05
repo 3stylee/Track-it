@@ -1,52 +1,46 @@
-import React, { useRef } from "react"
-import FullCalendar from "@fullcalendar/react"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import interactionPlugin from "@fullcalendar/interaction"
-import { PageContainer, CalendarContainer, SpinnerContainer } from "./components"
-import Event from "./event"
-import { fetchEvents } from "../../../utils/fetchEvents"
-import Lottie from "lottie-react"
-import loadingAnimation from "../../../assets/animations/olympics.json"
-import { setCalendarClasses } from "../../../utils/setCalendarClasses"
+import React, { useEffect } from "react"
 import connect from "./connect"
 import ApiError from "../../../globalComponents/apiError"
+import { PageContainer, Title } from "./components"
+import DesktopCalendar from "./desktopCalendar"
+import useMonthNavigation from "./useMonthNavigation"
+import NavButtons from "./navButtons"
+import { format } from "date-fns"
+import { LoadAthleteActivities } from "../../../models/activities"
+import { getBeforeAndAfterForCalendar } from "../../../utils/getBeforeAndAfterDates"
 
-const Calendar = ({ apiError }: any) => {
-	const spinnerRef = useRef<HTMLDivElement>(null)
-	const calendarRef = useRef<HTMLDivElement>(null)
+interface CalendarProps {
+	apiError: string | object
+	loadAthleteActivities: LoadAthleteActivities
+	resetPageNumber: () => void
+}
+
+const Calendar = ({ apiError, loadAthleteActivities, resetPageNumber }: CalendarProps) => {
+	const { currentYear, currentMonth, handleNextMonth, handlePrevMonth, setToToday } = useMonthNavigation()
+
+	useEffect(() => {
+		resetPageNumber()
+	}, [])
+
+	useEffect(() => {
+		const { before, after } = getBeforeAndAfterForCalendar(currentMonth, currentYear)
+		loadAthleteActivities(before, after)
+	}, [currentYear, currentMonth, resetPageNumber, loadAthleteActivities])
 
 	if (apiError !== "") return <ApiError />
-
 	return (
 		<PageContainer>
-			<CalendarContainer>
-				<SpinnerContainer ref={spinnerRef} className="spinner hidden">
-					<Lottie animationData={loadingAnimation} />
-				</SpinnerContainer>
-				<div ref={calendarRef} className="calendar">
-					<FullCalendar
-						plugins={[dayGridPlugin, interactionPlugin]}
-						initialView="dayGridMonth"
-						loading={(isLoading) => {
-							setCalendarClasses(isLoading, spinnerRef, calendarRef)
-						}}
-						fixedWeekCount={false}
-						eventContent={(eventInfo) => <Event eventInfo={eventInfo} />}
-						events={(info, successCallback, failureCallback) => {
-							fetchEvents(info, successCallback, failureCallback)
-						}}
-						firstDay={1}
-						showNonCurrentDates={false}
-						expandRows={false}
-						dayMaxEventRows={3}
-						height={"auto"}
-						stickyHeaderDates={false}
-						validRange={{
-							end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0), // Prevent navigation to future months
-						}}
-					/>
-				</div>
-			</CalendarContainer>
+			<Title>
+				<h3>{format(new Date(currentYear, currentMonth), "MMMM yyyy")}</h3>
+				<NavButtons
+					currentMonth={currentMonth}
+					currentYear={currentYear}
+					handleNextMonth={handleNextMonth}
+					handlePrevMonth={handlePrevMonth}
+					setToToday={setToToday}
+				/>
+			</Title>
+			<DesktopCalendar currentYear={currentYear} currentMonth={currentMonth} />
 		</PageContainer>
 	)
 }
