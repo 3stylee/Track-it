@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { DayCell, DayHeader, GridContainer, SelectedCircle } from "./components"
+import { DayCell, DayHeader, GridContainer, PageContainer, SelectedCircle } from "./components"
 import { getCalendarGrid } from "../../../../utils/getCalendarGrid"
 import { DAYS_OF_WEEK_SHORT } from "../../../../constants/constants"
 import DayDrawer from "../dayDrawer"
@@ -15,7 +15,7 @@ export const MobileCalendar = ({ currentMonth, currentYear }: MobileCalendarProp
 
 	const { startDayOfWeek, daysArray } = getCalendarGrid(currentMonth, currentYear)
 	return (
-		<>
+		<PageContainer>
 			<GridContainer>
 				{DAYS_OF_WEEK_SHORT.map((dayName, index) => (
 					<DayHeader key={dayName + index}>{dayName}</DayHeader>
@@ -42,6 +42,6 @@ export const MobileCalendar = ({ currentMonth, currentYear }: MobileCalendarProp
 				})}
 			</GridContainer>
 			<DayDrawer selectedDate={selectedDate} />
-		</>
+		</PageContainer>
 	)
 }

@@ -23,6 +23,7 @@ export const PageTitle = styled("h3")`
 `
 
 export const Title = styled("div")`
+	height: 5%;
 	display: flex;
 	color: ${({ theme }) => theme.bootstrap.textColor};
 	justify-content: space-between;

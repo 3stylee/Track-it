@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 export const DrawerContainer = styled("div")`
 	margin-top: 1rem;
 	border-top: 1px solid ${({ theme }) => theme.calendar.borderColor};
-	height: 45%;
+	height: 50%;
 	overflow-y: auto;
 	padding-top: 2rem;
 `

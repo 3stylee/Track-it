@@ -1,16 +1,20 @@
 import styled from "@emotion/styled"
 import { motion } from "framer-motion"
 
-export const GridContainer = styled("div")`
-	margin-top: 1rem;
-	height: 45%;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	color: ${({ theme }) => theme.text};
+export const PageContainer = styled("div")`
+	height: calc(95% - 1rem);
 
 	@media (min-width: 768px) {
 		display: none;
 	}
+`
+
+export const GridContainer = styled("div")`
+	margin-top: 1rem;
+	height: 50%;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	color: ${({ theme }) => theme.text};
 `
 export const DayCell = styled("div")<{ active?: boolean; disabled?: boolean }>`
 	display: flex;
