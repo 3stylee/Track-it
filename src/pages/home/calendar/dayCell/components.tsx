@@ -7,4 +7,18 @@ export const StyledContainer = styled("div")`
 	color: ${({ theme }) => theme.bootstrap.textColor};
 	background-color: ${({ theme }) => theme.calendar.dayCell};
 	padding: 0.125rem;
+	position: relative;
+`
+export const DayNumber = styled("div")`
+	margin-left: 0.125rem;
+`
+export const ShowMore = styled("span")`
+	font-size: 0.875rem;
+	cursor: pointer;
+	border-radius: var(--bs-border-radius);
+	padding: 0.25rem;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.sidebar.iconHover};
+	}
 `
