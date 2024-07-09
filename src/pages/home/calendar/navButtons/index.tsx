@@ -1,7 +1,6 @@
 import React from "react"
-import { Button } from "react-bootstrap"
 import { getMonth, getYear } from "date-fns"
-import { ChevronNext, ChevronPrev } from "./components"
+import { ChevronNext, ChevronPrev, TodayButton } from "./components"
 import connect from "./connect"
 import { ChevronLeft, ChevronRight } from "react-feather"
 
@@ -27,9 +26,9 @@ const NavButtons = ({
 		currentMonth === getMonth(new Date(firstActivityDate)) && currentYear === getYear(new Date(firstActivityDate))
 	return (
 		<div>
-			<Button onClick={setToToday} disabled={onCurrentMonth} className="mx-2">
+			<TodayButton onClick={setToToday} disabled={onCurrentMonth} className="mx-2">
 				Today
-			</Button>
+			</TodayButton>
 			<ChevronPrev as={ChevronLeft} onClick={() => !onLastMonth && handlePrevMonth()} disabled={onLastMonth} />
 			<ChevronNext
 				as={ChevronRight}

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react"
 import connect from "./connect"
 import ApiError from "../../../globalComponents/apiError"
-import { PageContainer, Title } from "./components"
+import { PageContainer, PageTitle, Title } from "./components"
 import DesktopCalendar from "./desktopCalendar"
 import useMonthNavigation from "./useMonthNavigation"
 import NavButtons from "./navButtons"
 import { format } from "date-fns"
 import { LoadAthleteActivities } from "../../../models/activities"
 import { getBeforeAndAfterForCalendar } from "../../../utils/getBeforeAndAfterDates"
+import { MobileCalendar } from "./mobileCalendar"
 
 interface CalendarProps {
 	apiError: string | object
@@ -31,7 +32,7 @@ const Calendar = ({ apiError, loadAthleteActivities, resetPageNumber }: Calendar
 	return (
 		<PageContainer>
 			<Title>
-				<h3>{format(new Date(currentYear, currentMonth), "MMMM yyyy")}</h3>
+				<PageTitle>{format(new Date(currentYear, currentMonth), "MMMM yyyy")}</PageTitle>
 				<NavButtons
 					currentMonth={currentMonth}
 					currentYear={currentYear}
@@ -41,6 +42,7 @@ const Calendar = ({ apiError, loadAthleteActivities, resetPageNumber }: Calendar
 				/>
 			</Title>
 			<DesktopCalendar currentYear={currentYear} currentMonth={currentMonth} />
+			<MobileCalendar currentYear={currentYear} currentMonth={currentMonth} />
 		</PageContainer>
 	)
 }

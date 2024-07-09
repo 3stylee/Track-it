@@ -6,6 +6,7 @@ import connect from "./connect"
 import { AthleteActivities } from "../../../../models/activities"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { getDate } from "date-fns"
+import { getCalendarGrid } from "../../../../utils/getCalendarGrid"
 
 interface DesktopCalendarProps {
 	currentMonth: number
@@ -20,18 +21,7 @@ const DesktopCalendar = ({
 	apiCallsInProgress,
 	athleteActivities,
 }: DesktopCalendarProps) => {
-	// Get the first and last day of the current month
-	const firstDayOfMonth = new Date(currentYear, currentMonth, 1)
-	const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0)
-
-	// Calculate the number of days in the month
-	const daysInMonth = lastDayOfMonth.getDate()
-
-	// Determine the day of the week the month starts on
-	const startDayOfWeek = firstDayOfMonth.getDay() - 1
-
-	// Create an array of days in the month
-	const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1)
+	const { startDayOfWeek, daysArray } = getCalendarGrid(currentMonth, currentYear)
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (

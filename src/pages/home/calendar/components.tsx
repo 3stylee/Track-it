@@ -14,6 +14,14 @@ export const PageContainer = styled("div")`
 		margin-left: 0;
 	}
 `
+export const PageTitle = styled("h3")`
+	margin-bottom: 0;
+
+	@media (max-width: 767px) {
+		font-size: 1.25rem;
+	}
+`
+
 export const Title = styled("div")`
 	display: flex;
 	color: ${({ theme }) => theme.bootstrap.textColor};

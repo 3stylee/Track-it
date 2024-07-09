@@ -1,8 +1,9 @@
 import styled from "@emotion/styled"
+import { Button } from "react-bootstrap"
 
 // Base styled component with common styles
 const ChevronBase = styled.div<{ disabled: boolean }>`
-	height: 2.3755rem;
+	height: 2.375rem;
 	width: 2.375rem;
 	color: white;
 	padding: 0.5rem;
@@ -14,7 +15,19 @@ const ChevronBase = styled.div<{ disabled: boolean }>`
 	&:hover {
 		background-color: #5734d9;
 	}
+
+	@media (max-width: 767px) {
+		height: 2rem;
+		width: 2rem;
+	}
 `
 
 export const ChevronPrev = ChevronBase
 export const ChevronNext = ChevronBase
+
+export const TodayButton = styled(Button)`
+	@media (max-width: 767px) {
+		font-size: 0.75rem;
+		height: 2rem;
+	}
+`
