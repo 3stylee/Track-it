@@ -5,7 +5,7 @@ export const PageContainer = styled("div")`
 	padding: 1.5rem 2rem;
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
-	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
+	height: 90vh;
 	overflow-y: auto;
 
 	@media (max-width: 767px) {

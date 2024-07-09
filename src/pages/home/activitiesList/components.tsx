@@ -4,7 +4,7 @@ import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants
 export const PageContainer = styled("div")`
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
-	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
+	height: 90vh;
 	overflow-y: auto;
 	scrollbar-width: thin;
 
