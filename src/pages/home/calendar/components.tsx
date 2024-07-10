@@ -5,13 +5,15 @@ export const PageContainer = styled("div")`
 	width: calc(100% - ${SIDEBAR_WIDTH});
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
-	height: 90vh;
+	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	overflow-y: auto;
 	padding: 2rem;
 
 	@media (max-width: 767px) {
+		height: calc(100vh - ${TITLE_BANNER_HEIGHT} - 2rem);
 		width: 100%;
 		margin-left: 0;
+		overflow-y: hidden;
 	}
 `
 export const PageTitle = styled("h3")`

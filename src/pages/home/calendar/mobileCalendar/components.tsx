@@ -20,6 +20,7 @@ export const DayCell = styled("div")<{ active?: boolean; disabled?: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 	height: 2.5rem;
 	color: ${({ disabled, active, theme }) => {
 		if (disabled) return theme.calendar.borderColor
