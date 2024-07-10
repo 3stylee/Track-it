@@ -3,9 +3,8 @@ import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants
 
 export const PageContainer = styled("div")`
 	padding: 1.5rem 2rem;
-	margin-top: ${TITLE_BANNER_HEIGHT};
+	padding-top: calc(${TITLE_BANNER_HEIGHT} + 1.5rem);
 	margin-left: ${SIDEBAR_WIDTH};
-	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
 	overflow-y: auto;
 
 	@media (max-width: 767px) {
@@ -14,5 +13,6 @@ export const PageContainer = styled("div")`
 
 	@media (max-width: 991px) {
 		padding: 1.5rem;
+		padding-top: calc(${TITLE_BANNER_HEIGHT} + 1.5rem);
 	}
 `

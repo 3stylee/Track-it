@@ -5,8 +5,8 @@ export const ProgressContainer = styled("div")<{ height: string | undefined; noM
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(${({ height }) => (height ? height : "100vh")} - ${TITLE_BANNER_HEIGHT});
-	margin-top: ${({ noMargin }) => (noMargin ? "0" : TITLE_BANNER_HEIGHT)};
+	height: calc(${({ height }) => (height ? height : "100vh")});
+	padding-top: ${({ noMargin }) => (noMargin ? "0" : TITLE_BANNER_HEIGHT)};
 	margin-left: ${({ noMargin }) => (noMargin ? "0" : SIDEBAR_WIDTH)};
 
 	@media (max-width: 768px) {

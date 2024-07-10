@@ -46,7 +46,7 @@ export const DataContainer = ({
 	}
 	const { bottomRef } = useInfiniteScroll(scrollDown, before, after)
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95%" noMargin />
+	if (apiCallsInProgress > 0) return <AnimatedSpinner height="70vh" noMargin />
 	return (
 		<Container>
 			{athleteActivities.length > 0 ? (
