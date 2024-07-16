@@ -6,5 +6,5 @@ export const CentralContainer = styled("div")`
 	justify-content: center;
 	align-items: center;
 	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
-	margin-top: ${TITLE_BANNER_HEIGHT};
+	padding-top: ${TITLE_BANNER_HEIGHT};
 `

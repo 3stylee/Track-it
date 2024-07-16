@@ -6,12 +6,10 @@ export const PageContainer = styled("div")`
 	padding: 2rem;
 	padding-top: calc(${TITLE_BANNER_HEIGHT} + 2rem);
 	margin-left: ${SIDEBAR_WIDTH};
-	height: 100vh;
 
 	@media (max-width: 767px) {
 		width: 100%;
 		margin-left: 0;
-		overflow-y: hidden;
 	}
 `
 export const PageTitle = styled("h3")`

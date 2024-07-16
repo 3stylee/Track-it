@@ -32,7 +32,7 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 		else setSortOption(sortOption === 2 ? 3 : 2)
 	}
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner height="90%" />
+	if (apiCallsInProgress > 0) return <AnimatedSpinner height="75vh" />
 	return (
 		<Container>
 			<PageTitle>Your Sessions</PageTitle>
