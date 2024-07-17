@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
 
 export const StyledHeader = styled("div")`
 	border-radius: var(--bs-border-radius);
@@ -9,6 +10,11 @@ export const StyledHeader = styled("div")`
 	}
 `
 export const StyledCard = styled("div")`
-	margin-bottom: 1.5rem;
-	padding: 1.5rem;
+	margin-bottom: ${PAGE_PADDING};
+	padding: ${PAGE_PADDING};
+
+	@media (max-width: 769px) {
+		margin-bottom: ${PAGE_PADDING_MOBILE};
+		padding: ${PAGE_PADDING_MOBILE};
+	}
 `

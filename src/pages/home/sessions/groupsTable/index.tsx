@@ -1,15 +1,7 @@
 import React, { useState } from "react"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { Table } from "react-bootstrap"
-import {
-	Container,
-	FilterContainer,
-	PageTitle,
-	SessionCount,
-	SortableHeader,
-	StyledRow,
-	TableContainer,
-} from "./components"
+import { FilterContainer, PageTitle, SessionCount, SortableHeader, StyledRow, TableContainer } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import TableContents from "../tableContents"
@@ -34,7 +26,7 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="75vh" />
 	return (
-		<Container>
+		<div>
 			<PageTitle>Your Sessions</PageTitle>
 			{sessionGroups.length > 0 ? (
 				<>
@@ -70,7 +62,7 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 			) : (
 				<div>No sessions found</div>
 			)}
-		</Container>
+		</div>
 	)
 }
 

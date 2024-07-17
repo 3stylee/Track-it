@@ -1,10 +1,10 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
+import { PAGE_PADDING, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
 
 export const PageContainer = styled("div")`
 	width: calc(100% - ${SIDEBAR_WIDTH});
-	padding: 2rem;
-	padding-top: calc(${TITLE_BANNER_HEIGHT} + 2rem);
+	padding: ${PAGE_PADDING};
+	padding-top: calc(${TITLE_BANNER_HEIGHT} + ${PAGE_PADDING});
 	margin-left: ${SIDEBAR_WIDTH};
 
 	@media (max-width: 767px) {

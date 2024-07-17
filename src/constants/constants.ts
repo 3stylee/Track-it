@@ -84,3 +84,5 @@ export const FIREBASE_COLLECTIONS = {
 }
 export const DAYS_OF_WEEK_SHORT = ["M", "T", "W", "T", "F", "S", "S"]
 export const DAYS_OF_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+export const PAGE_PADDING = "1.5rem"
+export const PAGE_PADDING_MOBILE = "0.5rem"

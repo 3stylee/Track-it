@@ -47,10 +47,10 @@ export const Dashboard = ({
 		<PageContainer>
 			<TitleHeader />
 			<Row>
-				<Col lg={8} className="mb-4">
+				<Col lg={8} className="mb-2 mb-md-4">
 					<MileageChart />
 				</Col>
-				<Col lg={4} className="mb-4">
+				<Col lg={4} className="mb-2 mb-md-4">
 					<RecentActivities />
 				</Col>
 			</Row>
