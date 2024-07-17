@@ -6,7 +6,7 @@ export const Title = styled("div")`
 `
 export const StyledCard = styled(Card)`
 	@media (max-width: 991px) {
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.5rem;
 	}
 `
 export const CenteredCol = styled(Col)`

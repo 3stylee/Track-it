@@ -1,6 +1,6 @@
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../constants/constants"
 
-export const getAltitudeOptions = (length: number, theme: string, max: number, eGain: number) => {
+export const getAltitudeOptions = (length: number, theme: string, max: number, eGain: number, smallScreen: boolean) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -57,6 +57,7 @@ export const getAltitudeOptions = (length: number, theme: string, max: number, e
 					},
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
+				display: !smallScreen,
 			},
 			y: {
 				type: "linear",
@@ -67,6 +68,7 @@ export const getAltitudeOptions = (length: number, theme: string, max: number, e
 					maxTicksLimit: 5,
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
+				display: !smallScreen,
 			},
 		},
 	}

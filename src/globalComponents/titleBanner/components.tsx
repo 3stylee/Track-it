@@ -11,7 +11,7 @@ export const BannerBackground = styled("div")`
 	align-items: center;
 	position: fixed;
 	width: 100%;
-	z-index: 10;
+	z-index: 1000;
 `
 
 export const BannerText = styled("p")`

@@ -11,7 +11,7 @@ export const RoundedImage = styled("img")`
 export const ImageContainer = styled("div")`
 	position: relative;
 	@media (max-width: 991px) {
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.5rem;
 	}
 `
 export const StyledBadge = styled(Badge)`

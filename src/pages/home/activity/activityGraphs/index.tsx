@@ -9,6 +9,7 @@ import { Units } from "../../../../models/state"
 import { CenteredDiv } from "./components"
 import { CurrentActivity, CurrentActivityStream } from "../../../../models/activities"
 import { AlertTriangle } from "react-feather"
+import useSmallScreen from "./useSmallScreen"
 
 interface ActivityGraphsProps {
 	currentActivityStream: CurrentActivityStream
@@ -18,13 +19,14 @@ interface ActivityGraphsProps {
 
 export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }: ActivityGraphsProps) => {
 	const theme = useTheme()
+	const smallScreen = useSmallScreen()
 	const graphData =
 		currentActivityStream.distance || currentActivityStream.heartrate || currentActivityStream.altitude
 	if (graphData) {
-		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units)
+		const graphs = getActivityGraphs(currentActivityStream, currentActivity, theme.name, units, smallScreen)
 		const { laps } = currentActivity
 		return (
-			<Row sm={1} className="g-4">
+			<Row sm={1} className="g-1 g-lg-4">
 				{laps.length > 1 && (
 					<Col>
 						<LapsTable laps={laps} />

@@ -11,8 +11,8 @@ export const PageContainer = styled("div")`
 	}
 
 	@media (max-width: 991px) {
-		padding-top: calc(${TITLE_BANNER_HEIGHT} + 1.5rem);
-		padding: 1.5rem;
+		padding: 0.5rem;
+		padding-top: calc(${TITLE_BANNER_HEIGHT} + 0.5rem);
 	}
 `
 export const ImageContainer = styled("div")`

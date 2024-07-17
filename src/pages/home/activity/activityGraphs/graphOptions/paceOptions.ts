@@ -2,7 +2,14 @@ import { Units } from "../../../../../models/state"
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../constants/constants"
 import { getMinsFromSeconds } from "../../../../../utils/getMinsFromSeconds"
 
-export const getPaceOptions = (length: number, theme: string, min: number, average: number, units: Units) => {
+export const getPaceOptions = (
+	length: number,
+	theme: string,
+	min: number,
+	average: number,
+	units: Units,
+	smallScreen: boolean
+) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 	return {
 		responsive: true,
@@ -59,6 +66,7 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 					},
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
+				display: !smallScreen,
 			},
 			y: {
 				// top of scale is 15s faster than fastest pace (rounded to nearest 10s)
@@ -73,6 +81,7 @@ export const getPaceOptions = (length: number, theme: string, min: number, avera
 					maxTicksLimit: 5,
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
+				display: !smallScreen,
 				reverse: true,
 			},
 		},

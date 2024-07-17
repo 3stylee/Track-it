@@ -21,7 +21,8 @@ export const getActivityGraphData = (
 	currentActivityStream: CurrentActivityStream,
 	currentActivity: CurrentActivity,
 	theme: string,
-	units: Units
+	units: Units,
+	smallScreen: boolean
 ) => {
 	const length = currentActivityStream.altitude?.original_size / STREAM_RESOLUTION_FACTOR || 0
 	const time = getTimeSeries(length)
@@ -30,17 +31,23 @@ export const getActivityGraphData = (
 		? getSecondsPerUnit(currentActivityStream.distance.data, units.meters)
 		: []
 	const averagePace = units.meters / (currentActivity.average_speed || 1)
-	const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData), averagePace, units)
+	const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData), averagePace, units, smallScreen)
 
 	const heartRateStreamData: number[] = currentActivityStream.heartrate?.data || []
 	const averageHeartRate = currentActivity.average_heartrate || 0
-	const heartRateOptions = getHeartrateOptions(length, theme, averageHeartRate)
+	const heartRateOptions = getHeartrateOptions(length, theme, averageHeartRate, smallScreen)
 
 	const totalElevationGain = currentActivity.total_elevation_gain || 0
 	let altitudeStreamData = currentActivityStream.altitude?.data || []
 	// don't display a graph if there is no elevation gain
 	if (totalElevationGain === 0) altitudeStreamData = []
-	const altitudeOptions = getAltitudeOptions(length, theme, Math.max(...altitudeStreamData), totalElevationGain)
+	const altitudeOptions = getAltitudeOptions(
+		length,
+		theme,
+		Math.max(...altitudeStreamData),
+		totalElevationGain,
+		smallScreen
+	)
 
 	return {
 		time,

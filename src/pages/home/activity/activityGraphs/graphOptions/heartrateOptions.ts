@@ -1,6 +1,6 @@
 import { ACTIVITY_GRAPH_TIME_LABELS, THEMES } from "../../../../../constants/constants"
 
-export const getHeartrateOptions = (length: number, theme: string, average: number) => {
+export const getHeartrateOptions = (length: number, theme: string, average: number, smallScreen: boolean) => {
 	const modFactor = Math.floor(length / ACTIVITY_GRAPH_TIME_LABELS)
 
 	return {
@@ -58,6 +58,7 @@ export const getHeartrateOptions = (length: number, theme: string, average: numb
 					},
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 				},
+				display: !smallScreen,
 			},
 			y: {
 				type: "logarithmic",
@@ -68,6 +69,7 @@ export const getHeartrateOptions = (length: number, theme: string, average: numb
 					color: `${theme === THEMES.DARK ? "white" : "black"}`,
 					maxTicksLimit: 8,
 				},
+				display: !smallScreen,
 			},
 		},
 	}

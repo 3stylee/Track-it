@@ -9,6 +9,7 @@ import { getActivityGraphData } from "../getActivityGraphData"
  * @param {CurrentActivity} currentActivity - The data of the current activity.
  * @param {string} theme - The theme for the graph options.
  * @param {Units} units - The units to be used for the graph data.
+ * @param {boolean} smallScreen - Whether the screen is small or not.
  *
  * @returns {Array<Object>} An array of objects, each containing the data the ActivityGraph component needs to render a graph.
  */
@@ -16,7 +17,8 @@ export const getActivityGraphs = (
 	currentActivityStream: CurrentActivityStream,
 	currentActivity: CurrentActivity,
 	theme: string,
-	units: Units
+	units: Units,
+	smallScreen: boolean
 ) => {
 	const {
 		time,
@@ -26,7 +28,7 @@ export const getActivityGraphs = (
 		heartRateOptions,
 		altitudeStreamData,
 		altitudeOptions,
-	} = getActivityGraphData(currentActivityStream, currentActivity, theme, units)
+	} = getActivityGraphData(currentActivityStream, currentActivity, theme, units, smallScreen)
 
 	const graphs = []
 	if (paceStreamData.length > 0) {
