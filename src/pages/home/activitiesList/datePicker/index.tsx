@@ -10,7 +10,6 @@ import { Calendar, X } from "react-feather"
 
 interface DatePickerProps {
 	onClick: (dates: DateRange | undefined) => void
-	containerRef: React.RefObject<HTMLDivElement | null>
 	selected: DateRange | undefined
 	setSelected: (dates: DateRange) => void
 	clearFilter: () => void
@@ -21,7 +20,6 @@ interface DatePickerProps {
 
 export const DatePicker = ({
 	onClick,
-	containerRef,
 	selected,
 	setSelected,
 	clearFilter,
@@ -30,16 +28,15 @@ export const DatePicker = ({
 	firstActivityDate,
 }: DatePickerProps) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [scrollHeight, setScrollHeight] = useState(0)
 	const wrapperRef = useRef<HTMLDivElement | null>(null)
 	const footerText = getDatePickerText(selected)
 
 	useEffect(() => {
-		const cleanupFunction = addDatePickerListeners(containerRef, wrapperRef, isOpen, setScrollHeight, setIsOpen)
+		const cleanupFunction = addDatePickerListeners(wrapperRef, setIsOpen)
 		return () => {
 			cleanupFunction()
 		}
-	}, [wrapperRef, containerRef, isOpen])
+	}, [wrapperRef, isOpen])
 
 	return (
 		<div ref={wrapperRef}>
@@ -64,7 +61,7 @@ export const DatePicker = ({
 				)}
 			</FilterButtonContainer>
 			{isOpen && (
-				<Container top={scrollHeight}>
+				<Container>
 					<StyledDayPicker
 						mode="range"
 						captionLayout="dropdown-buttons"

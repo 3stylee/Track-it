@@ -1,16 +1,17 @@
 import styled from "@emotion/styled"
 import { Badge } from "react-bootstrap"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const RoundedImage = styled("img")`
 	border-radius: var(--bs-border-radius);
 	width: 100%;
-	@media (min-width: 992px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.LG}) {
 		width: 550px;
 	}
 `
 export const ImageContainer = styled("div")`
 	position: relative;
-	@media (max-width: 991px) {
+	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 0.5rem;
 	}
 `

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const DayHeader = styled("div")`
 	display: flex;
@@ -17,7 +18,7 @@ export const GridContainer = styled("div")`
 	grid-template-columns: repeat(7, 1fr);
 	border-left: 1px solid ${({ theme }) => theme.calendar.borderColor};
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		display: none;
 	}
 `

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants/constants"
+import { BREAKPOINTS, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants/constants"
 import { motion } from "framer-motion"
 
 export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
@@ -11,7 +11,7 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	height: 100%;
 	z-index: 3;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
 		z-index: 3;
 		transition: margin-left 0.3s;

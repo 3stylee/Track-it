@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
+import { BREAKPOINTS, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
 
 export const PageContainer = styled("div")`
 	margin-left: ${SIDEBAR_WIDTH};
@@ -7,7 +7,7 @@ export const PageContainer = styled("div")`
 	overflow-y: auto;
 	scrollbar-width: thin;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-left: 0;
 	}
 `

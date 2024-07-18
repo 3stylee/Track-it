@@ -27,11 +27,6 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }
 		const { laps } = currentActivity
 		return (
 			<Row sm={1} className="g-1 g-lg-4">
-				{laps.length > 1 && (
-					<Col>
-						<LapsTable laps={laps} />
-					</Col>
-				)}
 				{graphs.map((graph) => {
 					const { time, label, data, options, backgroundColor } = graph
 					return (
@@ -50,6 +45,11 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }
 						</Col>
 					)
 				})}
+				{laps.length > 1 && (
+					<Col>
+						<LapsTable laps={laps} />
+					</Col>
+				)}
 			</Row>
 		)
 	}

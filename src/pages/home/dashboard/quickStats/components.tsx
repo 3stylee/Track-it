@@ -1,11 +1,12 @@
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const StatsList = styled("ul")`
 	list-style: none;
 	display: flex;
 	padding: 0;
 	margin: 0;
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		flex-wrap: wrap;
 		margin: 2rem 0;
 		justify-content: center;
@@ -17,7 +18,7 @@ export const Stat = styled("li")`
 	text-align: center;
 	margin: 0 1rem;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-bottom: 1rem;
 	}
 `

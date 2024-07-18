@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "../../../constants/constants"
 
 export const ContainerCard = styled("div")`
 	width: 30rem;
 	text-align: center;
 
-	@media (max-width: 768px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		width: 18rem;
 	}
 `

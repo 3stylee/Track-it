@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { TITLE_BANNER_HEIGHT } from "../../constants/constants"
+import { BREAKPOINTS, TITLE_BANNER_HEIGHT } from "../../constants/constants"
 
 export const BannerBackground = styled("div")`
 	background-color: var(--bs-primary);
@@ -21,7 +21,7 @@ export const BannerText = styled("p")`
 	font-family: "TypoRoundBold";
 	overflow: hidden;
 
-	@media (max-width: 576px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		font-size: 1.5rem;
 		margin: 0 0.25rem;
 	}
@@ -41,7 +41,7 @@ export const CollapseButton = styled("button")<{ showButton: boolean }>`
 		background-color: #fd4499;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.MD}) {
 		display: none;
 	}
 `
@@ -51,11 +51,11 @@ export const BannerTitle = styled("div")`
 	justify-content: center;
 	padding-left: 60px;
 
-	@media (min-width: 768px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.MD}) {
 		padding-left: 111px;
 	}
 
-	@media (max-width: 576px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		padding-left: 22px;
 	}
 `
@@ -71,7 +71,7 @@ export const HomeLink = styled("a")`
 export const StravaLogo = styled("img")`
 	height: 3rem;
 
-	@media (max-width: 576px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		height: 2rem;
 		margin-right: 0.25rem;
 	}
@@ -80,12 +80,12 @@ export const StravaLogo = styled("img")`
 export const TrackLogo = styled("img")`
 	height: 4rem;
 
-	@media (max-width: 576px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		height: 3rem;
 		margin-left: 0.25rem;
 	}
 
-	@media (max-width: 320px) {
+	@media (max-width: ${BREAKPOINTS.UP.XS}) {
 		display: none;
 	}
 `

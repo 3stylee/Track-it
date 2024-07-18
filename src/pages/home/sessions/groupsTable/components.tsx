@@ -1,12 +1,12 @@
 import styled from "@emotion/styled"
-import { PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
+import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
 
 export const PageTitle = styled("h3")`
 	margin-bottom: ${PAGE_PADDING};
 	color: ${({ theme }) => theme.text};
 
-	@media (max-width: 768px) {
-		margin-bottom: ${PAGE_PADDING_MOBILE};
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		margin: ${PAGE_PADDING_MOBILE} 0;
 	}
 `
 export const SessionCount = styled("p")`

@@ -1,14 +1,18 @@
 import styled from "@emotion/styled"
 import { CardBody } from "react-bootstrap"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const Body = styled(CardBody)`
 	padding-top: 0;
 	overflow-y: auto;
-	@media (min-width: 1200px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.XL}) {
 		height: 15.25rem;
 	}
-	@media (max-width: 1199px) {
+	@media (max-width: ${BREAKPOINTS.UP.XL}) {
 		max-height: 24rem;
+	}
+	@media (max-width: ${BREAKPOINTS.UP.LG}) {
+		max-height: 100%;
 	}
 `
 export const CardHeader = styled("h4")`

@@ -1,6 +1,6 @@
 import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import { CardBody, CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
+import { CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Table } from "react-bootstrap"
 import connect from "./connect"
@@ -34,7 +34,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 			<CardHeader>
 				<p>Laps</p>
 			</CardHeader>
-			<CardBody className="card-body">
+			<div className="card-body">
 				<Table variant={background} striped className="mb-0">
 					<TableHeader>
 						<tr>
@@ -73,7 +73,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 						))}
 					</tbody>
 				</Table>
-			</CardBody>
+			</div>
 		</CardContainer>
 	)
 }

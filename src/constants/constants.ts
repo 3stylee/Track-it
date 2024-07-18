@@ -86,3 +86,19 @@ export const DAYS_OF_WEEK_SHORT = ["M", "T", "W", "T", "F", "S", "S"]
 export const DAYS_OF_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 export const PAGE_PADDING = "1.5rem"
 export const PAGE_PADDING_MOBILE = "0.5rem"
+export const BREAKPOINTS = {
+	UP: {
+		XS: "320px",
+		SM: "575px",
+		MD: "767px",
+		LG: "991px",
+		XL: "1199px",
+	},
+	DOWN: {
+		XS: "321px",
+		SM: "576px",
+		MD: "768px",
+		LG: "992px",
+		XL: "1200px",
+	},
+}

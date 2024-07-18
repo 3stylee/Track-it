@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { PAGE_PADDING, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
+import { BREAKPOINTS, PAGE_PADDING, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../../constants/constants"
 
 export const PageContainer = styled("div")`
 	width: calc(100% - ${SIDEBAR_WIDTH});
@@ -7,7 +7,7 @@ export const PageContainer = styled("div")`
 	padding-top: calc(${TITLE_BANNER_HEIGHT} + ${PAGE_PADDING});
 	margin-left: ${SIDEBAR_WIDTH};
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		width: 100%;
 		margin-left: 0;
 	}
@@ -15,7 +15,7 @@ export const PageContainer = styled("div")`
 export const PageTitle = styled("h3")`
 	margin-bottom: 0;
 
-	@media (max-width: 767px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		font-size: 1.25rem;
 	}
 `

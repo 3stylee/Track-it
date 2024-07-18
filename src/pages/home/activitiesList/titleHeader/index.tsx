@@ -10,7 +10,6 @@ interface TitleHeaderProps {
 	selected: DateRange
 	firstActivityDate: string | undefined
 	setSelected: (date: DateRange) => void
-	containerRef: React.RefObject<HTMLDivElement>
 	filterApplied: boolean
 	setFilterApplied: (filter: boolean) => void
 	resetPageNumber: () => void
@@ -20,7 +19,6 @@ const TitleHeader = ({
 	selected,
 	firstActivityDate,
 	setSelected,
-	containerRef,
 	filterApplied,
 	setFilterApplied,
 	resetPageNumber,
@@ -36,7 +34,6 @@ const TitleHeader = ({
 				}}
 				selected={selected}
 				setSelected={setSelected}
-				containerRef={containerRef}
 				clearFilter={() => {
 					window.history.pushState({}, "", ROUTE_PATHS.SEARCH_ACTIVITIES)
 				}}

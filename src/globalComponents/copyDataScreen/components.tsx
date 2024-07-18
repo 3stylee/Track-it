@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants/constants"
+import { BREAKPOINTS, SIDEBAR_WIDTH, TITLE_BANNER_HEIGHT } from "../../constants/constants"
 
 export const Container = styled("div")`
 	display: flex;
@@ -9,7 +9,7 @@ export const Container = styled("div")`
 	margin-top: ${TITLE_BANNER_HEIGHT};
 	margin-left: ${SIDEBAR_WIDTH};
 
-	@media (max-width: 768px) {
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-left: 0;
 	}
 `

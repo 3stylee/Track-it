@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
 import { motion } from "framer-motion"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const PageContainer = styled("div")`
 	height: calc(95% - 1rem);
 
-	@media (min-width: 768px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.MD}) {
 		display: none;
 	}
 `

@@ -1,24 +1,24 @@
 import styled from "@emotion/styled"
 import { DayPicker } from "react-day-picker"
-import { TITLE_BANNER_HEIGHT } from "../../../../constants/constants"
+import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
 
 export const StyledDayPicker = styled(DayPicker)`
 	--rdp-accent-color: var(--bs-primary);
 	--rdp-background-color: ${({ theme }) => theme.datePicker.background};
 	color: ${({ theme }) => theme.text};
 `
-export const Container = styled("div")<{ top: number }>`
+export const Container = styled("div")`
 	border-radius: var(--bs-border-radius);
 	background-color: var(--bs-${({ theme }) => theme.bootstrap.background});
 	border: 1px solid var(--bs-primary);
 	position: absolute;
-	top: calc(${TITLE_BANNER_HEIGHT} + 2rem + 2.375rem - ${({ top }) => top}px);
-	right: 2rem;
+	top: calc(2.375rem + ${PAGE_PADDING});
+	right: ${PAGE_PADDING};
 	z-index: 100;
 
-	@media (max-width: 768px) {
-		top: calc(${TITLE_BANNER_HEIGHT} + 1rem + 2.375rem - ${({ top }) => top}px);
-		right: 1rem;
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		top: calc(2.375rem + ${PAGE_PADDING_MOBILE});
+		right: ${PAGE_PADDING_MOBILE};
 	}
 `
 export const Footer = styled("div")`

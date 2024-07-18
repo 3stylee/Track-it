@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { small } from "."
+import { BREAKPOINTS } from "../../constants/constants"
 
 export const StatsContainer = styled("div")<{ small: small }>`
 	display: flex;
@@ -31,7 +32,7 @@ export const Value = styled("p")<{ small: small }>`
 	font-size: ${({ small }) => (small ? "0.875rem" : "2.25rem")};
 	margin-bottom: 0;
 
-	@media (max-width: 575px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		font-size: ${({ small }) => (small ? "1rem" : "1.25rem")};
 	}
 `
@@ -47,7 +48,7 @@ export const Unit = styled("span")<{ small: small }>`
 	color: ${({ theme }) => theme.labelledStats.accent};
 	text-transform: uppercase;
 
-	@media (max-width: 575px) {
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		font-size: 0.75rem;
 	}
 `

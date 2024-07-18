@@ -1,11 +1,8 @@
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
-export const CardBody = styled("div")`
-	overflow-y: auto;
-	max-height: 30rem;
-`
 export const CardContainer = styled("div")`
-	@media (max-width: 991px) {
+	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 1.5rem;
 	}
 `

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import DataContainer from "./dataContainer"
 import { PageContainer } from "./components"
 import connect from "./connect"
@@ -26,7 +26,6 @@ export const ActivitiesList = ({
 	loadInitialAthleteActivities,
 	resetListSize,
 }: ActivitiesListProps) => {
-	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [selected, setSelected] = useState<DateRange>(getDateRangeFromUrl())
 	const [filterApplied, setFilterApplied] = useState(selected?.from !== undefined)
 
@@ -46,13 +45,12 @@ export const ActivitiesList = ({
 
 	if (apiError !== "") return <ApiError />
 	return (
-		<PageContainer ref={containerRef}>
+		<PageContainer>
 			<TitleHeader
 				selected={selected}
 				setSelected={setSelected}
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}
-				containerRef={containerRef}
 			/>
 			<DataContainer />
 		</PageContainer>

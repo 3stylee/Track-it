@@ -2,6 +2,7 @@ import { keyframes } from "@emotion/react"
 import styled from "@emotion/styled"
 import { Badge, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const ActivityTitle = styled("h5")`
 	white-space: nowrap;
@@ -16,7 +17,7 @@ export const StyledLink = styled(Link)`
 	text-decoration: none;
 `
 export const CardContainer = styled(Card)`
-	@media (min-width: 768px) {
+	@media (min-width: ${BREAKPOINTS.DOWN.MD}) {
 		transition: transform 0.2s;
 		&:hover {
 			transform: scale(1.04);
