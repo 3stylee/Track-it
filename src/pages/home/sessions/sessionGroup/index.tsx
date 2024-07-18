@@ -31,6 +31,7 @@ const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGr
 						loadAthleteActivities={() => {}}
 						shouldTrimData={false}
 						beginLoadMoreApiCall={() => {}}
+						noPadding
 					/>
 				</>
 			) : (

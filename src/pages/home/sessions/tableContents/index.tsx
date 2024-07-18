@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import decodePolyline from "../../../../utils/decodePolyline"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
-import { ActivityMap, StyledRow } from "./components"
+import { ActivityMap, ImageRow, StyledRow, StyledSpan } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { AthleteActivities } from "../../../../models/activities"
@@ -33,7 +33,7 @@ const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: Tabl
 						: ROUTE_PATHS.ACTIVITY + `?id=${firstGroupId}`
 				return firstGroupSession ? (
 					<StyledRow key={firstGroupId} onClick={() => navigate(link)}>
-						<td>
+						<ImageRow>
 							{firstGroupSession.polyline && (
 								<ActivityMap
 									src={getMapboxEndpoint(
@@ -44,8 +44,8 @@ const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: Tabl
 									alt="session map"
 								/>
 							)}
-							{firstGroupSession.title}
-						</td>
+							<StyledSpan>{firstGroupSession.title}</StyledSpan>
+						</ImageRow>
 						<td>{convertISOToDDMMYY(firstGroupSession.start)}</td>
 						<td>{group.length}</td>
 					</StyledRow>

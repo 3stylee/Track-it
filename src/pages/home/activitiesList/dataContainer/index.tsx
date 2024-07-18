@@ -10,7 +10,7 @@ import { getDateRangeFromUrl } from "../../../../utils/getDateRangeFromUrl"
 import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates"
 import { trimData } from "../../../../utils/trimData"
 import { AthleteActivities, LoadAthleteActivities } from "../../../../models/activities"
-import { useInfiniteScroll } from "./infiniteScroll"
+import { useInfiniteScroll } from "./useInfiniteScroll"
 
 export interface DataContainerProps {
 	athleteActivities: AthleteActivities
@@ -21,6 +21,7 @@ export interface DataContainerProps {
 	nextPage: () => void
 	loadAthleteActivities: LoadAthleteActivities
 	beginLoadMoreApiCall: () => void
+	noPadding?: boolean
 }
 
 export const DataContainer = ({
@@ -32,6 +33,7 @@ export const DataContainer = ({
 	nextPage,
 	loadAthleteActivities,
 	beginLoadMoreApiCall,
+	noPadding,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
@@ -46,9 +48,9 @@ export const DataContainer = ({
 	}
 	const { bottomRef } = useInfiniteScroll(scrollDown, before, after)
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner height="70vh" noMargin />
+	if (apiCallsInProgress > 0) return <AnimatedSpinner height="95vh" noMargin />
 	return (
-		<Container>
+		<Container noPadding={noPadding}>
 			{athleteActivities.length > 0 ? (
 				<>
 					<Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-2 g-md-3">

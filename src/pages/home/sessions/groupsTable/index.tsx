@@ -1,7 +1,15 @@
 import React, { useState } from "react"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { Table } from "react-bootstrap"
-import { FilterContainer, PageTitle, SessionCount, SortableHeader, StyledRow, TableContainer } from "./components"
+import {
+	FilterContainer,
+	Header,
+	PageTitle,
+	SessionCount,
+	SortableHeader,
+	StyledRow,
+	TableContainer,
+} from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import TableContents from "../tableContents"
@@ -27,13 +35,15 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="75vh" />
 	return (
 		<div>
-			<PageTitle>Your Sessions</PageTitle>
 			{sessionGroups.length > 0 ? (
 				<>
-					<FilterContainer>
-						<SessionCount>{sessionGroups.length} Sessions</SessionCount>
-						<Searchbar searchText={searchText} setSearchText={setSearchText} />
-					</FilterContainer>
+					<Header>
+						<PageTitle>Your Sessions</PageTitle>
+						<FilterContainer>
+							<SessionCount>{sessionGroups.length} Sessions</SessionCount>
+							<Searchbar searchText={searchText} setSearchText={setSearchText} />
+						</FilterContainer>
+					</Header>
 					<TableContainer>
 						<Table variant={theme.bootstrap.background} striped className="mb-0">
 							<thead className="thead-light">
