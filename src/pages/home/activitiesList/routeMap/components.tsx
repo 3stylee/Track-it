@@ -1,9 +1,8 @@
 import { keyframes } from "@emotion/react"
 import styled from "@emotion/styled"
-import { Badge, Card } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { BREAKPOINTS } from "../../../../constants/constants"
-import { ChevronDown } from "react-feather"
 
 export const ActivityTitle = styled("h5")`
 	white-space: nowrap;
@@ -58,19 +57,6 @@ export const ImagePlaceholder = styled("div")`
 		animation: ${gradient} 1s infinite ease-in-out;
 	}
 `
-export const StyledBadge = styled(Badge)<{ showBadge: boolean }>`
-	display: ${({ showBadge }) => (showBadge ? "inline" : "none")};
-	position: absolute;
-	right: 0.5rem;
-	top: 0.5rem;
-	transition: width 0.5s;
-	${({ theme }) => theme.name === "dark" && `border: 1px solid ${theme.text};`}
-
-	&:hover .badge-chevron {
-		width: 1rem;
-		margin-left: 0.25rem;
-	}
-`
 
 export const DateText = styled("p")`
 	position: absolute;
@@ -78,9 +64,4 @@ export const DateText = styled("p")`
 	top: 0.5rem;
 	font-size: 0.75rem;
 	font-weight: bold;
-`
-export const BadgeChevron = styled(ChevronDown)<{ showDropdown: boolean }>`
-	width: ${({ showDropdown }) => (showDropdown ? "1rem" : "0")};
-	margin-left: ${({ showDropdown }) => (showDropdown ? "0.25rem" : "0")};
-	transition: width 0.3s;
 `

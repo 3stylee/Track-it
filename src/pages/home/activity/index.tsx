@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { ImageContainer, PageContainer } from "./components"
-import { ActivityImage } from "./activityImage"
+import ActivityImage from "./activityImage"
 import connect from "./connect"
 import { useLocation } from "react-router-dom"
 import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
@@ -41,7 +41,11 @@ const Activity = ({
 		<PageContainer>
 			<ImageContainer>
 				<ActivityTitle />
-				<ActivityImage polyline={currentActivity.polyline} predictedType={currentActivity.predictedType} />
+				<ActivityImage
+					polyline={currentActivity.polyline}
+					predictedType={currentActivity.predictedType}
+					id={currentActivity.id}
+				/>
 			</ImageContainer>
 			<ActivityGraphs />
 		</PageContainer>

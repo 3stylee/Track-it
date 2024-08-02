@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 
 export const PopupContainer = styled("div")`
+	cursor: pointer;
 	position: absolute;
 	background-color: #0b1623;
 	border: 1px solid rgb(77, 81, 84);

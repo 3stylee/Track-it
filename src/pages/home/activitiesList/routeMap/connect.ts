@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
+import { updateActivityType } from "../../../../redux/actions/modifyAthleteActivityActions"
 
 const mapStateToProps = (state: State) => {
 	return {
@@ -7,4 +8,8 @@ const mapStateToProps = (state: State) => {
 	}
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = {
+	updateActivityType,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)

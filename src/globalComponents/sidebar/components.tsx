@@ -15,6 +15,7 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
 		z-index: 3;
 		transition: margin-left 0.3s;
+		box-shadow: none;
 	}
 `
 export const IconContainer = styled("li")`

@@ -1,16 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
-import {
-	ActivityTitle,
-	BadgeChevron,
-	CardContainer,
-	DateText,
-	ImagePlaceholder,
-	StyledBadge,
-	StyledImage,
-	StyledLink,
-} from "./components"
+import React, { useState } from "react"
+import { ActivityTitle, CardContainer, DateText, ImagePlaceholder, StyledImage, StyledLink } from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
-import { ROUTE_PATHS, THEMES } from "../../../../constants/constants"
+import { ACTIVITY_TYPES, ROUTE_PATHS, THEMES } from "../../../../constants/constants"
 import { LabelledStats } from "../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
 import { Card } from "react-bootstrap"
@@ -18,8 +9,7 @@ import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../models/state"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
-import SelectActivityType from "../selectActivityType"
-import { addPopupListeners } from "../../../../utils/addPopupListeners"
+import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
 
 export interface RouteMapProps {
 	polyline: number[][]
@@ -31,25 +21,26 @@ export interface RouteMapProps {
 	units: Units
 	predictedType: string
 	start: string
+	updateActivityType: (id: number, type: string) => void
 }
 
-const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedType, start }: RouteMapProps) => {
+const RouteMap = ({
+	polyline,
+	speed,
+	name,
+	time,
+	distance,
+	id,
+	units,
+	predictedType,
+	start,
+	updateActivityType,
+}: RouteMapProps) => {
 	const theme = useTheme()
-	const dropdownRef = useRef<HTMLDivElement | null>(null)
-	const badgeRef = useRef<HTMLDivElement | null>(null)
 	const [imageLoaded, setImagedLoaded] = useState(false)
-	const [showDropdown, setShowDropdown] = useState(false)
 
-	useEffect(() => {
-		const cleanupFunction = addPopupListeners(dropdownRef, setShowDropdown, badgeRef)
-		return () => {
-			cleanupFunction()
-		}
-	}, [])
-
-	const handleBadgeClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-		e.preventDefault()
-		setShowDropdown(!showDropdown)
+	const handleSetType = (selected: string) => {
+		updateActivityType(id, selected)
 	}
 
 	let url =
@@ -71,11 +62,12 @@ const RouteMap = ({ polyline, speed, name, time, distance, id, units, predictedT
 						setImagedLoaded(true)
 					}}
 				/>
-				<StyledBadge showBadge={imageLoaded} onClick={handleBadgeClick} ref={badgeRef}>
-					{predictedType}
-					<BadgeChevron size={16} className="badge-chevron" showDropdown={showDropdown} />
-				</StyledBadge>
-				<div ref={dropdownRef}>{showDropdown && <SelectActivityType selected={predictedType} id={id} />}</div>
+				<BadgeDropdown
+					showBadge={imageLoaded}
+					selected={predictedType}
+					setSelected={handleSetType}
+					options={ACTIVITY_TYPES}
+				/>
 				<DateText>{convertISOToDDMMYY(start)}</DateText>
 				{!imageLoaded && <ImagePlaceholder />}
 				<Card.Body>

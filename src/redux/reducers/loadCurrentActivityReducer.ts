@@ -5,6 +5,8 @@ const dataReducer = (state = initalState.currentActivity, action: { type: any; d
 	switch (action.type) {
 		case types.LOAD_CURRENT_ACTIVITY_SUCCESS:
 			return action.data
+		case types.MODIFY_CURRENT_ACTIVITY_TYPE:
+			return { ...state, predictedType: action.data.type }
 		default:
 			return state
 	}
