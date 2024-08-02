@@ -22,4 +22,14 @@ export const Activity = styled("div")<{ selected: boolean }>`
 	&:hover {
 		background-color: ${({ selected }) => (selected ? "var(--bs-primary)" : "rgba(255, 255, 255, 0.15)")};
 	}
+
+	&:first-of-type {
+		border-top-left-radius: var(--bs-border-radius);
+		border-top-right-radius: var(--bs-border-radius);
+	}
+
+	&:last-of-type {
+		border-bottom-left-radius: var(--bs-border-radius);
+		border-bottom-right-radius: var(--bs-border-radius);
+	}
 `

@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { updateActivityType } from "../../../../redux/actions/modifyAthleteActivityActions"
+import { updateActivityType } from "../../../../redux/actions/modifyActivityActions"
 
 const mapDispatchToProps = {
 	updateActivityType,

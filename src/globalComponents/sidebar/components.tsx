@@ -13,9 +13,9 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
-		z-index: 3;
+		z-index: 100;
 		transition: margin-left 0.3s;
-		box-shadow: none;
+		box-shadow: ${({ sidebarExpanded }) => (sidebarExpanded ? "2px 0 5px rgba(0, 0, 0, 0.5)" : "none")};
 	}
 `
 export const IconContainer = styled("li")`

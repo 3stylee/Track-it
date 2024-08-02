@@ -3,7 +3,7 @@ import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
 import { API_BASE_URL } from "../../constants/constants"
 import { processActivityData } from "../../utils/processActivityData"
-import { predictData } from "../../utils/predictData"
+import { getPredictedTypeFromFirebase } from "../../utils/getPredictedTypeFromFirebase"
 
 export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_CURRENT_ACTIVITY_SUCCESS, data }
@@ -25,9 +25,9 @@ export const loadCurrentActivity = (id: number) => {
 					Authorization: `Bearer ${access_token}`,
 				},
 			})
-			const predictedType = await predictData([response.data])
+			const predictedType = await getPredictedTypeFromFirebase(id)
 			const data = processActivityData(response.data)
-			dispatch(loadDataSuccess({ ...data, predictedType: predictedType[0] }))
+			dispatch(loadDataSuccess({ ...data, predictedType }))
 		} catch (error) {
 			dispatch(apiCallError(error))
 		}

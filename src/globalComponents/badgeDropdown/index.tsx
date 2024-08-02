@@ -29,7 +29,7 @@ export const BadgeDropdown = ({ showBadge = true, selected, options, setSelected
 
 	return (
 		<>
-			<StyledBadge showBadge={showBadge} onClick={handleBadgeClick} ref={badgeRef}>
+			<StyledBadge onClick={handleBadgeClick} ref={badgeRef} showBadge={showBadge}>
 				{selected}
 				<BadgeChevron size={16} className="badge-chevron" showDropdown={showDropdown} />
 			</StyledBadge>

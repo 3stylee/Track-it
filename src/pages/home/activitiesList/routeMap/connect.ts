@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
-import { updateActivityType } from "../../../../redux/actions/modifyAthleteActivityActions"
+import { updateActivityType } from "../../../../redux/actions/modifyActivityActions"
 
 const mapStateToProps = (state: State) => {
 	return {

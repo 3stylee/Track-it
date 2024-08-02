@@ -10,6 +10,7 @@ import { PAGE_SIZE } from "../../constants/constants"
 import { hasNoMoreActivities } from "./loadMoreActions"
 import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
 import { predictData } from "../../utils/predictData"
+import { getRestOfAthleteActivities } from "../../utils/getRestOfAthleteActivities"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
@@ -31,35 +32,39 @@ export const loadInitialAthleteActivities =
 		const {
 			userData: { access_token, dateOfLastBackup },
 		} = getState()
-		const endpoint = getEndpoint(limit, after)
+		const lastBackupEpoch = new Date(dateOfLastBackup).getTime() / 1000
+		const endpoint = getEndpoint(limit, after ? after : lastBackupEpoch)
 
 		dispatch(beginApiCall())
-
 		if (cache.has(endpoint)) {
 			dispatch(loadDataSuccess(cache.get(endpoint)))
-			return
-		}
+		} else {
+			try {
+				const { data: responseData } = await axios.get(endpoint, {
+					headers: { Authorization: `Bearer ${access_token}` },
+				})
 
-		try {
-			const { data: responseData } = await axios.get(endpoint, {
-				headers: {
-					Authorization: `Bearer ${access_token}`,
-				},
-			})
+				let data = limit ? responseData : responseData.reverse()
+				if (data.length > 0) {
+					const predictions = await predictData(data)
+					data = processAthleteActivities(responseData, predictions)
+				}
 
-			let data = limit ? responseData : responseData.reverse()
-			const predictions = await predictData(data)
-			data = processAthleteActivities(responseData, predictions)
+				if (!after && data.length < PAGE_SIZE) {
+					const restOfData = await getRestOfAthleteActivities(dateOfLastBackup, data.length)
+					data = data.length > 0 ? [data, ...restOfData] : restOfData
+				}
 
-			cache.set(endpoint, data)
-			dispatch(loadDataSuccess(data))
+				cache.set(endpoint, data)
+				dispatch(loadDataSuccess(data))
 
-			if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
-			if (data[0].start > dateOfLastBackup) {
-				dispatch(copyStravaActivities(new Date(dateOfLastBackup).getTime() / 1000))
+				if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
+				if (data[0].start > dateOfLastBackup) {
+					dispatch(copyStravaActivities(lastBackupEpoch))
+				}
+			} catch (error) {
+				dispatch(apiCallError(error))
 			}
-		} catch (error) {
-			dispatch(apiCallError(error))
 		}
 	}
 
