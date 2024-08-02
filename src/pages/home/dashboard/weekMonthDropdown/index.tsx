@@ -7,8 +7,7 @@ export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 			setWeekOrMonth(selectedValue)
 		}
 	}
-	const isWeek = weekOrMonth === SORT_OPTIONS.WEEK
-
+	const isActive = (option: string) => option === weekOrMonth
 	return (
 		<div className="dropdown">
 			<button
@@ -19,20 +18,15 @@ export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 				{weekOrMonth}
 			</button>
 			<ul className="dropdown-menu dropdown-menu-dark">
-				<li>
-					<button
-						className={`dropdown-item ${isWeek ? "active" : ""}`}
-						onClick={() => handleItemClick(SORT_OPTIONS.WEEK)}>
-						{SORT_OPTIONS.WEEK}
-					</button>
-				</li>
-				<li>
-					<button
-						className={`dropdown-item ${!isWeek ? "active" : ""}`}
-						onClick={() => handleItemClick(SORT_OPTIONS.MONTH)}>
-						{SORT_OPTIONS.MONTH}
-					</button>
-				</li>
+				{Object.entries(SORT_OPTIONS).map(([, value]) => (
+					<li key={value}>
+						<button
+							className={`dropdown-item ${isActive(value) ? "active" : ""}`}
+							onClick={() => handleItemClick(value)}>
+							{value}
+						</button>
+					</li>
+				))}
 			</ul>
 		</div>
 	)

@@ -5,7 +5,7 @@ export const Filters = styled("div")`
 	position: fixed;
 	background-color: ${({ theme }) => theme.background};
 	width: calc(100% - ${SIDEBAR_WIDTH});
-	z-index: 2;
+	z-index: 3;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

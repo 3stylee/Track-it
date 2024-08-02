@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit"
 import apiCallsInProgress from "./apiStatusReducer"
 import apiError from "./apiErrorReducer"
-import athleteActivities from "./loadAthleteActivitiesReducer"
+import athleteActivities from "./athleteActivitiesReducer"
 import athleteData from "./loadAthleteDataReducer"
 import currentActivityStream from "./activityStreamReducer"
 import currentActivity from "./loadCurrentActivityReducer"

@@ -102,3 +102,4 @@ export const BREAKPOINTS = {
 		XL: "1200px",
 	},
 }
+export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]

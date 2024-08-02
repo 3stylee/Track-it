@@ -3,7 +3,7 @@ import { DateRange } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 import { ButtonText, ClearButton, Container, FilterButtonContainer, Footer, StyledDayPicker } from "./components"
 import { Button } from "react-bootstrap"
-import { addDatePickerListeners } from "../../../../utils/addDatePickerListeners"
+import { addPopupListeners } from "../../../../utils/addPopupListeners"
 import { getDatePickerText } from "../../../../utils/getDatePickerText"
 import { CLEAR_FILTER, FILTER_RESULTS, SELECT_DATE_RANGE } from "../../../../constants/constants"
 import { Calendar, X } from "react-feather"
@@ -32,7 +32,7 @@ export const DatePicker = ({
 	const footerText = getDatePickerText(selected)
 
 	useEffect(() => {
-		const cleanupFunction = addDatePickerListeners(wrapperRef, setIsOpen)
+		const cleanupFunction = addPopupListeners(wrapperRef, setIsOpen)
 		return () => {
 			cleanupFunction()
 		}

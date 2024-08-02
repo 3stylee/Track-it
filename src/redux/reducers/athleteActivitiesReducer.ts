@@ -14,6 +14,14 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 		case types.RESET_ATHLETE_ACTIVITIES_SIZE:
 			if (state === null) return action.data
 			return [...state.slice(0, PAGE_SIZE)]
+		case types.MODIFY_ACTIVITY_TYPE:
+			if (state === null) return state
+			return state.map((activity: { id: number; predictedType: string }) => {
+				if (activity.id === action.data.id) {
+					return { ...activity, predictedType: action.data.type }
+				}
+				return activity
+			})
 		default:
 			return state
 	}

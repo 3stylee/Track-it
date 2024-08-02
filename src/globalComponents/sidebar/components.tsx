@@ -9,7 +9,7 @@ export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	transition: margin-left 0.3s;
 	position: fixed;
 	height: 100%;
-	z-index: 3;
+	z-index: 100;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-left: ${({ sidebarExpanded }) => (sidebarExpanded ? "0" : `-${SIDEBAR_WIDTH}`)};
