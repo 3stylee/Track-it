@@ -52,7 +52,7 @@ export const loadInitialAthleteActivities =
 
 				if (!after && data.length < PAGE_SIZE) {
 					const restOfData = await getRestOfAthleteActivities(dateOfLastBackup, data.length)
-					data = data.length > 0 ? [data, ...restOfData] : restOfData
+					data = data.length > 0 ? [...data, ...restOfData] : restOfData
 				}
 
 				cache.set(endpoint, data)
