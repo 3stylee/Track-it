@@ -1,6 +1,12 @@
 import styled from "@emotion/styled"
 import { BREAKPOINTS } from "../../../../constants/constants"
 
+export const DesktopCalendarContainer = styled("div")`
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		display: none;
+	}
+`
+
 export const DayHeader = styled("div")`
 	display: flex;
 	height: 2rem;

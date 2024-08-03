@@ -1,19 +1,19 @@
-import React, { useState } from "react"
+import React from "react"
 import { DayCell, DayHeader, GridContainer, PageContainer, SelectedCircle } from "./components"
 import { getCalendarGrid } from "../../../../utils/getCalendarGrid"
 import { DAYS_OF_WEEK_SHORT } from "../../../../constants/constants"
 import DayDrawer from "../dayDrawer"
+import connect from "./connect"
+import { getMonth, getYear } from "date-fns"
 
 interface MobileCalendarProps {
-	currentYear: number
-	currentMonth: number
+	selectedDate: Date
+	updateSelectedDate: (newDate: Date) => void
 }
 
-export const MobileCalendar = ({ currentMonth, currentYear }: MobileCalendarProps) => {
+const MobileCalendar = ({ selectedDate, updateSelectedDate }: MobileCalendarProps) => {
 	const today = new Date()
-	const [selectedDate, setSelectedDate] = useState(today)
-
-	const { startDayOfWeek, daysArray } = getCalendarGrid(currentMonth, currentYear)
+	const { startDayOfWeek, daysArray } = getCalendarGrid(selectedDate)
 	return (
 		<PageContainer>
 			<GridContainer>
@@ -24,14 +24,14 @@ export const MobileCalendar = ({ currentMonth, currentYear }: MobileCalendarProp
 					<div key={`empty-start-${i}`} />
 				))}
 				{daysArray.map((day) => {
-					const date = new Date(currentYear, currentMonth, day)
+					const date = new Date(getYear(selectedDate), getMonth(selectedDate), day)
 					const disabled = date > today
 					const active = selectedDate.toDateString() === date.toDateString()
 					return (
 						<DayCell
 							key={day}
 							onClick={() => {
-								!disabled && setSelectedDate(date)
+								!disabled && updateSelectedDate(date)
 							}}
 							active={active}
 							disabled={disabled}>
@@ -45,3 +45,5 @@ export const MobileCalendar = ({ currentMonth, currentYear }: MobileCalendarProp
 		</PageContainer>
 	)
 }
+
+export default connect(MobileCalendar)

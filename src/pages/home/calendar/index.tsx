@@ -3,46 +3,38 @@ import connect from "./connect"
 import ApiError from "../../../globalComponents/apiError"
 import { PageContainer, PageTitle, Title } from "./components"
 import DesktopCalendar from "./desktopCalendar"
-import useMonthNavigation from "./useMonthNavigation"
 import NavButtons from "./navButtons"
 import { format } from "date-fns"
 import { LoadAthleteActivities } from "../../../models/activities"
 import { getBeforeAndAfterForCalendar } from "../../../utils/getBeforeAndAfterDates"
-import { MobileCalendar } from "./mobileCalendar"
+import MobileCalendar from "./mobileCalendar"
 
 interface CalendarProps {
 	apiError: string | object
+	selectedDate: Date
 	loadAthleteActivities: LoadAthleteActivities
 	resetPageNumber: () => void
 }
 
-const Calendar = ({ apiError, loadAthleteActivities, resetPageNumber }: CalendarProps) => {
-	const { currentYear, currentMonth, handleNextMonth, handlePrevMonth, setToToday } = useMonthNavigation()
-
+const Calendar = ({ apiError, selectedDate, loadAthleteActivities, resetPageNumber }: CalendarProps) => {
 	useEffect(() => {
 		resetPageNumber()
 	}, [])
 
 	useEffect(() => {
-		const { before, after } = getBeforeAndAfterForCalendar(currentMonth, currentYear)
+		const { before, after } = getBeforeAndAfterForCalendar(selectedDate)
 		loadAthleteActivities(before, after)
-	}, [currentYear, currentMonth, resetPageNumber, loadAthleteActivities])
+	}, [selectedDate, resetPageNumber, loadAthleteActivities])
 
 	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<Title>
-				<PageTitle>{format(new Date(currentYear, currentMonth), "MMMM yyyy")}</PageTitle>
-				<NavButtons
-					currentMonth={currentMonth}
-					currentYear={currentYear}
-					handleNextMonth={handleNextMonth}
-					handlePrevMonth={handlePrevMonth}
-					setToToday={setToToday}
-				/>
+				<PageTitle>{format(selectedDate, "MMMM yyyy")}</PageTitle>
+				<NavButtons selectedDate={selectedDate} />
 			</Title>
-			<DesktopCalendar currentYear={currentYear} currentMonth={currentMonth} />
-			<MobileCalendar currentYear={currentYear} currentMonth={currentMonth} />
+			<DesktopCalendar />
+			<MobileCalendar />
 		</PageContainer>
 	)
 }

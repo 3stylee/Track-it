@@ -1,6 +1,8 @@
+import { startOfToday } from "date-fns"
 import { AthleteActivities, CurrentActivity, CurrentActivityStream } from "../models/activities"
 import { AthleteData } from "../models/athlete"
 import { LoadMore, Units, UserData } from "../models/state"
+import { adjustDateForTimezone } from "../utils/adjustDateForTimezone"
 
 export interface State {
 	athleteActivities: AthleteActivities | null
@@ -11,13 +13,13 @@ export interface State {
 	sessionGroups: number[][]
 	currentActivityStream: CurrentActivityStream
 	currentActivity: CurrentActivity
-	dataType: string
 	apiCallsInProgress: number
 	loadMore: LoadMore
 	apiError: string | object
 	sidebarExpanded: boolean
 	units: Units
 	userData: UserData
+	selectedDate: Date
 }
 
 export default {
@@ -29,7 +31,6 @@ export default {
 	athleteData: {} as AthleteData,
 	currentActivityStream: {} as CurrentActivityStream,
 	currentActivity: {} as CurrentActivity,
-	dataType: "",
 	loadMore: {
 		loadingMore: false,
 		hasMore: true,
@@ -52,4 +53,5 @@ export default {
 		expires_at: Infinity,
 		email: "",
 	},
+	selectedDate: adjustDateForTimezone(startOfToday()),
 } as State

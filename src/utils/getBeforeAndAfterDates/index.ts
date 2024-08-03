@@ -1,3 +1,4 @@
+import { getMonth, getYear } from "date-fns"
 import { DateRange } from "react-day-picker"
 
 /**
@@ -16,7 +17,9 @@ export const getBeforeAndAfterDates = (dateRange: DateRange | undefined) => {
 	return { before, after }
 }
 
-export const getBeforeAndAfterForCalendar = (currentMonth: number, currentYear: number) => {
+export const getBeforeAndAfterForCalendar = (selectedDate: Date) => {
+	const currentYear = getYear(selectedDate)
+	const currentMonth = getMonth(selectedDate)
 	const after = new Date(currentYear, currentMonth, 1).getTime() / 1000
 	const before = new Date(currentYear, currentMonth + 1, 1).getTime() / 1000
 	return { before, after }

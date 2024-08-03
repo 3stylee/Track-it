@@ -1,7 +1,9 @@
-export const getCalendarGrid = (currentMonth: number, currentYear: number) => {
+import { getMonth, getYear } from "date-fns"
+
+export const getCalendarGrid = (selectedDate: Date) => {
 	// Get the first and last day of the current month
-	const firstDayOfMonth = new Date(currentYear, currentMonth, 1)
-	const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0)
+	const firstDayOfMonth = new Date(getYear(selectedDate), getMonth(selectedDate), 1)
+	const lastDayOfMonth = new Date(getYear(selectedDate), getMonth(selectedDate) + 1, 0)
 
 	// Calculate the number of days in the month
 	const daysInMonth = lastDayOfMonth.getDate()

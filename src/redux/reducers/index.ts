@@ -13,6 +13,7 @@ import sessionGroups from "./loadSessionGroupsReducer"
 import loadMore from "./loadMoreReducer"
 import activitiesHasFilter from "./activitiesFilterReducer"
 import gotInitialActivities from "./initialActivitiesReducer"
+import selectedDate from "./selectedDateReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
@@ -29,4 +30,5 @@ export const rootReducer = combineReducers({
 	sidebarExpanded,
 	units,
 	userData,
+	selectedDate,
 })

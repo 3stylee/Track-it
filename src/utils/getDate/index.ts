@@ -1,5 +1,6 @@
 import { startOfMonth, startOfWeek } from "date-fns"
 import { SORT_OPTIONS } from "../../constants/constants"
+import { adjustDateForTimezone } from "../adjustDateForTimezone"
 
 /**
  * Gets the date for the start of the current week or month, depending on the provided option.
@@ -14,9 +15,7 @@ export const getDate = (weekOrMonth: string) => {
 		now = startOfWeek(now, { weekStartsOn: 1 }) // Assumes week starts on Monday
 	}
 	if (weekOrMonth === SORT_OPTIONS.MONTH) {
-		now = startOfMonth(now)
-		const timezoneOffset = now.getTimezoneOffset() * 60000
-		now = new Date(now.getTime() - timezoneOffset)
+		now = adjustDateForTimezone(startOfMonth(now))
 	}
 	return now
 }

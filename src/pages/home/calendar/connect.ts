@@ -7,6 +7,7 @@ export const mapStateToProps = (state: State) => {
 	return {
 		apiError: state.apiError,
 		athleteActivities: state.athleteActivities,
+		selectedDate: state.selectedDate,
 	}
 }
 
