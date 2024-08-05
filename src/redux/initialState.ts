@@ -47,7 +47,6 @@ export default {
 		stravaAccess: false,
 		firstActivityDate: undefined,
 		dateOfLastBackup: undefined,
-		sessionsLastCopy: undefined,
 		access_token: "",
 		refresh_token: "",
 		expires_at: Infinity,

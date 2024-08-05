@@ -8,9 +8,9 @@ const ApiError = ({ apiError }: any) => {
 	console.error(apiError)
 	return (
 		<ApiErrorContainer>
-			<AlertCircle  size="6.25rem" />
-			<div>{API_ERROR_MESSAGES.STRAVA_FETCH_ERROR}</div>
-			<div>{apiError?.message || "Please try refreshing the page."}</div>
+			<AlertCircle size="6.25rem" />
+			<div>{API_ERROR_MESSAGES.FETCH_ERROR}</div>
+			<div>{apiError || "Please try refreshing the page."}</div>
 		</ApiErrorContainer>
 	)
 }

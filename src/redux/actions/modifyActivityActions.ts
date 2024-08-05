@@ -17,8 +17,12 @@ export const ModifyCurrentActivityType = (id: number, type: string) => {
 	}
 }
 
+export const triggerSessionGroupsUpdate = () => {
+	return { type: "TRIGGER_SESSION_GROUPS_UPDATE" }
+}
+
 export const updateActivityType =
-	(id: number, type: string, currentActivity = false) =>
+	(id: number, prevType: string, newType: string, currentActivity = false) =>
 	async (dispatch: any) => {
 		try {
 			const uId = localStorage.getItem("uId")
@@ -33,9 +37,13 @@ export const updateActivityType =
 				if (!querySnapshot.empty) {
 					const docRef = querySnapshot.docs[0].ref
 					await updateDoc(docRef, {
-						predictedType: type,
+						predictedType: newType,
 					})
-					dispatch(currentActivity ? ModifyCurrentActivityType(id, type) : ModifyActivityType(id, type))
+					dispatch(currentActivity ? ModifyCurrentActivityType(id, newType) : ModifyActivityType(id, newType))
+					// If we've changed a session, need to trigger a new load of session groups
+					if (prevType === "Session" || newType === "Session") {
+						dispatch(triggerSessionGroupsUpdate())
+					}
 				} else {
 					console.error("No matching document found.")
 				}

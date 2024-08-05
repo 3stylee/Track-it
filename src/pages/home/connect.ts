@@ -5,6 +5,7 @@ import { copyStravaActivities, storeStravaAuth } from "../../redux/actions/strav
 export const mapStateToProps = (state: any) => {
 	return {
 		userData: state.userData,
+		apiError: state.apiError,
 	}
 }
 

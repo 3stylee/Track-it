@@ -9,7 +9,7 @@ export const API_BASE_URL = "https://www.strava.com/api/v3"
 export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
 export const API_ERROR_MESSAGES = {
 	UNAUTHORISED: "Authorization Error",
-	STRAVA_FETCH_ERROR: "Sorry, we are having trouble accessing your Strava data right now.",
+	FETCH_ERROR: "Sorry, we are having trouble accessing your data right now.",
 }
 export const ROUTE_PATHS = {
 	DEFAULT: "/",

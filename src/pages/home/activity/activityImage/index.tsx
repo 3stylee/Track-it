@@ -11,7 +11,7 @@ interface ActivityImageProps {
 	polyline: string
 	predictedType: string
 	id: number
-	updateActivityType: (id: number, type: string, currentActivity: boolean) => void
+	updateActivityType: (id: number, prevType: string, newType: string, currentActivity: boolean) => void
 }
 
 const ActivityImage = ({ polyline, predictedType, id, updateActivityType }: ActivityImageProps) => {
@@ -21,7 +21,7 @@ const ActivityImage = ({ polyline, predictedType, id, updateActivityType }: Acti
 	const url = getMapboxEndpoint(decodedPolyline, theme.name)
 
 	const handleSetType = (selected: string) => {
-		updateActivityType(id, selected, true)
+		updateActivityType(id, predictedType, selected, true)
 	}
 
 	return (

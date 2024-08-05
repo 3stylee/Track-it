@@ -2,9 +2,9 @@ import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
-import { extractEntities } from "../../utils/extractFeaturesFromSession"
-import { updateFirestoreSessionGroups } from "../../utils/updateFirestoreSessionGroups"
 import { db } from "../../firebase"
+import { removeSpaces } from "../../utils/removeSpaces"
+import axios from "axios"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }
@@ -41,31 +41,27 @@ export const loadSessions = () => async (dispatch: any) => {
 }
 
 export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
-	const {
-		sessions,
-		userData: { sessionsLastCopy },
-	} = getState()
-	const firstSession = sessions[0].start
-
+	const { sessions } = getState()
 	dispatch(beginApiCall())
-	if (sessionsLastCopy === undefined || sessionsLastCopy < firstSession) {
-		const sessionGroups = await extractEntities(sessions)
-		dispatch(loadSessionGroupsSuccess(sessionGroups))
-		await updateFirestoreSessionGroups(sessionGroups, dispatch)
-	} else {
-		try {
-			const uId = localStorage.getItem("uId")
-			if (uId) {
-				const querySnapshot = await getDocs(
-					query(collection(db, FIREBASE_COLLECTIONS.SESSION_GROUPS), where("athleteId", "==", uId))
-				)
-				const sessionGroups = querySnapshot.docs.map((doc) => doc.data().sessions)
-				dispatch(loadSessionGroupsSuccess(sessionGroups))
-			} else {
-				dispatch(apiCallError(NO_LOGGED_IN_USER))
+	const sessionsNew = []
+	for (const session of sessions) {
+		sessionsNew.push({
+			id: session.id,
+			title: removeSpaces(session.title),
+		})
+	}
+	try {
+		const response = await axios.post(
+			"https://urchin-app-q9ue8.ondigitalocean.app/extract_entities",
+			{ sessions: sessionsNew },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
 			}
-		} catch (error: any) {
-			dispatch(apiCallError(error.message))
-		}
+		)
+		dispatch(loadSessionGroupsSuccess(response.data))
+	} catch (error: any) {
+		dispatch(apiCallError(error.message))
 	}
 }

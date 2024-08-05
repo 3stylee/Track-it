@@ -21,7 +21,7 @@ export interface RouteMapProps {
 	units: Units
 	predictedType: string
 	start: string
-	updateActivityType: (id: number, type: string) => void
+	updateActivityType: (id: number, prevType: string, newType: string) => void
 }
 
 const RouteMap = ({
@@ -40,7 +40,7 @@ const RouteMap = ({
 	const [imageLoaded, setImagedLoaded] = useState(false)
 
 	const handleSetType = (selected: string) => {
-		updateActivityType(id, selected)
+		updateActivityType(id, predictedType, selected)
 	}
 
 	let url =

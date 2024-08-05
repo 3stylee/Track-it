@@ -5,6 +5,8 @@ const sessionReducer = (state = initialState.sessions, action: { type: any; data
 	switch (action.type) {
 		case types.LOAD_SESSIONS_SUCCESS:
 			return action.data
+		case types.TRIGGER_SESSION_GROUPS_UPDATE:
+			return []
 		default:
 			return state
 	}

@@ -6,16 +6,25 @@ import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
 import { UserData } from "../../models/state"
 import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
+import ApiError from "../../globalComponents/apiError"
 
 export interface HomeProps {
 	userData: UserData
+	apiError: string
 	loadUserData: () => void
 	toggleTheme: () => void
 	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
 	copyStravaActivities: (lastBackup: number | undefined) => void
 }
 
-export const Home = ({ userData, loadUserData, toggleTheme, storeStravaAuth, copyStravaActivities }: HomeProps) => {
+export const Home = ({
+	userData,
+	apiError,
+	loadUserData,
+	toggleTheme,
+	storeStravaAuth,
+	copyStravaActivities,
+}: HomeProps) => {
 	const navigate = useNavigate()
 	const [validToken, setValidToken] = React.useState(false)
 	const [refreshingToken, setRefreshingToken] = React.useState(false)
@@ -47,6 +56,7 @@ export const Home = ({ userData, loadUserData, toggleTheme, storeStravaAuth, cop
 		}
 	}, [userData])
 
+	if (apiError) return <ApiError />
 	return userData.stravaAccess && userData.access_token && validToken ? (
 		userData.dateOfLastBackup ? (
 			<>
