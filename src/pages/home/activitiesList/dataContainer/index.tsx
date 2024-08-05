@@ -22,6 +22,7 @@ export interface DataContainerProps {
 	loadAthleteActivities: LoadAthleteActivities
 	beginLoadMoreApiCall: () => void
 	noPadding?: boolean
+	noBadges?: boolean
 }
 
 export const DataContainer = ({
@@ -34,6 +35,7 @@ export const DataContainer = ({
 	loadAthleteActivities,
 	beginLoadMoreApiCall,
 	noPadding,
+	noBadges,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
@@ -68,6 +70,7 @@ export const DataContainer = ({
 										id={id}
 										predictedType={predictedType}
 										start={start}
+										noBadges={noBadges}
 									/>
 								</Col>
 							)

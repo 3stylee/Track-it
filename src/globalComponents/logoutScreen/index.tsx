@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom"
 interface LogoutProps {
 	show: boolean
 	handleClose: () => void
+	logoutUser: () => void
 }
 
-export const LogoutScreen = ({ show, handleClose }: LogoutProps) => {
+export const LogoutScreen = ({ show, handleClose, logoutUser }: LogoutProps) => {
 	const navigate = useNavigate()
 	return (
 		<Modal show={show} onHide={handleClose} centered>
@@ -20,6 +21,7 @@ export const LogoutScreen = ({ show, handleClose }: LogoutProps) => {
 					variant="danger"
 					onClick={() => {
 						localStorage.clear()
+						logoutUser()
 						navigate("/")
 					}}>
 					Log out

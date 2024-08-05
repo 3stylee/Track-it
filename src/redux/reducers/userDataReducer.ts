@@ -32,6 +32,11 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 				...state,
 				dateOfLastBackup: new Date().toISOString(),
 			}
+		case types.LOGOUT_USER:
+			return {
+				...state,
+				stravaAccess: false,
+			}
 		default:
 			return state
 	}

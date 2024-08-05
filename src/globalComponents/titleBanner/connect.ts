@@ -10,6 +10,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state: State) => {
 	return {
 		sidebarExpanded: state.sidebarExpanded,
+		stravaAccess: state.userData.stravaAccess,
 	}
 }
 

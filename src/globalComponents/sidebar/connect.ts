@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../redux/initialState"
+import { logoutUser } from "../../redux/actions/loadAthleteDataActions"
 
 export const mapStateToProps = (state: State) => {
 	return {
@@ -7,4 +8,8 @@ export const mapStateToProps = (state: State) => {
 	}
 }
 
-export default connect(mapStateToProps)
+export const mapDispatchToProps = {
+	logoutUser,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)

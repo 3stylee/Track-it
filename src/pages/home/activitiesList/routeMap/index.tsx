@@ -21,6 +21,7 @@ export interface RouteMapProps {
 	units: Units
 	predictedType: string
 	start: string
+	noBadges?: boolean
 	updateActivityType: (id: number, prevType: string, newType: string) => void
 }
 
@@ -34,6 +35,7 @@ const RouteMap = ({
 	units,
 	predictedType,
 	start,
+	noBadges,
 	updateActivityType,
 }: RouteMapProps) => {
 	const theme = useTheme()
@@ -63,7 +65,7 @@ const RouteMap = ({
 					}}
 				/>
 				<BadgeDropdown
-					showBadge={imageLoaded}
+					showBadge={!noBadges && imageLoaded}
 					selected={predictedType}
 					setSelected={handleSetType}
 					options={ACTIVITY_TYPES}

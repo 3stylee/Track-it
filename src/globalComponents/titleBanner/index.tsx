@@ -15,9 +15,10 @@ export interface TitleBannerProps {
 	openSidebar: () => void
 	closeSidebar: () => void
 	sidebarExpanded: boolean
+	stravaAccess: boolean
 }
 
-export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: TitleBannerProps) => {
+export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded, stravaAccess }: TitleBannerProps) => {
 	const toggleSidebar = (): any => {
 		if (sidebarExpanded) {
 			closeSidebar()
@@ -29,7 +30,7 @@ export const TitleBanner = ({ openSidebar, closeSidebar, sidebarExpanded }: Titl
 	const trackLogo = require("../../assets/images/olympics.png")
 	return (
 		<BannerBackground>
-			<CollapseButton onClick={toggleSidebar} showButton={localStorage.getItem("uId") !== null}>
+			<CollapseButton onClick={toggleSidebar} showButton={stravaAccess}>
 				{sidebarExpanded ? <ChevronsLeft size="36px" /> : <ChevronsRight size="36px" />}
 			</CollapseButton>
 			<BannerTitle>

@@ -16,7 +16,13 @@ const iconMap = {
 	calendar: Calendar,
 } as any
 
-export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
+interface SidebarProps {
+	sidebarExpanded: boolean
+	toggleTheme: () => void
+	logoutUser: () => void
+}
+
+export const Sidebar = ({ sidebarExpanded, toggleTheme, logoutUser }: SidebarProps) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
 	const [showLogout, setShowLogout] = useState(false)
@@ -62,6 +68,7 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: any) => {
 			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} />
 			<LogoutScreen
 				show={showLogout}
+				logoutUser={logoutUser}
 				handleClose={() => {
 					setShowLogout(false)
 				}}

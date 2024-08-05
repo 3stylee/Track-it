@@ -32,6 +32,7 @@ const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGr
 						shouldTrimData={false}
 						beginLoadMoreApiCall={() => {}}
 						noPadding
+						noBadges
 					/>
 				</>
 			) : (

@@ -8,6 +8,10 @@ export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_ATHLETE_DATA_SUCCESS, data }
 }
 
+export const logoutUser = () => {
+	return { type: types.LOGOUT_USER }
+}
+
 export const loadAthleteData = (athleteID: number) => {
 	return async function (dispatch: any, getState: any) {
 		const {
