@@ -24,6 +24,10 @@ declare module "@emotion/react" {
 		datePicker: {
 			background: string
 		}
+		popup: {
+			background: string
+			boxShadow: string
+		}
 		spinnerBackground: string
 	}
 }

@@ -1,15 +1,26 @@
-import React, { useState } from "react"
-import { ActivityTitle, CardContainer, DateText, ImagePlaceholder, StyledImage, StyledLink } from "./components"
+import React, { useRef, useState } from "react"
+import {
+	ActivityDescription,
+	ActivityTitle,
+	CardContainer,
+	DateText,
+	ImageMap,
+	ImagePlaceholder,
+	MoreButton,
+	StyledImage,
+	StyledLink,
+} from "./components"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import { ACTIVITY_TYPES, ROUTE_PATHS, THEMES } from "../../../../constants/constants"
 import { LabelledStats } from "../../../../globalComponents/labelledStats"
 import { useTheme } from "@emotion/react"
-import { Card } from "react-bootstrap"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../models/state"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
+import { MoreVertical } from "react-feather"
+import { MoreMenu } from "../moreMenu"
 
 export interface RouteMapProps {
 	polyline: number[][]
@@ -39,10 +50,17 @@ const RouteMap = ({
 	updateActivityType,
 }: RouteMapProps) => {
 	const theme = useTheme()
+	const buttonRef = useRef<HTMLDivElement>(null)
 	const [imageLoaded, setImagedLoaded] = useState(false)
+	const [showMoreMenu, setshowMoreMenu] = useState(false)
 
 	const handleSetType = (selected: string) => {
 		updateActivityType(id, predictedType, selected)
+	}
+
+	const handleShowMore = (e: React.MouseEvent) => {
+		e.preventDefault()
+		setshowMoreMenu(!showMoreMenu)
 	}
 
 	let url =
@@ -55,27 +73,33 @@ const RouteMap = ({
 	const stats = getActivityStats(distance, speed, time, units)
 	return (
 		<StyledLink to={ROUTE_PATHS.ACTIVITY + `?id=${id}`}>
-			<CardContainer id="map" text={theme.bootstrap.textColor} bg={theme.bootstrap.background} className="h-100">
-				<StyledImage
-					src={url}
-					alt="route map"
-					className={`card-img-left ${!imageLoaded ? "d-none" : ""}`}
-					onLoad={() => {
-						setImagedLoaded(true)
-					}}
-				/>
-				<BadgeDropdown
-					showBadge={!noBadges && imageLoaded}
-					selected={predictedType}
-					setSelected={handleSetType}
-					options={ACTIVITY_TYPES}
-				/>
-				<DateText>{convertISOToDDMMYY(start)}</DateText>
+			<CardContainer id="map">
+				<ImageMap>
+					<StyledImage
+						src={url}
+						alt="route map"
+						className={`card-img-left ${!imageLoaded ? "d-none" : ""}`}
+						onLoad={() => {
+							setImagedLoaded(true)
+						}}
+					/>
+					<BadgeDropdown
+						showBadge={!noBadges && imageLoaded}
+						selected={predictedType}
+						setSelected={handleSetType}
+						options={ACTIVITY_TYPES}
+					/>
+					<DateText>{convertISOToDDMMYY(start)}</DateText>
+				</ImageMap>
 				{!imageLoaded && <ImagePlaceholder />}
-				<Card.Body>
+				<ActivityDescription>
 					<ActivityTitle className="card-title">{name}</ActivityTitle>
+					<MoreButton onClick={handleShowMore} ref={buttonRef}>
+						<MoreVertical size={18} />
+					</MoreButton>
+					{showMoreMenu && <MoreMenu buttonRef={buttonRef} setShowMenu={setshowMoreMenu} />}
 					<LabelledStats stats={stats} small={true} />
-				</Card.Body>
+				</ActivityDescription>
 			</CardContainer>
 		</StyledLink>
 	)

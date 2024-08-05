@@ -23,5 +23,9 @@ export default {
 	datePicker: {
 		background: "#4461b9",
 	},
+	popup: {
+		background: "var(--bs-dark)",
+		boxShadow: "none",
+	},
 	spinnerBackground: "white",
 } as Theme
