@@ -3,7 +3,7 @@ import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const MenuContainer = styled("div")`
 	position: absolute;
-	top: 2.875rem;
+	top: -3.875rem;
 	right: 0;
 	z-index: 2;
 	background-color: ${({ theme }) => theme.popup.background};

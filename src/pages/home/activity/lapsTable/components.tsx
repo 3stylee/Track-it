@@ -5,6 +5,7 @@ export const CardContainer = styled("div")`
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 1.5rem;
 	}
+	overflow-x: auto;
 `
 export const CardHeader = styled("div")`
 	margin-top: 1rem;
@@ -17,6 +18,10 @@ export const TableHeader = styled("thead")`
 	& th {
 		font-weight: 400;
 		border: none;
+
+		@media (max-width: ${BREAKPOINTS.UP.SM}) {
+			font-size: 0.75rem;
+		}
 	}
 `
 export const TableRow = styled("tr")<{ session: boolean; muted: boolean }>`
@@ -24,6 +29,10 @@ export const TableRow = styled("tr")<{ session: boolean; muted: boolean }>`
 		vertical-align: middle;
 		border: none;
 		color: ${({ muted, session }) => (session && muted ? "grey" : "")};
+
+		@media (max-width: ${BREAKPOINTS.UP.SM}) {
+			font-size: 0.75rem;
+		}
 	}
 
 	& > :first-of-type {

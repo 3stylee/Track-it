@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { DayPicker } from "react-day-picker"
-import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
+import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, TITLE_BANNER_HEIGHT } from "../../../../constants/constants"
 
 export const StyledDayPicker = styled(DayPicker)`
 	--rdp-accent-color: var(--bs-primary);
@@ -12,12 +12,12 @@ export const Container = styled("div")`
 	background-color: var(--bs-${({ theme }) => theme.bootstrap.background});
 	border: 1px solid var(--bs-primary);
 	position: absolute;
-	top: calc(2.375rem + ${PAGE_PADDING});
+	top: calc(2.375rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});
 	right: ${PAGE_PADDING};
 	z-index: 100;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		top: calc(2.375rem + ${PAGE_PADDING_MOBILE});
+		top: calc(2.375rem + ${PAGE_PADDING_MOBILE} + ${TITLE_BANNER_HEIGHT});
 		right: ${PAGE_PADDING_MOBILE};
 	}
 `

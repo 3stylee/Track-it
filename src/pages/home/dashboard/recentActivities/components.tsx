@@ -27,6 +27,10 @@ export const TableHeader = styled("thead")`
 		color: var(--bs-primary);
 		vertical-align: middle;
 		border: none;
+
+		@media (max-width: ${BREAKPOINTS.UP.SM}) {
+			font-size: 0.75rem;
+		}
 	}
 `
 
@@ -38,6 +42,10 @@ export const TableRow = styled("tr")`
 	& td {
 		vertical-align: middle;
 		border: none;
+
+		@media (max-width: ${BREAKPOINTS.UP.SM}) {
+			font-size: 0.75rem;
+		}
 	}
 
 	& > :first-of-type {
