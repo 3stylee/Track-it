@@ -41,7 +41,7 @@ export const ActivitiesList = ({
 		} else if (!gotInitialActivities || activityCount < PAGE_SIZE) {
 			loadInitialAthleteActivities(PAGE_SIZE)
 		}
-	}, [filterApplied])
+	}, [])
 
 	if (apiError !== "") return <ApiError />
 	return (
