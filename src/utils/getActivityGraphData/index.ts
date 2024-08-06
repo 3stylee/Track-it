@@ -25,10 +25,11 @@ export const getActivityGraphData = (
 	smallScreen: boolean
 ) => {
 	const length = currentActivityStream.altitude?.original_size / STREAM_RESOLUTION_FACTOR || 0
-	const time = getTimeSeries(length)
+	const { time, fractionalPart } = getTimeSeries(length)
+	console.log(time)
 
 	const paceStreamData = currentActivityStream.distance?.data
-		? getSecondsPerUnit(currentActivityStream.distance.data, units.meters)
+		? getSecondsPerUnit(currentActivityStream.distance.data, units.meters, fractionalPart)
 		: []
 	const averagePace = units.meters / (currentActivity.average_speed || 1)
 	const paceOptions = getPaceOptions(length, theme, Math.min(...paceStreamData), averagePace, units, smallScreen)
