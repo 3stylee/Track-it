@@ -18,6 +18,10 @@ export const updateFirestoreSessions = () => {
 	return { type: types.UPDATE_FIRESTORE_SESSIONS }
 }
 
+export const triggerSessionGroupsUpdate = () => {
+	return { type: "TRIGGER_SESSION_GROUPS_UPDATE" }
+}
+
 export const loadSessions = () => async (dispatch: any) => {
 	dispatch(beginApiCall())
 	try {

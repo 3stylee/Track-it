@@ -1,7 +1,7 @@
 import { State } from "../../../redux/initialState"
 import { connect } from "react-redux"
 import { loadActivityStream } from "../../../redux/actions/loadActivityStreamActions"
-import { loadCurrentActivity } from "../../../redux/actions/loadCurrentActivity"
+import { loadCurrentActivity } from "../../../redux/actions/currentActivityActions"
 
 const mapStateToProps = (state: State) => {
 	return {

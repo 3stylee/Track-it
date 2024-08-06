@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../../redux/initialState"
-import { loadSessionGroups, loadSessions } from "../../../redux/actions/loadSessionsActions"
+import { loadSessionGroups, loadSessions } from "../../../redux/actions/sessionsActions"
 
 const mapStateToProps = (state: State) => {
 	return {

@@ -1,6 +1,8 @@
+import { useTheme } from "@emotion/react"
 import React from "react"
 import { Button, Modal } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import { StyledModal } from "./components"
 
 interface LogoutProps {
 	show: boolean
@@ -10,8 +12,9 @@ interface LogoutProps {
 
 export const LogoutScreen = ({ show, handleClose, logoutUser }: LogoutProps) => {
 	const navigate = useNavigate()
+	const theme = useTheme()
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<StyledModal show={show} onHide={handleClose} centered data-bs-theme={theme.bootstrap.background}>
 			<Modal.Header closeButton>
 				<Modal.Title>Log Out</Modal.Title>
 			</Modal.Header>
@@ -30,6 +33,6 @@ export const LogoutScreen = ({ show, handleClose, logoutUser }: LogoutProps) => 
 					Cancel
 				</Button>
 			</Modal.Footer>
-		</Modal>
+		</StyledModal>
 	)
 }

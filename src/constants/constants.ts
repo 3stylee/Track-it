@@ -80,7 +80,6 @@ export const PAGE_SIZE = 72 // Keep as multiple of 12 for grid layout
 export const FIREBASE_COLLECTIONS = {
 	ACTIVITIES: "activities",
 	USERS: "users",
-	SESSION_GROUPS: "sessionGroups",
 }
 export const DAYS_OF_WEEK_SHORT = ["M", "T", "W", "T", "F", "S", "S"]
 export const DAYS_OF_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -103,3 +102,5 @@ export const BREAKPOINTS = {
 	},
 }
 export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
+export const DELETE_ACTIVITY_CONFIRMATION =
+	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."

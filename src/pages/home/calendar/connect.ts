@@ -1,7 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../../redux/initialState"
-import { loadAthleteActivities } from "../../../redux/actions/loadAthleteActivitiesActions"
-import { resetPageNumber } from "../../../redux/actions/loadMoreActions"
+import { loadAthleteActivities, resetPageNumber } from "../../../redux/actions/athleteActivitiesActions"
 
 export const mapStateToProps = (state: State) => {
 	return {

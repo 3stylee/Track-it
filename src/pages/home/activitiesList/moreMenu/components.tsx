@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const MenuContainer = styled("div")`
 	position: absolute;
@@ -14,9 +15,14 @@ export const MenuOption = styled("div")`
 	font-size: 0.875rem;
 	display: flex;
 	align-items: center;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 2rem 0.5rem 1rem;
 	gap: 0.5rem;
 	transition: background-color 0.3s;
+
+	@media (max-width: ${BREAKPOINTS.UP.SM}) {
+		font-size: 1rem;
+		padding-right: 5rem;
+	}
 
 	&:hover {
 		background-color: ${({ theme }) => theme.sidebar.iconHover};

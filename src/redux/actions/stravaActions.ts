@@ -60,9 +60,11 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => asyn
 	const endpoint = getEndpoint(undefined, dateOfLastCopy)
 	const initialCopy = dateOfLastCopy === undefined
 	try {
+		// Get the user's activities from Strava
 		let data: AthleteActivities = []
 		await getNewActivities(data, endpoint, accessToken, initialCopy)
 
+		// Store the activities in Firestore
 		const uId = localStorage.getItem("uId")
 		if (uId) {
 			const batch = writeBatch(db)

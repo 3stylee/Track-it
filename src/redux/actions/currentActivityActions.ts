@@ -9,6 +9,13 @@ export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_CURRENT_ACTIVITY_SUCCESS, data }
 }
 
+export const ModifyCurrentActivityType = (id: number, type: string) => {
+	return {
+		type: types.MODIFY_CURRENT_ACTIVITY_TYPE,
+		data: { id, type },
+	}
+}
+
 export const loadCurrentActivity = (id: number) => {
 	return async function (dispatch: any, getState: any) {
 		const {

@@ -1,8 +1,8 @@
 import { connect } from "react-redux"
-import { updateActivityType } from "../../../../redux/actions/athleteActivitiesActions"
+import { deleteAthleteActivity } from "../../../../redux/actions/athleteActivitiesActions"
 
 const mapDispatchToProps = {
-	updateActivityType,
+	deleteAthleteActivity,
 }
 
 export default connect(null, mapDispatchToProps)

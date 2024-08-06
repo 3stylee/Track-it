@@ -1,7 +1,10 @@
 import { connect } from "react-redux"
 import { State } from "../../../../redux/initialState"
-import { loadAthleteActivities } from "../../../../redux/actions/loadAthleteActivitiesActions"
-import { beginLoadMoreApiCall, nextPage } from "../../../../redux/actions/loadMoreActions"
+import {
+	beginLoadMoreApiCall,
+	loadAthleteActivities,
+	nextPage,
+} from "../../../../redux/actions/athleteActivitiesActions"
 
 const mapStateToProps = (state: State) => {
 	const { hasMore, loadingMore } = state.loadMore

@@ -22,6 +22,9 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 				}
 				return activity
 			})
+		case types.DELETE_ACTIVITY:
+			if (state === null) return state
+			return state.filter((activity: { id: number }) => activity.id !== action.data)
 		default:
 			return state
 	}

@@ -4,7 +4,7 @@ import {
 	loadAthleteActivities,
 	loadInitialAthleteActivities,
 	resetListSize,
-} from "../../../redux/actions/loadAthleteActivitiesActions"
+} from "../../../redux/actions/athleteActivitiesActions"
 
 const mapStateToProps = (state: State) => {
 	return {

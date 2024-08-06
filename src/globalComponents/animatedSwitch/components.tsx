@@ -23,6 +23,7 @@ export const Handle = styled(motion.div)`
 export const TextContainer = styled("div")`
 	font-size: 0.875rem;
 	font-weight: bold;
+	color: black;
 `
 export const OffStateTextContainer = styled("div")<{ hidden: boolean }>`
 	font-size: 0.875rem;

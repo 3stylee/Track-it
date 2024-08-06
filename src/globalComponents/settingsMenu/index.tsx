@@ -3,7 +3,8 @@ import { Button, Modal } from "react-bootstrap"
 import connect from "./connect"
 import { Units } from "../../models/state"
 import { AnimatedSwitch } from "../animatedSwitch"
-import { SettingContainer } from "./components"
+import { SettingContainer, StyledModal } from "./components"
+import { useTheme } from "@emotion/react"
 interface SettingsProps {
 	show: boolean
 	units: Units
@@ -13,8 +14,9 @@ interface SettingsProps {
 }
 
 const SettingsMenu = ({ show, units, setUnitImperial, setUnitMetric, handleClose }: SettingsProps) => {
+	const theme = useTheme()
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<StyledModal show={show} onHide={handleClose} centered data-bs-theme={theme.bootstrap.background}>
 			<Modal.Header closeButton>
 				<Modal.Title>Settings</Modal.Title>
 			</Modal.Header>
@@ -36,7 +38,7 @@ const SettingsMenu = ({ show, units, setUnitImperial, setUnitMetric, handleClose
 					Close
 				</Button>
 			</Modal.Footer>
-		</Modal>
+		</StyledModal>
 	)
 }
 
