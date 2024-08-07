@@ -4,16 +4,17 @@ import connect from "./connect"
 import { CountText } from "./components"
 import { DataContainer } from "../../activitiesList/dataContainer"
 import { AthleteActivities } from "../../../../models/activities"
+import { SessionGroups } from "../../../../models/sessions"
 
 export interface SessionGroupProps {
-	sessionGroups: number[][]
+	sessionGroups: SessionGroups
 	sessions: AthleteActivities
 	apiCallsInProgress: number
 }
 
 const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGroupProps) => {
 	const { id } = useParams<{ id: string }>()
-	const sessionGroup = sessionGroups.find(([firstGroupElement]) => firstGroupElement.toString() === id)
+	const sessionGroup = Object.values(sessionGroups).find(([firstGroupElement]) => firstGroupElement.toString() === id)
 	const groupSessions = sessions.filter(({ id }) => sessionGroup?.includes(id))
 	return (
 		<div>

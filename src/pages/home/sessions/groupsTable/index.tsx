@@ -15,9 +15,10 @@ import { useTheme } from "@emotion/react"
 import TableContents from "../tableContents"
 import { Searchbar } from "../searchbar"
 import { SortChevrons } from "../sortChevrons"
+import { SessionGroups } from "../../../../models/sessions"
 
 export interface GroupCardsProps {
-	sessionGroups: number[][]
+	sessionGroups: SessionGroups
 	apiCallsInProgress: number
 }
 
@@ -35,7 +36,7 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="75vh" />
 	return (
 		<div>
-			{sessionGroups.length > 0 ? (
+			{Object.keys(sessionGroups).length !== 0 ? (
 				<>
 					<Header>
 						<PageTitle>Your Sessions</PageTitle>

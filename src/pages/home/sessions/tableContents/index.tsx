@@ -9,10 +9,11 @@ import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { AthleteActivities } from "../../../../models/activities"
 import { filterSessionGroups } from "../../../../utils/filterSesssionGroups"
+import { SessionGroups } from "../../../../models/sessions"
 
 export interface TableContentsProps {
 	sessions: AthleteActivities
-	sessionGroups: number[][]
+	sessionGroups: SessionGroups
 	searchText: string
 	sortOption: number
 }
@@ -20,7 +21,8 @@ export interface TableContentsProps {
 const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: TableContentsProps) => {
 	const navigate = useNavigate()
 	const theme = useTheme()
-	const filteredGroups = filterSessionGroups(sessionGroups, sessions, searchText, sortOption)
+	const filteredGroups = filterSessionGroups(Object.values(sessionGroups), sessions, searchText, sortOption)
+	console.log(filteredGroups)
 
 	return filteredGroups.length > 0 ? (
 		<>

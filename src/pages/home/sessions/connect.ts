@@ -5,7 +5,7 @@ import { loadSessionGroups, loadSessions } from "../../../redux/actions/sessions
 const mapStateToProps = (state: State) => {
 	return {
 		sessionsLength: state.sessions.length,
-		sessionGroupsLength: state.sessionGroups.length,
+		sessionGroupsLength: Object.keys(state.sessionGroups).length,
 	}
 }
 

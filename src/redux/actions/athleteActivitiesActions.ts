@@ -12,7 +12,7 @@ import { predictData } from "../../utils/predictData"
 import { getRestOfAthleteActivities } from "../../utils/getRestOfAthleteActivities"
 import { db } from "../../firebase"
 import { ModifyCurrentActivityType } from "./currentActivityActions"
-import { triggerSessionGroupsUpdate } from "./sessionsActions"
+import { addSession, removeSession } from "./sessionsActions"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
@@ -157,10 +157,8 @@ export const updateActivityType =
 					})
 					dispatch(currentActivity ? ModifyCurrentActivityType(id, newType) : ModifyActivityType(id, newType))
 
-					// If we've changed a session, need to trigger a reload of session groups
-					if (prevType === "Session" || newType === "Session") {
-						dispatch(triggerSessionGroupsUpdate())
-					}
+					if (prevType === "Session") dispatch(removeSession(id))
+					if (newType === "Session") dispatch(addSession(id))
 				} else {
 					console.error("No matching document found.")
 				}

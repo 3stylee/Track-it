@@ -26,7 +26,6 @@ export const getActivityGraphData = (
 ) => {
 	const length = currentActivityStream.altitude?.original_size / STREAM_RESOLUTION_FACTOR || 0
 	const { time, fractionalPart } = getTimeSeries(length)
-	console.log(time)
 
 	const paceStreamData = currentActivityStream.distance?.data
 		? getSecondsPerUnit(currentActivityStream.distance.data, units.meters, fractionalPart)

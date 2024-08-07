@@ -18,8 +18,16 @@ export const updateFirestoreSessions = () => {
 	return { type: types.UPDATE_FIRESTORE_SESSIONS }
 }
 
-export const triggerSessionGroupsUpdate = () => {
-	return { type: "TRIGGER_SESSION_GROUPS_UPDATE" }
+export const removeSession = (id: number) => {
+	return { type: "REMOVE_SESSION", data: id }
+}
+
+export const updateSessions = (data: any) => {
+	return { type: types.UPDATE_SESSIONS, data }
+}
+
+export const updateSessionGroups = (data: any) => {
+	return { type: types.UPDATE_SESSION_GROUPS, data }
 }
 
 export const loadSessions = () => async (dispatch: any) => {
@@ -65,6 +73,27 @@ export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
 			}
 		)
 		dispatch(loadSessionGroupsSuccess(response.data))
+	} catch (error: any) {
+		dispatch(apiCallError(error.message))
+	}
+}
+
+export const addSession = (id: number) => async (dispatch: any, getState: any) => {
+	const { athleteActivities } = getState()
+	const session = athleteActivities.find((activity: any) => activity.id === id)
+	dispatch(updateSessions(session))
+	try {
+		const response = await axios.post(
+			"https://urchin-app-q9ue8.ondigitalocean.app/get_key",
+			{ session: { id: session.id, title: session.title } },
+			{
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		)
+		const key = response.data
+		dispatch(updateSessionGroups({ key, id }))
 	} catch (error: any) {
 		dispatch(apiCallError(error.message))
 	}
