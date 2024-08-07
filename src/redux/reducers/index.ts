@@ -9,7 +9,6 @@ import sidebarExpanded from "./sidebarReducer"
 import units from "./unitReducer"
 import userData from "./userDataReducer"
 import sessions from "./sessionsReducer"
-import sessionGroups from "./sessionGroupsReducer"
 import loadMore from "./loadMoreReducer"
 import activitiesHasFilter from "./activitiesFilterReducer"
 import gotInitialActivities from "./initialActivitiesReducer"
@@ -23,7 +22,6 @@ export const rootReducer = combineReducers({
 	athleteActivities,
 	activitiesHasFilter,
 	sessions,
-	sessionGroups,
 	athleteData,
 	currentActivityStream,
 	currentActivity,

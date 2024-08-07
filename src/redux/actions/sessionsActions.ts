@@ -5,29 +5,19 @@ import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constan
 import { db } from "../../firebase"
 import { removeSpaces } from "../../utils/removeSpaces"
 import axios from "axios"
+import { addKeysToSessions } from "../../utils/addKeysToSessions.ts"
+import { Session } from "../../models/sessions"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }
-}
-
-export const loadSessionGroupsSuccess = (data: any) => {
-	return { type: types.LOAD_SESSION_GROUPS_SUCCESS, data }
-}
-
-export const updateFirestoreSessions = () => {
-	return { type: types.UPDATE_FIRESTORE_SESSIONS }
 }
 
 export const removeSession = (id: number) => {
 	return { type: "REMOVE_SESSION", data: id }
 }
 
-export const updateSessions = (data: any) => {
-	return { type: types.UPDATE_SESSIONS, data }
-}
-
-export const updateSessionGroups = (data: any) => {
-	return { type: types.UPDATE_SESSION_GROUPS, data }
+export const addNewSession = (data: any) => {
+	return { type: types.ADD_SESSION, data }
 }
 
 export const loadSessions = () => async (dispatch: any) => {
@@ -42,7 +32,9 @@ export const loadSessions = () => async (dispatch: any) => {
 				orderBy("start", "desc")
 			)
 			const querySnapshot = await getDocs(q)
-			const sessions = querySnapshot.docs.map((doc) => doc.data())
+			let sessions = querySnapshot.docs.map((doc) => doc.data() as Session)
+			const sessionGroups = await loadSessionGroups(sessions)
+			sessions = addKeysToSessions(sessions, sessionGroups)
 			dispatch(loadSessionsSuccess(sessions))
 		} else {
 			dispatch(apiCallError(NO_LOGGED_IN_USER))
@@ -52,9 +44,7 @@ export const loadSessions = () => async (dispatch: any) => {
 	}
 }
 
-export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
-	const { sessions } = getState()
-	dispatch(beginApiCall())
+const loadSessionGroups = async (sessions: any) => {
 	const sessionsNew = []
 	for (const session of sessions) {
 		sessionsNew.push({
@@ -72,16 +62,15 @@ export const loadSessionGroups = () => async (dispatch: any, getState: any) => {
 				},
 			}
 		)
-		dispatch(loadSessionGroupsSuccess(response.data))
-	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		return response.data
+	} catch (e) {
+		throw e
 	}
 }
 
 export const addSession = (id: number) => async (dispatch: any, getState: any) => {
 	const { athleteActivities } = getState()
 	const session = athleteActivities.find((activity: any) => activity.id === id)
-	dispatch(updateSessions(session))
 	try {
 		const response = await axios.post(
 			"https://urchin-app-q9ue8.ondigitalocean.app/get_key",
@@ -93,7 +82,7 @@ export const addSession = (id: number) => async (dispatch: any, getState: any) =
 			}
 		)
 		const key = response.data
-		dispatch(updateSessionGroups({ key, id }))
+		dispatch(addNewSession({ ...session, key }))
 	} catch (error: any) {
 		dispatch(apiCallError(error.message))
 	}

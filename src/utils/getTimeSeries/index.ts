@@ -29,7 +29,7 @@ export const getTimeSeries = (length: number) => {
 		pushTimeString(startTime, timeArray)
 	}
 
-	return { time: timeArray, fractionalPart }
+	return timeArray
 }
 
 const pushTimeString = (startTime: Date, timeArray: string[]) => {

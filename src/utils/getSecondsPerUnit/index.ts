@@ -8,16 +8,11 @@ import { STREAM_RESOLUTION_FACTOR } from "../../constants/constants"
  *
  * @returns {number[]} An array of numbers, representing a stream of the pace over the course of the activity. This can be used to plot a pace graph.
  */
-export const getSecondsPerUnit = (distanceStream: any, divisor: number, fractionalPart: number) => {
+export const getSecondsPerUnit = (distanceStream: any, divisor: number) => {
 	const paceList = [1000]
 	// Calculate pace for each segment
 	for (let i = 1; i < distanceStream.length; i++) {
-		let metersPerSecond
-		if (fractionalPart && i === distanceStream.length - 1) {
-			metersPerSecond = (distanceStream[i] - distanceStream[i - 1]) / (fractionalPart * STREAM_RESOLUTION_FACTOR)
-		} else {
-			metersPerSecond = (distanceStream[i] - distanceStream[i - 1]) / STREAM_RESOLUTION_FACTOR
-		}
+		const metersPerSecond = (distanceStream[i] - distanceStream[i - 1]) / STREAM_RESOLUTION_FACTOR
 
 		if (metersPerSecond === 0) {
 			paceList.push(1000)

@@ -3,15 +3,14 @@ import { AthleteActivities, CurrentActivity, CurrentActivityStream } from "../mo
 import { AthleteData } from "../models/athlete"
 import { LoadMore, Units, UserData } from "../models/state"
 import { adjustDateForTimezone } from "../utils/adjustDateForTimezone"
-import { SessionGroups } from "../models/sessions"
+import { Sessions } from "../models/sessions"
 
 export interface State {
 	athleteActivities: AthleteActivities | null
 	gotInitialActivities: boolean
 	activitiesHasFilter: boolean
 	athleteData: AthleteData
-	sessions: AthleteActivities | []
-	sessionGroups: SessionGroups
+	sessions: Sessions | []
 	currentActivityStream: CurrentActivityStream
 	currentActivity: CurrentActivity
 	apiCallsInProgress: number
@@ -28,7 +27,6 @@ export default {
 	gotInitialActivities: false,
 	activitiesHasFilter: false,
 	sessions: [],
-	sessionGroups: {},
 	athleteData: {} as AthleteData,
 	currentActivityStream: {} as CurrentActivityStream,
 	currentActivity: {} as CurrentActivity,

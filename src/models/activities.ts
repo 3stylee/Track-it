@@ -1,4 +1,4 @@
-type ProcessedActivity = {
+export type ProcessedActivity = {
 	athlete: {
 		id: number
 	}

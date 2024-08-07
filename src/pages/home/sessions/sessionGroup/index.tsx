@@ -3,22 +3,20 @@ import { useParams } from "react-router-dom"
 import connect from "./connect"
 import { CountText } from "./components"
 import { DataContainer } from "../../activitiesList/dataContainer"
-import { AthleteActivities } from "../../../../models/activities"
-import { SessionGroups } from "../../../../models/sessions"
+import { Sessions } from "../../../../models/sessions"
 
 export interface SessionGroupProps {
-	sessionGroups: SessionGroups
-	sessions: AthleteActivities
+	sessions: Sessions
 	apiCallsInProgress: number
 }
 
-const SessionGroup = ({ sessionGroups, sessions, apiCallsInProgress }: SessionGroupProps) => {
+const SessionGroup = ({ sessions, apiCallsInProgress }: SessionGroupProps) => {
 	const { id } = useParams<{ id: string }>()
-	const sessionGroup = Object.values(sessionGroups).find(([firstGroupElement]) => firstGroupElement.toString() === id)
-	const groupSessions = sessions.filter(({ id }) => sessionGroup?.includes(id))
+	const key = sessions.find(({ id: sessionId }) => sessionId === parseInt(id || "", 10))?.groupKey
+	const groupSessions = sessions.filter(({ groupKey }) => groupKey === key)
 	return (
 		<div>
-			{sessionGroup ? (
+			{key ? (
 				<>
 					<CountText>
 						Looks like you've completed this session or similar {groupSessions.length} times:
