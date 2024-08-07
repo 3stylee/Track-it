@@ -15,15 +15,16 @@ export const Body = styled(CardBody)`
 		max-height: 100%;
 	}
 `
-export const CardHeader = styled("h4")`
-	padding: 0.788rem;
+export const CardHeader = styled("h5")`
+	padding: 0.928rem 0.25rem;
 	margin-bottom: 0;
 `
 
 export const TableHeader = styled("thead")`
-	height: 4rem;
+	height: 2rem;
 	& th {
 		font-weight: 400;
+		font-size: 0.875rem;
 		color: var(--bs-primary);
 		vertical-align: middle;
 		border: none;
@@ -35,11 +36,12 @@ export const TableHeader = styled("thead")`
 `
 
 export const TableRow = styled("tr")`
-	height: 4rem;
+	height: 2rem;
 	cursor: pointer;
 	transition: transform 0.2s;
 
 	& td {
+		font-size: 0.875rem;
 		vertical-align: middle;
 		border: none;
 

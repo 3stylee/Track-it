@@ -8,7 +8,7 @@ export const TitleHeader = () => {
 	return (
 		<StyledCard className={`card text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
 			<StyledHeader>
-				<h3 className={`m-0 text-${theme.bootstrap.textColor}`}>Dashboard</h3>
+				<h4 className={`m-0 text-${theme.bootstrap.textColor}`}>Dashboard</h4>
 				<QuickStats />
 			</StyledHeader>
 		</StyledCard>

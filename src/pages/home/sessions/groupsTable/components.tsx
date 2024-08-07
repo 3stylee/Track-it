@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, SIDEBAR_WIDTH } from "../../../../constants/constants"
 
-export const PageTitle = styled("h3")`
-	margin-bottom: ${PAGE_PADDING};
+export const PageTitle = styled("h4")`
+	margin-bottom: 0;
 	color: ${({ theme }) => theme.text};
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
@@ -15,16 +15,27 @@ export const SessionCount = styled("p")`
 `
 export const TableContainer = styled("div")`
 	overflow-x: hidden;
-	padding-top: 7.25rem;
+	padding-top: 4rem;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		padding-top: 6.75rem;
+		padding-top: 3rem;
+	}
+
+	@media (max-width: 486px) {
+		padding-top: 6rem;
 	}
 `
 export const FilterContainer = styled("div")`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: ${PAGE_PADDING};
+	flex-wrap: wrap;
+	gap: 0.5rem;
+
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		margin-bottom: ${PAGE_PADDING_MOBILE};
+	}
 `
 
 export const SortableHeader = styled("div")`

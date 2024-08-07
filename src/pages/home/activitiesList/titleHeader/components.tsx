@@ -14,7 +14,7 @@ export const Filters = styled("div")`
 		padding: ${PAGE_PADDING_MOBILE};
 	}
 `
-export const Title = styled("h3")`
+export const Title = styled("h4")`
 	margin: 0;
 	color: ${({ theme }) => theme.text};
 `

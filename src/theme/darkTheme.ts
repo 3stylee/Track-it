@@ -8,6 +8,9 @@ export default {
 		background: "dark",
 		textColor: "white",
 	},
+	activity: {
+		backgroundImage: "linear-gradient(rgb(105, 35, 135), rgb(75, 35, 95), rgb(35, 48, 135))",
+	},
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
 	},

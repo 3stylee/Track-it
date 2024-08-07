@@ -7,6 +7,9 @@ export const IconContainer = styled("span")`
 	border-bottom-left-radius: 0;
 `
 export const SearchbarContainer = styled(InputGroup)`
-	width: 20rem;
-	margin-bottom: 1rem;
+	width: 30rem;
+
+	@media (max-width: 768px) {
+		width: 20rem;
+	}
 `

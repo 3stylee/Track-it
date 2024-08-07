@@ -18,6 +18,9 @@ export const CardContainer = styled("div")`
 			transform: scale(1.04);
 		}
 	}
+	border-radius: var(--bs-border-radius);
+	box-shadow: inset 0 0 15px rgba(135, 135, 135, 0.1), 0 0 18px 3px rgba(0, 0, 0, 0.3);
+	background-image: ${({ theme }) => theme.activity.backgroundImage};
 `
 
 export const ImageMap = styled("div")`
@@ -26,7 +29,8 @@ export const ImageMap = styled("div")`
 
 export const StyledImage = styled("img")`
 	width: 100%;
-	border-radius: var(--bs-border-radius);
+	border-top-left-radius: var(--bs-border-radius);
+	border-top-right-radius: var(--bs-border-radius);
 `
 
 export const DateText = styled("p")`
@@ -67,7 +71,8 @@ export const ImagePlaceholder = styled("div")`
 `
 
 export const ActivityDescription = styled("div")`
-	padding-top: 1rem;
+	padding: 1rem;
+	padding-bottom: 0;
 	position: relative;
 `
 

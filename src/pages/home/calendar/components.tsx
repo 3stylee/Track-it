@@ -12,7 +12,7 @@ export const PageContainer = styled("div")`
 		margin-left: 0;
 	}
 `
-export const PageTitle = styled("h3")`
+export const PageTitle = styled("h4")`
 	margin-bottom: 0;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {

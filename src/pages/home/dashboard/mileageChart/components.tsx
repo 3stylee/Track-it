@@ -13,6 +13,6 @@ export const CardHeader = styled("div")`
 	align-items: center;
 	padding: 0.5rem;
 `
-export const GraphTitle = styled("h4")`
+export const GraphTitle = styled("h5")`
 	margin: 0;
 `

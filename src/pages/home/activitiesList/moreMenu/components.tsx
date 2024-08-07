@@ -18,6 +18,7 @@ export const MenuOption = styled("div")`
 	padding: 0.5rem 2rem 0.5rem 1rem;
 	gap: 0.5rem;
 	transition: background-color 0.3s;
+	color: ${({ theme }) => theme.text};
 
 	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		font-size: 1rem;

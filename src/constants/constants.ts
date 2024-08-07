@@ -37,7 +37,7 @@ export const SORT_OPTIONS = {
 }
 export const CONNECT_STRAVA_MESSAGE = "Please connect your Strava account"
 export const WEEK_GRAPH_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-export const MAX_RECENT_ACTIVITIES = 9
+export const MAX_RECENT_ACTIVITIES = 18
 export const NF_404_ERROR_TITLE = "404 Page Not Found"
 export const NF_404_ERROR_MESSAGE = "Sorry, but the page you are looking for does not exist"
 export const NF_404_ERROR_BUTTON = "Go back home »"

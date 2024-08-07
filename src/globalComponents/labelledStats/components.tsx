@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { small } from "."
 import { BREAKPOINTS } from "../../constants/constants"
 
-export const StatsContainer = styled("div")<{ small: small }>`
+export const StatsContainer = styled("div")<{ small: small; darkMode?: boolean }>`
 	display: flex;
 	margin: ${({ small }) => (small ? "0" : "0.5rem 1rem 1rem 1rem")};
 
@@ -13,7 +13,7 @@ export const StatsContainer = styled("div")<{ small: small }>`
 	& > * {
 		margin-left: ${({ small }) => (small ? "0.5rem" : "1rem")};
 		padding-right: ${({ small }) => (small ? "0.5rem" : "1rem")};
-		border-right: 1px solid ${({ theme }) => theme.labelledStats.divider};
+		border-right: 1px solid ${({ theme, darkMode }) => (darkMode ? "#b9ace6" : theme.labelledStats.divider)};
 	}
 
 	& > :last-child {
@@ -22,9 +22,9 @@ export const StatsContainer = styled("div")<{ small: small }>`
 	}
 `
 
-export const StatHeader = styled("div")`
+export const StatHeader = styled("div")<{ darkMode?: boolean }>`
 	display: flex;
-	color: ${({ theme }) => theme.labelledStats.accent};
+	color: ${({ theme, darkMode }) => (darkMode ? "#b9ace6" : theme.labelledStats.accent)};
 	align-items: center;
 `
 
@@ -43,9 +43,9 @@ export const Text = styled("p")<{ small: small }>`
 	margin-bottom: 0;
 `
 
-export const Unit = styled("span")<{ small: small }>`
+export const Unit = styled("span")<{ small: small; darkMode?: boolean }>`
 	font-size: ${({ small }) => (small ? "0.5rem" : "1rem")};
-	color: ${({ theme }) => theme.labelledStats.accent};
+	color: ${({ theme, darkMode }) => (darkMode ? "#b9ace6" : theme.labelledStats.accent)};
 	text-transform: uppercase;
 
 	@media (max-width: ${BREAKPOINTS.UP.SM}) {
