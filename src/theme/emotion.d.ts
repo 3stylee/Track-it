@@ -5,6 +5,7 @@ declare module "@emotion/react" {
 		name: string
 		background: string
 		text: string
+		primaryGradient: string
 		bootstrap: {
 			background: string
 			textColor: string

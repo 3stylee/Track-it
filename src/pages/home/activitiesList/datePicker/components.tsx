@@ -9,7 +9,8 @@ export const StyledDayPicker = styled(DayPicker)`
 `
 export const Container = styled("div")`
 	border-radius: var(--bs-border-radius);
-	background-color: var(--bs-${({ theme }) => theme.bootstrap.background});
+	background-color: ${({ theme }) => theme.datePicker.background};
+	backdrop-filter: blur(20px);
 	border: 1px solid var(--bs-primary);
 	position: absolute;
 	top: calc(2.375rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});

@@ -3,6 +3,7 @@ import { Badge } from "react-bootstrap"
 import { ChevronDown } from "react-feather"
 
 export const StyledBadge = styled(Badge)<{ showBadge: boolean }>`
+	background-image: ${({ theme }) => theme.primaryGradient};
 	display: ${({ showBadge }) => (showBadge ? "inline" : "none")};
 	position: absolute;
 	right: 0.5rem;

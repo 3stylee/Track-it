@@ -8,7 +8,7 @@ const useTheme = () => {
 
 	useEffect(() => {
 		Cookies.set("darkMode", isDarkMode.toString())
-		document.body.style.backgroundColor = isDarkMode ? darkTheme.background : lightTheme.background
+		document.body.style.background = isDarkMode ? darkTheme.background : lightTheme.background
 	}, [isDarkMode])
 
 	const toggleTheme = () => {

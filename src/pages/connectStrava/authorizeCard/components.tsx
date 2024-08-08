@@ -4,6 +4,12 @@ import { BREAKPOINTS } from "../../../constants/constants"
 export const ContainerCard = styled("div")`
 	width: 30rem;
 	text-align: center;
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 8px 32px 0 rgba(102, 61, 255, 0.37);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		width: 18rem;

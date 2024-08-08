@@ -10,7 +10,7 @@ services. By giving consent, you agree to the terms outlined in this policy.
 
 2. Data Collection and Usage
 
-We collect and store your Strava activity data to enhance your user experienceby enabling
+We collect and store your Strava activity data to enhance your user experience by enabling
 features such as keyword search and to reduce the number of API calls made to the Strava
 API. The specific data we collect includes:
 

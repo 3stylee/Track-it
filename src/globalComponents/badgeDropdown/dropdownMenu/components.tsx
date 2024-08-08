@@ -3,9 +3,10 @@ import styled from "@emotion/styled"
 export const PopupContainer = styled("div")`
 	cursor: pointer;
 	position: absolute;
-	background-color: #0b1623;
+	background-color: ${({ theme }) => theme.datePicker.background};
 	border: 1px solid rgb(77, 81, 84);
-	color: white;
+	color: ${({ theme }) => theme.text};
+	backdrop-filter: blur(5px);
 	border-radius: var(--bs-border-radius);
 	z-index: 2;
 	right: 0.5rem;
@@ -13,6 +14,7 @@ export const PopupContainer = styled("div")`
 `
 export const Activity = styled("div")<{ selected: boolean }>`
 	display: flex;
+	color: ${({ selected }) => (selected ? "white" : "")};
 	align-items: center;
 	font-size: 0.875rem;
 	padding: 0.25rem 0.5rem;
@@ -20,7 +22,7 @@ export const Activity = styled("div")<{ selected: boolean }>`
 	transition: background-color 0.3s;
 
 	&:hover {
-		background-color: ${({ selected }) => (selected ? "var(--bs-primary)" : "rgba(255, 255, 255, 0.15)")};
+		background-color: ${({ theme, selected }) => (selected ? "var(--bs-primary)" : theme.sidebar.iconHover)};
 	}
 
 	&:first-of-type {

@@ -2,7 +2,6 @@ import styled from "@emotion/styled"
 import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE } from "../../../../constants/constants"
 
 export const Filters = styled("div")`
-	background-color: ${({ theme }) => theme.background};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

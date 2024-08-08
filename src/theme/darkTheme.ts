@@ -4,12 +4,13 @@ export default {
 	name: "dark",
 	background: "#0b1623",
 	text: "rgb(255,255,255)",
+	primaryGradient: "linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(102, 61, 255, 1) 100%)",
 	bootstrap: {
 		background: "dark",
 		textColor: "white",
 	},
 	activity: {
-		backgroundImage: "linear-gradient(rgb(105, 35, 135), rgb(75, 35, 95), rgb(35, 48, 135))",
+		backgroundImage: "linear-gradient(rgba(105, 35, 135, 0.5), rgba(75, 35, 95, 0.5), rgba(35, 48, 135, 0.5))",
 	},
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
@@ -24,7 +25,7 @@ export default {
 		borderColor: "rgb(77, 81, 84)",
 	},
 	datePicker: {
-		background: "#4461b9",
+		background: "rgba(11, 22, 35, 0.5)",
 	},
 	popup: {
 		background: "var(--bs-dark)",

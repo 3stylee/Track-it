@@ -7,6 +7,7 @@ export const MenuContainer = styled("div")`
 	right: 0;
 	z-index: 2;
 	background-color: ${({ theme }) => theme.popup.background};
+	border: 1px solid rgb(77, 81, 84);
 	border-radius: var(--bs-border-radius);
 	box-shadow: ${({ theme }) => theme.popup.boxShadow};
 `
