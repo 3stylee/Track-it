@@ -41,8 +41,8 @@ const Activity = ({
 
 	useEffect(() => {
 		const polyline = currentActivity.polyline
-		loadActivityImage(polyline, setBackgroundImage, theme.name)
-	}, [currentActivity.polyline, theme.name])
+		loadActivityImage(polyline, setBackgroundImage, theme)
+	}, [currentActivity.polyline, theme])
 
 	if (apiCallsInProgress > 0 || backgroundImage === null) return <AnimatedSpinner />
 	if (apiError !== "") return <ApiError />

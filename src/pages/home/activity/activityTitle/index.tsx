@@ -6,16 +6,24 @@ import { getActivityTitleStats } from "../../../../utils/getActivityTitleStats"
 import { LabelledStat } from "../labelledStat"
 import { CurrentActivity } from "../../../../models/activities"
 import { Units } from "../../../../models/state"
+import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
+import { ACTIVITY_TYPES } from "../../../../constants/constants"
 
 interface ActivityTitleProps {
 	currentActivity: CurrentActivity
 	units: Units
+	updateActivityType: (id: number, prevType: string, newType: string, currentActivity?: boolean) => void
 }
 
-export const ActivityTitle = ({ currentActivity, units }: ActivityTitleProps) => {
+export const ActivityTitle = ({ currentActivity, units, updateActivityType }: ActivityTitleProps) => {
 	const { distance, name, description } = currentActivity
 	if (distance === undefined) return null
 	const stats = getActivityTitleStats(currentActivity, units)
+
+	const handleSetType = (selected: string) => {
+		updateActivityType(currentActivity.id, currentActivity.predictedType, selected, true)
+	}
+
 	return (
 		<StyledCard className="w-100">
 			<Card.Body>
@@ -24,7 +32,6 @@ export const ActivityTitle = ({ currentActivity, units }: ActivityTitleProps) =>
 					{}
 					{description && <i>{`"${description}"`}</i>}
 				</Title>
-
 				<StatsContainer>
 					<Row className="g-3">
 						{stats.map(({ text, value, unit }) => (
@@ -35,6 +42,11 @@ export const ActivityTitle = ({ currentActivity, units }: ActivityTitleProps) =>
 					</Row>
 				</StatsContainer>
 			</Card.Body>
+			<BadgeDropdown
+				selected={currentActivity.predictedType}
+				options={ACTIVITY_TYPES}
+				setSelected={handleSetType}
+			/>
 		</StyledCard>
 	)
 }

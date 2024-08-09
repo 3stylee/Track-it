@@ -1,20 +1,25 @@
-import { ACTIVITY_IMAGE_RESOLUTIONS, BREAKPOINTS } from "../../constants/constants"
+import { Theme } from "@emotion/react"
+import { ACTIVITY_IMAGE_RESOLUTIONS, BREAKPOINTS, THEMES } from "../../constants/constants"
 import decodePolyLine from "../decodePolyline"
 import { getMapboxEndpoint } from "../getMapboxEndpoint"
 
 export const loadActivityImage = (
 	polyline: string,
 	setBackgroundImage: (image: string | null) => void,
-	themeName: string
+	theme: Theme
 ) => {
-	setBackgroundImage("placeholder")
+	const placeholder =
+		theme.name === THEMES.DARK
+			? require("../../assets/images/tile_background_dark.png")
+			: require("../../assets/images/tile_background_light.png")
+	setBackgroundImage(placeholder)
 	if (polyline === undefined || polyline === "") {
 		setBackgroundImage(null)
 		return
 	}
 
 	const decodedPolyline = decodePolyLine(polyline)
-	const url = getMapboxEndpoint(decodedPolyline, themeName, getResolution())
+	const url = getMapboxEndpoint(decodedPolyline, theme.name, getResolution())
 
 	const img = new Image()
 	img.src = url

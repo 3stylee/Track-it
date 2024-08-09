@@ -11,7 +11,7 @@ export const StyledCard = styled(Card)`
 	backdrop-filter: ${({ theme }) => theme.currentActivity.cardBlur};
 	margin-bottom: 1.5rem;
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.25rem;
 	}
 `
 export const CenteredCol = styled(Col)`

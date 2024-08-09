@@ -1,3 +1,4 @@
+import { updateActivityType } from "../../../../redux/actions/athleteActivitiesActions"
 import { State } from "../../../../redux/initialState"
 import { connect } from "react-redux"
 
@@ -8,4 +9,8 @@ const mapStateToProps = (state: State) => {
 	}
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = {
+	updateActivityType,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)
