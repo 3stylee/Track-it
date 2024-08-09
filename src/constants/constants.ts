@@ -133,6 +133,7 @@ export const ACTIVITIES_LIST_ERRORS = {
 export const CURRENT_ACTIVITY_ERRORS = {
 	CURRENT_ACTIVITY_ERROR: "Error loading current activity",
 	ACTIVITY_STREAM_ERROR: "Error loading activity stream",
+	UPDATE_ACTIVITY_ERROR,
 }
 export const SESSIONS_ERRORS = {
 	SESSIONS_ERROR: "Error loading sessions",

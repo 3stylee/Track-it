@@ -12,10 +12,11 @@ import { ACTIVITY_TYPES } from "../../../../constants/constants"
 interface ActivityTitleProps {
 	currentActivity: CurrentActivity
 	units: Units
+	updateTypeError: boolean
 	updateActivityType: (id: number, prevType: string, newType: string, currentActivity?: boolean) => void
 }
 
-export const ActivityTitle = ({ currentActivity, units, updateActivityType }: ActivityTitleProps) => {
+export const ActivityTitle = ({ currentActivity, units, updateTypeError, updateActivityType }: ActivityTitleProps) => {
 	const { distance, name, description } = currentActivity
 	if (distance === undefined) return null
 	const stats = getActivityTitleStats(currentActivity, units)
@@ -46,6 +47,7 @@ export const ActivityTitle = ({ currentActivity, units, updateActivityType }: Ac
 				selected={currentActivity.predictedType}
 				options={ACTIVITY_TYPES}
 				setSelected={handleSetType}
+				error={updateTypeError}
 			/>
 		</StyledCard>
 	)
