@@ -20,6 +20,7 @@ export default {
 		accent: "var(--bs-primary)",
 	},
 	calendar: {
+		eventBackground: "rgba(102, 61, 255, 0.8)",
 		emptyCell: "rgba(209, 209, 209, 0.3)",
 		dayCell: "var(--bs-body-bg)",
 		borderColor: "#dddddd",

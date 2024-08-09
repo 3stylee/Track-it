@@ -21,6 +21,7 @@ declare module "@emotion/react" {
 			accent: string
 		}
 		calendar: {
+			eventBackground: string
 			emptyCell: string
 			dayCell: string
 			borderColor: string

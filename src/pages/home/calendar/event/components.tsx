@@ -1,7 +1,9 @@
 import styled from "@emotion/styled"
 
 export const EventContainer = styled("div")`
-	background-color: var(--bs-primary);
+	background: ${({ theme }) => theme.calendar.eventBackground};
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(5px);
 	padding: 0.5rem;
 	width: 100%;
 	border-radius: var(--bs-border-radius);
