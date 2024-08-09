@@ -1,14 +1,18 @@
 import React from "react"
 import { NoResultsContainer, NoResultsDescription, NoResultsTitle } from "./components"
-import { NO_RESULTS } from "../../../../constants/constants"
+import { NO_ACTIVITIES, NO_RESULTS } from "../../../../constants/constants"
 import { AlertCircle } from "react-feather"
 
-export const NoResults = () => {
+interface NoResultsProps {
+	filterApplied: boolean
+}
+
+export const NoResults = ({ filterApplied }: NoResultsProps) => {
 	return (
 		<NoResultsContainer>
 			<AlertCircle size="6.25rem" />
 			<NoResultsTitle>No Results</NoResultsTitle>
-			<NoResultsDescription>{NO_RESULTS}</NoResultsDescription>
+			<NoResultsDescription>{filterApplied ? NO_RESULTS : NO_ACTIVITIES}</NoResultsDescription>
 		</NoResultsContainer>
 	)
 }

@@ -18,11 +18,12 @@ export interface DataContainerProps {
 	loadingMore: boolean
 	hasMore: boolean
 	shouldTrimData?: boolean
+	noPadding?: boolean
+	noBadges?: boolean
+	filterApplied: boolean
 	nextPage: () => void
 	loadAthleteActivities: LoadAthleteActivities
 	beginLoadMoreApiCall: () => void
-	noPadding?: boolean
-	noBadges?: boolean
 }
 
 export const DataContainer = ({
@@ -31,11 +32,12 @@ export const DataContainer = ({
 	loadingMore,
 	hasMore,
 	shouldTrimData = true,
+	noPadding,
+	noBadges,
+	filterApplied,
 	nextPage,
 	loadAthleteActivities,
 	beginLoadMoreApiCall,
-	noPadding,
-	noBadges,
 }: DataContainerProps) => {
 	const { before, after } = getBeforeAndAfterDates(getDateRangeFromUrl())
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
@@ -79,7 +81,7 @@ export const DataContainer = ({
 					{loadingMore && <AnimatedSpinner height="10rem" noMargin />}
 				</>
 			) : (
-				<NoResults />
+				<NoResults filterApplied={filterApplied} />
 			)}
 		</Container>
 	)

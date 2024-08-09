@@ -65,3 +65,10 @@ export const Header = styled("div")`
 		width: calc(100% - (2 * ${PAGE_PADDING_MOBILE}));
 	}
 `
+export const NoSessions = styled("div")`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+	color: ${({ theme }) => theme.text};
+`

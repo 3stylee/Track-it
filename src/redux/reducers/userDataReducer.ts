@@ -6,15 +6,6 @@ const userDataReducer = (state = initialState.userData, action: { type: string; 
 	switch (action.type) {
 		case types.LOAD_USER_DATA_SUCCESS:
 			return action.data
-		case types.LOAD_USER_DATA_ERROR:
-			return {
-				stravaAccess: false,
-				access_token: "",
-				refresh_token: "",
-				expires_at: Infinity,
-				firstActivityDate: undefined,
-				dateOfLastBackup: undefined,
-			}
 		case types.STORE_STRAVA_AUTH_SUCCESS:
 			return {
 				...state,

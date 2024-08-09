@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { BREAKPOINTS } from "../../../../constants/constants"
-import { Card } from "react-bootstrap"
+import { Card, Table } from "react-bootstrap"
 
 export const CardContainer = styled(Card)`
 	height: 100%;
@@ -20,9 +20,13 @@ export const CardHeader = styled("div")`
 	font-size: 0.8rem;
 	font-weight: bold;
 `
+export const StyledTable = styled(Table)`
+	margin-bottom: 0;
+`
 
 export const TableHeader = styled("thead")`
 	& th {
+		border-radius: var(--bs-border-radius);
 		font-weight: 400;
 		border: none;
 

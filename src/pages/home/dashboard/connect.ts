@@ -5,14 +5,11 @@ import { loadInitialAthleteActivities } from "../../../redux/actions/athleteActi
 
 const mapStateToProps = (state: State) => {
 	const gotAthleteData = Object.keys(state.athleteData).length !== 0
-	const athleteId = state.athleteActivities ? state.athleteActivities[0].athlete.id : 0
 
 	return {
 		gotSufficientActivities: state.gotInitialActivities,
 		gotAthleteData,
-		athleteId,
 		apiCallsInProgress: state.apiCallsInProgress,
-		apiError: state.apiError,
 	}
 }
 

@@ -1,4 +1,10 @@
 import styled from "@emotion/styled"
+import { Card } from "react-bootstrap"
+
+export const StyledCard = styled(Card)`
+	background-color: ${({ theme }) => theme.bootstrap.backgroundColor};
+	color: ${({ theme }) => theme.bootstrap.textColor};
+`
 
 export const CardBody = styled("div")`
 	display: flex;

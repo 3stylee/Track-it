@@ -7,6 +7,7 @@ export default {
 	primaryGradient: "linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(102, 61, 255, 1) 100%)",
 	bootstrap: {
 		background: "dark",
+		backgroundColor: "var(--bs-dark)",
 		textColor: "white",
 	},
 	athleteActivities: {
@@ -15,7 +16,7 @@ export default {
 	},
 	currentActivity: {
 		cardBackground: "rgba(11, 22, 35, 0.8)",
-		cardBlur: "blur(10px)",
+		cardBlur: "blur(4px)",
 	},
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",

@@ -55,14 +55,18 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 	}
 }
 
-export const copyStravaActivities = (dateOfLastCopy: number | undefined) => async (dispatch: any, getState: any) => {
+export const copyStravaActivities = (newActitivities?: AthleteActivities) => async (dispatch: any, getState: any) => {
 	const accessToken = getState().userData.access_token
-	const endpoint = getEndpoint(undefined, dateOfLastCopy)
-	const initialCopy = dateOfLastCopy === undefined
+	const initialCopy = newActitivities === undefined
 	try {
 		// Get the user's activities from Strava
 		let data: AthleteActivities = []
-		await getNewActivities(data, endpoint, accessToken, initialCopy)
+		if (initialCopy) {
+			const endpoint = getEndpoint(undefined, undefined)
+			await getNewActivities(data, endpoint, accessToken, initialCopy)
+		} else {
+			data = newActitivities
+		}
 
 		// Store the activities in Firestore
 		const uId = localStorage.getItem("uId")
@@ -78,7 +82,7 @@ export const copyStravaActivities = (dateOfLastCopy: number | undefined) => asyn
 			const dateOfLastBackup = new Date().toISOString()
 			const userDocRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
 			if (initialCopy) {
-				const firstActivityDate = data[data.length - 1].start
+				const firstActivityDate = data.length > 0 ? data[data.length - 1].start : dateOfLastBackup
 				await setDoc(userDocRef, { dateOfLastBackup, firstActivityDate }, { merge: true })
 			} else {
 				await setDoc(userDocRef, { dateOfLastBackup }, { merge: true })

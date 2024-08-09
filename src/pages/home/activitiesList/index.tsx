@@ -52,7 +52,7 @@ export const ActivitiesList = ({
 				filterApplied={filterApplied}
 				setFilterApplied={setFilterApplied}
 			/>
-			<DataContainer />
+			<DataContainer filterApplied={filterApplied} />
 		</PageContainer>
 	)
 }

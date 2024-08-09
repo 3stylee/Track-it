@@ -7,10 +7,6 @@ export const USER_DATA_URL = "https://www.strava.com/api/v3/athlete"
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 export const API_BASE_URL = "https://www.strava.com/api/v3"
 export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
-export const API_ERROR_MESSAGES = {
-	UNAUTHORISED: "Authorization Error",
-	FETCH_ERROR: "Sorry, we are having trouble accessing your data right now.",
-}
 export const ROUTE_PATHS = {
 	DEFAULT: "/",
 	CONNECT: "/connect",
@@ -58,7 +54,9 @@ export const SIDEBAR_ICONS = [
 export const FILTER_RESULTS = "Filter Results"
 export const CLEAR_FILTER = "Clear Filter"
 export const SELECT_DATE_RANGE = "Select a date range"
+export const NO_ACTIVITIES = "No activities found, please upload some to Strava to get started"
 export const NO_RESULTS = "Please try another selection, or check you have uploaded your activity to Strava"
+export const NO_SESSIONS = "No sessions found, please upload some to Strava to get started"
 export const SIDEBAR_WIDTH = "3.5rem"
 export const STREAM_RESOLUTION_FACTOR = 15
 export const ACTIVITY_GRAPH_TIME_LABELS = 8
@@ -113,3 +111,12 @@ export const ACTIVITY_IMAGE_RESOLUTIONS = {
 export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
 export const DELETE_ACTIVITY_CONFIRMATION =
 	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."
+
+export const APPLICATION_ERRORS = {
+	NO_LOGGED_IN_USER,
+	USER_DATA_ERROR: "Error loading user data, please check your connection and try again",
+}
+export const ATHLETE_ACTIVITIES_ERROR = "Error loading athlete activities, please check your connection and try again"
+export const DASHBOARD_ERRORS = {
+	ATHLETE_ACTIVITIES_ERROR,
+}

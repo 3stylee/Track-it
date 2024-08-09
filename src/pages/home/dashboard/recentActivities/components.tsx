@@ -65,3 +65,9 @@ export const TableRow = styled("tr")`
 		transform: scale(1.04);
 	}
 `
+export const NoActivities = styled("div")`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+`

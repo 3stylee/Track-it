@@ -6,7 +6,7 @@ export const CentralContainer = styled("div")<{ backgroundImage: any }>`
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	padding: ${TITLE_BANNER_HEIGHT};
+	padding-top: ${TITLE_BANNER_HEIGHT};
 	background-image: url(${({ backgroundImage }) => backgroundImage});
 	background-size: cover;
 `

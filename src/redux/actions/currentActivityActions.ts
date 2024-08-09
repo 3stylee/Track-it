@@ -35,8 +35,8 @@ export const loadCurrentActivity = (id: number) => {
 			const predictedType = await getPredictedTypeFromFirebase(id)
 			const data = processActivityData(response.data)
 			dispatch(loadDataSuccess({ ...data, predictedType }))
-		} catch (error) {
-			dispatch(apiCallError(error))
+		} catch (error: any) {
+			dispatch(apiCallError(error.message))
 		}
 	}
 }

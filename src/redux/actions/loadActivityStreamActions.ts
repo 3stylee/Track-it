@@ -8,10 +8,6 @@ export const loadActivityStreamSuccess = (data: any) => {
 	return { type: types.LOAD_ACTIVITY_STREAM_SUCCESS, data }
 }
 
-export const clearActivityStream = () => {
-	return { type: types.CLEAR_ACTIVITY_STREAM }
-}
-
 export const loadActivityStream = (id: number) => {
 	return async function (dispatch: any, getState: any) {
 		const {
@@ -30,9 +26,8 @@ export const loadActivityStream = (id: number) => {
 			})
 			const reducedResponse = reduceResolution(response.data)
 			dispatch(loadActivityStreamSuccess(reducedResponse))
-		} catch (error) {
-			dispatch(apiCallError(error))
-			dispatch(clearActivityStream())
+		} catch (error: any) {
+			dispatch(apiCallError(error.message))
 		}
 	}
 }

@@ -30,6 +30,7 @@ const SessionGroup = ({ sessions, apiCallsInProgress }: SessionGroupProps) => {
 				beginLoadMoreApiCall={() => {}}
 				noPadding
 				noBadges
+				filterApplied={false}
 			/>
 			{apiCallsInProgress === 0 && <NoGroupText>No group found</NoGroupText>}
 		</div>

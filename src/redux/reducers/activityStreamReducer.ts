@@ -5,8 +5,6 @@ const activityStreamReducer = (state = initialState.currentActivityStream, actio
 	switch (action.type) {
 		case types.LOAD_ACTIVITY_STREAM_SUCCESS:
 			return action.data
-		case types.CLEAR_ACTIVITY_STREAM:
-			return {}
 		default:
 			return state
 	}

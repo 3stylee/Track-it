@@ -6,7 +6,7 @@ import { processAthleteActivities } from "../../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
 import { collection, deleteDoc, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { FIREBASE_COLLECTIONS, PAGE_SIZE } from "../../constants/constants"
+import { ATHLETE_ACTIVITIES_ERROR, FIREBASE_COLLECTIONS, PAGE_SIZE } from "../../constants/constants"
 import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
 import { predictData } from "../../utils/predictData"
 import { getRestOfAthleteActivities } from "../../utils/getRestOfAthleteActivities"
@@ -82,6 +82,7 @@ export const loadInitialAthleteActivities =
 				if (data.length > 0) {
 					const predictions = await predictData(data)
 					data = processAthleteActivities(responseData, predictions)
+					dispatch(copyStravaActivities(data))
 				}
 
 				// If not enough data for a full page, fetch the rest of the data from firestore
@@ -95,12 +96,9 @@ export const loadInitialAthleteActivities =
 
 				// If we've reached the end of the data, set the flag
 				if (data.length < PAGE_SIZE) dispatch(hasNoMoreActivities())
-				// Copy any new activities to Firestore
-				if (data[0].start > dateOfLastBackup) {
-					dispatch(copyStravaActivities(lastBackupEpoch))
-				}
-			} catch (error) {
-				dispatch(apiCallError(error))
+			} catch (error: any) {
+				dispatch(apiCallError(ATHLETE_ACTIVITIES_ERROR))
+				console.error(error.message)
 			}
 		}
 	}
@@ -132,8 +130,9 @@ export const loadAthleteActivities =
 			const activities = (await getDocs(q)).docs.map((doc) => doc.data())
 			cache.set(cacheKey, activities)
 			dispatchData(dispatch, activities, page, hasFilter)
-		} catch (error) {
-			dispatch(apiCallError(error))
+		} catch (error: any) {
+			dispatch(apiCallError(ATHLETE_ACTIVITIES_ERROR))
+			console.error(error.message)
 		}
 	}
 

@@ -2,7 +2,7 @@ import React from "react"
 import connect from "./connect"
 import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../constants/constants"
-import { Body, CardHeader, TableHeader, TableRow } from "./components"
+import { Body, CardHeader, NoActivities, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"
 import { Units } from "../../../../models/state"
@@ -14,7 +14,7 @@ interface RecentActivitiesProps {
 }
 
 export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesProps) => {
-	let filteredData
+	let filteredData = []
 	if (Array.isArray(athleteActivities)) {
 		filteredData = athleteActivities.slice(0, MAX_RECENT_ACTIVITIES)
 	}
@@ -27,7 +27,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 				<CardHeader>Recent Activities</CardHeader>
 			</Card.Header>
 			<Body>
-				{filteredData ? (
+				{filteredData.length > 0 ? (
 					<Table variant={theme.bootstrap.background} striped className="mb-0">
 						<TableHeader className="thead-light">
 							<tr>
@@ -49,7 +49,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 						</tbody>
 					</Table>
 				) : (
-					<div>Looks like you don't have any recent activities</div>
+					<NoActivities>Looks like you don't have any recent activities</NoActivities>
 				)}
 			</Body>
 		</Card>

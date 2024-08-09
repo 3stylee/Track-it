@@ -8,6 +8,7 @@ declare module "@emotion/react" {
 		primaryGradient: string
 		bootstrap: {
 			background: string
+			backgroundColor: string
 			textColor: string
 		}
 		athleteActivities: {

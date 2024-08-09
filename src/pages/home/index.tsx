@@ -1,12 +1,13 @@
 import React, { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { ROUTE_PATHS } from "../../constants/constants"
+import { APPLICATION_ERRORS, ROUTE_PATHS } from "../../constants/constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
 import { UserData } from "../../models/state"
 import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 import ApiError from "../../globalComponents/apiError"
+import { AthleteActivities } from "../../models/activities"
 
 export interface HomeProps {
 	userData: UserData
@@ -14,7 +15,7 @@ export interface HomeProps {
 	loadUserData: () => void
 	toggleTheme: () => void
 	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
-	copyStravaActivities: (lastBackup: number | undefined) => void
+	copyStravaActivities: (newActivities?: AthleteActivities) => void
 }
 
 export const Home = ({
@@ -52,11 +53,11 @@ export const Home = ({
 	// Copy activities to firestore if not already done
 	useEffect(() => {
 		if (userData.stravaAccess && userData.access_token && !userData.dateOfLastBackup) {
-			copyStravaActivities(undefined)
+			copyStravaActivities()
 		}
 	}, [userData])
 
-	if (apiError) return <ApiError />
+	if (Object.values(APPLICATION_ERRORS).includes(apiError)) return <ApiError />
 	return userData.stravaAccess && userData.access_token && validToken ? (
 		userData.dateOfLastBackup ? (
 			<>

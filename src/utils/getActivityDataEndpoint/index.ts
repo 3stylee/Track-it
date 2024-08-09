@@ -3,7 +3,6 @@ import { API_BASE_URL } from "../../constants/constants"
 /**
  * Constructs the endpoint URL for fetching activities from the API.
  *
- * @param {number} [dateBefore] - An optional Unix timestamp representing the date before which activities should be fetched.
  * @param {number} [dateAfter] - An optional Unix timestamp representing the date after which activities should be fetched.
  * @param {number} [limit] - An optional limit on the number of activities to fetch.
  *

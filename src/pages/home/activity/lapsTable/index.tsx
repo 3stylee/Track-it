@@ -1,8 +1,8 @@
 import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
-import { CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
+import { CardContainer, CardHeader, HeadingText, StyledTable, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
-import { CardBody, Table } from "react-bootstrap"
+import { CardBody } from "react-bootstrap"
 import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
 import { Units } from "../../../../models/state"
@@ -35,7 +35,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 				<p>Laps</p>
 			</CardHeader>
 			<CardBody>
-				<Table variant={background} striped className="mb-0">
+				<StyledTable variant={background} striped className="mb-0">
 					<TableHeader>
 						<tr>
 							<th scope="col">#</th>
@@ -72,7 +72,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 							</TableRow>
 						))}
 					</tbody>
-				</Table>
+				</StyledTable>
 			</CardBody>
 		</CardContainer>
 	)

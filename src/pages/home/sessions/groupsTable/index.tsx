@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
 import { Table } from "react-bootstrap"
-import { FilterContainer, Header, PageTitle, SortableHeader, StyledRow, TableContainer } from "./components"
+import { FilterContainer, Header, NoSessions, PageTitle, SortableHeader, StyledRow, TableContainer } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import TableContents from "../tableContents"
 import { Searchbar } from "../searchbar"
 import { SortChevrons } from "../sortChevrons"
 import { SessionGroups } from "../../../../models/sessions"
+import { NO_SESSIONS } from "../../../../constants/constants"
 
 export interface GroupCardsProps {
 	sessionGroups: SessionGroups
@@ -62,7 +63,7 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 					</TableContainer>
 				</>
 			) : (
-				<div>No sessions found</div>
+				<NoSessions>{NO_SESSIONS}</NoSessions>
 			)}
 		</div>
 	)

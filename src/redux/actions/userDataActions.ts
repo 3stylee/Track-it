@@ -1,15 +1,11 @@
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { doc, getDoc } from "firebase/firestore"
-import { FIREBASE_COLLECTIONS } from "../../constants/constants"
+import { APPLICATION_ERRORS, FIREBASE_COLLECTIONS } from "../../constants/constants"
 import { db } from "../../firebase"
 
 export const loadUserDataSuccess = (data: any) => {
 	return { type: types.LOAD_USER_DATA_SUCCESS, data }
-}
-
-export const loadUserDataError = () => {
-	return { type: types.LOAD_USER_DATA_ERROR }
 }
 
 export const loadUserData = () => {
@@ -30,8 +26,8 @@ export const loadUserData = () => {
 				dispatch(loadUserDataSuccess(initialData))
 			}
 		} catch (error: any) {
-			dispatch(apiCallError(error.message))
-			dispatch(loadUserDataError())
+			dispatch(apiCallError(APPLICATION_ERRORS.USER_DATA_ERROR))
+			console.error(error.message)
 		}
 	}
 }
