@@ -15,7 +15,7 @@ export interface State {
 	currentActivity: CurrentActivity
 	apiCallsInProgress: number
 	loadMore: LoadMore
-	apiError: string | object
+	apiError: string
 	sidebarExpanded: boolean
 	units: Units
 	userData: UserData

@@ -7,11 +7,12 @@ import { AthleteData, QuickStatsType } from "../../../../models/athlete"
 interface QuickStatsProps {
 	athleteData: AthleteData
 	units: Units
+	dataError: boolean
 }
 
-export const QuickStats = ({ athleteData, units }: QuickStatsProps) => {
+export const QuickStats = ({ athleteData, units, dataError }: QuickStatsProps) => {
 	const { meters, unitString } = units
-	if (athleteData.allTotalRunDistance === undefined) {
+	if (dataError) {
 		return null
 	}
 

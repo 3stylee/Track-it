@@ -3,10 +3,10 @@ import { ApiErrorContainer } from "./components"
 import connect from "./connect"
 import { AlertCircle } from "react-feather"
 
-const ApiError = ({ apiError }: any) => {
+const ApiError = ({ apiError, height }: any) => {
 	console.error(apiError)
 	return (
-		<ApiErrorContainer>
+		<ApiErrorContainer height={height}>
 			<AlertCircle size="6.25rem" />
 			<div className="mt-2">{apiError || "Please try refreshing the page."}</div>
 		</ApiErrorContainer>

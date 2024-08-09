@@ -6,11 +6,9 @@ import { DateRange } from "react-day-picker"
 import { getBeforeAndAfterDates } from "../../../utils/getBeforeAndAfterDates"
 import { getDateRangeFromUrl } from "../../../utils/getDateRangeFromUrl"
 import TitleHeader from "./titleHeader"
-import ApiError from "../../../globalComponents/apiError"
 import { PAGE_SIZE } from "../../../constants/constants"
 
 interface ActivitiesListProps {
-	apiError: string | object
 	gotInitialActivities: boolean
 	activityCount: number
 	loadAthleteActivities: (dateBefore?: number, dateAfter?: number) => void
@@ -19,7 +17,6 @@ interface ActivitiesListProps {
 }
 
 export const ActivitiesList = ({
-	apiError,
 	gotInitialActivities,
 	activityCount,
 	loadAthleteActivities,
@@ -43,7 +40,6 @@ export const ActivitiesList = ({
 		}
 	}, [])
 
-	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<TitleHeader

@@ -1,5 +1,6 @@
 import axios from "axios"
 import {
+	APPLICATION_ERRORS,
 	AUTH_TOKEN_BASE_URL,
 	CLIENT_ID,
 	CLIENT_SECRET,
@@ -27,6 +28,10 @@ export const copyActivitiesSuccess = () => {
 	return { type: types.COPY_STRAVA_ACTVITIES }
 }
 
+export const logoutUser = () => {
+	return { type: types.LOGOUT_USER }
+}
+
 export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispatch: any) => {
 	const payload = {
 		client_id: CLIENT_ID,
@@ -51,7 +56,8 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 			dispatch(apiCallError(NO_LOGGED_IN_USER))
 		}
 	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		dispatch(apiCallError(APPLICATION_ERRORS.STORE_STRAVA_AUTH_ERROR))
+		console.error(error.message)
 	}
 }
 
@@ -92,6 +98,7 @@ export const copyStravaActivities = (newActitivities?: AthleteActivities) => asy
 			dispatch(apiCallError(NO_LOGGED_IN_USER))
 		}
 	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		dispatch(apiCallError(APPLICATION_ERRORS.COPY_ACTIVITIES_ERROR))
+		console.error(error.message)
 	}
 }

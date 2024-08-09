@@ -1,15 +1,11 @@
 import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
-import { API_BASE_URL } from "../../constants/constants"
+import { API_BASE_URL, DASHBOARD_ERRORS } from "../../constants/constants"
 import { processAthleteData } from "../../utils/processAthleteData"
 
 export const loadDataSuccess = (data: object) => {
 	return { type: types.LOAD_ATHLETE_DATA_SUCCESS, data }
-}
-
-export const logoutUser = () => {
-	return { type: types.LOGOUT_USER }
 }
 
 export const loadAthleteData = (athleteID: number) => {
@@ -30,8 +26,9 @@ export const loadAthleteData = (athleteID: number) => {
 			})
 			const processedData = processAthleteData(response.data)
 			dispatch(loadDataSuccess(processedData))
-		} catch (error) {
-			dispatch(apiCallError(error))
+		} catch (error: any) {
+			dispatch(apiCallError(DASHBOARD_ERRORS.ATHLETE_DATA_ERROR))
+			console.error(error.message)
 		}
 	}
 }

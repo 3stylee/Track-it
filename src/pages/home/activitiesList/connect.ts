@@ -8,7 +8,6 @@ import {
 
 const mapStateToProps = (state: State) => {
 	return {
-		apiError: state.apiError,
 		activityCount: state.athleteActivities?.length || 0,
 		gotInitialActivities: state.gotInitialActivities,
 	}

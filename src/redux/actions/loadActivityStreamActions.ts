@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_BASE_URL } from "../../constants/constants"
+import { API_BASE_URL, CURRENT_ACTIVITY_ERRORS } from "../../constants/constants"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { reduceResolution } from "../../utils/reduceStreamResolution"
@@ -27,7 +27,8 @@ export const loadActivityStream = (id: number) => {
 			const reducedResponse = reduceResolution(response.data)
 			dispatch(loadActivityStreamSuccess(reducedResponse))
 		} catch (error: any) {
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(CURRENT_ACTIVITY_ERRORS.ACTIVITY_STREAM_ERROR))
+			console.error(error.message)
 		}
 	}
 }

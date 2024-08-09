@@ -6,7 +6,15 @@ import { processAthleteActivities } from "../../utils/processAthleteActivities"
 import { LRUCache } from "lru-cache"
 import { copyStravaActivities } from "./stravaActions"
 import { collection, deleteDoc, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { ATHLETE_ACTIVITIES_ERROR, FIREBASE_COLLECTIONS, PAGE_SIZE } from "../../constants/constants"
+import {
+	ACTIVITIES_LIST_ERRORS,
+	ATHLETE_ACTIVITIES_ERROR,
+	DELETE_ACTIVITY_ERROR,
+	FIREBASE_COLLECTIONS,
+	NO_LOGGED_IN_USER,
+	PAGE_SIZE,
+	UPDATE_ACTIVITY_ERROR,
+} from "../../constants/constants"
 import { buildFilteredQuery } from "../../utils/buildFilteredQuery"
 import { predictData } from "../../utils/predictData"
 import { getRestOfAthleteActivities } from "../../utils/getRestOfAthleteActivities"
@@ -20,7 +28,7 @@ export const loadDataSuccess = (data: object, hasFilter = false) => {
 }
 
 export const loadMoreSuccess = (data: object) => {
-	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES, data }
+	return { type: types.LOAD_MORE_ATHLETE_ACTIVITIES_SUCCESS, data }
 }
 
 export const beginLoadMoreApiCall = () => {
@@ -90,7 +98,6 @@ export const loadInitialAthleteActivities =
 					const restOfData = await getRestOfAthleteActivities(dateOfLastBackup, data.length)
 					data = data.length > 0 ? [...data, ...restOfData] : restOfData
 				}
-
 				cache.set(endpoint, data)
 				dispatch(loadDataSuccess(data))
 
@@ -113,7 +120,8 @@ export const loadAthleteActivities =
 		let {
 			loadMore: { page },
 		} = getState()
-		if (page === 0) dispatch(beginApiCall())
+		const loadingMore = page > 0
+		if (!loadingMore) dispatch(beginApiCall())
 
 		// Check if data is cached
 		const hasFilter = dateBefore !== undefined || dateAfter !== undefined
@@ -131,7 +139,9 @@ export const loadAthleteActivities =
 			cache.set(cacheKey, activities)
 			dispatchData(dispatch, activities, page, hasFilter)
 		} catch (error: any) {
-			dispatch(apiCallError(ATHLETE_ACTIVITIES_ERROR))
+			dispatch(
+				apiCallError(loadingMore ? ACTIVITIES_LIST_ERRORS.LOAD_MORE_ACTIVITIES_ERROR : ATHLETE_ACTIVITIES_ERROR)
+			)
 			console.error(error.message)
 		}
 	}
@@ -159,13 +169,14 @@ export const updateActivityType =
 					if (prevType === "Session") dispatch(removeSession(id))
 					if (newType === "Session") dispatch(addSession(id))
 				} else {
-					console.error("No matching document found.")
+					dispatch(apiCallError(UPDATE_ACTIVITY_ERROR))
 				}
 			} else {
-				dispatch(apiCallError("Error updating type"))
+				dispatch(apiCallError(NO_LOGGED_IN_USER))
 			}
 		} catch (error: any) {
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(UPDATE_ACTIVITY_ERROR))
+			console.error(error.message)
 		}
 	}
 
@@ -185,12 +196,13 @@ export const deleteAthleteActivity = (id: number) => async (dispatch: any) => {
 				await deleteDoc(docRef)
 				dispatch(DeleteActivity(id))
 			} else {
-				console.error("No matching document found.")
+				dispatch(apiCallError(DELETE_ACTIVITY_ERROR))
 			}
 		} else {
-			dispatch(apiCallError("No logged in user."))
+			dispatch(apiCallError(NO_LOGGED_IN_USER))
 		}
 	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		dispatch(apiCallError(DELETE_ACTIVITY_ERROR))
+		console.error(error.message)
 	}
 }

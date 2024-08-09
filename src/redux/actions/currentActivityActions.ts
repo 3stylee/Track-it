@@ -1,7 +1,7 @@
 import * as types from "./actionTypes"
 import { beginApiCall, apiCallError } from "./apiStatusActions"
 import axios from "axios"
-import { API_BASE_URL } from "../../constants/constants"
+import { API_BASE_URL, CURRENT_ACTIVITY_ERRORS } from "../../constants/constants"
 import { processActivityData } from "../../utils/processActivityData"
 import { getPredictedTypeFromFirebase } from "../../utils/getPredictedTypeFromFirebase"
 
@@ -36,7 +36,8 @@ export const loadCurrentActivity = (id: number) => {
 			const data = processActivityData(response.data)
 			dispatch(loadDataSuccess({ ...data, predictedType }))
 		} catch (error: any) {
-			dispatch(apiCallError(error.message))
+			dispatch(apiCallError(CURRENT_ACTIVITY_ERRORS.CURRENT_ACTIVITY_ERROR))
+			console.error(error.message)
 		}
 	}
 }

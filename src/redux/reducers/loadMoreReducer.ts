@@ -3,7 +3,7 @@ import initalState from "../initialState"
 
 const loadingMoreReducer = (state = initalState.loadMore, action: { type: any }) => {
 	switch (action.type) {
-		case types.LOAD_MORE_ATHLETE_ACTIVITIES:
+		case types.LOAD_MORE_ATHLETE_ACTIVITIES_SUCCESS:
 		case types.API_CALL_ERROR:
 			return {
 				...state,

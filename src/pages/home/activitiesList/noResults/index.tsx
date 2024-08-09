@@ -4,7 +4,7 @@ import { NO_ACTIVITIES, NO_RESULTS } from "../../../../constants/constants"
 import { AlertCircle } from "react-feather"
 
 interface NoResultsProps {
-	filterApplied: boolean
+	filterApplied?: boolean
 }
 
 export const NoResults = ({ filterApplied }: NoResultsProps) => {

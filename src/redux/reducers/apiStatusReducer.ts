@@ -12,10 +12,10 @@ const apiCallStatusReducer = (state = initialState.apiCallsInProgress, action: {
 		case types.AUTHORISE_USER_SUCCESS:
 			return 0
 		case types.API_CALL_ERROR:
-			return state - 1
+			return Math.max(0, state - 1)
 		default:
 			if (actionTypeEndsInSuccess(action.type)) {
-				return state - 1
+				return Math.max(0, state - 1)
 			}
 			return state
 	}

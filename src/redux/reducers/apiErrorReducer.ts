@@ -9,6 +9,8 @@ const apiErrorReducer = (state = initialState.apiError, action: { type: string; 
 	switch (action.type) {
 		case types.API_CALL_ERROR:
 			return action.data || "An error occurred"
+		case types.CLEAR_ERROR:
+			return ""
 		default:
 			// clear error message when a successful API call is made
 			if (actionTypeEndsInSuccess(action.type)) {

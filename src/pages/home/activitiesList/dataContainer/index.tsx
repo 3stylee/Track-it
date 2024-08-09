@@ -11,6 +11,8 @@ import { getBeforeAndAfterDates } from "../../../../utils/getBeforeAndAfterDates
 import { trimData } from "../../../../utils/trimData"
 import { AthleteActivities, LoadAthleteActivities } from "../../../../models/activities"
 import { useInfiniteScroll } from "./useInfiniteScroll"
+import ApiError from "../../../../globalComponents/apiError"
+import LoadMoreError from "../loadMoreError"
 
 export interface DataContainerProps {
 	athleteActivities: AthleteActivities
@@ -21,6 +23,8 @@ export interface DataContainerProps {
 	noPadding?: boolean
 	noBadges?: boolean
 	filterApplied: boolean
+	initialLoadError: boolean
+	loadMoreError: boolean
 	nextPage: () => void
 	loadAthleteActivities: LoadAthleteActivities
 	beginLoadMoreApiCall: () => void
@@ -35,6 +39,8 @@ export const DataContainer = ({
 	noPadding,
 	noBadges,
 	filterApplied,
+	initialLoadError,
+	loadMoreError,
 	nextPage,
 	loadAthleteActivities,
 	beginLoadMoreApiCall,
@@ -43,7 +49,7 @@ export const DataContainer = ({
 	if (!(before || after) && shouldTrimData) athleteActivities = trimData(athleteActivities)
 
 	const scrollDown = () => {
-		if (loadingMore) return
+		if (loadingMore || loadMoreError) return
 		beginLoadMoreApiCall()
 		setTimeout(() => {
 			nextPage()
@@ -52,7 +58,14 @@ export const DataContainer = ({
 	}
 	const { bottomRef } = useInfiniteScroll(scrollDown, before, after)
 
+	const tryAgain = () => {
+		if (loadingMore) return
+		beginLoadMoreApiCall()
+		loadAthleteActivities(before, after)
+	}
+
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="80vh" noMargin />
+	if (initialLoadError) return <ApiError height="80vh" />
 	return (
 		<Container noPadding={noPadding}>
 			{athleteActivities.length > 0 ? (
@@ -78,7 +91,11 @@ export const DataContainer = ({
 							)
 						)}
 					</Row>
-					{loadingMore && <AnimatedSpinner height="10rem" noMargin />}
+					{loadingMore ? (
+						<AnimatedSpinner height="10rem" noMargin />
+					) : (
+						loadMoreError && <LoadMoreError tryAgain={tryAgain} />
+					)}
 				</>
 			) : (
 				<NoResults filterApplied={filterApplied} />

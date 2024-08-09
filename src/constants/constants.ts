@@ -38,7 +38,6 @@ export const NF_404_ERROR_TITLE = "404 Page Not Found"
 export const NF_404_ERROR_MESSAGE = "Sorry, but the page you are looking for does not exist"
 export const NF_404_ERROR_BUTTON = "Go back home »"
 export const AUTH_ERROR_TITLE = "Authentication Error"
-export const NO_LOGGED_IN_USER = "No logged in user found"
 export const AUTH_ERROR_MESSAGE = "Sorry, but we were unable to authenticate your Strava account. Please try again"
 export const TRY_AGAIN_BUTTON = "Try again »"
 export const MISSING_PERMISSIONS_TITLE = "Missing permissions"
@@ -111,12 +110,31 @@ export const ACTIVITY_IMAGE_RESOLUTIONS = {
 export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
 export const DELETE_ACTIVITY_CONFIRMATION =
 	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."
-
+export const NO_LOGGED_IN_USER = "No logged in user found"
+export const ATHLETE_ACTIVITIES_ERROR = "Error loading athlete activities, please check your connection and try again"
+export const UPDATE_ACTIVITY_ERROR = "Error updating activity"
+export const DELETE_ACTIVITY_ERROR = "Error deleting activity"
 export const APPLICATION_ERRORS = {
 	NO_LOGGED_IN_USER,
 	USER_DATA_ERROR: "Error loading user data, please check your connection and try again",
+	COPY_ACTIVITIES_ERROR: "Error copying new activities to firestore",
+	STORE_STRAVA_AUTH_ERROR: "Error storing Strava authentication data",
 }
-export const ATHLETE_ACTIVITIES_ERROR = "Error loading athlete activities, please check your connection and try again"
 export const DASHBOARD_ERRORS = {
 	ATHLETE_ACTIVITIES_ERROR,
+	ATHLETE_DATA_ERROR: "Error loading athlete data",
+}
+export const ACTIVITIES_LIST_ERRORS = {
+	ATHLETE_ACTIVITIES_ERROR,
+	LOAD_MORE_ACTIVITIES_ERROR: "Error loading more activities",
+	UPDATE_ACTIVITY_ERROR,
+	DELETE_ACTIVITY_ERROR,
+}
+export const CURRENT_ACTIVITY_ERRORS = {
+	CURRENT_ACTIVITY_ERROR: "Error loading current activity",
+	ACTIVITY_STREAM_ERROR: "Error loading activity stream",
+}
+export const SESSIONS_ERRORS = {
+	SESSIONS_ERROR: "Error loading sessions",
+	ADD_SESSION_ERROR: "Error adding session",
 }

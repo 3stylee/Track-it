@@ -1,7 +1,7 @@
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
-import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER } from "../../constants/constants"
+import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER, SESSIONS_ERRORS } from "../../constants/constants"
 import { db } from "../../firebase"
 import { removeSpaces } from "../../utils/removeSpaces"
 import axios from "axios"
@@ -40,7 +40,8 @@ export const loadSessions = () => async (dispatch: any) => {
 			dispatch(apiCallError(NO_LOGGED_IN_USER))
 		}
 	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		dispatch(apiCallError(SESSIONS_ERRORS.SESSIONS_ERROR))
+		console.error(error.message)
 	}
 }
 
@@ -52,20 +53,16 @@ const loadSessionGroups = async (sessions: any) => {
 			title: removeSpaces(session.title),
 		})
 	}
-	try {
-		const response = await axios.post(
-			"https://urchin-app-q9ue8.ondigitalocean.app/extract_entities",
-			{ sessions: sessionsNew },
-			{
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		)
-		return response.data
-	} catch (e) {
-		throw e
-	}
+	const response = await axios.post(
+		"https://urchin-app-q9ue8.ondigitalocean.app/extract_entities",
+		{ sessions: sessionsNew },
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	)
+	return response.data
 }
 
 export const addSession = (id: number) => async (dispatch: any, getState: any) => {
@@ -84,6 +81,7 @@ export const addSession = (id: number) => async (dispatch: any, getState: any) =
 		const key = response.data
 		dispatch(addNewSession({ ...session, key }))
 	} catch (error: any) {
-		dispatch(apiCallError(error.message))
+		dispatch(apiCallError(SESSIONS_ERRORS.ADD_SESSION_ERROR))
+		console.error(error.message)
 	}
 }

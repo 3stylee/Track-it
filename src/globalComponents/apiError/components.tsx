@@ -1,11 +1,10 @@
 import styled from "@emotion/styled"
-import { TITLE_BANNER_HEIGHT } from "../../constants/constants"
 
-export const ApiErrorContainer = styled("div")`
+export const ApiErrorContainer = styled("div")<{ height?: string }>`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: calc(100vh - ${TITLE_BANNER_HEIGHT});
+	height: ${({ height }) => (height ? height : "100vh")};
 	color: ${({ theme }) => theme.text};
 `

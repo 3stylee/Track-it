@@ -1,15 +1,27 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Check } from "react-feather"
 import { Activity, PopupContainer } from "./components"
+import connect from "./connect"
 
 interface DropdownMenuProps {
 	selected: string
 	options: string[]
+	error: boolean
+	clearError: () => void
 	setSelected: (selected: string) => void
 }
 
-export const DropdownMenu = ({ selected, options, setSelected }: DropdownMenuProps) => {
+const DropdownMenu = ({ selected, options, error, clearError, setSelected }: DropdownMenuProps) => {
 	const [showLoading, setShowLoading] = React.useState("")
+
+	useEffect(() => {
+		if (error) {
+			setShowLoading("")
+			// TODO: show error toast
+			clearError()
+		}
+	}, [error])
+
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>, selected: string) => {
 		e.preventDefault()
 		if (showLoading !== selected) {
@@ -34,3 +46,5 @@ export const DropdownMenu = ({ selected, options, setSelected }: DropdownMenuPro
 		</PopupContainer>
 	)
 }
+
+export default connect(DropdownMenu)

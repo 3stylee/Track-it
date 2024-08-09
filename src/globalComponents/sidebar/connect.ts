@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../redux/initialState"
-import { logoutUser } from "../../redux/actions/loadAthleteDataActions"
+import { logoutUser } from "../../redux/actions/stravaActions"
 
 export const mapStateToProps = (state: State) => {
 	return {
