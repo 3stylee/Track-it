@@ -10,8 +10,13 @@ declare module "@emotion/react" {
 			background: string
 			textColor: string
 		}
-		activity: {
-			backgroundImage: string
+		athleteActivities: {
+			cardBackgroundImage: string
+			datePickerBackground: string
+		}
+		currentActivity: {
+			cardBackground: string
+			cardBlur: string
 		}
 		sidebar: {
 			iconHover: string
@@ -25,9 +30,6 @@ declare module "@emotion/react" {
 			emptyCell: string
 			dayCell: string
 			borderColor: string
-		}
-		datePicker: {
-			background: string
 		}
 		popup: {
 			background: string

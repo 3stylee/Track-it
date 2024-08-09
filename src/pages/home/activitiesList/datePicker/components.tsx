@@ -4,12 +4,12 @@ import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, TITLE_BANNER_HEIGHT } f
 
 export const StyledDayPicker = styled(DayPicker)`
 	--rdp-accent-color: var(--bs-primary);
-	--rdp-background-color: ${({ theme }) => theme.datePicker.background};
+	--rdp-background-color: ${({ theme }) => theme.athleteActivities.datePickerBackground};
 	color: ${({ theme }) => theme.text};
 `
 export const Container = styled("div")`
 	border-radius: var(--bs-border-radius);
-	background-color: ${({ theme }) => theme.datePicker.background};
+	background-color: ${({ theme }) => theme.athleteActivities.datePickerBackground};
 	backdrop-filter: blur(20px);
 	border: 1px solid var(--bs-primary);
 	position: absolute;

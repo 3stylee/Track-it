@@ -2,7 +2,7 @@ import React from "react"
 import { getMinsFromSeconds } from "../../../../utils/getMinsFromSeconds"
 import { CardContainer, CardHeader, HeadingText, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
-import { Table } from "react-bootstrap"
+import { CardBody, Table } from "react-bootstrap"
 import connect from "./connect"
 import { categoriseLaps } from "../../../../utils/categoriseLaps"
 import { Units } from "../../../../models/state"
@@ -24,17 +24,17 @@ interface LapsTableProps {
 
 const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsTableProps) => {
 	const {
-		bootstrap: { textColor, background },
+		bootstrap: { background },
 	} = useTheme()
 	if (!Array.isArray(laps) || laps.length < 1) return null
 	const session = SESSION_TYPES.includes(predictedType)
 	const lapCategories = categoriseLaps(laps, session)
 	return (
-		<CardContainer className={`card text-${textColor} bg-${background} h-100`}>
+		<CardContainer>
 			<CardHeader>
 				<p>Laps</p>
 			</CardHeader>
-			<div className="card-body">
+			<CardBody>
 				<Table variant={background} striped className="mb-0">
 					<TableHeader>
 						<tr>
@@ -73,7 +73,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 						))}
 					</tbody>
 				</Table>
-			</div>
+			</CardBody>
 		</CardContainer>
 	)
 }

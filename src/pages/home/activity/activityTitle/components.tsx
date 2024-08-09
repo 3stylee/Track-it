@@ -6,6 +6,10 @@ export const Title = styled("div")`
 	text-align: center;
 `
 export const StyledCard = styled(Card)`
+	background-color: ${({ theme }) => theme.currentActivity.cardBackground};
+	color: ${({ theme }) => theme.text};
+	backdrop-filter: ${({ theme }) => theme.currentActivity.cardBlur};
+	margin-bottom: 1.5rem;
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 0.5rem;
 	}

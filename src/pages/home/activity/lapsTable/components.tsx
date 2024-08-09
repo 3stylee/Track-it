@@ -1,11 +1,18 @@
 import styled from "@emotion/styled"
 import { BREAKPOINTS } from "../../../../constants/constants"
+import { Card } from "react-bootstrap"
 
-export const CardContainer = styled("div")`
+export const CardContainer = styled(Card)`
+	height: 100%;
+	background-color: ${({ theme }) => theme.currentActivity.cardBackground};
+	color: ${({ theme }) => theme.text};
+	backdrop-filter: ${({ theme }) => theme.currentActivity.cardBlur};
+	padding: 0.5rem;
+	overflow-x: auto;
+
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 1.5rem;
 	}
-	overflow-x: auto;
 `
 export const CardHeader = styled("div")`
 	margin-top: 1rem;

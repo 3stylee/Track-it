@@ -1,4 +1,3 @@
-import { useTheme } from "@emotion/react"
 import React from "react"
 import { Card, Row } from "react-bootstrap"
 import connect from "./connect"
@@ -14,14 +13,11 @@ interface ActivityTitleProps {
 }
 
 export const ActivityTitle = ({ currentActivity, units }: ActivityTitleProps) => {
-	const {
-		bootstrap: { background, textColor },
-	} = useTheme()
 	const { distance, name, description } = currentActivity
 	if (distance === undefined) return null
 	const stats = getActivityTitleStats(currentActivity, units)
 	return (
-		<StyledCard bg={background} text={textColor} className="w-100">
+		<StyledCard className="w-100">
 			<Card.Body>
 				<Title>
 					<h2>{name}</h2>

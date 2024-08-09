@@ -21,10 +21,3 @@ export const PageContainer = styled("div")`
 		padding-top: calc(${TITLE_BANNER_HEIGHT} + ${PAGE_PADDING_MOBILE});
 	}
 `
-export const ImageContainer = styled("div")`
-	@media (min-width: ${BREAKPOINTS.DOWN.LG}) {
-		display: flex;
-		gap: ${PAGE_PADDING};
-		padding-bottom: ${PAGE_PADDING};
-	}
-`

@@ -6,7 +6,7 @@ import { useTheme } from "@emotion/react"
 import { Card, Col, Row } from "react-bootstrap"
 import { getActivityGraphs } from "../../../../utils/getActivityGraphs"
 import { Units } from "../../../../models/state"
-import { CenteredDiv } from "./components"
+import { CenteredDiv, StyledCard } from "./components"
 import { CurrentActivity, CurrentActivityStream } from "../../../../models/activities"
 import { AlertTriangle } from "react-feather"
 import useSmallScreen from "./useSmallScreen"
@@ -31,7 +31,7 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }
 					const { time, label, data, options, backgroundColor } = graph
 					return (
 						<Col key={label}>
-							<Card bg={theme.bootstrap.background} text={theme.bootstrap.textColor}>
+							<StyledCard>
 								<Card.Body>
 									<LineChart
 										time={time}
@@ -41,7 +41,7 @@ export const ActivityGraphs = ({ currentActivityStream, currentActivity, units }
 										options={options}
 									/>
 								</Card.Body>
-							</Card>
+							</StyledCard>
 						</Col>
 					)
 				})}

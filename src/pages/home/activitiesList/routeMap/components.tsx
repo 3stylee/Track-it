@@ -20,7 +20,7 @@ export const CardContainer = styled("div")`
 	}
 	border-radius: var(--bs-border-radius);
 	box-shadow: inset 0 0 8px rgba(135, 135, 135, 0.1), 0 0 10px 1px rgba(0, 0, 0, 0.3);
-	background-image: ${({ theme }) => theme.activity.backgroundImage};
+	background-image: ${({ theme }) => theme.athleteActivities.cardBackgroundImage};
 	backdrop-filter: blur(4px);
 `
 

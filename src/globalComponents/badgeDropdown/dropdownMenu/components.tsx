@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 export const PopupContainer = styled("div")`
 	cursor: pointer;
 	position: absolute;
-	background-color: ${({ theme }) => theme.datePicker.background};
+	background-color: ${({ theme }) => theme.athleteActivities.datePickerBackground};
 	border: 1px solid rgb(77, 81, 84);
 	color: ${({ theme }) => theme.text};
 	backdrop-filter: blur(5px);

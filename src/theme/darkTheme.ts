@@ -9,8 +9,13 @@ export default {
 		background: "dark",
 		textColor: "white",
 	},
-	activity: {
-		backgroundImage: "linear-gradient(rgba(105, 35, 135, 0.5), rgba(75, 35, 95, 0.5), rgba(35, 48, 135, 0.5))",
+	athleteActivities: {
+		cardBackgroundImage: "linear-gradient(rgba(105, 35, 135, 0.5), rgba(75, 35, 95, 0.5), rgba(35, 48, 135, 0.5))",
+		datePickerBackground: "rgba(11, 22, 35, 0.5)",
+	},
+	currentActivity: {
+		cardBackground: "rgba(11, 22, 35, 0.8)",
+		cardBlur: "blur(10px)",
 	},
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
@@ -24,9 +29,6 @@ export default {
 		emptyCell: "rgba(77, 81, 84, 0.4)",
 		dayCell: "#212529",
 		borderColor: "rgb(77, 81, 84)",
-	},
-	datePicker: {
-		background: "rgba(11, 22, 35, 0.5)",
 	},
 	popup: {
 		background: "var(--bs-dark)",

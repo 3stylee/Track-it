@@ -101,6 +101,15 @@ export const BREAKPOINTS = {
 		XL: "1200px",
 	},
 }
+export const ACTIVITY_IMAGE_RESOLUTIONS = {
+	XS: "300x700",
+	SM: "380x900",
+	MD: "450x1000",
+	LG: "700x1000",
+	XL: "800x1030",
+	XXL: "1200x1000",
+}
+
 export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
 export const DELETE_ACTIVITY_CONFIRMATION =
 	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."
