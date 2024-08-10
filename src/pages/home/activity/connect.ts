@@ -1,19 +1,17 @@
+import { loadActivityDetails } from "../../../redux/actions/currentActivityActions"
 import { State } from "../../../redux/initialState"
 import { connect } from "react-redux"
-import { loadActivityStream } from "../../../redux/actions/loadActivityStreamActions"
-import { loadCurrentActivity } from "../../../redux/actions/currentActivityActions"
 
 const mapStateToProps = (state: State) => {
 	return {
 		apiCallsInProgress: state.apiCallsInProgress,
 		currentActivity: state.currentActivity,
-		apiError: state.apiError,
+		apiError: state.apiError.message,
 	}
 }
 
 const mapDispatchToProps = {
-	loadActivityStream,
-	loadCurrentActivity,
+	loadActivityDetails,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

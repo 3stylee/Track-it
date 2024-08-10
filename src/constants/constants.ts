@@ -118,7 +118,7 @@ export const APPLICATION_ERRORS = {
 	NO_LOGGED_IN_USER,
 	USER_DATA_ERROR: "Error loading user data, please check your connection and try again",
 	COPY_ACTIVITIES_ERROR: "Error copying new activities to firestore",
-	STORE_STRAVA_AUTH_ERROR: "Error storing Strava authentication data",
+	STORE_STRAVA_AUTH_ERROR: "Error storing Strava authentication data, please refresh and try again",
 }
 export const DASHBOARD_ERRORS = {
 	ATHLETE_ACTIVITIES_ERROR,
@@ -132,10 +132,9 @@ export const ACTIVITIES_LIST_ERRORS = {
 }
 export const CURRENT_ACTIVITY_ERRORS = {
 	CURRENT_ACTIVITY_ERROR: "Error loading current activity",
-	ACTIVITY_STREAM_ERROR: "Error loading activity stream",
 	UPDATE_ACTIVITY_ERROR,
 }
 export const SESSIONS_ERRORS = {
 	SESSIONS_ERROR: "Error loading sessions",
-	ADD_SESSION_ERROR: "Error adding session",
 }
+export const TOAST_ERRORS = [UPDATE_ACTIVITY_ERROR, DELETE_ACTIVITY_ERROR]

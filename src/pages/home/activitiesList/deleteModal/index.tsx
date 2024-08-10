@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 import { StyledModal } from "./components"
 import connect from "./connect"
@@ -8,16 +8,21 @@ import { DELETE_ACTIVITY_CONFIRMATION } from "../../../../constants/constants"
 interface DeleteModalProps {
 	id: number
 	show: boolean
+	errorStatus: number
 	setShowDelete: (showDelete: boolean) => void
 	deleteAthleteActivity: (id: number) => void
 }
 
-const DeleteModal = ({ id, show, setShowDelete, deleteAthleteActivity }: DeleteModalProps) => {
+const DeleteModal = ({ id, show, errorStatus, setShowDelete, deleteAthleteActivity }: DeleteModalProps) => {
 	const theme = useTheme()
 	const [showLoading, setShowLoading] = useState(false)
 	const handleClose = () => {
 		setShowDelete(false)
 	}
+
+	useEffect(() => {
+		setShowLoading(false)
+	}, [errorStatus])
 
 	return (
 		<StyledModal show={show} onHide={handleClose} centered data-bs-theme={theme.bootstrap.background}>

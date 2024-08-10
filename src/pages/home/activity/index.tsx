@@ -10,22 +10,16 @@ import ApiError from "../../../globalComponents/apiError"
 import { CurrentActivity } from "../../../models/activities"
 import { useTheme } from "@emotion/react"
 import { loadActivityImage } from "../../../utils/loadActivityImage.ts"
+import { CURRENT_ACTIVITY_ERRORS } from "../../../constants/constants"
 
 interface ActivityProps {
-	loadActivityStream: (id: number) => void
-	loadCurrentActivity: (id: number) => void
-	apiError: string | object
+	loadActivityDetails: (id: number) => void
+	apiError: string
 	currentActivity: CurrentActivity
 	apiCallsInProgress: number
 }
 
-const Activity = ({
-	loadActivityStream,
-	loadCurrentActivity,
-	apiError,
-	currentActivity,
-	apiCallsInProgress,
-}: ActivityProps) => {
+const Activity = ({ loadActivityDetails, apiError, currentActivity, apiCallsInProgress }: ActivityProps) => {
 	const location = useLocation()
 	const theme = useTheme()
 	const searchParams = new URLSearchParams(location.search)
@@ -34,8 +28,7 @@ const Activity = ({
 
 	useEffect(() => {
 		if (currentActivity.id !== id) {
-			loadActivityStream(id)
-			loadCurrentActivity(id)
+			loadActivityDetails(id)
 		}
 	}, [])
 
@@ -44,8 +37,8 @@ const Activity = ({
 		loadActivityImage(polyline, setBackgroundImage, theme)
 	}, [currentActivity.polyline, theme])
 
-	if (apiCallsInProgress > 0 || backgroundImage === null) return <AnimatedSpinner />
-	if (apiError !== "") return <ApiError />
+	if (apiError === CURRENT_ACTIVITY_ERRORS.CURRENT_ACTIVITY_ERROR) return <ApiError />
+	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>
 			<ActivityTitle />

@@ -60,7 +60,7 @@ const LapsTable = ({ laps, units: { unitString, meters }, predictedType }: LapsT
 					<tbody>
 						{laps.map(({ id, name, distance, moving_time, average_speed }: Lap, index) => (
 							<TableRow key={id} session={session} muted={lapCategories[index] === "Recovery"}>
-								<td>{name}</td>
+								<td>{name.substring(4)}</td> {/* Remove the "Lap " prefix */}
 								<td>{(distance / meters).toFixed(2) + ` ${unitString}`}</td>
 								<td>{getMinsFromSeconds(moving_time)}</td>
 								<td>

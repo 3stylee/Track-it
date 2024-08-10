@@ -6,27 +6,22 @@ import connect from "./connect"
 interface DropdownMenuProps {
 	selected: string
 	options: string[]
-	error: boolean
-	clearError: () => void
+	errorStatus: number
 	setSelected: (selected: string) => void
 }
 
-const DropdownMenu = ({ selected, options, error, clearError, setSelected }: DropdownMenuProps) => {
+export const DropdownMenu = ({ selected, options, errorStatus, setSelected }: DropdownMenuProps) => {
 	const [showLoading, setShowLoading] = React.useState("")
 
 	useEffect(() => {
-		if (error) {
-			setShowLoading("")
-			// TODO: show error toast
-			clearError()
-		}
-	}, [error])
+		setShowLoading("")
+	}, [errorStatus, selected])
 
-	const handleClick = (e: React.MouseEvent<HTMLDivElement>, selected: string) => {
+	const handleClick = (e: React.MouseEvent<HTMLDivElement>, newSelected: string) => {
 		e.preventDefault()
-		if (showLoading !== selected) {
-			setShowLoading(selected)
-			setSelected(selected)
+		if (showLoading !== selected && newSelected !== selected) {
+			setShowLoading(newSelected)
+			setSelected(newSelected)
 		}
 	}
 	return (

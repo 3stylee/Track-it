@@ -26,13 +26,21 @@ export const StyledTable = styled(Table)`
 
 export const TableHeader = styled("thead")`
 	& th {
-		border-radius: var(--bs-border-radius);
 		font-weight: 400;
 		border: none;
 
 		@media (max-width: ${BREAKPOINTS.UP.SM}) {
 			font-size: 0.75rem;
 		}
+	}
+	& th:first-of-type {
+		padding-left: 1rem;
+		border-top-left-radius: var(--bs-border-radius);
+		border-bottom-left-radius: var(--bs-border-radius);
+	}
+	& th:last-child {
+		border-top-right-radius: var(--bs-border-radius);
+		border-bottom-right-radius: var(--bs-border-radius);
 	}
 `
 export const TableRow = styled("tr")<{ session: boolean; muted: boolean }>`

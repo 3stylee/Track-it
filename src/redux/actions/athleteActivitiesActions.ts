@@ -152,12 +152,14 @@ export const updateActivityType =
 		try {
 			const uId = localStorage.getItem("uId")
 			if (uId) {
+				if (prevType === "Session") dispatch(removeSession(id))
+				if (newType === "Session") await dispatch(addSession(id, currentActivity))
+
 				const q = query(
 					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
 					where("userId", "==", uId),
 					where("id", "==", id)
 				)
-
 				const querySnapshot = await getDocs(q)
 				if (!querySnapshot.empty) {
 					const docRef = querySnapshot.docs[0].ref
@@ -165,9 +167,6 @@ export const updateActivityType =
 						predictedType: newType,
 					})
 					dispatch(currentActivity ? ModifyCurrentActivityType(id, newType) : ModifyActivityType(id, newType))
-
-					if (prevType === "Session") dispatch(removeSession(id))
-					if (newType === "Session") dispatch(addSession(id))
 				} else {
 					dispatch(apiCallError(UPDATE_ACTIVITY_ERROR))
 				}

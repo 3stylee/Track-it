@@ -15,7 +15,10 @@ export interface State {
 	currentActivity: CurrentActivity
 	apiCallsInProgress: number
 	loadMore: LoadMore
-	apiError: string
+	apiError: {
+		message: string
+		status: number
+	}
 	sidebarExpanded: boolean
 	units: Units
 	userData: UserData
@@ -36,7 +39,10 @@ export default {
 		page: 0,
 	},
 	apiCallsInProgress: 0,
-	apiError: "",
+	apiError: {
+		message: "",
+		status: 0,
+	},
 	sidebarExpanded: false,
 	units: {
 		unitString: "km",

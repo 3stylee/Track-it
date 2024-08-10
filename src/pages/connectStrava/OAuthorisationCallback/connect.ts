@@ -5,7 +5,7 @@ import { storeStravaAuth } from "../../../redux/actions/stravaActions"
 const mapStateToProps = (state: State) => {
 	return {
 		userData: state.userData,
-		apiError: state.apiError,
+		apiError: state.apiError.message,
 		apiCallsInProgress: state.apiCallsInProgress,
 	}
 }

@@ -33,7 +33,7 @@ const App = () => {
 			<TitleBanner />
 			<BrowserRouter>
 				<Routes>
-					<Route path={ROUTE_PATHS.DEFAULT} element={<ConnectStrava />} />
+					<Route path={ROUTE_PATHS.DEFAULT} element={<Home toggleTheme={toggleTheme} />} />
 					<Route path={ROUTE_PATHS.AUTHORIZE} element={<OAuthorisationCallback />} />
 					<Route
 						path={ROUTE_PATHS.AUTH_ERROR}

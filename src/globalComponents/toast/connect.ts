@@ -1,9 +1,9 @@
 import { connect } from "react-redux"
-import { State } from "../../../redux/initialState"
+import { State } from "../../redux/initialState"
 
 const mapStateToProps = (state: State) => {
 	return {
-		errorStatus: state.apiError.status,
+		apiError: state.apiError,
 	}
 }
 

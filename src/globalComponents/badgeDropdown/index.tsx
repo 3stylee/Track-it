@@ -7,11 +7,10 @@ interface BadgeDropdownProps {
 	selected: string
 	options: string[]
 	showBadge?: boolean
-	error: boolean
 	setSelected: (selected: string) => void
 }
 
-export const BadgeDropdown = ({ showBadge = true, selected, options, error, setSelected }: BadgeDropdownProps) => {
+export const BadgeDropdown = ({ showBadge = true, selected, options, setSelected }: BadgeDropdownProps) => {
 	const dropdownRef = useRef<HTMLDivElement | null>(null)
 	const badgeRef = useRef<HTMLDivElement | null>(null)
 	const [showDropdown, setShowDropdown] = useState(false)
@@ -35,9 +34,7 @@ export const BadgeDropdown = ({ showBadge = true, selected, options, error, setS
 				<BadgeChevron size={16} className="badge-chevron" showDropdown={showDropdown} />
 			</StyledBadge>
 			<div ref={dropdownRef}>
-				{showDropdown && (
-					<DropdownMenu selected={selected} setSelected={setSelected} options={options} error={error} />
-				)}
+				{showDropdown && <DropdownMenu selected={selected} setSelected={setSelected} options={options} />}
 			</div>
 		</>
 	)

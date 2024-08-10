@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
-import { APPLICATION_ERRORS, ROUTE_PATHS } from "../../constants/constants"
+import { APPLICATION_ERRORS, ROUTE_PATHS, TOAST_ERRORS } from "../../constants/constants"
 import Sidebar from "../../globalComponents/sidebar"
 import connect from "./connect"
 import { AnimatedSpinner } from "../../globalComponents/animatedSpinner"
@@ -8,10 +8,14 @@ import { UserData } from "../../models/state"
 import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 import ApiError from "../../globalComponents/apiError"
 import { AthleteActivities } from "../../models/activities"
+import { Toast } from "../../globalComponents/toast"
 
 export interface HomeProps {
 	userData: UserData
-	apiError: string
+	apiError: {
+		message: string
+		status: number
+	}
 	loadUserData: () => void
 	toggleTheme: () => void
 	storeStravaAuth: (stravaAuth: any, refresh: boolean) => void
@@ -29,6 +33,7 @@ export const Home = ({
 	const navigate = useNavigate()
 	const [validToken, setValidToken] = React.useState(false)
 	const [refreshingToken, setRefreshingToken] = React.useState(false)
+	const [showToast, setShowToast] = React.useState(false)
 
 	// If strava account not connected, redirect to connect page
 	useEffect(() => {
@@ -57,12 +62,18 @@ export const Home = ({
 		}
 	}, [userData])
 
-	if (Object.values(APPLICATION_ERRORS).includes(apiError)) return <ApiError />
+	// Show toast if there is an error
+	useEffect(() => {
+		if (TOAST_ERRORS.includes(apiError.message)) setShowToast(true)
+	}, [apiError.status])
+
+	if (Object.values(APPLICATION_ERRORS).includes(apiError.message)) return <ApiError />
 	return userData.stravaAccess && userData.access_token && validToken ? (
 		userData.dateOfLastBackup ? (
 			<>
 				<Sidebar toggleTheme={toggleTheme} />
 				<Outlet />
+				<Toast showToast={showToast} setShowToast={setShowToast} message={apiError.message} />
 			</>
 		) : (
 			<CopyDataScreen />

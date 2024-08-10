@@ -4,7 +4,7 @@ import { loadAthleteActivities, resetPageNumber } from "../../../redux/actions/a
 
 export const mapStateToProps = (state: State) => {
 	return {
-		apiError: state.apiError,
+		apiError: state.apiError.message,
 		athleteActivities: state.athleteActivities,
 		selectedDate: state.selectedDate,
 	}

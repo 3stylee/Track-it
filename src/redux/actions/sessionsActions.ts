@@ -7,6 +7,7 @@ import { removeSpaces } from "../../utils/removeSpaces"
 import axios from "axios"
 import { addKeysToSessions } from "../../utils/addKeysToSessions.ts"
 import { Session } from "../../models/sessions"
+import { processAthleteActivities } from "../../utils/processAthleteActivities"
 
 export const loadSessionsSuccess = (data: any) => {
 	return { type: types.LOAD_SESSIONS_SUCCESS, data }
@@ -65,23 +66,21 @@ const loadSessionGroups = async (sessions: any) => {
 	return response.data
 }
 
-export const addSession = (id: number) => async (dispatch: any, getState: any) => {
-	const { athleteActivities } = getState()
-	const session = athleteActivities.find((activity: any) => activity.id === id)
-	try {
-		const response = await axios.post(
-			"https://urchin-app-q9ue8.ondigitalocean.app/get_key",
-			{ session: { id: session.id, title: session.title } },
-			{
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		)
-		const key = response.data
-		dispatch(addNewSession({ ...session, key }))
-	} catch (error: any) {
-		dispatch(apiCallError(SESSIONS_ERRORS.ADD_SESSION_ERROR))
-		console.error(error.message)
-	}
+export const addSession = (id: number, isCurrentActivity: boolean) => async (dispatch: any, getState: any) => {
+	const { athleteActivities, currentActivity } = getState()
+	const session = isCurrentActivity
+		? processAthleteActivities([currentActivity], undefined, true)[0]
+		: athleteActivities.find((activity: any) => activity.id === id)
+
+	const response = await axios.post(
+		"https://urchin-app-q9ue8.ondigitalocean.app/get_key",
+		{ session: { id: session.id, title: session.title } },
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	)
+	const key = response.data
+	dispatch(addNewSession({ ...session, key }))
 }

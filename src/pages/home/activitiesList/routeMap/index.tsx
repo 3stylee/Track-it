@@ -34,7 +34,6 @@ export interface RouteMapProps {
 	units: Units
 	predictedType: string
 	start: string
-	updateTypeError: boolean
 	noBadges?: boolean
 	updateActivityType: (id: number, prevType: string, newType: string) => void
 }
@@ -49,7 +48,6 @@ const RouteMap = ({
 	units,
 	predictedType,
 	start,
-	updateTypeError,
 	noBadges,
 	updateActivityType,
 }: RouteMapProps) => {
@@ -95,7 +93,6 @@ const RouteMap = ({
 							selected={predictedType}
 							setSelected={handleSetType}
 							options={ACTIVITY_TYPES}
-							error={updateTypeError}
 						/>
 						<DateText>{convertISOToDDMMYY(start)}</DateText>
 					</ImageMap>
