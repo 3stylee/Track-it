@@ -2,6 +2,7 @@ import { createSelector } from "reselect"
 import { State } from "../../../../redux/initialState"
 import { Session } from "../../../../models/sessions"
 import { connect } from "react-redux"
+import { SESSIONS_ERRORS } from "../../../../constants/constants"
 
 // Selector to get sessions from state
 const getSessions = (state: State) => state.sessions
@@ -20,9 +21,14 @@ const getGroupedSessions = createSelector([getSessions], (sessions) => {
 	return Object.values(groupedByGroupKey) as number[][]
 })
 
-const mapStateToProps = (state: State) => ({
-	sessionGroups: getGroupedSessions(state),
-	apiCallsInProgress: state.apiCallsInProgress,
-})
+const mapStateToProps = (state: State) => {
+	const dataError = state.apiError.message === SESSIONS_ERRORS.SESSIONS_ERROR
+	return {
+		sessionGroups: getGroupedSessions(state),
+		apiCallsInProgress: state.apiCallsInProgress,
+		dataError,
+		errorMessage: state.apiError.message,
+	}
+}
 
 export default connect(mapStateToProps)

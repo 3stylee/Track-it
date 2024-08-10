@@ -111,7 +111,7 @@ export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
 export const DELETE_ACTIVITY_CONFIRMATION =
 	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."
 export const NO_LOGGED_IN_USER = "No logged in user found"
-export const ATHLETE_ACTIVITIES_ERROR = "Error loading athlete activities, please check your connection and try again"
+export const ATHLETE_ACTIVITIES_ERROR = "Error loading your activities, please check your connection and try again"
 export const UPDATE_ACTIVITY_ERROR = "Error updating activity"
 export const DELETE_ACTIVITY_ERROR = "Error deleting activity"
 export const APPLICATION_ERRORS = {
@@ -135,6 +135,6 @@ export const CURRENT_ACTIVITY_ERRORS = {
 	UPDATE_ACTIVITY_ERROR,
 }
 export const SESSIONS_ERRORS = {
-	SESSIONS_ERROR: "Error loading sessions",
+	SESSIONS_ERROR: "Error loading sessions, please check your connection and try again",
 }
 export const TOAST_ERRORS = [UPDATE_ACTIVITY_ERROR, DELETE_ACTIVITY_ERROR]

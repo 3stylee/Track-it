@@ -26,7 +26,6 @@ const Calendar = ({ apiError, selectedDate, loadAthleteActivities, resetPageNumb
 		loadAthleteActivities(before, after)
 	}, [selectedDate, resetPageNumber, loadAthleteActivities])
 
-	if (apiError !== "") return <ApiError />
 	return (
 		<PageContainer>
 			<Title>
@@ -35,6 +34,7 @@ const Calendar = ({ apiError, selectedDate, loadAthleteActivities, resetPageNumb
 			</Title>
 			<DesktopCalendar />
 			<MobileCalendar />
+			{apiError !== "" && <ApiError height={"65vh"} />}
 		</PageContainer>
 	)
 }

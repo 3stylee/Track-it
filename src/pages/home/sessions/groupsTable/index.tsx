@@ -9,13 +9,16 @@ import { Searchbar } from "../searchbar"
 import { SortChevrons } from "../sortChevrons"
 import { SessionGroups } from "../../../../models/sessions"
 import { NO_SESSIONS } from "../../../../constants/constants"
+import { AlertCircle } from "react-feather"
 
 export interface GroupCardsProps {
 	sessionGroups: SessionGroups
 	apiCallsInProgress: number
+	dataError: boolean
+	errorMessage: string
 }
 
-export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsProps) => {
+export const GroupsTable = ({ sessionGroups, apiCallsInProgress, dataError, errorMessage }: GroupCardsProps) => {
 	const theme = useTheme()
 	const [searchText, setSearchText] = useState("")
 	const [sortOption, setSortOption] = useState(0)
@@ -29,14 +32,14 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 	if (apiCallsInProgress > 0) return <AnimatedSpinner height="75vh" />
 	return (
 		<div>
-			{Object.keys(sessionGroups).length !== 0 ? (
-				<>
-					<Header>
-						<FilterContainer>
-							<PageTitle>Your Sessions</PageTitle>
-							<Searchbar searchText={searchText} setSearchText={setSearchText} />
-						</FilterContainer>
-					</Header>
+			<>
+				<Header>
+					<FilterContainer>
+						<PageTitle>Your Sessions</PageTitle>
+						<Searchbar searchText={searchText} setSearchText={setSearchText} />
+					</FilterContainer>
+				</Header>
+				{Object.keys(sessionGroups).length !== 0 ? (
 					<TableContainer>
 						<Table variant={theme.bootstrap.background} striped className="mb-0">
 							<thead className="thead-light">
@@ -61,10 +64,19 @@ export const GroupsTable = ({ sessionGroups, apiCallsInProgress }: GroupCardsPro
 							</tbody>
 						</Table>
 					</TableContainer>
-				</>
-			) : (
-				<NoSessions>{NO_SESSIONS}</NoSessions>
-			)}
+				) : (
+					<NoSessions>
+						{dataError ? (
+							<>
+								<AlertCircle size={64} />
+								{errorMessage}
+							</>
+						) : (
+							NO_SESSIONS
+						)}
+					</NoSessions>
+				)}
+			</>
 		</div>
 	)
 }

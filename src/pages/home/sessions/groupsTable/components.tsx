@@ -70,5 +70,7 @@ export const NoSessions = styled("div")`
 	justify-content: center;
 	align-items: center;
 	height: 80vh;
+	flex-direction: column;
+	gap: 1rem;
 	color: ${({ theme }) => theme.text};
 `
