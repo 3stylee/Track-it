@@ -74,7 +74,7 @@ export const loadInitialAthleteActivities =
 		} = getState()
 		// We want to fetch data after the last backup date, nothing else
 		const lastBackupEpoch = new Date(dateOfLastBackup).getTime() / 1000
-		const endpoint = getEndpoint(limit, after ? after : lastBackupEpoch)
+		const endpoint = getEndpoint(limit, lastBackupEpoch)
 
 		dispatch(beginApiCall())
 
@@ -93,11 +93,19 @@ export const loadInitialAthleteActivities =
 					dispatch(copyStravaActivities(data))
 				}
 
-				// If not enough data for a full page, fetch the rest of the data from firestore
-				if (!after && data.length < PAGE_SIZE) {
+				// If not enough data from Strava, fetch the rest of the data from firestore
+				if (after) {
+					const restOfData = await getRestOfAthleteActivities(
+						dateOfLastBackup,
+						undefined,
+						new Date(after).toISOString()
+					)
+					data = data.length > 0 ? [...data, ...restOfData] : restOfData
+				} else if (data.length < PAGE_SIZE) {
 					const restOfData = await getRestOfAthleteActivities(dateOfLastBackup, data.length)
 					data = data.length > 0 ? [...data, ...restOfData] : restOfData
 				}
+
 				cache.set(endpoint, data)
 				dispatch(loadDataSuccess(data))
 
