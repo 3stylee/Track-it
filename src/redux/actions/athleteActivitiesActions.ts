@@ -88,7 +88,7 @@ export const loadInitialAthleteActivities =
 				})
 				let data = limit ? responseData : responseData.reverse()
 				if (data.length > 0) {
-					const predictions = await predictData(data)
+					const predictions = await predictData(data, access_token)
 					data = processAthleteActivities(responseData, predictions)
 					dispatch(copyStravaActivities(data))
 				}

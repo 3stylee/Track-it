@@ -21,7 +21,7 @@ export const addNewSession = (data: any) => {
 	return { type: types.ADD_SESSION, data }
 }
 
-export const loadSessions = () => async (dispatch: any) => {
+export const loadSessions = () => async (dispatch: any, getState: any) => {
 	dispatch(beginApiCall())
 	try {
 		const uId = localStorage.getItem("uId")
@@ -34,7 +34,7 @@ export const loadSessions = () => async (dispatch: any) => {
 			)
 			const querySnapshot = await getDocs(q)
 			let sessions = querySnapshot.docs.map((doc) => doc.data() as Session)
-			const sessionGroups = await loadSessionGroups(sessions)
+			const sessionGroups = await loadSessionGroups(sessions, getState().userData.access_token)
 			sessions = addKeysToSessions(sessions, sessionGroups)
 			dispatch(loadSessionsSuccess(sessions))
 		} else {
@@ -46,7 +46,7 @@ export const loadSessions = () => async (dispatch: any) => {
 	}
 }
 
-const loadSessionGroups = async (sessions: any) => {
+const loadSessionGroups = async (sessions: any, access_token: string) => {
 	const sessionsNew = []
 	for (const session of sessions) {
 		sessionsNew.push({
@@ -60,6 +60,8 @@ const loadSessionGroups = async (sessions: any) => {
 		{
 			headers: {
 				"Content-Type": "application/json",
+				id: localStorage.getItem("uId"),
+				Authorization: `Bearer ${access_token}`,
 			},
 		}
 	)
@@ -78,6 +80,8 @@ export const addSession = (id: number, isCurrentActivity: boolean) => async (dis
 		{
 			headers: {
 				"Content-Type": "application/json",
+				id: localStorage.getItem("uId"),
+				Authorization: `Bearer ${getState().userData.access_token}`,
 			},
 		}
 	)
