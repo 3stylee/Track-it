@@ -117,8 +117,8 @@ export const DELETE_ACTIVITY_ERROR = "Error deleting activity"
 export const APPLICATION_ERRORS = {
 	NO_LOGGED_IN_USER,
 	USER_DATA_ERROR: "Error loading user data, please check your connection and try again",
-	COPY_ACTIVITIES_ERROR: "Error copying new activities to firestore",
-	STORE_STRAVA_AUTH_ERROR: "Error storing Strava authentication data, please refresh and try again",
+	COPY_ACTIVITIES_ERROR: "Error copying over your activities, please try again",
+	STORE_STRAVA_AUTH_ERROR: "Strava authentication error, please refresh or try logging in again",
 }
 export const DASHBOARD_ERRORS = {
 	ATHLETE_ACTIVITIES_ERROR,

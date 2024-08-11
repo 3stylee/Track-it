@@ -72,7 +72,7 @@ export const loadInitialAthleteActivities =
 		const {
 			userData: { access_token, dateOfLastBackup },
 		} = getState()
-		// We want to fetch data from the last backup date, nothing else
+		// We want to fetch data after the last backup date, nothing else
 		const lastBackupEpoch = new Date(dateOfLastBackup).getTime() / 1000
 		const endpoint = getEndpoint(limit, after ? after : lastBackupEpoch)
 
