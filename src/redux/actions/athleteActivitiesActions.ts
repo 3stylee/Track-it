@@ -98,7 +98,7 @@ export const loadInitialAthleteActivities =
 					const restOfData = await getRestOfAthleteActivities(
 						dateOfLastBackup,
 						undefined,
-						new Date(after).toISOString()
+						new Date(after * 1000).toISOString()
 					)
 					data = data.length > 0 ? [...data, ...restOfData] : restOfData
 				} else if (data.length < PAGE_SIZE) {

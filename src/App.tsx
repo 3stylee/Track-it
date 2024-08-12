@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import {
 	TRY_AGAIN_BUTTON,
 	AUTH_ERROR_MESSAGE,
@@ -33,7 +33,7 @@ const App = () => {
 			<TitleBanner />
 			<BrowserRouter>
 				<Routes>
-					<Route path={ROUTE_PATHS.DEFAULT} element={<Home toggleTheme={toggleTheme} />} />
+					<Route path={ROUTE_PATHS.DEFAULT} element={<Navigate to={ROUTE_PATHS.HOME} />} />
 					<Route path={ROUTE_PATHS.AUTHORIZE} element={<OAuthorisationCallback />} />
 					<Route
 						path={ROUTE_PATHS.AUTH_ERROR}
