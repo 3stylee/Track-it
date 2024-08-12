@@ -10,7 +10,7 @@ import {
 export const PageContainer = styled("div")`
 	padding: ${PAGE_PADDING};
 	padding-top: calc(${TITLE_BANNER_HEIGHT} + ${PAGE_PADDING});
-	margin-left: ${SIDEBAR_WIDTH};
+	margin-left: calc(${SIDEBAR_WIDTH} - 0.375rem);
 	overflow-y: auto;
 	overflow-x: hidden;
 

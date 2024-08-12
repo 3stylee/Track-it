@@ -29,8 +29,8 @@ export const BannerText = styled("p")`
 
 export const CollapseButton = styled("button")<{ showButton: boolean }>`
 	border: none;
-	margin: 0.5rem;
-	padding: 0.5rem;
+	margin: 0.6rem;
+	padding: 0.6rem;
 	background: none;
 	transition: background-color 0.3s;
 	border-radius: 50%;

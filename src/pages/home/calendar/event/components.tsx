@@ -6,7 +6,7 @@ export const EventContainer = styled("div")`
 	backdrop-filter: blur(5px);
 	padding: 0.5rem;
 	width: 100%;
-	border-radius: var(--bs-border-radius);
+	border-radius: 0.75rem;
 	color: white;
 	margin-bottom: 0.25rem;
 	font-size: 0.75rem;

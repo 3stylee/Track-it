@@ -1,13 +1,12 @@
 import React, { useState } from "react"
-import { IconContainer, SelectedBar, SidebarContainer } from "./components"
+import { IconContainer, SelectedBar, SidebarContainer, StyledDiv, StyledList } from "./components"
 import connect from "./connect"
 import { SIDEBAR_ICONS } from "../../constants/constants"
 import { useTheme } from "@emotion/react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
-import { LogoutScreen } from "../logoutScreen"
 import { getUrlPath } from "../../utils/getUrlPath"
-import { Calendar, Clock, Grid, Home, LogOut, Moon, Settings } from "react-feather"
+import { Calendar, Clock, Grid, Home, Moon, Settings } from "react-feather"
 
 const iconMap = {
 	home: Home,
@@ -19,60 +18,47 @@ const iconMap = {
 interface SidebarProps {
 	sidebarExpanded: boolean
 	toggleTheme: () => void
-	logoutUser: () => void
 }
 
-export const Sidebar = ({ sidebarExpanded, toggleTheme, logoutUser }: SidebarProps) => {
+export const Sidebar = ({ sidebarExpanded, toggleTheme }: SidebarProps) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
-	const [showLogout, setShowLogout] = useState(false)
 	const location = useLocation()
 	return (
 		<>
-			<SidebarContainer
-				sidebarExpanded={sidebarExpanded}
-				className={`flex-column text-${theme.bootstrap.textColor} bg-${theme.bootstrap.background}`}>
-				<ul className="nav flex-column">
-					{SIDEBAR_ICONS.map(({ path, icon }) => {
-						const selected = path === getUrlPath(location)
-						const IconComponent = iconMap[icon]
-						return (
-							<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
-								<div className="d-flex">
-									<IconContainer>
-										<IconComponent />
-									</IconContainer>
-									{selected && <SelectedBar layoutId="underline" />}
-								</div>
-							</Link>
-						)
-					})}
-					<hr className="mx-3" />
-					<IconContainer
-						onClick={() => {
-							setShowSettings(!showSettings)
-						}}>
-						<Settings />
-					</IconContainer>
-					<IconContainer
-						onClick={() => {
-							setShowLogout(!showLogout)
-						}}>
-						<LogOut />
-					</IconContainer>
-					<IconContainer onClick={toggleTheme}>
-						<Moon fill="white" />
-					</IconContainer>
-				</ul>
+			<SidebarContainer sidebarExpanded={sidebarExpanded}>
+				<StyledList className="nav">
+					<div></div>
+					<div>
+						{SIDEBAR_ICONS.map(({ path, icon }) => {
+							const selected = path === getUrlPath(location)
+							const IconComponent = iconMap[icon]
+							return (
+								<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
+									<StyledDiv>
+										<IconContainer selected={selected}>
+											<IconComponent />
+										</IconContainer>
+										{selected && <SelectedBar layoutId="underline" />}
+									</StyledDiv>
+								</Link>
+							)
+						})}
+					</div>
+					<StyledDiv className="flex-column">
+						<IconContainer
+							onClick={() => {
+								setShowSettings(!showSettings)
+							}}>
+							<Settings />
+						</IconContainer>
+						<IconContainer onClick={toggleTheme}>
+							<Moon fill="white" />
+						</IconContainer>
+					</StyledDiv>
+				</StyledList>
 			</SidebarContainer>
 			<SettingsMenu show={showSettings} handleClose={() => setShowSettings(false)} />
-			<LogoutScreen
-				show={showLogout}
-				logoutUser={logoutUser}
-				handleClose={() => {
-					setShowLogout(false)
-				}}
-			/>
 		</>
 	)
 }

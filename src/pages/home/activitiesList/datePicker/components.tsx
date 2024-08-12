@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { DayPicker } from "react-day-picker"
 import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, TITLE_BANNER_HEIGHT } from "../../../../constants/constants"
+import { Button } from "react-bootstrap"
 
 export const StyledDayPicker = styled(DayPicker)`
 	--rdp-accent-color: var(--bs-primary);
@@ -13,15 +14,20 @@ export const Container = styled("div")`
 	backdrop-filter: blur(20px);
 	border: 1px solid var(--bs-primary);
 	position: absolute;
-	top: calc(2.375rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});
+	top: calc(3.125rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});
 	right: ${PAGE_PADDING};
 	z-index: 100;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		top: calc(2.375rem + ${PAGE_PADDING_MOBILE} + ${TITLE_BANNER_HEIGHT});
+		top: calc(3.125rem + ${PAGE_PADDING_MOBILE} + ${TITLE_BANNER_HEIGHT});
 		right: ${PAGE_PADDING_MOBILE};
 	}
 `
+export const StyledButton = styled(Button)`
+	border-radius: 1.5rem;
+	padding: 0.75rem 1rem;
+`
+
 export const Footer = styled("div")`
 	display: flex;
 	justify-content: space-between;

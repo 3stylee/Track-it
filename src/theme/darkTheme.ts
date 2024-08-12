@@ -11,7 +11,6 @@ export default {
 		textColor: "white",
 	},
 	athleteActivities: {
-		cardBackgroundImage: "linear-gradient(rgba(105, 35, 135, 0.5), rgba(75, 35, 95, 0.5), rgba(35, 48, 135, 0.5))",
 		datePickerBackground: "rgba(11, 22, 35, 0.5)",
 	},
 	currentActivity: {
@@ -20,6 +19,7 @@ export default {
 	},
 	sidebar: {
 		iconHover: "rgba(255, 255, 255, 0.15)",
+		iconBackground: "rgba(11, 22, 35, 0.8)",
 	},
 	labelledStats: {
 		divider: "white",

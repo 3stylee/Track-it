@@ -11,7 +11,6 @@ export default {
 		textColor: "black",
 	},
 	athleteActivities: {
-		cardBackgroundImage: "none",
 		datePickerBackground: "rgba(245, 245, 245, 0.5)",
 	},
 	currentActivity: {
@@ -20,6 +19,7 @@ export default {
 	},
 	sidebar: {
 		iconHover: "rgba(0, 0, 0, 0.15)",
+		iconBackground: "rgba(245, 245, 245, 0.7)",
 	},
 	labelledStats: {
 		divider: "grey",

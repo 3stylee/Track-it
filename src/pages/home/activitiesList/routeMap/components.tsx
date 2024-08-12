@@ -19,9 +19,6 @@ export const CardContainer = styled("div")`
 		}
 	}
 	border-radius: var(--bs-border-radius);
-	box-shadow: inset 0 0 8px rgba(135, 135, 135, 0.1), 0 0 10px 1px rgba(0, 0, 0, 0.3);
-	background-image: ${({ theme }) => theme.athleteActivities.cardBackgroundImage};
-	backdrop-filter: blur(4px);
 `
 
 export const ImageMap = styled("div")`
@@ -30,14 +27,13 @@ export const ImageMap = styled("div")`
 
 export const StyledImage = styled("img")`
 	width: 100%;
-	border-top-left-radius: var(--bs-border-radius);
-	border-top-right-radius: var(--bs-border-radius);
+	border-radius: var(--bs-border-radius);
 `
 
 export const DateText = styled("p")`
 	position: absolute;
-	left: 0.5rem;
-	top: 0.5rem;
+	left: 0.75rem;
+	top: 0.75rem;
 	font-size: 0.75rem;
 	font-weight: bold;
 `

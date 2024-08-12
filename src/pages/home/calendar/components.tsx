@@ -5,7 +5,7 @@ export const PageContainer = styled("div")`
 	width: calc(100% - ${SIDEBAR_WIDTH});
 	padding: ${PAGE_PADDING};
 	padding-top: calc(${TITLE_BANNER_HEIGHT} + ${PAGE_PADDING});
-	margin-left: ${SIDEBAR_WIDTH};
+	margin-left: calc(${SIDEBAR_WIDTH} - 0.375rem);
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		width: 100%;

@@ -16,7 +16,7 @@ export const Body = styled(CardBody)`
 	}
 `
 export const CardHeader = styled("h5")`
-	padding: 0.928rem 0.25rem;
+	padding: 1.32rem 0.25rem;
 	margin-bottom: 0;
 `
 
@@ -44,6 +44,14 @@ export const TableRow = styled("tr")`
 		font-size: 0.875rem;
 		vertical-align: middle;
 		border: none;
+		text-wrap: nowrap;
+		max-width: 10rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		@media (min-width: ${BREAKPOINTS.DOWN.LG}) {
+			font-size: 0.75rem;
+		}
 
 		@media (max-width: ${BREAKPOINTS.UP.SM}) {
 			font-size: 0.75rem;

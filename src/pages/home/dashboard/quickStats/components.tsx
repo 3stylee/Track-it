@@ -26,7 +26,7 @@ export const StatName = styled("span")`
 	font-size: 0.75rem;
 	${({ theme }) => theme.text};
 `
-export const StatValue = styled("h5")`
+export const StatValue = styled("h4")`
 	margin-bottom: 0.25rem;
 	color: var(--bs-primary);
 `

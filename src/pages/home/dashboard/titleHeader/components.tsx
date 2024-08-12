@@ -11,7 +11,7 @@ export const StyledHeader = styled("div")`
 `
 export const StyledCard = styled("div")`
 	margin-bottom: ${PAGE_PADDING};
-	padding: ${PAGE_PADDING};
+	padding: 1.5rem;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-bottom: ${PAGE_PADDING_MOBILE};

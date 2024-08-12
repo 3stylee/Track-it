@@ -56,7 +56,7 @@ export const SELECT_DATE_RANGE = "Select a date range"
 export const NO_ACTIVITIES = "No activities found, please upload some to Strava to get started"
 export const NO_RESULTS = "Please try another selection, or check you have uploaded your activity to Strava"
 export const NO_SESSIONS = "No sessions found, please upload some to Strava to get started"
-export const SIDEBAR_WIDTH = "3.5rem"
+export const SIDEBAR_WIDTH = "4.875rem"
 export const STREAM_RESOLUTION_FACTOR = 15
 export const ACTIVITY_GRAPH_TIME_LABELS = 8
 export const THEMES = {
@@ -80,7 +80,7 @@ export const FIREBASE_COLLECTIONS = {
 }
 export const DAYS_OF_WEEK_SHORT = ["M", "T", "W", "T", "F", "S", "S"]
 export const DAYS_OF_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-export const PAGE_PADDING = "1.5rem"
+export const PAGE_PADDING = "0.875rem"
 export const PAGE_PADDING_MOBILE = "0.5rem"
 export const BREAKPOINTS = {
 	UP: {

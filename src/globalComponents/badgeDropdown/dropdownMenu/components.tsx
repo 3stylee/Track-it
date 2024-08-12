@@ -7,10 +7,10 @@ export const PopupContainer = styled("div")`
 	border: 1px solid rgb(77, 81, 84);
 	color: ${({ theme }) => theme.text};
 	backdrop-filter: blur(5px);
-	border-radius: var(--bs-border-radius);
+	border-radius: 0.5rem;
 	z-index: 2;
-	right: 0.5rem;
-	top: 2.27rem;
+	right: 0.75rem;
+	top: 2.47rem;
 `
 export const Activity = styled("div")<{ selected: boolean }>`
 	display: flex;

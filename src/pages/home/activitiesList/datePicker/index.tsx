@@ -1,7 +1,15 @@
 import React, { useRef, useEffect, useState } from "react"
 import { DateRange } from "react-day-picker"
 import "react-day-picker/dist/style.css"
-import { ButtonText, ClearButton, Container, FilterButtonContainer, Footer, StyledDayPicker } from "./components"
+import {
+	ButtonText,
+	ClearButton,
+	Container,
+	FilterButtonContainer,
+	Footer,
+	StyledButton,
+	StyledDayPicker,
+} from "./components"
 import { Button } from "react-bootstrap"
 import { addPopupListeners } from "../../../../utils/addPopupListeners"
 import { getDatePickerText } from "../../../../utils/getDatePickerText"
@@ -41,12 +49,12 @@ export const DatePicker = ({
 	return (
 		<div ref={wrapperRef}>
 			<FilterButtonContainer>
-				<Button onClick={() => setIsOpen(!isOpen)}>
+				<StyledButton onClick={() => setIsOpen(!isOpen)}>
 					<ButtonText>
 						{filterApplied ? footerText : FILTER_RESULTS}
 						<Calendar size={18} />
 					</ButtonText>
-				</Button>
+				</StyledButton>
 				{filterApplied && (
 					<ClearButton
 						onClick={() => {

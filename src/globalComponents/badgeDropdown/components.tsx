@@ -5,9 +5,10 @@ import { ChevronDown } from "react-feather"
 export const StyledBadge = styled(Badge)<{ showBadge: boolean }>`
 	background-image: ${({ theme }) => theme.primaryGradient};
 	display: ${({ showBadge }) => (showBadge ? "inline" : "none")};
+	border-radius: 0.75rem;
 	position: absolute;
-	right: 0.5rem;
-	top: 0.5rem;
+	right: 0.75rem;
+	top: 0.75rem;
 	transition: width 0.5s;
 	${({ theme }) => theme.name === "dark" && `border: 1px solid ${theme.text};`}
 

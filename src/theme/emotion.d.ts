@@ -12,7 +12,6 @@ declare module "@emotion/react" {
 			textColor: string
 		}
 		athleteActivities: {
-			cardBackgroundImage: string
 			datePickerBackground: string
 		}
 		currentActivity: {
@@ -21,6 +20,7 @@ declare module "@emotion/react" {
 		}
 		sidebar: {
 			iconHover: string
+			iconBackground: string
 		}
 		labelledStats: {
 			divider: string
