@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { IconContainer, SelectedBar, SidebarContainer, StyledDiv, StyledList } from "./components"
 import connect from "./connect"
-import { SIDEBAR_ICONS } from "../../constants/constants"
+import { SIDEBAR_ICONS, THEMES } from "../../constants/constants"
 import { useTheme } from "@emotion/react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
 import { getUrlPath } from "../../utils/getUrlPath"
-import { Calendar, Clock, Grid, Home, Moon, Settings } from "react-feather"
+import { Calendar, Clock, Grid, Home, Moon, Settings, Sun } from "react-feather"
 
 const iconMap = {
 	home: Home,
@@ -53,7 +53,7 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: SidebarProps) => {
 							<Settings />
 						</IconContainer>
 						<IconContainer onClick={toggleTheme}>
-							<Moon fill="white" />
+							{theme.name === THEMES.LIGHT ? <Moon /> : <Sun />}
 						</IconContainer>
 					</StyledDiv>
 				</StyledList>

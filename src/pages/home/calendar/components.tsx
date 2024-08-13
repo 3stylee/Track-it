@@ -27,4 +27,10 @@ export const Title = styled("div")`
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 1rem;
+	flex-wrap: wrap;
+
+	@media (max-width: 287px) {
+		gap: 1rem;
+		justify-content: center;
+	}
 `

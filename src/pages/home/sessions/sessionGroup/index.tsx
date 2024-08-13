@@ -34,7 +34,7 @@ const SessionGroup = ({ sessions, apiCallsInProgress }: SessionGroupProps) => {
 				loadMoreError={false}
 				filterApplied={false}
 			/>
-			{apiCallsInProgress === 0 && <NoGroupText>No group found</NoGroupText>}
+			{apiCallsInProgress === 0 && groupSessions.length === 0 && <NoGroupText>No group found</NoGroupText>}
 		</div>
 	)
 }

@@ -3,13 +3,13 @@ import { ROUTE_PATHS } from "../../../../constants/constants"
 import { useNavigate } from "react-router-dom"
 import { getMapboxEndpoint } from "../../../../utils/getMapboxEndpoint"
 import decodePolyline from "../../../../utils/decodePolyline"
-import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
-import { ActivityMap, ImageRow, StyledRow, StyledSpan } from "./components"
+import { ActivityMap, ImageRow, NoResults, StyledRow, StyledSpan } from "./components"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { AthleteActivities } from "../../../../models/activities"
 import { filterSessionGroups } from "../../../../utils/filterSesssionGroups"
 import { SessionGroups } from "../../../../models/sessions"
+import { formatDate } from "date-fns"
 
 export interface TableContentsProps {
 	sessions: AthleteActivities
@@ -22,7 +22,6 @@ const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: Tabl
 	const navigate = useNavigate()
 	const theme = useTheme()
 	const filteredGroups = filterSessionGroups(Object.values(sessionGroups), sessions, searchText, sortOption)
-	console.log(filteredGroups)
 
 	return filteredGroups.length > 0 ? (
 		<>
@@ -41,20 +40,22 @@ const TableContents = ({ sessionGroups, sessions, searchText, sortOption }: Tabl
 									src={getMapboxEndpoint(
 										decodePolyline(firstGroupSession.polyline),
 										theme.name,
-										"40x40"
+										"50x50"
 									)}
 									alt="session map"
 								/>
 							)}
 							<StyledSpan>{firstGroupSession.title}</StyledSpan>
 						</ImageRow>
-						<td>{convertISOToDDMMYY(firstGroupSession.start)}</td>
+						<td>{formatDate(firstGroupSession.start, "dd/MM/yy")}</td>
 						<td>{group.length}</td>
 					</StyledRow>
 				) : null
 			})}
 		</>
-	) : null
+	) : (
+		<NoResults>No Results Found</NoResults>
+	)
 }
 
 export default connect(TableContents)

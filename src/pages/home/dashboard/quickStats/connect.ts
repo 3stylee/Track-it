@@ -3,7 +3,7 @@ import { State } from "../../../../redux/initialState"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state: State) => {
-	const dataError = state.apiError.message === DASHBOARD_ERRORS.ATHLETE_DATA_ERROR
+	const dataError = Object.values(DASHBOARD_ERRORS).includes(state.apiError.message)
 	return {
 		athleteData: state.athleteData,
 		units: state.units,

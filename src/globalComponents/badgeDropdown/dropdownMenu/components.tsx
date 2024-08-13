@@ -26,12 +26,12 @@ export const Activity = styled("div")<{ selected: boolean }>`
 	}
 
 	&:first-of-type {
-		border-top-left-radius: 0.25rem;
-		border-top-right-radius: 0.25rem;
+		border-top-left-radius: 0.4rem;
+		border-top-right-radius: 0.4rem;
 	}
 
 	&:last-of-type {
-		border-bottom-left-radius: 0.25rem;
-		border-bottom-right-radius: 0.25rem;
+		border-bottom-left-radius: 0.4rem;
+		border-bottom-right-radius: 0.4rem;
 	}
 `

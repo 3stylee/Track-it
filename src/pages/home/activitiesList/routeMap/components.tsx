@@ -31,10 +31,9 @@ export const StyledImage = styled("img")`
 `
 
 export const DateText = styled("p")`
-	position: absolute;
-	left: 0.75rem;
-	top: 0.75rem;
-	font-size: 0.75rem;
+	margin: 0.25rem 0;
+	font-size: 0.675rem;
+	color: ${({ theme }) => theme.secondaryText};
 	font-weight: bold;
 `
 
@@ -68,7 +67,7 @@ export const ImagePlaceholder = styled("div")`
 `
 
 export const ActivityDescription = styled("div")`
-	padding: 1rem;
+	padding: 1rem 0.5rem;
 	padding-bottom: 0;
 	position: relative;
 `
@@ -81,7 +80,6 @@ export const ActivityTitle = styled("h5")`
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
-	margin-bottom: 1rem;
 	width: 90%;
 `
 

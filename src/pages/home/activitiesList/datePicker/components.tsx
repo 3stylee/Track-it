@@ -14,18 +14,18 @@ export const Container = styled("div")`
 	backdrop-filter: blur(20px);
 	border: 1px solid var(--bs-primary);
 	position: absolute;
-	top: calc(3.125rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});
+	top: calc(2.75rem + ${PAGE_PADDING} + ${TITLE_BANNER_HEIGHT});
 	right: ${PAGE_PADDING};
 	z-index: 100;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		top: calc(3.125rem + ${PAGE_PADDING_MOBILE} + ${TITLE_BANNER_HEIGHT});
+		top: calc(2.75rem + ${PAGE_PADDING_MOBILE} + ${TITLE_BANNER_HEIGHT});
 		right: ${PAGE_PADDING_MOBILE};
 	}
 `
 export const StyledButton = styled(Button)`
 	border-radius: 1.5rem;
-	padding: 0.75rem 1rem;
+	padding: 0.6rem 1rem;
 `
 
 export const Footer = styled("div")`

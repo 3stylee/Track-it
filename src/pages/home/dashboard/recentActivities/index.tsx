@@ -1,12 +1,12 @@
 import React from "react"
 import connect from "./connect"
-import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../constants/constants"
 import { Body, CardHeader, NoActivities, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"
 import { Units } from "../../../../models/state"
 import { useNavigate } from "react-router-dom"
+import { formatDate } from "date-fns"
 
 interface RecentActivitiesProps {
 	athleteActivities: any
@@ -40,7 +40,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 							{filteredData.map(({ id, start, title, distance }: any) => {
 								return (
 									<TableRow key={id} onClick={() => navigate(ROUTE_PATHS.ACTIVITY + `?id=${id}`)}>
-										<td>{convertISOToDDMMYY(start)}</td>
+										<td>{formatDate(start, "dd/MM/yy")}</td>
 										<td>{title}</td>
 										<td>{(distance / units.meters).toFixed(2) + ` ${units.unitString}`}</td>
 									</TableRow>

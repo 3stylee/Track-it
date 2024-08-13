@@ -1,5 +1,13 @@
 import styled from "@emotion/styled"
-import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, SIDEBAR_WIDTH } from "../../../../constants/constants"
+import { BREAKPOINTS, PAGE_PADDING, PAGE_PADDING_MOBILE, TITLE_BANNER_HEIGHT } from "../../../../constants/constants"
+
+export const StyledContainer = styled("div")`
+	height: calc(100vh - ${TITLE_BANNER_HEIGHT} - (2 * ${PAGE_PADDING}));
+
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		height: calc(100vh - ${TITLE_BANNER_HEIGHT} - (2 * ${PAGE_PADDING_MOBILE}));
+	}
+`
 
 export const PageTitle = styled("h4")`
 	margin-bottom: 0;
@@ -13,18 +21,7 @@ export const SessionCount = styled("p")`
 	margin-bottom: 1rem;
 	color: ${({ theme }) => theme.text};
 `
-export const TableContainer = styled("div")`
-	overflow-x: hidden;
-	padding-top: 4rem;
 
-	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		padding-top: 3rem;
-	}
-
-	@media (max-width: 486px) {
-		padding-top: 6rem;
-	}
-`
 export const FilterContainer = styled("div")`
 	display: flex;
 	justify-content: space-between;
@@ -36,12 +33,34 @@ export const FilterContainer = styled("div")`
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		margin-bottom: ${PAGE_PADDING_MOBILE};
 	}
+
+	@media (max-width: 495px) {
+		justify-content: center;
+	}
+`
+
+export const TableContainer = styled("div")`
+	max-height: calc(100% - 4.625rem);
+	overflow: scroll;
+	border-radius: var(--bs-border-radius);
+
+	@media (max-width: ${BREAKPOINTS.UP.MD}) {
+		max-height: calc(100% - 3.2rem);
+	}
+
+	@media (max-width: 495px) {
+		max-height: calc(100% - 6.141rem);
+	}
 `
 
 export const SortableHeader = styled("div")`
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+`
+export const TableHeader = styled("thead")`
+	position: sticky;
+	top: 0;
 `
 
 export const StyledRow = styled("tr")`
@@ -50,19 +69,19 @@ export const StyledRow = styled("tr")`
 	}
 	& th {
 		vertical-align: middle;
+		background: ${({ theme }) => theme.calendar.eventBackground};
+		backdrop-filter: blur(10px);
+		color: white;
 	}
 `
+
 export const Header = styled("div")`
-	margin-top: -${PAGE_PADDING};
-	padding-top: ${PAGE_PADDING};
-	position: fixed;
-	width: calc(100% - ${SIDEBAR_WIDTH} - (2 * ${PAGE_PADDING}));
-	background-color: ${({ theme }) => theme.background};
+	padding-top: calc(1.5rem - ${PAGE_PADDING});
+	margin-bottom: 1.5rem;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		margin-top: -${PAGE_PADDING_MOBILE};
-		padding-top: ${PAGE_PADDING_MOBILE};
-		width: calc(100% - (2 * ${PAGE_PADDING_MOBILE}));
+		padding-top: 0;
+		margin-bottom: ${PAGE_PADDING_MOBILE};
 	}
 `
 export const NoSessions = styled("div")`

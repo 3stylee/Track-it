@@ -8,9 +8,9 @@ export const Container = styled("div")`
 `
 export const UpChevron = styled(ChevronUp)<{ active: boolean }>`
 	height: 0.75rem;
-	color: ${({ theme, active }) => (active ? "var(--bs-primary)" : theme.text)};
+	color: ${({ active }) => (active ? "black" : "white")};
 `
 export const DownChevron = styled(ChevronDown)<{ active: boolean }>`
 	height: 0.75rem;
-	color: ${({ theme, active }) => (active ? "var(--bs-primary)" : theme.text)};
+	color: ${({ active }) => (active ? "black" : "white")};
 `

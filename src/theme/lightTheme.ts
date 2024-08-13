@@ -4,6 +4,7 @@ export default {
 	name: "light",
 	background: "#F5F5F5",
 	text: "rgb(0,0,0)",
+	secondaryText: "gray",
 	primaryGradient: "linear-gradient(0deg, rgba(245, 245, 245, 0.3) 0%, rgba(102, 61, 255, 1) 100%);",
 	bootstrap: {
 		background: "white",

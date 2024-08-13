@@ -12,4 +12,8 @@ export const SearchbarContainer = styled(InputGroup)`
 	@media (max-width: 768px) {
 		width: 20rem;
 	}
+
+	@media (max-width: 495px) {
+		width: 100%;
+	}
 `

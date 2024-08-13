@@ -8,7 +8,7 @@ export const MenuContainer = styled("div")`
 	z-index: 2;
 	background-color: ${({ theme }) => theme.popup.background};
 	border: 1px solid rgb(77, 81, 84);
-	border-radius: var(--bs-border-radius);
+	border-radius: 0.5rem;
 	box-shadow: ${({ theme }) => theme.popup.boxShadow};
 `
 
@@ -31,13 +31,13 @@ export const MenuOption = styled("div")`
 	}
 
 	&:first-of-type {
-		border-top-left-radius: var(--bs-border-radius);
-		border-top-right-radius: var(--bs-border-radius);
+		border-top-left-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
 	}
 
 	&:last-of-type {
-		border-bottom-left-radius: var(--bs-border-radius);
-		border-bottom-right-radius: var(--bs-border-radius);
+		border-bottom-left-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
 	}
 `
 export const DeleteOption = styled(MenuOption)`

@@ -17,12 +17,12 @@ import { useTheme } from "@emotion/react"
 import { getActivityStats } from "../../../../utils/getActivityStats"
 import connect from "./connect"
 import { Units } from "../../../../models/state"
-import { convertISOToDDMMYY } from "../../../../utils/convertISOtoDDMMYY"
 import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
 import { MoreVertical } from "react-feather"
 import { MoreMenu } from "../moreMenu"
 import DeleteModal from "../deleteModal"
 import { EditModal } from "../editModal"
+import { formatDate } from "date-fns"
 
 export interface RouteMapProps {
 	polyline: number[][]
@@ -94,7 +94,6 @@ const RouteMap = ({
 							setSelected={handleSetType}
 							options={ACTIVITY_TYPES}
 						/>
-						<DateText>{convertISOToDDMMYY(start)}</DateText>
 					</ImageMap>
 					{!imageLoaded && <ImagePlaceholder />}
 					<ActivityDescription>
@@ -111,6 +110,7 @@ const RouteMap = ({
 								id={id}
 							/>
 						)}
+						<DateText>{formatDate(start, "dd/MM/yy")}</DateText>
 						<LabelledStats stats={stats} small={true} />
 					</ActivityDescription>
 				</CardContainer>

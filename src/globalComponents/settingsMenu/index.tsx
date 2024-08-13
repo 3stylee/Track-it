@@ -43,11 +43,6 @@ const SettingsMenu = ({ show, units, setUnitImperial, setUnitMetric, handleClose
 						</Button>
 					</SettingContainer>
 				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Close
-					</Button>
-				</Modal.Footer>
 			</StyledModal>
 			<LogoutScreen
 				show={showLogout}

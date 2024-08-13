@@ -20,6 +20,7 @@ const ChevronBase = styled.div<{ disabled: boolean }>`
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		height: 2rem;
 		width: 2rem;
+		padding: 0.4rem;
 	}
 `
 
@@ -33,7 +34,8 @@ export const TodayButton = styled(Button)`
 	font-size: 0.9rem;
 	border: 1px solid ${({ theme }) => theme.calendar.borderColor};
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		font-size: 0.75rem;
+		font-size: 0.65rem;
+		padding: 0;
 		height: 2rem;
 		width: 3rem;
 	}

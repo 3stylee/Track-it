@@ -53,3 +53,7 @@
     font-weight: bold;
     font-style: 700;
 }
+
+body {
+    transition: background 0.3s, border-color 0.3s;
+}
