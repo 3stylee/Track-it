@@ -50,7 +50,11 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 		const uId = localStorage.getItem("uId")
 		if (uId) {
 			const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
-			await setDoc(docRef, { access_token, refresh_token, expires_at, stravaAccess: true }, { merge: true })
+			await setDoc(
+				docRef,
+				{ userId: uId, access_token, refresh_token, expires_at, stravaAccess: true },
+				{ merge: true }
+			)
 			dispatch(storeAuthSuccess())
 		} else {
 			dispatch(apiCallError(NO_LOGGED_IN_USER))

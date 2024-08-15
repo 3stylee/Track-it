@@ -13,6 +13,7 @@ import loadMore from "./loadMoreReducer"
 import activitiesHasFilter from "./activitiesFilterReducer"
 import gotInitialActivities from "./initialActivitiesReducer"
 import selectedDate from "./selectedDateReducer"
+import chatbotExpanded from "./chatbotReducer"
 
 export const rootReducer = combineReducers({
 	apiCallsInProgress,
@@ -26,6 +27,7 @@ export const rootReducer = combineReducers({
 	currentActivityStream,
 	currentActivity,
 	sidebarExpanded,
+	chatbotExpanded,
 	units,
 	userData,
 	selectedDate,

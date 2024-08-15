@@ -1,6 +1,6 @@
 import React from "react"
 import { SORT_OPTIONS } from "../../../../constants/constants"
-import { StyledButton } from "./components"
+import { StyledButton, StyledDropdown } from "./components"
 
 export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 	const handleItemClick = (selectedValue: string) => {
@@ -14,7 +14,7 @@ export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 			<StyledButton data-bs-toggle="dropdown" aria-expanded="false">
 				{weekOrMonth}
 			</StyledButton>
-			<ul className="dropdown-menu dropdown-menu-dark">
+			<StyledDropdown className="dropdown-menu dropdown-menu-dark">
 				{Object.entries(SORT_OPTIONS).map(([, value]) => (
 					<li key={value}>
 						<button
@@ -24,7 +24,7 @@ export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 						</button>
 					</li>
 				))}
-			</ul>
+			</StyledDropdown>
 		</div>
 	)
 }

@@ -20,6 +20,7 @@ export interface State {
 		status: number
 	}
 	sidebarExpanded: boolean
+	chatbotExpanded: boolean
 	units: Units
 	userData: UserData
 	selectedDate: Date
@@ -43,6 +44,7 @@ export default {
 		message: "",
 		status: 0,
 	},
+	chatbotExpanded: false,
 	sidebarExpanded: false,
 	units: {
 		unitString: "km",

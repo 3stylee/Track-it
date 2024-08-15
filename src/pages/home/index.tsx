@@ -9,6 +9,7 @@ import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 import ApiError from "../../globalComponents/apiError"
 import { AthleteActivities } from "../../models/activities"
 import { Toast } from "../../globalComponents/toast"
+import Chatbot from "../../globalComponents/chatbot"
 
 export interface HomeProps {
 	userData: UserData
@@ -39,6 +40,12 @@ export const Home = ({
 	useEffect(() => {
 		if (!localStorage.getItem("uId")) navigate(ROUTE_PATHS.CONNECT)
 	}, [userData, navigate])
+
+	useEffect(() => {
+		if (localStorage.getItem("uId") && userData.access_token && userData.stravaAccess === false) {
+			localStorage.removeItem("uId")
+		}
+	}, [userData])
 
 	// If strava access token has expired, refresh it
 	useEffect(() => {
@@ -73,6 +80,7 @@ export const Home = ({
 			<>
 				<Sidebar toggleTheme={toggleTheme} />
 				<Outlet />
+				<Chatbot />
 				<Toast showToast={showToast} setShowToast={setShowToast} message={apiError.message} />
 			</>
 		) : (

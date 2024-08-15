@@ -43,6 +43,7 @@ export const TableContainer = styled("div")`
 	max-height: calc(100% - 4.625rem);
 	overflow: scroll;
 	border-radius: var(--bs-border-radius);
+	border: 1px solid ${({ theme }) => theme.calendar.borderColor};
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {
 		max-height: calc(100% - 3.2rem);

@@ -6,7 +6,7 @@ import { useTheme } from "@emotion/react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
 import { getUrlPath } from "../../utils/getUrlPath"
-import { Calendar, Clock, Grid, Home, Moon, Settings, Sun } from "react-feather"
+import { Calendar, Clock, Grid, Home, Mic, Moon, Settings, Sun } from "react-feather"
 
 const iconMap = {
 	home: Home,
@@ -18,9 +18,10 @@ const iconMap = {
 interface SidebarProps {
 	sidebarExpanded: boolean
 	toggleTheme: () => void
+	toggleChatbot: () => void
 }
 
-export const Sidebar = ({ sidebarExpanded, toggleTheme }: SidebarProps) => {
+export const Sidebar = ({ sidebarExpanded, toggleTheme, toggleChatbot }: SidebarProps) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
 	const location = useLocation()
@@ -28,7 +29,9 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme }: SidebarProps) => {
 		<>
 			<SidebarContainer sidebarExpanded={sidebarExpanded}>
 				<StyledList className="nav">
-					<div></div>
+					<IconContainer onClick={toggleChatbot}>
+						<Mic />
+					</IconContainer>
 					<div>
 						{SIDEBAR_ICONS.map(({ path, icon }) => {
 							const selected = path === getUrlPath(location)

@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { State } from "../../redux/initialState"
+import { toggleChatbot } from "../../redux/actions/chatbotActions"
 
 export const mapStateToProps = (state: State) => {
 	return {
@@ -7,4 +8,8 @@ export const mapStateToProps = (state: State) => {
 	}
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = {
+	toggleChatbot,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)
