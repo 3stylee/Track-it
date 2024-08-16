@@ -9,7 +9,6 @@ import { CopyDataScreen } from "../../globalComponents/copyDataScreen"
 import ApiError from "../../globalComponents/apiError"
 import { AthleteActivities } from "../../models/activities"
 import { Toast } from "../../globalComponents/toast"
-import Chatbot from "../../globalComponents/chatbot"
 
 export interface HomeProps {
 	userData: UserData
@@ -80,7 +79,6 @@ export const Home = ({
 			<>
 				<Sidebar toggleTheme={toggleTheme} />
 				<Outlet />
-				<Chatbot />
 				<Toast showToast={showToast} setShowToast={setShowToast} message={apiError.message} />
 			</>
 		) : (

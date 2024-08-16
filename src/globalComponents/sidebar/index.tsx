@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { IconContainer, SelectedBar, SidebarContainer, StyledDiv, StyledList } from "./components"
 import connect from "./connect"
-import { SIDEBAR_ICONS, THEMES } from "../../constants/constants"
+import { ROUTE_PATHS, SIDEBAR_ICONS, THEMES } from "../../constants/constants"
 import { useTheme } from "@emotion/react"
 import { Link, useLocation } from "react-router-dom"
 import SettingsMenu from "../settingsMenu"
 import { getUrlPath } from "../../utils/getUrlPath"
-import { Calendar, Clock, Grid, Home, Mic, Moon, Settings, Sun } from "react-feather"
+import { Calendar, Clock, Grid, Home, MessageSquare, Moon, Settings, Sun } from "react-feather"
 
 const iconMap = {
 	home: Home,
@@ -18,10 +18,9 @@ const iconMap = {
 interface SidebarProps {
 	sidebarExpanded: boolean
 	toggleTheme: () => void
-	toggleChatbot: () => void
 }
 
-export const Sidebar = ({ sidebarExpanded, toggleTheme, toggleChatbot }: SidebarProps) => {
+export const Sidebar = ({ sidebarExpanded, toggleTheme }: SidebarProps) => {
 	const theme = useTheme()
 	const [showSettings, setShowSettings] = useState(false)
 	const location = useLocation()
@@ -29,15 +28,20 @@ export const Sidebar = ({ sidebarExpanded, toggleTheme, toggleChatbot }: Sidebar
 		<>
 			<SidebarContainer sidebarExpanded={sidebarExpanded}>
 				<StyledList className="nav">
-					<IconContainer onClick={toggleChatbot}>
-						<Mic />
-					</IconContainer>
+					<Link to={ROUTE_PATHS.CHAT} className={`text-${theme.bootstrap.textColor}`}>
+						<StyledDiv>
+							<IconContainer selected={getUrlPath(location) === "chat"}>
+								<MessageSquare />
+							</IconContainer>
+							{getUrlPath(location) === "chat" && <SelectedBar layoutId="underline" />}
+						</StyledDiv>
+					</Link>
 					<div>
 						{SIDEBAR_ICONS.map(({ path, icon }) => {
 							const selected = path === getUrlPath(location)
 							const IconComponent = iconMap[icon]
 							return (
-								<Link to={path} className={`text-${theme.bootstrap.textColor}`} key={icon}>
+								<Link to={path} key={icon}>
 									<StyledDiv>
 										<IconContainer selected={selected}>
 											<IconComponent />

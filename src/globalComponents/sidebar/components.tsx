@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export const SidebarContainer = styled("div")<{ sidebarExpanded: boolean }>`
 	width: ${SIDEBAR_WIDTH};
-	padding: ${TITLE_BANNER_HEIGHT} 0 0 0.5rem;
+	padding: calc(${TITLE_BANNER_HEIGHT} + 0.5rem) 0 0 0.5rem;
 	color: ${({ theme }) => theme.text};
 	transition: margin-left 0.3s;
 	position: fixed;
@@ -57,4 +57,5 @@ export const SelectedBar = styled(motion.div)`
 export const StyledDiv = styled("div")`
 	display: flex;
 	align-items: center;
+	color: ${({ theme }) => theme.text};
 `

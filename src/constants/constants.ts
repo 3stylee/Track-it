@@ -13,6 +13,7 @@ export const ROUTE_PATHS = {
 	LOGIN: "/login",
 	REGISTER: "/register",
 	HOME: "/home",
+	CHAT: "/home/chat",
 	SEARCH_ACTIVITIES: "/home/search",
 	SESSIONS: "/home/sessions",
 	AUTH_ERROR: "/auth_error",

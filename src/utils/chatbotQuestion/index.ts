@@ -4,6 +4,7 @@ import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts
 import { SYSTEM_PROMPT } from "../../constants/RAG_agents/prompts"
 import { concat } from "@langchain/core/utils/stream"
 import modelTools from "./tools"
+import { MessageProps } from "../../pages/home/chatbot"
 
 const llm = new ChatOpenAI({
 	model: "gpt-4o-mini",
@@ -18,7 +19,11 @@ const promptTemplate = ChatPromptTemplate.fromMessages([
 	new MessagesPlaceholder("agent_scratchpad"),
 ])
 
-export const chatbotQuestion = async (question: string, setData: any) => {
+export const chatbotQuestion = async (
+	question: string,
+	setData: (value: React.SetStateAction<MessageProps[]>) => void,
+	index: number
+) => {
 	const agent = await createOpenAIToolsAgent({
 		llm,
 		tools,
@@ -32,7 +37,8 @@ export const chatbotQuestion = async (question: string, setData: any) => {
 		{ input: `${question}. My user ID is ${localStorage.getItem("uId")}` },
 		{ version: "v2" }
 	)
-	let answer
+	let answer: string | undefined
+	setData((prevMessages: any) => [...prevMessages, { sender: "bot", index, text: "" }])
 	for await (const event of result) {
 		const eventType = event.event
 		if (eventType === "on_chat_model_stream") {
@@ -41,7 +47,10 @@ export const chatbotQuestion = async (question: string, setData: any) => {
 			} else {
 				answer = concat(answer, event.data.chunk.content)
 			}
-			setData(answer)
+			// eslint-disable-next-line no-loop-func
+			setData((prevMessages: any) =>
+				prevMessages.map((message: any, i: number) => (i === index ? { ...message, text: answer } : message))
+			)
 		}
 	}
 }

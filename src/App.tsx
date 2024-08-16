@@ -25,6 +25,7 @@ import useCustomTheme from "./theme/useCustomTheme"
 import Calendar from "./pages/home/calendar"
 import Sessions from "./pages/home/sessions"
 import SessionGroup from "./pages/home/sessions/sessionGroup"
+import { Chatbot } from "./pages/home/chatbot"
 
 const App = () => {
 	const { theme, toggleTheme } = useCustomTheme()
@@ -59,6 +60,7 @@ const App = () => {
 					/>
 					<Route path={ROUTE_PATHS.CONNECT} element={<ConnectStrava />} />
 					<Route path={ROUTE_PATHS.HOME} element={<Home toggleTheme={toggleTheme} />}>
+						<Route path={ROUTE_PATHS.CHAT} element={<Chatbot />} />
 						<Route path="" element={<Dashboard />} />
 						<Route path={ROUTE_PATHS.SEARCH_ACTIVITIES} element={<ActivitiesList />} />
 						<Route path={ROUTE_PATHS.ACTIVITY} element={<Activity />} />
