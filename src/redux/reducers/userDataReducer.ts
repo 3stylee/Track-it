@@ -2,7 +2,7 @@ import { UserData } from "../../models/state"
 import * as types from "../actions/actionTypes"
 import initialState from "../initialState"
 
-const userDataReducer = (state = initialState.userData, action: { type: string; data: UserData }): UserData => {
+const userDataReducer = (state = initialState.userData, action: { type: string; data: any }): UserData => {
 	switch (action.type) {
 		case types.LOAD_USER_DATA_SUCCESS:
 			return action.data

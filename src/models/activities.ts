@@ -12,6 +12,7 @@ export type ProcessedActivity = {
 	type: string
 	elevation: number
 	predictedType: string
+	load: number
 }
 
 export type AthleteActivities = ProcessedActivity[]

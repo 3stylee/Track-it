@@ -4,6 +4,8 @@ import { AthleteData } from "../models/athlete"
 import { LoadMore, Units, UserData } from "../models/state"
 import { adjustDateForTimezone } from "../utils/adjustDateForTimezone"
 import { Sessions } from "../models/sessions"
+import Cookies from "js-cookie"
+import { UNIT_VALUES } from "../constants/constants"
 
 export interface State {
 	athleteActivities: AthleteActivities | null
@@ -25,6 +27,9 @@ export interface State {
 	selectedDate: Date
 }
 
+const unitCookie = Cookies.get("unit")
+const initialUnits = unitCookie === "IMPERIAL" ? UNIT_VALUES.IMPERIAL : UNIT_VALUES.METRIC
+
 export default {
 	athleteActivities: null,
 	gotInitialActivities: false,
@@ -44,10 +49,7 @@ export default {
 		status: 0,
 	},
 	sidebarExpanded: false,
-	units: {
-		unitString: "km",
-		meters: 1000,
-	},
+	units: initialUnits,
 	userData: {
 		stravaAccess: false,
 		firstActivityDate: undefined,
@@ -56,6 +58,8 @@ export default {
 		refresh_token: "",
 		expires_at: Infinity,
 		email: "",
+		sex: "",
+		zones: [],
 	},
 	selectedDate: adjustDateForTimezone(startOfToday()),
 } as State

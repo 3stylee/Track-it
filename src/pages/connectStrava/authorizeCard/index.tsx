@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { AuthorizeButton, ContainerCard, LinkText, SmallText } from "./components"
 import { CONNECT_STRAVA_MESSAGE, O_AUTH_URL } from "../../../constants/constants"
-import PrivacyPolicyModal from "../privacyPolicyModal"
+import PrivacyPolicyModal from "../../../globalComponents/privacyPolicyModal"
 
 export const AuthorizeCard = () => {
 	const connectWithStrava = require("../../../assets/images/btn_strava_connectwith_orange@2x.png")

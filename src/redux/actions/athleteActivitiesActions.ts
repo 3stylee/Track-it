@@ -21,6 +21,7 @@ import { getRestOfAthleteActivities } from "../../utils/getRestOfAthleteActiviti
 import { db } from "../../firebase"
 import { ModifyCurrentActivityType } from "./currentActivityActions"
 import { addSession, removeSession } from "./sessionsActions"
+import { calculateTRIMP } from "../../utils/calculateTRIMP"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
@@ -70,7 +71,7 @@ let cache = new LRUCache<string, any>({ max: 5, ttl: 3600000 })
 export const loadInitialAthleteActivities =
 	(limit?: number, after?: number) => async (dispatch: any, getState: any) => {
 		const {
-			userData: { access_token, dateOfLastBackup },
+			userData: { access_token, dateOfLastBackup, zones, sex },
 		} = getState()
 		// We want to fetch data after the last backup date, nothing else
 		const lastBackupEpoch = new Date(dateOfLastBackup).getTime() / 1000
@@ -90,6 +91,7 @@ export const loadInitialAthleteActivities =
 				if (data.length > 0) {
 					const predictions = await predictData(data, access_token)
 					data = processAthleteActivities(responseData, predictions)
+					data = calculateTRIMP(data, zones, sex)
 					dispatch(copyStravaActivities(data))
 				}
 

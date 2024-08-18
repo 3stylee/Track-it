@@ -1,7 +1,7 @@
 import axios from "axios"
 import { USER_DATA_URL } from "../../constants/constants"
 
-export const getUserId = async (access_token: string) => {
+export const getUser = async (access_token: string) => {
 	const endpoint = USER_DATA_URL
 	try {
 		const response = await axios.get(endpoint, {
@@ -10,6 +10,7 @@ export const getUserId = async (access_token: string) => {
 			},
 		})
 		localStorage.setItem("uId", response.data.id)
+		return response.data.sex
 	} catch (error) {
 		console.error(error)
 	}

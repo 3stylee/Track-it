@@ -4,6 +4,7 @@ export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
 export const USER_DATA_URL = "https://www.strava.com/api/v3/athlete"
+export const ZONES_URL = "https://www.strava.com/api/v3/athlete/zones"
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 export const API_BASE_URL = "https://www.strava.com/api/v3"
 export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
@@ -108,7 +109,7 @@ export const ACTIVITY_IMAGE_RESOLUTIONS = {
 	XXL: "1200x1000",
 }
 
-export const ACTIVITY_TYPES = ["Easy", "Long Run", "Tempo", "Session", "Race"]
+export const ACTIVITY_TYPES = ["X-train", "Easy", "Long Run", "Tempo", "Session", "Race"]
 export const DELETE_ACTIVITY_CONFIRMATION =
 	"Are you sure you want to delete this activity? Note this will only be deleted on Track It, to delete it on Strava please go to the Strava website."
 export const NO_LOGGED_IN_USER = "No logged in user found"
@@ -139,3 +140,13 @@ export const SESSIONS_ERRORS = {
 	SESSIONS_ERROR: "Error loading sessions, please check your connection and try again",
 }
 export const TOAST_ERRORS = [UPDATE_ACTIVITY_ERROR, DELETE_ACTIVITY_ERROR]
+export const UNIT_VALUES = {
+	METRIC: {
+		unitString: "km",
+		meters: 1000,
+	},
+	IMPERIAL: {
+		unitString: "mi",
+		meters: 1609.34,
+	},
+}

@@ -6,15 +6,17 @@ import {
 	CLIENT_SECRET,
 	FIREBASE_COLLECTIONS,
 	NO_LOGGED_IN_USER,
+	ZONES_URL,
 } from "../../constants/constants"
 import * as types from "./actionTypes"
 import { apiCallError, beginApiCall } from "./apiStatusActions"
 import { doc, setDoc, writeBatch } from "firebase/firestore"
 import { getEndpoint } from "../../utils/getActivityDataEndpoint"
 import { getNewActivities } from "../../utils/getNewActivites"
-import { getUserId } from "../../utils/getUserId"
+import { getUser } from "../../utils/getUser"
 import { AthleteActivities } from "../../models/activities"
 import { db } from "../../firebase"
+import { calculateTRIMP } from "../../utils/calculateTRIMP"
 
 export const storeAuthSuccess = () => {
 	return { type: types.STORE_STRAVA_AUTH_SUCCESS }
@@ -32,7 +34,14 @@ export const logoutUser = () => {
 	return { type: types.LOGOUT_USER }
 }
 
-export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispatch: any) => {
+export const getZones = async (accessToken: string) => {
+	const response: any = await axios.get(ZONES_URL, {
+		headers: { Authorization: `Bearer ${accessToken}` },
+	})
+	return response.data.heart_rate.zones
+}
+
+export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispatch: any, getState: any) => {
 	const payload = {
 		client_id: CLIENT_ID,
 		client_secret: CLIENT_SECRET,
@@ -43,8 +52,13 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 	try {
 		const response = await axios.post(AUTH_TOKEN_BASE_URL, payload)
 		const { access_token, refresh_token, expires_at } = response.data
-		if (refresh) dispatch(refreshStravaToken({ access_token, refresh_token, expires_at }))
-		if (!refresh) await getUserId(access_token)
+		let { zones, sex } = getState().userData
+		if (refresh) {
+			dispatch(refreshStravaToken({ access_token, refresh_token, expires_at }))
+		} else {
+			sex = await getUser(access_token)
+			zones = await getZones(access_token)
+		}
 
 		// Store the access token, refresh token, and expiration time in Firestore.
 		const uId = localStorage.getItem("uId")
@@ -52,7 +66,7 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 			const docRef = doc(db, FIREBASE_COLLECTIONS.USERS, uId)
 			await setDoc(
 				docRef,
-				{ userId: uId, access_token, refresh_token, expires_at, stravaAccess: true },
+				{ userId: uId, access_token, refresh_token, expires_at, stravaAccess: true, zones, sex },
 				{ merge: true }
 			)
 			dispatch(storeAuthSuccess())
@@ -66,14 +80,15 @@ export const storeStravaAuth = (code: string, refresh?: boolean) => async (dispa
 }
 
 export const copyStravaActivities = (newActitivities?: AthleteActivities) => async (dispatch: any, getState: any) => {
-	const accessToken = getState().userData.access_token
+	const { access_token, zones, sex } = getState().userData
 	const initialCopy = newActitivities === undefined
 	try {
 		// Get the user's activities from Strava
 		let data: AthleteActivities = []
 		if (initialCopy) {
 			const endpoint = getEndpoint(undefined, undefined)
-			await getNewActivities(data, endpoint, accessToken, initialCopy)
+			await getNewActivities(data, endpoint, access_token, initialCopy)
+			data = calculateTRIMP(data, zones, sex)
 		} else {
 			data = newActitivities
 		}

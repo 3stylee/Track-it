@@ -1,3 +1,5 @@
+import { endOfMonth, startOfMonth, startOfWeek } from "date-fns"
+
 /**
  * Generates an array of objects, each representing a week in the current month.
  *
@@ -7,14 +9,11 @@ export const getCurrentMonthWeeks = () => {
 	const weeks = []
 
 	const currentDate = new Date()
-	const firstDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-	const lastDayOfMonth = new Date(firstDate.getFullYear(), firstDate.getMonth() + 1, 0)
+	const firstDate = startOfMonth(currentDate)
+	const lastDayOfMonth = endOfMonth(currentDate)
 
-	const dayOfWeek = firstDate.getDay()
-	const daysUntilMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1
-	firstDate.setDate(firstDate.getDate() - daysUntilMonday)
-
-	let currentWeekStart = new Date(firstDate)
+	const firstMonday = startOfWeek(firstDate, { weekStartsOn: 1 })
+	let currentWeekStart = new Date(firstMonday)
 
 	while (currentWeekStart <= lastDayOfMonth) {
 		const currentWeekEnd = new Date(currentWeekStart)

@@ -1,11 +1,13 @@
 import React from "react"
 import { Button, Modal } from "react-bootstrap"
-import { privacyPolicyText } from "../../../constants/privacyPolicy"
-import { Container } from "./components"
+import { privacyPolicyText } from "../../constants/privacyPolicy"
+import { Container, ThemedModal } from "./components"
+import { useTheme } from "@emotion/react"
 
 const PrivacyPolicyModal = ({ show, handleClose }: any) => {
+	const theme = useTheme()
 	return (
-		<Modal size="lg" show={show} onHide={handleClose}>
+		<ThemedModal size="lg" show={show} onHide={handleClose} data-bs-theme={theme.name}>
 			<Modal.Header closeButton>
 				<Modal.Title>Privacy Policy</Modal.Title>
 			</Modal.Header>
@@ -19,7 +21,7 @@ const PrivacyPolicyModal = ({ show, handleClose }: any) => {
 					Close
 				</Button>
 			</Modal.Footer>
-		</Modal>
+		</ThemedModal>
 	)
 }
 

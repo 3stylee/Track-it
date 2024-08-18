@@ -8,6 +8,8 @@ import { getActivityData } from "../../../utils/getActivityData"
 import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
 import { LoadInitialAthleteActivities } from "../../../models/athlete"
+import TrainingLoad from "./trainingLoad"
+import { HRZones } from "./hrZones"
 
 interface DashboardProps {
 	gotSufficientActivities: boolean
@@ -46,6 +48,14 @@ export const Dashboard = ({
 				</Col>
 				<Col lg={4} className="mb-2">
 					<RecentActivities />
+				</Col>
+			</Row>
+			<Row className="g-3">
+				<Col lg={4} className="my-4">
+					<HRZones />
+				</Col>
+				<Col lg={8} className="my-4">
+					<TrainingLoad />
 				</Col>
 			</Row>
 		</PageContainer>

@@ -3,6 +3,8 @@ export interface Units {
 	meters: number
 }
 
+export type Zone = { min: number; max: number }
+
 export interface UserData {
 	stravaAccess: boolean
 	firstActivityDate: string | undefined
@@ -10,6 +12,8 @@ export interface UserData {
 	access_token: string
 	refresh_token: string
 	expires_at: number
+	sex: "M" | "F" | ""
+	zones: Zone[]
 }
 
 export interface LoadMore {
