@@ -9,7 +9,7 @@ import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
 import { LoadInitialAthleteActivities } from "../../../models/athlete"
 import TrainingLoad from "./trainingLoad"
-import { HRZones } from "./hrZones"
+import HRZones from "./hrZones"
 
 interface DashboardProps {
 	gotSufficientActivities: boolean

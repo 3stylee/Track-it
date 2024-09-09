@@ -22,7 +22,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 	const navigate = useNavigate()
 
 	return (
-		<Card text={theme.bootstrap.textColor} bg={theme.bootstrap.background} className="h-100">
+		<Card text={theme.bootstrap.textColor} bg={theme.bootstrap.background}>
 			<Card.Header>
 				<CardHeader>Recent Activities</CardHeader>
 			</Card.Header>

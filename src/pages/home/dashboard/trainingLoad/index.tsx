@@ -68,8 +68,12 @@ const TrainingLoad = ({ athleteActivities, dataError }: TrainingLoadProps) => {
 					<SubHeader>
 						<h1 className="m-0">{total}</h1>
 						<ChangePercent>
-							{changePercent > 0 ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-							<span>{changePercent.toFixed(0)}%</span>
+							{!isNaN(changePercent) && (
+								<>
+									{changePercent > 0 ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+									<span>{changePercent.toFixed(0)}%</span>
+								</>
+							)}
 						</ChangePercent>
 					</SubHeader>
 					<InfoText>
