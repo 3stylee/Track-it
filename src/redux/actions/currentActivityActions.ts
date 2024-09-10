@@ -21,39 +21,37 @@ export const ModifyCurrentActivityType = (id: number, type: string) => {
 	}
 }
 
-export const loadActivityDetails = (id: number) => {
-	return async function (dispatch: any, getState: any) {
-		const {
-			userData: { access_token },
-		} = getState()
+export const loadActivityDetails = (id: number) => async (dispatch: any, getState: any) => {
+	const {
+		userData: { access_token },
+	} = getState()
 
-		let activityEndpoint = `${API_BASE_URL}/activities/${id}`
-		let streamEndpoint = `${API_BASE_URL}/activities/${id}/streams?keys=distance,heartrate,altitude&key_by_type=true`
+	let activityEndpoint = `${API_BASE_URL}/activities/${id}`
+	let streamEndpoint = `${API_BASE_URL}/activities/${id}/streams?keys=distance,heartrate,altitude&key_by_type=true`
 
-		dispatch(beginApiCall())
-		try {
-			const [activityResponse, streamResponse] = await Promise.all([
-				axios.get(activityEndpoint, {
-					headers: {
-						Authorization: `Bearer ${access_token}`,
-					},
-				}),
-				axios.get(streamEndpoint, {
-					headers: {
-						Authorization: `Bearer ${access_token}`,
-					},
-				}),
-			])
+	dispatch(beginApiCall())
+	try {
+		const [activityResponse, streamResponse] = await Promise.all([
+			axios.get(activityEndpoint, {
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+				},
+			}),
+			axios.get(streamEndpoint, {
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+				},
+			}),
+		])
 
-			const predictedType = await getPredictedTypeFromFirebase(id)
-			const activityData = processActivityData(activityResponse.data)
-			const reducedStreamResponse = reduceResolution(streamResponse.data)
+		const predictedType = await getPredictedTypeFromFirebase(id)
+		const activityData = processActivityData(activityResponse.data)
+		const reducedStreamResponse = reduceResolution(streamResponse.data)
 
-			dispatch(loadDataSuccess({ ...activityData, predictedType }))
-			dispatch(loadActivityStreamSuccess(reducedStreamResponse))
-		} catch (error: any) {
-			dispatch(apiCallError(CURRENT_ACTIVITY_ERRORS.CURRENT_ACTIVITY_ERROR))
-			console.error(error.message)
-		}
+		dispatch(loadDataSuccess({ ...activityData, predictedType }))
+		dispatch(loadActivityStreamSuccess(reducedStreamResponse))
+	} catch (error: any) {
+		dispatch(apiCallError(CURRENT_ACTIVITY_ERRORS.CURRENT_ACTIVITY_ERROR))
+		console.error(error.message)
 	}
 }

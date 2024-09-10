@@ -1,13 +1,14 @@
 export const CLIENT_ID = "115309"
 export const REDIRECT_URI = `${process.env.REACT_APP_BASE_URL}/authorize`
-export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all"
+export const SCOPE = "profile%3Aread_all%2Cactivity%3Aread_all%2Cactivity%3Awrite"
 export const O_AUTH_URL = `https://www.strava.com/oauth/mobile/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&approval_prompt=auto&scope=${SCOPE}&state=authorize_user`
 export const AUTH_TOKEN_BASE_URL = "https://www.strava.com/api/v3/oauth/token"
 export const USER_DATA_URL = "https://www.strava.com/api/v3/athlete"
 export const ZONES_URL = "https://www.strava.com/api/v3/athlete/zones"
+export const EDIT_URL = "https://www.strava.com/api/v3/activities/"
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 export const API_BASE_URL = "https://www.strava.com/api/v3"
-export const AUTH_PERMISSIONS = ["read", "activity:read_all", "profile:read_all"]
+export const AUTH_PERMISSIONS = ["read", "activity:write", "activity:read_all", "profile:read_all"]
 export const ROUTE_PATHS = {
 	DEFAULT: "/",
 	CONNECT: "/connect",
@@ -116,6 +117,7 @@ export const NO_LOGGED_IN_USER = "No logged in user found"
 export const ATHLETE_ACTIVITIES_ERROR = "Error loading your activities, please check your connection and try again"
 export const UPDATE_ACTIVITY_ERROR = "Error updating activity"
 export const DELETE_ACTIVITY_ERROR = "Error deleting activity"
+export const EDIT_ACTIVITY_ERROR = "Error editing activity"
 export const APPLICATION_ERRORS = {
 	NO_LOGGED_IN_USER,
 	USER_DATA_ERROR: "Error loading user data, please check your connection and try again",
@@ -131,6 +133,7 @@ export const ACTIVITIES_LIST_ERRORS = {
 	LOAD_MORE_ACTIVITIES_ERROR: "Error loading more activities",
 	UPDATE_ACTIVITY_ERROR,
 	DELETE_ACTIVITY_ERROR,
+	EDIT_ACTIVITY_ERROR,
 }
 export const CURRENT_ACTIVITY_ERRORS = {
 	CURRENT_ACTIVITY_ERROR: "Error loading current activity",
@@ -139,7 +142,7 @@ export const CURRENT_ACTIVITY_ERRORS = {
 export const SESSIONS_ERRORS = {
 	SESSIONS_ERROR: "Error loading sessions, please check your connection and try again",
 }
-export const TOAST_ERRORS = [UPDATE_ACTIVITY_ERROR, DELETE_ACTIVITY_ERROR]
+export const TOAST_ERRORS = [UPDATE_ACTIVITY_ERROR, DELETE_ACTIVITY_ERROR, EDIT_ACTIVITY_ERROR]
 export const UNIT_VALUES = {
 	METRIC: {
 		unitString: "km",
@@ -150,3 +153,12 @@ export const UNIT_VALUES = {
 		meters: 1609.34,
 	},
 }
+export const HR_ZONES = ["Recovery", "Aerobic", "Threshold", "Anaerobic Endurance", "Anaerobic Power"]
+
+export const HR_ZONE_COLORS = [
+	"rgba(255, 99, 132, 1)",
+	"rgba(54, 162, 235, 1)",
+	"rgba(255, 206, 86, 1)",
+	"rgba(75, 192, 192, 1)",
+	"rgba(153, 102, 255, 1)",
+]

@@ -25,6 +25,14 @@ const dataReducer = (state = initalState.athleteActivities, action: { type: any;
 		case types.DELETE_ACTIVITY:
 			if (state === null) return state
 			return state.filter((activity: { id: number }) => activity.id !== action.data)
+		case types.UPDATE_ACTIVITY_NAME:
+			if (state === null) return state
+			return state.map((activity) => {
+				if (activity.id === action.data.id) {
+					return { ...activity, title: action.data.name }
+				}
+				return activity
+			})
 		default:
 			return state
 	}

@@ -1,6 +1,12 @@
 import styled from "@emotion/styled"
-import { CardBody } from "react-bootstrap"
+import { Card, CardBody } from "react-bootstrap"
 import { BREAKPOINTS } from "../../../../constants/constants"
+
+export const StyledCard = styled(Card)`
+	height: 100%;
+	background-color: ${({ theme }) => theme.bootstrap.backgroundColor};
+	color: ${({ theme }) => theme.text};
+`
 
 export const Body = styled(CardBody)`
 	padding-top: 0;

@@ -16,7 +16,7 @@ const ApiError = ({ apiError, height, backButton, logoutUser }: any) => {
 	return (
 		<ApiErrorContainer height={height}>
 			<AlertCircle size="6.25rem" />
-			<div className="mt-2">{apiError || "Please try refreshing the page."}</div>
+			<div className="mt-2 text-center">{apiError || "Please try refreshing the page."}</div>
 			{backButton && (
 				<Button onClick={handleBack} className="mt-2">
 					Go Back To Login

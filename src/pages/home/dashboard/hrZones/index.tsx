@@ -1,10 +1,11 @@
 import React from "react"
 import connect from "./connect"
 import { Zone } from "../../../../models/state"
-import { Body, StyledCard } from "./components"
+import { Body, ColourSquare, Key, StyledCard, StyledDonut, ZoneKeys } from "./components"
 import { CardHeader, CardTitle } from "react-bootstrap"
 import { Doughnut } from "react-chartjs-2"
 import { ArcElement, Chart } from "chart.js"
+import { HR_ZONE_COLORS, HR_ZONES } from "../../../../constants/constants"
 
 interface HRZonesProps {
 	zones: Zone[]
@@ -23,19 +24,13 @@ const HRZones = ({ zones }: HRZonesProps) => {
 				label: "Zone",
 				data: newDataValues,
 				backgroundColor: [
-					"rgba(255, 99, 132, 0.2)",
-					"rgba(54, 162, 235, 0.2)",
-					"rgba(255, 206, 86, 0.2)",
-					"rgba(75, 192, 192, 0.2)",
-					"rgba(153, 102, 255, 0.2)",
+					"rgba(255, 99, 132, 0.4)",
+					"rgba(54, 162, 235, 0.4)",
+					"rgba(255, 206, 86, 0.4)",
+					"rgba(75, 192, 192, 0.4)",
+					"rgba(153, 102, 255, 0.4)",
 				],
-				borderColor: [
-					"rgba(255, 99, 132, 1)",
-					"rgba(54, 162, 235, 1)",
-					"rgba(255, 206, 86, 1)",
-					"rgba(75, 192, 192, 1)",
-					"rgba(153, 102, 255, 1)",
-				],
+				borderColor: HR_ZONE_COLORS,
 				borderWidth: 1,
 			},
 		],
@@ -63,7 +58,17 @@ const HRZones = ({ zones }: HRZonesProps) => {
 				<CardTitle className="mt-2">Heart rate zones</CardTitle>
 			</CardHeader>
 			<Body>
-				<Doughnut options={options} data={data} />
+				<ZoneKeys>
+					{zones.map((_, index) => (
+						<Key key={index}>
+							<ColourSquare color={HR_ZONE_COLORS[index]} />
+							{HR_ZONES[index]}
+						</Key>
+					))}
+				</ZoneKeys>
+				<StyledDonut>
+					<Doughnut options={options} data={data} />
+				</StyledDonut>
 			</Body>
 		</StyledCard>
 	)

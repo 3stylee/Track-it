@@ -10,3 +10,24 @@ export const Body = styled("div")`
 	padding: 1rem;
 	height: 100%;
 `
+export const StyledDonut = styled("div")`
+	height: 75%;
+	margin-top: 1rem;
+`
+export const ZoneKeys = styled("div")`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+`
+export const Key = styled("span")`
+	margin-right: 1rem;
+	font-size: 0.8rem;
+`
+
+export const ColourSquare = styled("span")<{ color: string }>`
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background-color: ${({ color }) => color};
+	margin-right: 0.25rem;
+`

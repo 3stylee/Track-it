@@ -1,7 +1,7 @@
 import React from "react"
 import connect from "./connect"
 import { MAX_RECENT_ACTIVITIES, ROUTE_PATHS } from "../../../../constants/constants"
-import { Body, CardHeader, NoActivities, TableHeader, TableRow } from "./components"
+import { Body, CardHeader, NoActivities, StyledCard, TableHeader, TableRow } from "./components"
 import { useTheme } from "@emotion/react"
 import { Card, Table } from "react-bootstrap"
 import { Units } from "../../../../models/state"
@@ -22,7 +22,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 	const navigate = useNavigate()
 
 	return (
-		<Card text={theme.bootstrap.textColor} bg={theme.bootstrap.background}>
+		<StyledCard>
 			<Card.Header>
 				<CardHeader>Recent Activities</CardHeader>
 			</Card.Header>
@@ -52,7 +52,7 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 					<NoActivities>Looks like you don't have any recent activities</NoActivities>
 				)}
 			</Body>
-		</Card>
+		</StyledCard>
 	)
 }
 

@@ -21,7 +21,7 @@ import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
 import { MoreVertical } from "react-feather"
 import { MoreMenu } from "../moreMenu"
 import DeleteModal from "../deleteModal"
-import { EditModal } from "../editModal"
+import EditModal from "../editModal"
 import { formatDate } from "date-fns"
 
 export interface RouteMapProps {
