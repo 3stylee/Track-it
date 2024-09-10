@@ -3,18 +3,19 @@ import { Modal, Form, Button } from "react-bootstrap"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
 import { StyledModal } from "./components"
-import { getEditableDetails } from "../../../../utils/getEditableDetails"
-import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
+import { getEditableDetails } from "../../../utils/getEditableDetails"
+import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 
 interface EditModalProps {
 	id: number
 	show: boolean
 	accessToken: string
+	current?: boolean
 	setShowEdit: (showEdit: boolean) => void
-	editAthleteActivity: (id: number, data: object) => void
+	editAthleteActivity: (id: number, data: object, current: boolean) => void
 }
 
-const EditModal = ({ id, show, accessToken, setShowEdit, editAthleteActivity }: EditModalProps) => {
+const EditModal = ({ id, show, accessToken, current = false, setShowEdit, editAthleteActivity }: EditModalProps) => {
 	const theme = useTheme()
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState("")
@@ -31,7 +32,7 @@ const EditModal = ({ id, show, accessToken, setShowEdit, editAthleteActivity }: 
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
-		if (initialDetails !== details) editAthleteActivity(id, details)
+		if (initialDetails !== details) editAthleteActivity(id, details, current)
 		handleClose()
 	}
 

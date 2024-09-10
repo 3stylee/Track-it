@@ -1,15 +1,17 @@
 import styled from "@emotion/styled"
-import { BREAKPOINTS } from "../../../../constants/constants"
+import { BREAKPOINTS } from "../../constants/constants"
 
-export const MenuContainer = styled("div")`
+export const MenuContainer = styled("div")<{ top: number; left?: number; right?: number }>`
 	position: absolute;
-	top: -3.875rem;
-	right: 0;
+	top: ${({ top }) => top}rem;
+	right: ${({ right }) => right}rem;
+	left: ${({ left }) => left}rem;
 	z-index: 2;
 	background-color: ${({ theme }) => theme.popup.background};
 	border: 1px solid rgb(77, 81, 84);
 	border-radius: 0.5rem;
 	box-shadow: ${({ theme }) => theme.popup.boxShadow};
+	cursor: pointer;
 `
 
 export const MenuOption = styled("div")`

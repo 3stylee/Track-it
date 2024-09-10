@@ -19,9 +19,9 @@ import connect from "./connect"
 import { Units } from "../../../../models/state"
 import { BadgeDropdown } from "../../../../globalComponents/badgeDropdown"
 import { MoreVertical } from "react-feather"
-import { MoreMenu } from "../moreMenu"
-import DeleteModal from "../deleteModal"
-import EditModal from "../editModal"
+import { MoreMenu } from "../../../../globalComponents/moreMenu"
+import EditModal from "../../../../globalComponents/moreMenu/editModal"
+import DeleteModal from "../../../../globalComponents/moreMenu/deleteModal"
 import { formatDate } from "date-fns"
 
 export interface RouteMapProps {
@@ -55,8 +55,8 @@ const RouteMap = ({
 	const buttonRef = useRef<HTMLDivElement>(null)
 	const [imageLoaded, setImagedLoaded] = useState(false)
 	const [showMoreMenu, setshowMoreMenu] = useState(false)
-	const [showDelete, setShowDelete] = React.useState(false)
-	const [showEdit, setShowEdit] = React.useState(false)
+	const [showDelete, setShowDelete] = useState(false)
+	const [showEdit, setShowEdit] = useState(false)
 
 	const handleSetType = (selected: string) => {
 		updateActivityType(id, predictedType, selected)
@@ -108,6 +108,8 @@ const RouteMap = ({
 								setShowDelete={setShowDelete}
 								setShowEdit={setShowEdit}
 								id={id}
+								top={-3.875}
+								right={0}
 							/>
 						)}
 						<DateText>{formatDate(start, "dd/MM/yy")}</DateText>

@@ -3,17 +3,25 @@ import React, { useEffect, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 import { StyledModal } from "./components"
 import connect from "./connect"
-import { DELETE_ACTIVITY_CONFIRMATION } from "../../../../constants/constants"
+import { DELETE_ACTIVITY_CONFIRMATION } from "../../../constants/constants"
 
 interface DeleteModalProps {
 	id: number
 	show: boolean
 	errorStatus: number
+	current?: boolean
 	setShowDelete: (showDelete: boolean) => void
-	deleteAthleteActivity: (id: number) => void
+	deleteAthleteActivity: (id: number, current: boolean) => void
 }
 
-const DeleteModal = ({ id, show, errorStatus, setShowDelete, deleteAthleteActivity }: DeleteModalProps) => {
+const DeleteModal = ({
+	id,
+	show,
+	errorStatus,
+	current = false,
+	setShowDelete,
+	deleteAthleteActivity,
+}: DeleteModalProps) => {
 	const theme = useTheme()
 	const [showLoading, setShowLoading] = useState(false)
 	const handleClose = () => {
@@ -38,7 +46,7 @@ const DeleteModal = ({ id, show, errorStatus, setShowDelete, deleteAthleteActivi
 					variant="danger"
 					disabled={showLoading}
 					onClick={() => {
-						deleteAthleteActivity(id)
+						deleteAthleteActivity(id, current)
 						setShowLoading(true)
 					}}>
 					Delete Activity

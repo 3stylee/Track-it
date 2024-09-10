@@ -42,7 +42,7 @@ export const Dashboard = ({
 	return (
 		<PageContainer>
 			<TitleHeader />
-			<Row className="g-3">
+			<Row className="g-2">
 				<Col lg={8} className="mb-2">
 					<MileageChart />
 				</Col>
@@ -50,11 +50,11 @@ export const Dashboard = ({
 					<RecentActivities />
 				</Col>
 			</Row>
-			<Row className="g-3">
-				<Col lg={4} className="my-4">
+			<Row className="g-2">
+				<Col lg={4} className="mb-2">
 					<HRZones />
 				</Col>
-				<Col lg={8} className="my-4">
+				<Col lg={8} className="mb-2">
 					<TrainingLoad />
 				</Col>
 			</Row>

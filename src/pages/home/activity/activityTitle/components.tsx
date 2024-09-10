@@ -31,3 +31,26 @@ export const StatsContainer = styled("div")`
 		margin-bottom: 1rem;
 	}
 `
+export const Date = styled("div")`
+	color: ${({ theme }) => theme.secondaryText};
+	font-weight: bold;
+	font-size: 0.875rem;
+	margin-bottom: 0.5rem;
+`
+export const MoreButton = styled("span")`
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	border-radius: 50%;
+	height: 2.5rem;
+	width: 2.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.3s;
+
+	&:hover {
+		cursor: pointer;
+		background-color: ${({ theme }) => theme.sidebar.iconHover};
+	}
+`

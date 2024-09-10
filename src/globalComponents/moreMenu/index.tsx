@@ -1,17 +1,20 @@
 import React, { useEffect, useRef } from "react"
-import { addPopupListeners } from "../../../../utils/addPopupListeners"
+import { addPopupListeners } from "../../utils/addPopupListeners"
 import { DeleteOption, MenuContainer, MenuOption } from "./components"
 import { Edit2, Trash2 } from "react-feather"
 
 interface MoreMenuProps {
 	buttonRef: React.RefObject<HTMLDivElement> | undefined
 	id: number
+	top: number
+	left?: number
+	right?: number
 	setShowMenu: (showMenu: boolean) => void
 	setShowDelete: (showDelete: boolean) => void
 	setShowEdit: (showEdit: boolean) => void
 }
 
-export const MoreMenu = ({ buttonRef, setShowMenu, setShowDelete, setShowEdit }: MoreMenuProps) => {
+export const MoreMenu = ({ buttonRef, top, left, right, setShowMenu, setShowDelete, setShowEdit }: MoreMenuProps) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
@@ -35,7 +38,7 @@ export const MoreMenu = ({ buttonRef, setShowMenu, setShowDelete, setShowEdit }:
 
 	return (
 		<>
-			<MenuContainer ref={menuRef}>
+			<MenuContainer ref={menuRef} top={top} left={left} right={right}>
 				<MenuOption onClick={handleEdit}>
 					<Edit2 size={16} />
 					Edit

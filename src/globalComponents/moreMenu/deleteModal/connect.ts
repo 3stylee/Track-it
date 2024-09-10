@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { deleteAthleteActivity } from "../../../../redux/actions/athleteActivitiesActions"
-import { State } from "../../../../redux/initialState"
+import { deleteAthleteActivity } from "../../../redux/actions/athleteActivitiesActions"
+import { State } from "../../../redux/initialState"
 
 const mapStateToProps = (state: State) => {
 	return {

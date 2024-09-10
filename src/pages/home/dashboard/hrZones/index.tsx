@@ -59,10 +59,11 @@ const HRZones = ({ zones }: HRZonesProps) => {
 			</CardHeader>
 			<Body>
 				<ZoneKeys>
-					{zones.map((_, index) => (
+					{zones.map((zone, index) => (
 						<Key key={index}>
 							<ColourSquare color={HR_ZONE_COLORS[index]} />
 							{HR_ZONES[index]}
+							{index === 4 ? `: ${zone.min}+` : `: ${zone.min} - ${zone.max}`}
 						</Key>
 					))}
 				</ZoneKeys>

@@ -67,10 +67,23 @@ export const deleteActivity = (id: number) => {
 	}
 }
 
+export const deleteCurrentActivity = () => {
+	return {
+		type: types.DELETE_CURRENT_ACTIVITY,
+	}
+}
+
 export const updateActivityName = (id: number, name: string) => {
 	return {
 		type: types.UPDATE_ACTIVITY_NAME,
 		data: { id, name },
+	}
+}
+
+export const updateCurrentName = (name: string) => {
+	return {
+		type: types.UPDATE_CURRENT_NAME,
+		data: name,
 	}
 }
 
@@ -197,7 +210,7 @@ export const updateActivityType =
 		}
 	}
 
-export const deleteAthleteActivity = (id: number) => async (dispatch: any) => {
+export const deleteAthleteActivity = (id: number, current: boolean) => async (dispatch: any) => {
 	try {
 		const uId = localStorage.getItem("uId")
 		if (uId) {
@@ -211,7 +224,7 @@ export const deleteAthleteActivity = (id: number) => async (dispatch: any) => {
 			if (!querySnapshot.empty) {
 				const docRef = querySnapshot.docs[0].ref
 				await deleteDoc(docRef)
-				dispatch(deleteActivity(id))
+				dispatch(current ? deleteCurrentActivity() : deleteActivity(id))
 			} else {
 				dispatch(apiCallError(DELETE_ACTIVITY_ERROR))
 			}
@@ -224,36 +237,43 @@ export const deleteAthleteActivity = (id: number) => async (dispatch: any) => {
 	}
 }
 
-export const editAthleteActivity = (id: number, data: any) => async (dispatch: any, getState: any) => {
-	const endpoint = EDIT_URL + id
-	const {
-		userData: { access_token },
-		athleteActivities,
-	} = getState()
-	const nameChanged = data.name !== athleteActivities.find((activity: any) => activity.id === id).name
-	const updatedActivity = { ...data, hide_from_home: data.muted }
-	try {
-		await axios.put(endpoint, updatedActivity, {
-			headers: { Authorization: `Bearer ${access_token}` },
-		})
-		if (nameChanged) {
-			const uId = localStorage.getItem("uId")
-			const q = query(
-				collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
-				where("userId", "==", uId),
-				where("id", "==", id)
-			)
-			const querySnapshot = await getDocs(q)
-			if (!querySnapshot.empty) {
-				const docRef = querySnapshot.docs[0].ref
-				await updateDoc(docRef, {
-					title: data.name,
-				})
-			}
-			dispatch(updateActivityName(id, data.name))
+export const editAthleteActivity =
+	(id: number, data: any, current: boolean) => async (dispatch: any, getState: any) => {
+		const endpoint = EDIT_URL + id
+		const {
+			userData: { access_token },
+			athleteActivities,
+			currentActivity,
+		} = getState()
+		let nameChanged
+		if (current) {
+			nameChanged = data.name !== currentActivity.name
+		} else {
+			nameChanged = data.name !== athleteActivities.find((activity: any) => activity.id === id).name
 		}
-	} catch (error: any) {
-		dispatch(apiCallError(ACTIVITIES_LIST_ERRORS.EDIT_ACTIVITY_ERROR))
-		console.error(error.message)
+		const updatedActivity = { ...data, hide_from_home: data.muted }
+		try {
+			await axios.put(endpoint, updatedActivity, {
+				headers: { Authorization: `Bearer ${access_token}` },
+			})
+			if (nameChanged) {
+				const uId = localStorage.getItem("uId")
+				const q = query(
+					collection(db, FIREBASE_COLLECTIONS.ACTIVITIES),
+					where("userId", "==", uId),
+					where("id", "==", id)
+				)
+				const querySnapshot = await getDocs(q)
+				if (!querySnapshot.empty) {
+					const docRef = querySnapshot.docs[0].ref
+					await updateDoc(docRef, {
+						title: data.name,
+					})
+				}
+				dispatch(current ? updateCurrentName(data.name) : updateActivityName(id, data.name))
+			}
+		} catch (error: any) {
+			dispatch(apiCallError(ACTIVITIES_LIST_ERRORS.EDIT_ACTIVITY_ERROR))
+			console.error(error.message)
+		}
 	}
-}
