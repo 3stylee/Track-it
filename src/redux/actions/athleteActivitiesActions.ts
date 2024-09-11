@@ -23,6 +23,7 @@ import { db } from "../../firebase"
 import { ModifyCurrentActivityType } from "./currentActivityActions"
 import { addSession, removeSession } from "./sessionsActions"
 import { calculateTRIMP } from "../../utils/calculateTRIMP"
+import { refineUserModel } from "../../utils/refineUserModel"
 
 export const loadDataSuccess = (data: object, hasFilter = false) => {
 	const type = hasFilter ? types.LOAD_FILTERED_ACTIVITIES_SUCCESS : types.LOAD_ATHLETE_ACTIVITIES_SUCCESS
@@ -108,7 +109,7 @@ export const loadInitialAthleteActivities =
 				const { data: responseData } = await axios.get(endpoint, {
 					headers: { Authorization: `Bearer ${access_token}` },
 				})
-				let data = limit ? responseData : responseData.reverse()
+				let data = responseData.reverse()
 				if (data.length > 0) {
 					const predictions = await predictData(data, access_token)
 					data = processAthleteActivities(responseData, predictions)
@@ -179,7 +180,7 @@ export const loadAthleteActivities =
 
 export const updateActivityType =
 	(id: number, prevType: string, newType: string, currentActivity = false) =>
-	async (dispatch: any) => {
+	async (dispatch: any, getState: any) => {
 		try {
 			const uId = localStorage.getItem("uId")
 			if (uId) {
@@ -194,6 +195,7 @@ export const updateActivityType =
 				const querySnapshot = await getDocs(q)
 				if (!querySnapshot.empty) {
 					const docRef = querySnapshot.docs[0].ref
+					refineUserModel(querySnapshot.docs[0].data, newType, getState().userData.access_token)
 					await updateDoc(docRef, {
 						predictedType: newType,
 					})
@@ -224,7 +226,8 @@ export const deleteAthleteActivity = (id: number, current: boolean) => async (di
 			if (!querySnapshot.empty) {
 				const docRef = querySnapshot.docs[0].ref
 				await deleteDoc(docRef)
-				dispatch(current ? deleteCurrentActivity() : deleteActivity(id))
+				current && dispatch(deleteCurrentActivity())
+				dispatch(deleteActivity(id))
 			} else {
 				dispatch(apiCallError(DELETE_ACTIVITY_ERROR))
 			}

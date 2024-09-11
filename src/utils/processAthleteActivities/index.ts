@@ -6,6 +6,8 @@ export interface Activity {
 	athlete: { id: number }
 	id: number
 	average_speed: number
+	max_speed: number
+	average_caedence: number
 	start_date: string
 	type: string
 	total_elevation_gain: number
@@ -34,6 +36,8 @@ export const processAthleteActivities = (data: Activity[], predictedTypes?: stri
 		id: activity.id,
 		start: currentActivity ? activity.date : activity.start_date,
 		speed: activity.average_speed,
+		maxSpeed: activity.max_speed,
+		cadence: activity.average_caedence || 0,
 		type: activity.type,
 		elevation: activity.total_elevation_gain,
 		heartrate: activity.average_heartrate || 0,

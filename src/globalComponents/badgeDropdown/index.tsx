@@ -22,12 +22,6 @@ export const BadgeDropdown = ({ showBadge = true, selected, options, setSelected
 		}
 	}, [])
 
-	useEffect(() => {
-		if (!options.includes(selected)) {
-			setSelected(options[0])
-		}
-	}, [])
-
 	const handleBadgeClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.preventDefault()
 		setShowDropdown(!showDropdown)

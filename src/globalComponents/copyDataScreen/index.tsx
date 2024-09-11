@@ -16,7 +16,7 @@ export const CopyDataScreen = () => {
 			} else {
 				clearInterval(interval)
 			}
-		}, 100) // Update every second
+		}, 200) // Update every 200ms
 
 		return () => clearInterval(interval)
 	}, [])

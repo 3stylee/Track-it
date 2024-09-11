@@ -162,3 +162,11 @@ export const HR_ZONE_COLORS = [
 	"rgba(75, 192, 192, 1)",
 	"rgba(153, 102, 255, 1)",
 ]
+
+export const ACTIVITY_LABEL_MAPPING = {
+	Easy: 0,
+	"Long Run": 1,
+	Race: 2,
+	Session: 3,
+	Tempo: 4,
+}

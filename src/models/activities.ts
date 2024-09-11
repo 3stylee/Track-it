@@ -9,6 +9,8 @@ export type ProcessedActivity = {
 	id: number
 	start: string
 	speed: number
+	maxSpeed: number
+	cadence: number
 	type: string
 	elevation: number
 	predictedType: string

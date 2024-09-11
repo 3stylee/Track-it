@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 import { StyledModal } from "./components"
 import connect from "./connect"
-import { DELETE_ACTIVITY_CONFIRMATION } from "../../../constants/constants"
+import { DELETE_ACTIVITY_CONFIRMATION, ROUTE_PATHS } from "../../../constants/constants"
+import { useNavigate } from "react-router-dom"
 
 interface DeleteModalProps {
 	id: number
@@ -23,6 +24,7 @@ const DeleteModal = ({
 	deleteAthleteActivity,
 }: DeleteModalProps) => {
 	const theme = useTheme()
+	const navigate = useNavigate()
 	const [showLoading, setShowLoading] = useState(false)
 	const handleClose = () => {
 		setShowDelete(false)
@@ -46,6 +48,7 @@ const DeleteModal = ({
 					variant="danger"
 					disabled={showLoading}
 					onClick={() => {
+						navigate(ROUTE_PATHS.SEARCH_ACTIVITIES)
 						deleteAthleteActivity(id, current)
 						setShowLoading(true)
 					}}>

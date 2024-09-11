@@ -7,7 +7,7 @@ import { MODEL_SCALER_INFO } from "../../constants/constants"
  *
  * @returns {Array} the normalised predictors.
  */
-const processData = (data) => {
+export const processData = (data) => {
 	const processedData = data.map((row) => {
 		const weights = scaleRow([
 			row.distance,
@@ -29,7 +29,7 @@ const processData = (data) => {
  *
  * @returns {Array} the normalised predictors.
  */
-const scaleRow = (row) => {
+export const scaleRow = (row) => {
 	const scaledRow = row.map((value, index) => {
 		const dataMin = MODEL_SCALER_INFO.data_min[index]
 		const dataMax = MODEL_SCALER_INFO.data_max[index]
@@ -41,5 +41,3 @@ const scaleRow = (row) => {
 	})
 	return scaledRow
 }
-
-export default processData

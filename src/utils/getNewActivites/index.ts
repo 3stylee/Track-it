@@ -16,14 +16,18 @@ export const getNewActivities = async (data: object[], endpoint: string, accessT
 				},
 			})
 		)
-		const responses = await Promise.all(promises)
 
 		// feed the data to the model to get the run type predictions
-		for (const response of responses) {
-			const predictions = await predictData(response.data, accessToken)
-			data.push(...processAthleteActivities(response.data, predictions))
+		for (const promise of promises) {
+			try {
+				const response = await promise
+				const predictions = await predictData(response.data, accessToken)
+				data.push(...processAthleteActivities(response.data, predictions))
 
-			if (response.data.length < 200) continuePagination = false
+				if (response.data.length < 200) continuePagination = false
+			} catch (error) {
+				console.error("Promise rejected:", error)
+			}
 		}
 
 		counter += 4

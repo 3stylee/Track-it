@@ -1,5 +1,5 @@
 import axios from "axios"
-import processData from "../processData"
+import { processData } from "../processData"
 
 export const predictData = async (data, accessToken) => {
 	try {
@@ -16,6 +16,6 @@ export const predictData = async (data, accessToken) => {
 		)
 		return response.data
 	} catch (error) {
-		console.error(error)
+		console.error("Error updating user model", error)
 	}
 }

@@ -5,7 +5,7 @@ import { FIREBASE_COLLECTIONS, NO_LOGGED_IN_USER, SESSIONS_ERRORS } from "../../
 import { db } from "../../firebase"
 import { removeSpaces } from "../../utils/removeSpaces"
 import axios from "axios"
-import { addKeysToSessions } from "../../utils/addKeysToSessions.ts"
+import { addKeysToSessions } from "../../utils/addKeysToSessions"
 import { Session } from "../../models/sessions"
 import { processAthleteActivities } from "../../utils/processAthleteActivities"
 
