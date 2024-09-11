@@ -16,6 +16,6 @@ export const refineUserModel = async (data: any, newType: string, accessToken: s
 			},
 		})
 	} catch (error) {
-		console.error(error)
+		console.error("Error refining user model:", error)
 	}
 }

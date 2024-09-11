@@ -52,7 +52,7 @@ export default {
 	units: initialUnits,
 	userData: {
 		stravaAccess: false,
-		firstActivityDate: undefined,
+		firstActivityDate: "2009-07-01T00:00:00.000Z",
 		dateOfLastBackup: undefined,
 		access_token: "",
 		refresh_token: "",
