@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
-import { StyledModal } from "./components"
+import { CheckboxPlaceholder, FieldPlaceholder, LoadingCheckboxContainer, StyledModal } from "./components"
 import { getEditableDetails } from "../../../utils/getEditableDetails"
-import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 
 interface EditModalProps {
 	id: number
@@ -41,43 +40,54 @@ const EditModal = ({ id, show, accessToken, current = false, setShowEdit, editAt
 			<Modal.Header closeButton>
 				<Modal.Title>Edit Item</Modal.Title>
 			</Modal.Header>
-			{loading ? (
-				<Modal.Body>
-					<AnimatedSpinner height="10rem" noMargin />
-				</Modal.Body>
-			) : error ? (
+			{error ? (
 				<Modal.Body>{error}</Modal.Body>
 			) : (
 				<Modal.Body>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group controlId="formName" className="mb-3">
 							<Form.Label>Name</Form.Label>
-							<Form.Control
-								type="text"
-								placeholder="Enter name"
-								value={details.name}
-								onChange={(e) => setDetails({ ...details, name: e.target.value })}
-							/>
+							{loading ? (
+								<FieldPlaceholder height="2rem" />
+							) : (
+								<Form.Control
+									type="text"
+									placeholder="Enter name"
+									value={details.name}
+									onChange={(e) => setDetails({ ...details, name: e.target.value })}
+								/>
+							)}
 						</Form.Group>
 						<Form.Group controlId="formDescription" className="mb-3">
 							<Form.Label>Description</Form.Label>
-							<Form.Control
-								as="textarea"
-								rows={3}
-								placeholder="Enter description"
-								value={details.description}
-								onChange={(e) => setDetails({ ...details, description: e.target.value })}
-							/>
+							{loading ? (
+								<FieldPlaceholder height="5.5rem" />
+							) : (
+								<Form.Control
+									as="textarea"
+									rows={3}
+									placeholder="Enter description"
+									value={details.description}
+									onChange={(e) => setDetails({ ...details, description: e.target.value })}
+								/>
+							)}
 						</Form.Group>
 						<Form.Group controlId="formMute" className="mb-3">
-							<Form.Check
-								type="checkbox"
-								label="Mute from home feed"
-								checked={details.muted}
-								onChange={(e) => setDetails({ ...details, muted: e.target.checked })}
-							/>
+							{loading ? (
+								<LoadingCheckboxContainer>
+									<CheckboxPlaceholder />
+									<div>Mute from home feed</div>
+								</LoadingCheckboxContainer>
+							) : (
+								<Form.Check
+									type="checkbox"
+									label="Mute from home feed"
+									checked={details.muted}
+									onChange={(e) => setDetails({ ...details, muted: e.target.checked })}
+								/>
+							)}
 						</Form.Group>
-						<Button variant="primary" type="submit">
+						<Button variant="primary" type="submit" disabled={loading}>
 							Save Changes
 						</Button>
 					</Form>
