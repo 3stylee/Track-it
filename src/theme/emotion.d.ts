@@ -7,6 +7,10 @@ declare module "@emotion/react" {
 		text: string
 		secondaryText: string
 		primaryGradient: string
+		loading: {
+			placeholderBackground: string
+			placeholderGradient: string
+		}
 		bootstrap: {
 			background: string
 			backgroundColor: string

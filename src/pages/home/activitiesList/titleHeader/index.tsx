@@ -7,6 +7,7 @@ import { DateRange } from "react-day-picker"
 import { PAGE_SIZE, ROUTE_PATHS } from "../../../../constants/constants"
 
 interface TitleHeaderProps {
+	loading: boolean
 	selected: DateRange
 	firstActivityDate: string | undefined
 	setSelected: (date: DateRange) => void
@@ -18,6 +19,7 @@ interface TitleHeaderProps {
 }
 
 const TitleHeader = ({
+	loading,
 	selected,
 	firstActivityDate,
 	setSelected,
@@ -31,6 +33,7 @@ const TitleHeader = ({
 		<Filters>
 			<Title>Your Activities</Title>
 			<DatePicker
+				loading={loading}
 				onClick={() => {
 					resetPageNumber()
 					const { before, after } = getBeforeAndAfterDates(selected)

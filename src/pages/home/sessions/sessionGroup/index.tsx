@@ -7,20 +7,20 @@ import { Sessions } from "../../../../models/sessions"
 
 export interface SessionGroupProps {
 	sessions: Sessions
-	apiCallsInProgress: number
+	loading: boolean
 }
 
-const SessionGroup = ({ sessions, apiCallsInProgress }: SessionGroupProps) => {
+const SessionGroup = ({ sessions, loading }: SessionGroupProps) => {
 	const { id } = useParams<{ id: string }>()
 	const key = sessions.find(({ id: sessionId }) => sessionId === parseInt(id || "", 10))?.groupKey
 	const groupSessions = sessions.filter(({ groupKey }) => groupKey === key)
 	return (
 		<div>
-			{apiCallsInProgress === 0 && (
+			{!loading && (
 				<CountText>Looks like you've completed this session or similar {groupSessions.length} times:</CountText>
 			)}
 			<DataContainer
-				apiCallsInProgress={apiCallsInProgress}
+				loading={loading}
 				nextPage={() => {}}
 				hasMore={false}
 				loadingMore={false}
@@ -34,7 +34,7 @@ const SessionGroup = ({ sessions, apiCallsInProgress }: SessionGroupProps) => {
 				loadMoreError={false}
 				filterApplied={false}
 			/>
-			{apiCallsInProgress === 0 && groupSessions.length === 0 && <NoGroupText>No group found</NoGroupText>}
+			{!loading && groupSessions.length === 0 && <NoGroupText>No group found</NoGroupText>}
 		</div>
 	)
 }

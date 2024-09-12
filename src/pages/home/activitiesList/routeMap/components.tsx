@@ -48,7 +48,7 @@ const gradient = keyframes`
 `
 
 export const ImagePlaceholder = styled("div")`
-	background: #eee;
+	background: ${({ theme }) => theme.loading.placeholderBackground};
 	aspect-ratio: 3/2;
 	border-radius: var(--bs-border-radius);
 	position: relative;
@@ -60,7 +60,7 @@ export const ImagePlaceholder = styled("div")`
 		left: 0;
 		height: 100%;
 		width: 100px;
-		background: linear-gradient(90deg, #eee, #f4f4f4, #eee);
+		background: ${({ theme }) => theme.loading.placeholderGradient};
 		border-radius: var(--bs-border-radius);
 		animation: ${gradient} 1s infinite ease-in-out;
 	}

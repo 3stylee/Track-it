@@ -7,8 +7,10 @@ import {
 import { State } from "../../../../redux/initialState"
 
 const mapStateToProps = (state: State) => {
+	const apiCallsInProgress = state.apiCallsInProgress
 	return {
 		firstActivityDate: state.userData.firstActivityDate,
+		loading: apiCallsInProgress > 0,
 	}
 }
 

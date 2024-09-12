@@ -11,9 +11,10 @@ const mapStateToProps = (state: State) => {
 	const { hasMore, loadingMore } = state.loadMore
 	const initialLoadError = state.apiError.message === ACTIVITIES_LIST_ERRORS.ATHLETE_ACTIVITIES_ERROR
 	const loadMoreError = state.apiError.message === ACTIVITIES_LIST_ERRORS.LOAD_MORE_ACTIVITIES_ERROR
+	const apiCallsInProgress = state.apiCallsInProgress
 	return {
 		athleteActivities: state.athleteActivities || [],
-		apiCallsInProgress: state.apiCallsInProgress,
+		loading: apiCallsInProgress > 0,
 		hasMore,
 		loadingMore,
 		initialLoadError,

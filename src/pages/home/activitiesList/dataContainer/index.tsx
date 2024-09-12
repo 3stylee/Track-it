@@ -13,10 +13,11 @@ import { AthleteActivities, LoadAthleteActivities } from "../../../../models/act
 import { useInfiniteScroll } from "./useInfiniteScroll"
 import ApiError from "../../../../globalComponents/apiError"
 import LoadMoreError from "../loadMoreError"
+import LoadingScreen from "../loadingScreen"
 
 export interface DataContainerProps {
 	athleteActivities: AthleteActivities
-	apiCallsInProgress: number
+	loading: boolean
 	loadingMore: boolean
 	hasMore: boolean
 	shouldTrimData?: boolean
@@ -32,7 +33,7 @@ export interface DataContainerProps {
 
 export const DataContainer = ({
 	athleteActivities,
-	apiCallsInProgress,
+	loading,
 	loadingMore,
 	hasMore,
 	shouldTrimData = true,
@@ -64,7 +65,7 @@ export const DataContainer = ({
 		loadAthleteActivities(before, after)
 	}
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner height="80vh" noMargin />
+	if (loading) return <LoadingScreen />
 	if (initialLoadError) return <ApiError height="80vh" />
 	return (
 		<Container noPadding={noPadding}>

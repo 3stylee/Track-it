@@ -1,9 +1,10 @@
 import { connect } from "react-redux"
 
 const mapStateToProps = (state: any) => {
+	const apiCallsInProgress = state.apiCallsInProgress
 	return {
 		sessions: state.sessions,
-		apiCallsInProgress: state.apiCallsInProgress,
+		loading: apiCallsInProgress > 0,
 	}
 }
 

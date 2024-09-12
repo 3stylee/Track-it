@@ -17,6 +17,7 @@ import { CLEAR_FILTER, FILTER_RESULTS, SELECT_DATE_RANGE } from "../../../../con
 import { Calendar, X } from "react-feather"
 
 interface DatePickerProps {
+	loading: boolean
 	onClick: (dates: DateRange | undefined) => void
 	selected: DateRange | undefined
 	setSelected: (dates: DateRange) => void
@@ -27,6 +28,7 @@ interface DatePickerProps {
 }
 
 export const DatePicker = ({
+	loading,
 	onClick,
 	selected,
 	setSelected,
@@ -49,7 +51,7 @@ export const DatePicker = ({
 	return (
 		<div ref={wrapperRef}>
 			<FilterButtonContainer>
-				<StyledButton onClick={() => setIsOpen(!isOpen)}>
+				<StyledButton onClick={() => setIsOpen(!isOpen)} disabled={loading}>
 					<ButtonText>
 						{filterApplied ? footerText : FILTER_RESULTS}
 						<Calendar size={18} />

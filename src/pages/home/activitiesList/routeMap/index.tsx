@@ -113,7 +113,7 @@ const RouteMap = ({
 							/>
 						)}
 						<DateText>{formatDate(start, "dd/MM/yy")}</DateText>
-						<LabelledStats stats={stats} small={true} />
+						<LabelledStats stats={stats} small />
 					</ActivityDescription>
 				</CardContainer>
 			</StyledLink>

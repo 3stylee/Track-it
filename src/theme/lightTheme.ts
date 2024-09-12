@@ -6,6 +6,10 @@ export default {
 	text: "rgb(0,0,0)",
 	secondaryText: "gray",
 	primaryGradient: "linear-gradient(0deg, rgba(245, 245, 245, 0.3) 0%, rgba(102, 61, 255, 1) 100%);",
+	loading: {
+		placeholderBackground: "#eee",
+		placeholderGradient: "linear-gradient(90deg, #eee, #f4f4f4, #eee)",
+	},
 	bootstrap: {
 		background: "white",
 		backgroundColor: "var(--bs-body-bg)",

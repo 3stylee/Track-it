@@ -29,6 +29,9 @@ export const StatHeader = styled("div")<{ darkMode?: boolean }>`
 `
 
 export const Value = styled("p")<{ small: small }>`
+	display: flex;
+	align-items: baseline;
+	gap: 0.125rem;
 	font-size: ${({ small }) => (small ? "0.875rem" : "2.25rem")};
 	margin-bottom: 0;
 
