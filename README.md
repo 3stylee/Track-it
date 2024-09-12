@@ -1,6 +1,6 @@
 # Track It
 
-Track it is a web application built using React, Typescript, Redux, Emotion Styled, and Bootstrap. It is powered by the free Strava API which allows users' to share their existing activity data. It uses firebase to store user data along with my own custom backend created using Node JS Express.
+Track it is a web application built using React, Typescript, Redux, Emotion Styled, and Bootstrap. It is powered by the free Strava API which allows users to share their existing activity data. It uses firebase to store user data along with my own custom backend created using Node JS Express and Python.
 
 Track it allows middle-distance track runners to connect their existing Strava account and provides them with AI-powered insights into their training. The core of the application is the activity type prediction model. This model was trained on my existing data and automatically labels user's activities according to their training type (e.g. Tempo, Race, Session, Easy). 
 
