@@ -1,5 +1,5 @@
 import { Theme } from "@emotion/react"
-import { ACTIVITY_IMAGE_RESOLUTIONS, BREAKPOINTS, THEMES } from "../../constants/constants"
+import { ACTIVITY_IMAGE_RESOLUTIONS, BREAKPOINTS } from "../../constants/constants"
 import decodePolyLine from "../decodePolyline"
 import { getMapboxEndpoint } from "../getMapboxEndpoint"
 
@@ -8,11 +8,6 @@ export const loadActivityImage = (
 	setBackgroundImage: (image: string | null) => void,
 	theme: Theme
 ) => {
-	const placeholder =
-		theme.name === THEMES.DARK
-			? require("../../assets/images/tile_background_dark.png")
-			: require("../../assets/images/tile_background_light.png")
-	setBackgroundImage(placeholder)
 	if (polyline === undefined || polyline === "") {
 		setBackgroundImage(null)
 		return

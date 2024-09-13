@@ -31,12 +31,12 @@ export const TextPlaceholder = styled("div")<{ fontSize: string; width: string }
 	}
 `
 
-export const FieldPlaceholder = styled("div")<{ height: string; noBorder?: boolean }>`
+export const FieldPlaceholder = styled("div")<{ height: string; noBorder?: boolean; noMargin?: boolean }>`
 	background: ${({ theme }) => theme.loading.placeholderBackground};
 	height: ${({ height }) => height};
 	width: 100%;
 	position: relative;
-	margin-bottom: 0.5rem;
+	margin-bottom: ${({ noMargin }) => (noMargin ? "0" : "0.5rem")};
 	border-radius: var(--bs-border-radius);
 	border: ${({ noBorder }) => (noBorder ? "none" : "var(--bs-border-width) solid var(--bs-border-color)")};
 	--width: 33%;
