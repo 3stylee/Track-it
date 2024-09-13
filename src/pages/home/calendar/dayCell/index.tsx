@@ -3,13 +3,15 @@ import { DayNumber, ShowMore, StyledContainer } from "./components"
 import { AthleteActivities } from "../../../../models/activities"
 import Event from "../event"
 import { Popup } from "../popup"
+import { EventPlaceholder } from "../../../../globalComponents/placeholderUI/components"
 
 interface DayCellProps {
 	day: number
 	activities: AthleteActivities | undefined
+	loading?: boolean
 }
 
-export const DayCell = ({ day, activities }: DayCellProps) => {
+export const DayCell = ({ day, activities, loading }: DayCellProps) => {
 	const [showMore, setShowMore] = useState(false)
 
 	const handleShowMore = () => {
@@ -20,13 +22,19 @@ export const DayCell = ({ day, activities }: DayCellProps) => {
 	return (
 		<StyledContainer>
 			<DayNumber>{day}</DayNumber>
-			{activities?.slice(0, 3).map((activity) => (
-				<Event key={activity.id} activity={activity} />
-			))}
-			{activities.length > 3 && (
+			{loading ? (
+				Array.from({ length: (day % 3) + ((day / 2) % 2) }).map((_, i) => <EventPlaceholder key={i} />)
+			) : (
 				<>
-					<ShowMore onClick={handleShowMore}>+{activities.length - 3} more</ShowMore>
-					{showMore && <Popup activities={activities} setShowMore={setShowMore} />}
+					{activities?.slice(0, 3).map((activity) => (
+						<Event key={activity.id} activity={activity} />
+					))}
+					{activities.length > 3 && (
+						<>
+							<ShowMore onClick={handleShowMore}>+{activities.length - 3} more</ShowMore>
+							{showMore && <Popup activities={activities} setShowMore={setShowMore} />}
+						</>
+					)}
 				</>
 			)}
 		</StyledContainer>

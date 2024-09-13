@@ -75,3 +75,24 @@ export const CheckboxPlaceholder = styled("div")`
 		animation: ${gradient} 1s infinite ease-in-out;
 	}
 `
+export const EventPlaceholder = styled("div")`
+	background: ${({ theme }) => theme.loading.placeholderBackground};
+	height: 5rem;
+	width: 100%;
+	position: relative;
+	margin-bottom: 0.5rem;
+	border-radius: 0.75rem;
+	--width: 33%;
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0.5rem;
+		height: 5rem;
+		width: var(--width);
+		background: ${({ theme }) => theme.loading.placeholderGradient};
+		border-radius: 0.75rem;
+		animation: ${gradient} 1s infinite ease-in-out;
+	}
+`

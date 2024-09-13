@@ -3,23 +3,24 @@ import { CenterContainer, DrawerContainer } from "./components"
 import connect from "./connect"
 import { AthleteActivities } from "../../../../models/activities"
 import Event from "../event"
-import { AnimatedSpinner } from "../../../../globalComponents/animatedSpinner"
+import { EventPlaceholder } from "../../../../globalComponents/placeholderUI/components"
 
 interface DayDrawerProps {
 	athleteActivities: AthleteActivities | null
-	apiCallsInProgress: number
+	loading: boolean
 	selectedDate: Date
 }
 
-const DayDrawer = ({ athleteActivities, apiCallsInProgress, selectedDate }: DayDrawerProps) => {
+const DayDrawer = ({ athleteActivities, loading, selectedDate }: DayDrawerProps) => {
 	const activities = athleteActivities?.filter((activity) => {
 		const date = new Date(activity.start)
 		return date.toDateString() === selectedDate.toDateString()
 	})
-	if (apiCallsInProgress > 0) return <AnimatedSpinner height="3rem" />
 	return (
 		<DrawerContainer>
-			{activities?.length === 0 ? (
+			{loading ? (
+				<EventPlaceholder />
+			) : activities?.length === 0 ? (
 				<CenterContainer>No Activities</CenterContainer>
 			) : (
 				<>

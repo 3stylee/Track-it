@@ -24,6 +24,10 @@ export const Body = styled(CardBody)`
 export const CardHeader = styled("h5")`
 	padding: 1.32rem 0.25rem;
 	margin-bottom: 0;
+
+	@media (max-width: ${BREAKPOINTS.UP.LG}) {
+		padding: 0.5rem 0.25rem;
+	}
 `
 
 export const TableHeader = styled("thead")`
