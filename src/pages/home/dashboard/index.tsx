@@ -5,7 +5,6 @@ import MileageChart from "./mileageChart"
 import RecentActivities from "./recentActivities"
 import connect from "./connect"
 import { getActivityData } from "../../../utils/getActivityData"
-import { AnimatedSpinner } from "../../../globalComponents/animatedSpinner"
 import { Col, Row } from "react-bootstrap"
 import { LoadInitialAthleteActivities } from "../../../models/athlete"
 import TrainingLoad from "./trainingLoad"
@@ -14,7 +13,6 @@ import HRZones from "./hrZones"
 interface DashboardProps {
 	gotSufficientActivities: boolean
 	gotAthleteData: boolean
-	apiCallsInProgress: number
 	loadInitialAthleteActivities: LoadInitialAthleteActivities
 	loadAthleteData: (athleteID: number) => void
 }
@@ -22,7 +20,6 @@ interface DashboardProps {
 export const Dashboard = ({
 	gotSufficientActivities,
 	gotAthleteData,
-	apiCallsInProgress,
 	loadAthleteData,
 	loadInitialAthleteActivities,
 }: DashboardProps) => {
@@ -38,7 +35,6 @@ export const Dashboard = ({
 		}
 	}, [gotSufficientActivities, gotAthleteData])
 
-	if (apiCallsInProgress > 0) return <AnimatedSpinner />
 	return (
 		<PageContainer>
 			<TitleHeader />

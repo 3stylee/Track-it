@@ -21,7 +21,7 @@ export const GraphDescription = styled("div")`
 	flex-direction: column;
 	justify-content: center;
 	padding: 0.5rem;
-	width: 30%;
+	width: 25%;
 
 	@media (max-width: ${BREAKPOINTS.UP.SM}) {
 		width: 100%;

@@ -2,7 +2,7 @@ import React from "react"
 import { SORT_OPTIONS } from "../../../../constants/constants"
 import { StyledButton, StyledDropdown } from "./components"
 
-export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
+export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth, loading }: any) => {
 	const handleItemClick = (selectedValue: string) => {
 		if (selectedValue !== weekOrMonth) {
 			setWeekOrMonth(selectedValue)
@@ -11,7 +11,7 @@ export const WeekMonthDropdown = ({ weekOrMonth, setWeekOrMonth }: any) => {
 	const isActive = (option: string) => option === weekOrMonth
 	return (
 		<div className="dropdown">
-			<StyledButton data-bs-toggle="dropdown" aria-expanded="false">
+			<StyledButton data-bs-toggle="dropdown" aria-expanded="false" disabled={loading}>
 				{weekOrMonth}
 			</StyledButton>
 			<StyledDropdown className="dropdown-menu dropdown-menu-dark">

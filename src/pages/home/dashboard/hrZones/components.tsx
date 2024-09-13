@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { Card } from "react-bootstrap"
+import { BREAKPOINTS } from "../../../../constants/constants"
 
 export const StyledCard = styled(Card)`
 	background-color: ${({ theme }) => theme.bootstrap.backgroundColor};
@@ -11,8 +12,12 @@ export const Body = styled("div")`
 	height: 100%;
 `
 export const StyledDonut = styled("div")`
-	height: 75%;
+	height: 65%;
 	margin-top: 1rem;
+
+	@media (max-width: ${BREAKPOINTS.UP.LG}) {
+		height: 80%;
+	}
 `
 export const ZoneKeys = styled("div")`
 	display: flex;

@@ -3,9 +3,9 @@ import { Container } from "../dataContainer/components"
 import { Col, Row } from "react-bootstrap"
 import { ActivityDescription, CardContainer, ImagePlaceholder, MoreButton } from "../routeMap/components"
 import { MoreVertical } from "react-feather"
-import { TextPlaceholder } from "./components"
 import { LabelledStats } from "../../../../globalComponents/labelledStats"
 import connect from "./connect"
+import { TextPlaceholder } from "../../../../globalComponents/placeholderUI/components"
 
 const LoadingScreen = ({ units }: any) => {
 	const dummyStats = [

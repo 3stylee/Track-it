@@ -8,18 +8,22 @@ import { WEEK_GRAPH_LABELS } from "../../../../constants/constants"
 import { Bar } from "react-chartjs-2"
 import { BarElement, Chart } from "chart.js"
 import { Card } from "react-bootstrap"
-import options from "./chartOptions"
+import { getOptions } from "./chartOptions"
 import { ChevronDown, ChevronUp, Info } from "react-feather"
+import { useTheme } from "@emotion/react"
+import { TextPlaceholder } from "../../../../globalComponents/placeholderUI/components"
 
 interface TrainingLoadProps {
 	athleteActivities: AthleteActivities | null
 	dataError: boolean
+	loading: boolean
 }
 
 Chart.register(BarElement)
 
-const TrainingLoad = ({ athleteActivities, dataError }: TrainingLoadProps) => {
+const TrainingLoad = ({ athleteActivities, dataError, loading }: TrainingLoadProps) => {
 	const chartRef = useRef<HTMLDivElement>(null)
+	const theme = useTheme()
 	const [gradient, setGradient] = useState<string | CanvasGradient | CanvasPattern>("")
 
 	useEffect(() => {
@@ -35,9 +39,7 @@ const TrainingLoad = ({ athleteActivities, dataError }: TrainingLoadProps) => {
 		}
 	}, [chartRef])
 
-	if (dataError) {
-		return <ApiError height="100%" />
-	}
+	if (dataError) return <ApiError height="100%" />
 
 	const { loadArray, previousWeekLoad } = getTrainingLoad(athleteActivities)
 	const total = loadArray.reduce((acc, curr) => acc + curr, 0)
@@ -49,26 +51,30 @@ const TrainingLoad = ({ athleteActivities, dataError }: TrainingLoadProps) => {
 		datasets: [
 			{
 				label: "Training Load",
-				data: loadArray,
+				data: loading ? [20, 100, 74, 101, 56, 23, 130] : loadArray,
 				borderColor: "rgb(102, 61, 255)",
 				borderRadius: Number.MAX_VALUE,
-				backgroundColor: gradient,
+				backgroundColor: loading ? theme.loading.placeholderBackground : gradient,
 				pointHitRadius: 20,
 			},
 		],
 	}
 
 	return (
-		<StyledCard>
+		<StyledCard className="h-100">
 			<Card.Header>
 				<Card.Title className="mt-2">Training Load</Card.Title>
 			</Card.Header>
 			<CardBody>
 				<GraphDescription>
 					<SubHeader>
-						<h1 className="m-0">{total}</h1>
+						{loading ? (
+							<TextPlaceholder fontSize="2.125rem" width="10rem" />
+						) : (
+							<h1 className="m-0">{total}</h1>
+						)}
 						<ChangePercent>
-							{!isNaN(changePercent) && (
+							{!isNaN(changePercent) && !loading && (
 								<>
 									{changePercent > 0 ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
 									<span>{changePercent.toFixed(0)}%</span>
@@ -77,11 +83,19 @@ const TrainingLoad = ({ athleteActivities, dataError }: TrainingLoadProps) => {
 						</ChangePercent>
 					</SubHeader>
 					<InfoText>
-						<Info size={12} /> Training load is a measure of your training intensity
+						{loading ? (
+							Array.from({ length: 3 }).map((_, i) => (
+								<TextPlaceholder key={i} fontSize="0.8rem" width="8rem" />
+							))
+						) : (
+							<>
+								<Info size={12} /> Training load is a measure of your training intensity
+							</>
+						)}
 					</InfoText>
 				</GraphDescription>
 				<div className="w-100" ref={chartRef}>
-					<Bar data={data} options={options} />
+					<Bar data={data} options={getOptions(loading)} />
 				</div>
 			</CardBody>
 		</StyledCard>

@@ -7,8 +7,8 @@ export default {
 	secondaryText: "lightGray",
 	primaryGradient: "linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(102, 61, 255, 1) 100%)",
 	loading: {
-		placeholderBackground: "var(--bs-dark)",
-		placeholderGradient: "linear-gradient(90deg, var(--bs-dark), #2b2e32, var(--bs-dark))",
+		placeholderBackground: "#525252",
+		placeholderGradient: "linear-gradient(90deg, #525252, #6e6b6b, #525252)",
 	},
 	bootstrap: {
 		background: "dark",

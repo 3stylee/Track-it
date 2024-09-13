@@ -16,6 +16,7 @@ export const Stat = styled("li")`
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+	align-items: center;
 	margin: 0 1rem;
 
 	@media (max-width: ${BREAKPOINTS.UP.MD}) {

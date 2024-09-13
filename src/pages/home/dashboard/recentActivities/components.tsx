@@ -51,7 +51,7 @@ export const TableRow = styled("tr")`
 		vertical-align: middle;
 		border: none;
 		text-wrap: nowrap;
-		max-width: 10rem;
+		max-width: 8rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
 

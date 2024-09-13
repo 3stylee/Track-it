@@ -4,10 +4,12 @@ import { connect } from "react-redux"
 
 const mapStateToProps = (state: State) => {
 	const dataError = Object.values(DASHBOARD_ERRORS).includes(state.apiError.message)
+	const loading = state.apiCallsInProgress > 0
 	return {
 		athleteData: state.athleteData,
 		units: state.units,
 		dataError,
+		loading,
 	}
 }
 

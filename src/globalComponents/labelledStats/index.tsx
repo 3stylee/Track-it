@@ -1,6 +1,6 @@
 import React from "react"
 import { StatsContainer, Text, Value, Unit, StatHeader } from "./components"
-import { TextPlaceholder } from "../../pages/home/activitiesList/loadingScreen/components"
+import { TextPlaceholder } from "../placeholderUI/components"
 
 export interface Stat {
 	text: string
@@ -31,16 +31,18 @@ export const LabelledStats = ({ stats, small, darkMode, loading }: Props) => {
 							{loading ? (
 								<TextPlaceholder
 									fontSize={small ? "0.875rem" : "2.25rem"}
-									width="2rem"
+									width={small ? "2rem" : "6rem"}
 									className="mt-1"
 								/>
 							) : (
-								value
+								<>
+									{value}
+									<Unit small={small} darkMode={darkMode}>
+										{" "}
+										{unit}
+									</Unit>
+								</>
 							)}
-							<Unit small={small} darkMode={darkMode}>
-								{" "}
-								{unit}
-							</Unit>
 						</Value>
 					</div>
 				)

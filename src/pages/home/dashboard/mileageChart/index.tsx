@@ -16,9 +16,10 @@ interface MileageChartProps {
 	athleteActivities: AthleteActivities
 	units: Units
 	dataError: boolean
+	loading: boolean
 }
 
-export const MileageChart = ({ athleteActivities, units, dataError }: MileageChartProps) => {
+export const MileageChart = ({ athleteActivities, units, dataError, loading }: MileageChartProps) => {
 	const [weekOrMonth, setWeekOrMonth] = useState(SORT_OPTIONS.WEEK)
 	const mileageData = getMileageArray(athleteActivities, weekOrMonth, units.meters)
 	const stats = getMilageChartStats(mileageData, weekOrMonth, units)
@@ -32,13 +33,17 @@ export const MileageChart = ({ athleteActivities, units, dataError }: MileageCha
 					<Card.Header>
 						<CardHeader>
 							<GraphTitle>Mileage</GraphTitle>
-							<WeekMonthDropdown weekOrMonth={weekOrMonth} setWeekOrMonth={setWeekOrMonth} />
+							<WeekMonthDropdown
+								weekOrMonth={weekOrMonth}
+								setWeekOrMonth={setWeekOrMonth}
+								loading={loading}
+							/>
 						</CardHeader>
 					</Card.Header>
 					<Card.Body>
 						<div>
-							<LabelledStats stats={stats} />
-							<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} />
+							<LabelledStats stats={stats} loading={loading} />
+							<LineChart weekOrMonth={weekOrMonth} mileageData={mileageData} loading={loading} />
 						</div>
 					</Card.Body>
 				</>

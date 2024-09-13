@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import connect from "./connect"
 import { useTheme } from "@emotion/react"
-import { CheckboxPlaceholder, FieldPlaceholder, LoadingCheckboxContainer, StyledModal } from "./components"
+import { LoadingCheckboxContainer, StyledModal } from "./components"
 import { getEditableDetails } from "../../../utils/getEditableDetails"
+import { CheckboxPlaceholder, FieldPlaceholder } from "../../placeholderUI/components"
 
 interface EditModalProps {
 	id: number

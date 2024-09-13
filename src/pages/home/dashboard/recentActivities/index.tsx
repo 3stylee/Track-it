@@ -7,14 +7,17 @@ import { Card, Table } from "react-bootstrap"
 import { Units } from "../../../../models/state"
 import { useNavigate } from "react-router-dom"
 import { formatDate } from "date-fns"
+import { AthleteActivities } from "../../../../models/activities"
+import { PlaceholderTable } from "./placeholderTable"
 
 interface RecentActivitiesProps {
-	athleteActivities: any
+	athleteActivities: AthleteActivities | null
 	units: Units
+	loading: boolean
 }
 
-export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesProps) => {
-	let filteredData = []
+export const RecentActivities = ({ athleteActivities, units, loading }: RecentActivitiesProps) => {
+	let filteredData: AthleteActivities = []
 	if (Array.isArray(athleteActivities)) {
 		filteredData = athleteActivities.slice(0, MAX_RECENT_ACTIVITIES)
 	}
@@ -27,7 +30,9 @@ export const RecentActivities = ({ athleteActivities, units }: RecentActivitiesP
 				<CardHeader>Recent Activities</CardHeader>
 			</Card.Header>
 			<Body>
-				{filteredData.length > 0 ? (
+				{loading ? (
+					<PlaceholderTable />
+				) : filteredData.length > 0 ? (
 					<Table variant={theme.bootstrap.background} striped className="mb-0">
 						<TableHeader className="thead-light">
 							<tr>

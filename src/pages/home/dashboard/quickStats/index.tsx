@@ -3,14 +3,16 @@ import connect from "./connect"
 import { Stat, StatName, StatValue, StatsList } from "./components"
 import { Units } from "../../../../models/state"
 import { AthleteData, QuickStatsType } from "../../../../models/athlete"
+import { TextPlaceholder } from "../../../../globalComponents/placeholderUI/components"
 
 interface QuickStatsProps {
 	athleteData: AthleteData
 	units: Units
 	dataError: boolean
+	loading: boolean
 }
 
-export const QuickStats = ({ athleteData, units, dataError }: QuickStatsProps) => {
+export const QuickStats = ({ athleteData, units, dataError, loading }: QuickStatsProps) => {
 	const { meters, unitString } = units
 	if (dataError) {
 		return null
@@ -29,10 +31,16 @@ export const QuickStats = ({ athleteData, units, dataError }: QuickStatsProps) =
 				const { unit, count } = quickStats[key]
 				return (
 					<Stat key={key}>
-						<StatValue>{count}</StatValue>
+						<StatValue>{loading ? <TextPlaceholder fontSize="1.5rem" width="4rem" /> : count}</StatValue>
 						<StatName>
-							{key}
-							{unit !== undefined ? ` (${unit})` : ""}
+							{loading ? (
+								<TextPlaceholder fontSize="0.75rem" width="8rem" />
+							) : (
+								<>
+									{key}
+									{unit !== undefined ? ` (${unit})` : ""}
+								</>
+							)}
 						</StatName>
 					</Stat>
 				)

@@ -1,11 +1,11 @@
-export const options = {
+export const getOptions = (loading: boolean) => ({
 	responsive: true,
 	plugins: {
 		legend: {
 			display: false,
 		},
 		tooltip: {
-			enabled: true,
+			enabled: !loading,
 		},
 	},
 	scales: {
@@ -19,6 +19,4 @@ export const options = {
 			display: false,
 		},
 	},
-}
-
-export default options
+})
