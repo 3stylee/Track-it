@@ -12,12 +12,19 @@ interface EditModalProps {
 	accessToken: string
 	current?: boolean
 	setShowEdit: (showEdit: boolean) => void
-	editAthleteActivity: (id: number, data: object, current: boolean) => void
+	editAthleteActivity: (
+		id: number,
+		data: object,
+		current: boolean,
+		successCallback: () => void,
+		failureCallback: () => void
+	) => void
 }
 
 const EditModal = ({ id, show, accessToken, current = false, setShowEdit, editAthleteActivity }: EditModalProps) => {
 	const theme = useTheme()
 	const [loading, setLoading] = useState(true)
+	const [updating, setUpdating] = useState(false)
 	const [error, setError] = useState("")
 	const [initialDetails, setInitialDetails] = useState({ name: "", description: "", muted: false })
 	const [details, setDetails] = useState(initialDetails)
@@ -28,12 +35,15 @@ const EditModal = ({ id, show, accessToken, current = false, setShowEdit, editAt
 
 	const handleClose = () => {
 		setShowEdit(false)
+		setUpdating(false)
 	}
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
-		if (initialDetails !== details) editAthleteActivity(id, details, current)
-		handleClose()
+		if (initialDetails !== details) {
+			setUpdating(true)
+			editAthleteActivity(id, details, current, handleClose, () => setUpdating(false))
+		}
 	}
 
 	return (
@@ -88,8 +98,9 @@ const EditModal = ({ id, show, accessToken, current = false, setShowEdit, editAt
 								/>
 							)}
 						</Form.Group>
-						<Button variant="primary" type="submit" disabled={loading}>
+						<Button variant="primary" type="submit" disabled={loading || updating}>
 							Save Changes
+							{updating && <div className="spinner-border spinner-border-sm ms-2" role="status" />}
 						</Button>
 					</Form>
 				</Modal.Body>

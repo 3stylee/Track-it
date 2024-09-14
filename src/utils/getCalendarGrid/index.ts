@@ -8,7 +8,7 @@ export const getCalendarGrid = (selectedDate: Date) => {
 	// Calculate the number of days in the month
 	const daysInMonth = lastDayOfMonth.getDate()
 	// Determine the day of the week the month starts on
-	const startDayOfWeek = firstDayOfMonth.getDay() - 1
+	const startDayOfWeek = (firstDayOfMonth.getDay() - 1 + 7) % 7
 	// Create an array of days in the month
 	const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1)
 

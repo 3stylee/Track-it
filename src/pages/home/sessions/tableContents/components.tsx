@@ -7,6 +7,7 @@ export const StyledRow = styled("tr")`
 
 	& td {
 		vertical-align: middle;
+		height: 3rem;
 	}
 
 	@media (max-width: ${BREAKPOINTS.UP.SM}) {

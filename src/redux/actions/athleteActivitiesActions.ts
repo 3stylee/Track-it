@@ -241,7 +241,8 @@ export const deleteAthleteActivity = (id: number, current: boolean) => async (di
 }
 
 export const editAthleteActivity =
-	(id: number, data: any, current: boolean) => async (dispatch: any, getState: any) => {
+	(id: number, data: any, current: boolean, successCallback: () => void, failureCallback: () => void) =>
+	async (dispatch: any, getState: any) => {
 		const endpoint = EDIT_URL + id
 		const {
 			userData: { access_token },
@@ -274,9 +275,11 @@ export const editAthleteActivity =
 					})
 				}
 				dispatch(current ? updateCurrentName(data.name) : updateActivityName(id, data.name))
+				successCallback()
 			}
 		} catch (error: any) {
 			dispatch(apiCallError(ACTIVITIES_LIST_ERRORS.EDIT_ACTIVITY_ERROR))
+			failureCallback()
 			console.error(error.message)
 		}
 	}
