@@ -11,11 +11,12 @@ export const StyledCard = styled(Card)`
 export const Body = styled(CardBody)`
 	padding-top: 0;
 	overflow-y: auto;
+	overflow-x: hidden;
 	@media (min-width: ${BREAKPOINTS.DOWN.XL}) {
 		height: 15.25rem;
 	}
 	@media (max-width: ${BREAKPOINTS.UP.XL}) {
-		max-height: 24rem;
+		max-height: 26rem;
 	}
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		max-height: 100%;
