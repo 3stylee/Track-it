@@ -68,7 +68,7 @@ export const ActivityTitle = ({ currentActivity, units, loading, updateActivityT
 						<Row className="g-3">
 							{loading
 								? Array.from({ length: 6 }).map((_, i) => (
-										<CenteredCol key={i} xs={6} sm={6} md={4} lg={6} xl={4}>
+										<CenteredCol key={i} xs={6} sm={6} md={4} lg={6} xl={4} className="mb-1">
 											<TextPlaceholder fontSize="0.875rem" width="5rem" />
 											<TextPlaceholder fontSize="1.75rem" width="7rem" />
 										</CenteredCol>

@@ -26,7 +26,6 @@ export const CenteredCol = styled(Col)`
 	flex-direction: column;
 `
 export const StatsContainer = styled("div")`
-	height: 10rem;
 	margin-top: 7rem;
 
 	@media (max-width: ${BREAKPOINTS.UP.XL}) {
@@ -35,10 +34,6 @@ export const StatsContainer = styled("div")`
 
 	@media (max-width: ${BREAKPOINTS.UP.LG}) {
 		margin-bottom: 1rem;
-	}
-
-	@media (max-width: ${BREAKPOINTS.UP.MD}) {
-		height: 100%;
 	}
 `
 export const Date = styled("div")`
